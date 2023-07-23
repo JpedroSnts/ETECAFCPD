@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPD.Repositorio", "CPD.Repositorio\CPD.Repositorio.csproj", "{D3BB4593-7BA1-435B-9188-9311CA5C7456}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPD.Forms", "CPD.Forms\CPD.Forms.csproj", "{66915662-A770-4D3A-8AB3-6C900C996F2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3BB4593-7BA1-435B-9188-9311CA5C7456}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3BB4593-7BA1-435B-9188-9311CA5C7456}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3BB4593-7BA1-435B-9188-9311CA5C7456}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3BB4593-7BA1-435B-9188-9311CA5C7456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66915662-A770-4D3A-8AB3-6C900C996F2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66915662-A770-4D3A-8AB3-6C900C996F2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66915662-A770-4D3A-8AB3-6C900C996F2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66915662-A770-4D3A-8AB3-6C900C996F2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EC493C0-1896-4606-87AD-F8EF13995CFA}
+	EndGlobalSection
+EndGlobal
