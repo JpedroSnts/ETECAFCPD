@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CPD.Repositorio.Banco
 {
-    internal class Parametro
+    public class Parametro
     {
         public string Nome { get; set; }
         public string Valor { get; set; }

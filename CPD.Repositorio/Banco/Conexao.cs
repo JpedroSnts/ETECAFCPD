@@ -62,7 +62,7 @@ namespace CPD.Repositorio.Banco
             }
             catch (MySqlException ex)
             {
-                if (ex.Number == 45000) throw new SPException(ex.Message);
+                if (ex.Number == 1644) throw new SPException(ex.Message);
                 throw new Exception("Ocorreu um erro na execução da procedure. Erro: " + ex.Message);
             }
             catch (Exception ex)

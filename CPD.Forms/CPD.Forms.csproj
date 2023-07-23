@@ -76,5 +76,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CPD.Repositorio\CPD.Repositorio.csproj">
+      <Project>{d3bb4593-7ba1-435b-9188-9311ca5c7456}</Project>
+      <Name>CPD.Repositorio</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
