@@ -44,8 +44,11 @@ namespace CPD.Repositorio.Controller
                     Email = reader.GetString("nm_email"),
                     ReferenciaImagem = reader.GetString("nm_referencia_imagem")
                 };
-                usuarioLogado.TipoUsuario.Codigo = reader.GetInt32("cd_tipo_usuario");
-                usuarioLogado.TipoUsuario.Nome = reader.GetString("nm_tipo_usuario");
+                usuarioLogado.TipoUsuario = new TipoUsuario
+                {
+                    Codigo = reader.GetInt32("cd_tipo_usuario"),
+                    Nome = reader.GetString("nm_tipo_usuario")
+                };
             }
             if (!reader.IsClosed) reader.Close();
             Desconectar();
