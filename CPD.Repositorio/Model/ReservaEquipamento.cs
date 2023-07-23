@@ -2,7 +2,7 @@
 
 namespace CPD.Repositorio.Model
 {
-    internal class ReservaEquipamento
+    public class ReservaEquipamento
     {
         public Equipamento Equipamento { get; set; }
         public Usuario Usuario { get; set; }

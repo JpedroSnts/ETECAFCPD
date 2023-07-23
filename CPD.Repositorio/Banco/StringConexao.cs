@@ -6,7 +6,7 @@ using System.Web;
 
 namespace CPD.Repositorio.Banco
 {
-    public static class StringConexao
+    internal static class StringConexao
     {
         public static string GetStringConexao()
         {

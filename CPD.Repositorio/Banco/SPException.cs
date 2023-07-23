@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CPD.Repositorio.Banco
 {
-    internal class SPException : Exception
+    public class SPException : Exception
     {
         public SPException(string message) : base(message)
         {

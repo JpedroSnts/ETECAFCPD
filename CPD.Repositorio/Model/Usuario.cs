@@ -1,6 +1,6 @@
 ﻿namespace CPD.Repositorio.Model
 {
-    internal class Usuario
+    public class Usuario
     {
         public int RM { get; set; }
         public string Nome { get; set; }

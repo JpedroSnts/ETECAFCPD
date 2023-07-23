@@ -1,6 +1,6 @@
 ﻿namespace CPD.Repositorio.Model
 {
-    internal class Equipamento
+    public class Equipamento
     {
         public string Sigla { get; set; }
         public string Nome { get; set; }

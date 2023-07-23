@@ -2,7 +2,7 @@
 
 namespace CPD.Repositorio.Model
 {
-    internal class OcorrenciaAmbiente
+    public class OcorrenciaAmbiente
     {
         public DateTime Data { get; set; }
         public string Sigla { get; set; }
