@@ -97,6 +97,7 @@
     <Compile Include="Banco\SPException.cs" />
     <Compile Include="Banco\StringConexao.cs" />
     <Compile Include="Banco\Parametro.cs" />
+    <Compile Include="Controller\DisponibilidadeAmbienteController.cs" />
     <Compile Include="Controller\UsuarioController.cs" />
     <Compile Include="Model\DiaSemana.cs" />
     <Compile Include="Model\Ambiente.cs" />
