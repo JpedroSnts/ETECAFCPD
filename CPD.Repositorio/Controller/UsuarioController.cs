@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace CPD.Repositorio.Controller
 {
-    public class UsuarioController : Conexao
+    public class UsuarioController : ConexaoBanco
     {
         public void Cadastrar(Usuario usuario)
         {

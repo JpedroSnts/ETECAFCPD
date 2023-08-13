@@ -97,11 +97,13 @@
     <Compile Include="Banco\SPException.cs" />
     <Compile Include="Banco\StringConexao.cs" />
     <Compile Include="Banco\Parametro.cs" />
-    <Compile Include="Controller\DisponibilidadeAmbienteController.cs" />
+    <Compile Include="Controller\ReservaAmbienteController.cs" />
+    <Compile Include="Controller\ReservaEquipamentoController.cs" />
+    <Compile Include="Controller\UsoAmbienteController.cs" />
     <Compile Include="Controller\UsuarioController.cs" />
     <Compile Include="Model\DiaSemana.cs" />
     <Compile Include="Model\Ambiente.cs" />
-    <Compile Include="Model\DisponibilidadeAmbiente.cs" />
+    <Compile Include="Model\UsoAmbiente.cs" />
     <Compile Include="Model\Equipamento.cs" />
     <Compile Include="Model\OcorrenciaAmbiente.cs" />
     <Compile Include="Model\OcorrenciaEquipamento.cs" />

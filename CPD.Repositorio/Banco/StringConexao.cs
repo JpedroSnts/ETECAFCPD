@@ -10,7 +10,7 @@ namespace CPD.Repositorio.Banco
     {
         public static string GetStringConexao()
         {
-            return "SERVER=localhost;UID=root;PASSWORD=root;DATABASE=bancoetecaf";
+            return "SERVER=localhost;UID=root;PASSWORD=root;DATABASE=gerenciamento_cpd";
         }
     }
 }

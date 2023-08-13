@@ -4,6 +4,7 @@ namespace CPD.Repositorio.Model
 {
     public class OcorrenciaEquipamento
     {
+        public ReservaEquipamento ReservaEquipamento { get; set; }
         public DateTime Data { get; set; }
         public Equipamento Equipamento { get; set; }
         public Usuario Usuario { get; set; }

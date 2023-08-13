@@ -2,7 +2,7 @@
 
 namespace CPD.Repositorio.Model
 {
-    public class DisponibilidadeAmbiente
+    public class UsoAmbiente
     {
         public DateTime Inicio { get; set; }
         public DateTime Termino { get; set; }

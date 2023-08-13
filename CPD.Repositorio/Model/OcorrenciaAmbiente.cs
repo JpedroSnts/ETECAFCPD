@@ -4,6 +4,7 @@ namespace CPD.Repositorio.Model
 {
     public class OcorrenciaAmbiente
     {
+        public ReservaAmbiente ReservaAmbiente { get; set; }
         public DateTime Data { get; set; }
         public string Sigla { get; set; }
         public Usuario Usuario { get; set; }

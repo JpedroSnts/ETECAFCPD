@@ -10,5 +10,6 @@ namespace CPD.Repositorio.Model
         public DateTime DataSaida { get; set; }
         public DateTime DataDevolucaoPrevista { get; set; }
         public DateTime DataDevolucao { get; set; }
+        public DateTime DataCancelamento { get; set; }
     }
 }

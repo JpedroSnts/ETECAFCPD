@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace CPD.Repositorio.Banco
 {
-    public abstract class Conexao
+    public abstract class ConexaoBanco
     {
         string linhaConexao = "";
         MySqlConnection conexao = null;
         MySqlCommand cSQL = null;
 
-        public Conexao()
+        public ConexaoBanco()
         {
             linhaConexao = StringConexao.GetStringConexao();
         }
