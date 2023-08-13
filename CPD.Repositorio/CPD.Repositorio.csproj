@@ -93,7 +93,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Banco\Conexao.cs" />
+    <Compile Include="Banco\ConexaoBanco.cs" />
     <Compile Include="Banco\SPException.cs" />
     <Compile Include="Banco\StringConexao.cs" />
     <Compile Include="Banco\Parametro.cs" />

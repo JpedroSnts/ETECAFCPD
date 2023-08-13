@@ -98,5 +98,23 @@ namespace CPD.Repositorio.Controller
             return reservaAmbienteInsert;
         }
 
+        public ReservaAmbiente CancelarReserva(ReservaAmbiente reservaAmbiente)
+        {
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pSiglaAmbiente", reservaAmbiente.Ambiente.Sigla),
+                new Parametro("pRM", reservaAmbiente.Usuario.RM.ToString()),
+                new Parametro("pDTSaidaPrevista", reservaAmbiente.DataSaidaPrevista.ToString("yyyy-MM-dd HH-mm-ss"))
+            };
+            MySqlDataReader reader = Executar("cancelarReservaAmbiente", parametros);
+            ReservaAmbiente reservaAmbienteInsert = null;
+            if (reader.Read())
+            {
+                reservaAmbienteInsert = InstanciarReservaAmbiente(reader);
+            }
+            if (!reader.IsClosed) reader.Close();
+            Desconectar();
+            return reservaAmbienteInsert;
+        }
     }
 }

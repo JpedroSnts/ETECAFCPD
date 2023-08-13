@@ -99,5 +99,23 @@ namespace CPD.Repositorio.Controller
             return reservaEquipamentoInsert;
         }
 
+        public ReservaEquipamento CancelarReserva(ReservaEquipamento reservaEquipamento)
+        {
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pSiglaEquipamento", reservaEquipamento.Equipamento.Sigla),
+                new Parametro("pRM", reservaEquipamento.Usuario.RM.ToString()),
+                new Parametro("pDTSaidaPrevista", reservaEquipamento.DataSaidaPrevista.ToString("yyyy-MM-dd HH-mm-ss"))
+            };
+            MySqlDataReader reader = Executar("cancelarReservaEquipamento", parametros);
+            ReservaEquipamento reservaEquipamentoInsert = null;
+            if (reader.Read())
+            {
+                reservaEquipamentoInsert = InstanciarReservaEquipamento(reader);
+            }
+            if (!reader.IsClosed) reader.Close();
+            Desconectar();
+            return reservaEquipamentoInsert;
+        }
     }
 }
