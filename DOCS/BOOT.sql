@@ -24,7 +24,7 @@ CREATE TABLE usuario
 
 CREATE TABLE notificacao
 (
-	cd_notificacao INT,
+	cd_notificacao INT AUTO_INCREMENT,
 	ds_conteudo LONGTEXT,
 	dt_notificacao DATETIME,
 	nm_notificacao VARCHAR(100),
@@ -35,6 +35,7 @@ CREATE TABLE usuario_notificacao
 (
 	cd_rm INT,
 	cd_notificacao INT,
+    ic_lida BOOL,
 	CONSTRAINT pk_usuario_notificacao PRIMARY KEY (cd_rm, cd_notificacao),
 	CONSTRAINT fk_usuario_notificacao_usuario FOREIGN KEY (cd_rm)
 		REFERENCES usuario (cd_rm),
@@ -156,6 +157,78 @@ CREATE TABLE ocorrencia_ambiente
 
 DELIMITER $$
 
+/* ------------------------------ USUARIO ------------------------------ */
+
+DROP FUNCTION IF EXISTS verificaSeUsuarioExiste$$ /* funciona */
+CREATE FUNCTION verificaSeUsuarioExiste(pRM INT) RETURNS BOOL
+BEGIN
+	DECLARE vRM INT DEFAULT 0;
+	SELECT cd_rm INTO vRM FROM usuario WHERE cd_rm = pRM;
+	RETURN vRM <> 0;
+END$$
+
+DROP PROCEDURE IF EXISTS adicionarUsuario$$  /* funciona */
+CREATE PROCEDURE adicionarUsuario(pRM INT,  pNome VARCHAR(255), pEmail VARCHAR(255), pSenha VARCHAR(255), pImg VARCHAR(255), pTipoUsuario INT)
+BEGIN
+
+	DECLARE vTipoUsuario INT DEFAULT 0;
+	
+	SELECT cd_tipo_usuario INTO vTipoUsuario FROM tipo_usuario WHERE cd_tipo_usuario = pTipoUsuario;
+
+	IF(vTipoUsuario = 0) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Tipo de Usuário não existe';
+	END IF;
+
+	IF(!verificaSeUsuarioExiste(pRM)) THEN 
+		INSERT INTO usuario VALUES (pRM, pNome, pEmail, md5(pSenha), pImg, pTipoUsuario);
+	ELSE
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Usuário já cadastrado';
+	END IF;
+	
+END$$
+
+DROP PROCEDURE IF EXISTS loginUsuario$$
+CREATE PROCEDURE loginUsuario(pRM INT,  pSenha VARCHAR(255))
+BEGIN
+	DECLARE vUsuario INT DEFAULT 0;
+    
+	IF(!verificaSeUsuarioExiste(pRM)) THEN 
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Usuário não existe';
+	END IF;
+    
+    SELECT COUNT(cd_rm) into vUsuario FROM usuario WHERE cd_rm = pRM AND md5(pSenha) = nm_senha;
+	IF (vUsuario = 0) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Senha incorreta';
+	END IF;
+	
+	SELECT u.cd_rm, u.nm_usuario, u.nm_email, u.nm_referencia_imagem, tu.*
+	FROM usuario u JOIN tipo_usuario tu ON u.cd_tipo_usuario = tu.cd_tipo_usuario
+	WHERE u.cd_rm = pRM AND md5(pSenha) = u.nm_senha;
+	
+END$$
+
+DROP PROCEDURE IF EXISTS alterarSenhaUsuario$$
+CREATE PROCEDURE alterarSenhaUsuario(pRM INT,  pSenha VARCHAR(255), pNovaSenha VARCHAR(255), pConfirmacaoSenha VARCHAR(255))
+BEGIN
+	DECLARE vUsuario INT DEFAULT 0;
+    
+	IF(!verificaSeUsuarioExiste(pRM)) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Usuário não existe';
+	END IF;
+	
+    SELECT COUNT(cd_rm) into vUsuario FROM usuario WHERE cd_rm = pRM AND md5(pSenha) = nm_senha;
+	IF (vUsuario = 0) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Senha incorreta';
+	END IF;
+	
+	IF (pNovaSenha <> pConfirmacaoSenha) THEN 
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'As senhas não coincidem';
+	END IF;
+	
+	UPDATE usuario SET nm_senha = md5(pNovaSenha) WHERE cd_rm = pRM;
+    
+END$$
+
 /* ------------------------------ RESERVA EQUIPAMENTO ------------------------------ */
 
 DROP FUNCTION IF EXISTS verificarSeEquipamentoPodeSerReservado$$
@@ -230,17 +303,6 @@ BEGIN
 	END IF;
 
 	INSERT INTO reserva_equipamento VALUES (pSiglaEquipamento, pRM, pDTSaidaPrevista, pDTDevolucaoPrevista, null, null, null);
-    
-    SELECT 
-	e.sg_equipamento, e.nm_equipamento, e.ic_danificado,
-    u.cd_rm, u.nm_usuario, u.nm_email, u.nm_referencia_imagem,
-    tu.cd_tipo_usuario, tu.nm_tipo_usuario,
-    re.dt_saida_prevista, re.dt_devolucao_prevista, re.dt_saida, re.dt_devolucao ,re.dt_cancelamento
-	FROM reserva_equipamento re
-    JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
-    JOIN usuario u ON re.cd_rm = u.cd_rm
-    JOIN tipo_usuario tu ON tu.cd_tipo_usuario = u.cd_tipo_usuario
-    WHERE sg_ambiente = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
 END$$
 
 DROP PROCEDURE IF EXISTS atualizarDevolucaoReservaEquipamento$$
@@ -248,17 +310,6 @@ CREATE PROCEDURE atualizarDevolucaoReservaEquipamento(pSiglaEquipamento VARCHAR(
 BEGIN
 	UPDATE reserva_equipamento SET dt_devolucao = curdate() 
 	WHERE sg_ambiente = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
-    
-    SELECT 
-	e.sg_equipamento, e.nm_equipamento, e.ic_danificado,
-    u.cd_rm, u.nm_usuario, u.nm_email, u.nm_referencia_imagem,
-    tu.cd_tipo_usuario, tu.nm_tipo_usuario,
-    re.dt_saida_prevista, re.dt_devolucao_prevista, re.dt_saida, re.dt_devolucao ,re.dt_cancelamento
-	FROM reserva_equipamento re
-    JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
-    JOIN usuario u ON re.cd_rm = u.cd_rm
-    JOIN tipo_usuario tu ON tu.cd_tipo_usuario = u.cd_tipo_usuario
-    WHERE sg_ambiente = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
 END$$
 
 DROP PROCEDURE IF EXISTS atualizarSaidaReservaEquipamento$$
@@ -266,8 +317,19 @@ CREATE PROCEDURE atualizarSaidaReservaEquipamento(pSiglaEquipamento VARCHAR(20),
 BEGIN
 	UPDATE reserva_equipamento SET dt_saida = curdate() 
 	WHERE sg_ambiente = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
-    
-    SELECT 
+END$$
+
+DROP PROCEDURE IF EXISTS cancelarReservaEquipamento$$
+CREATE PROCEDURE cancelarReservaEquipamento(pSiglaEquipamento VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
+BEGIN
+	UPDATE reserva_equipamento SET dt_cancelamento = curdate() 
+	WHERE sg_ambiente = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
+END$$
+
+DROP PROCEDURE IF EXISTS listarReservasEquipamentosDeHoje$$
+CREATE PROCEDURE listarReservasEquipamentosDeHoje()
+BEGIN
+	SELECT 
 	e.sg_equipamento, e.nm_equipamento, e.ic_danificado,
     u.cd_rm, u.nm_usuario, u.nm_email, u.nm_referencia_imagem,
     tu.cd_tipo_usuario, tu.nm_tipo_usuario,
@@ -276,79 +338,8 @@ BEGIN
     JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
     JOIN usuario u ON re.cd_rm = u.cd_rm
     JOIN tipo_usuario tu ON tu.cd_tipo_usuario = u.cd_tipo_usuario
-    WHERE sg_ambiente = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
-END$$
-
-/* ------------------------------ USUARIO ------------------------------ */
-
-DROP FUNCTION IF EXISTS verificaSeUsuarioExiste$$ /* funciona */
-CREATE FUNCTION verificaSeUsuarioExiste(pRM INT) RETURNS BOOL
-BEGIN
-	DECLARE vRM INT DEFAULT 0;
-	SELECT cd_rm INTO vRM FROM usuario WHERE cd_rm = pRM;
-	RETURN vRM <> 0;
-END$$
-
-DROP PROCEDURE IF EXISTS adicionarUsuario$$  /* funciona */
-CREATE PROCEDURE adicionarUsuario(pRM INT,  pNome VARCHAR(255), pEmail VARCHAR(255), pSenha VARCHAR(255), pImg VARCHAR(255), pTipoUsuario INT)
-BEGIN
-
-	DECLARE vTipoUsuario INT DEFAULT 0;
-	
-	SELECT cd_tipo_usuario INTO vTipoUsuario FROM tipo_usuario WHERE cd_tipo_usuario = pTipoUsuario;
-
-	IF(vTipoUsuario = 0) THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Tipo de Usuário não existe';
-	END IF;
-
-	IF(!verificaSeUsuarioExiste(pRM)) THEN 
-		INSERT INTO usuario VALUES (pRM, pNome, pEmail, md5(pSenha), pImg, pTipoUsuario);
-	ELSE
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Usuário já cadastrado';
-	END IF;
-	
-END$$
-
-DROP PROCEDURE IF EXISTS loginUsuario$$
-CREATE PROCEDURE loginUsuario(pRM INT,  pSenha VARCHAR(255))
-BEGIN
-	DECLARE vUsuario INT DEFAULT 0;
-    
-	IF(!verificaSeUsuarioExiste(pRM)) THEN 
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Usuário não existe';
-	END IF;
-    
-    SELECT COUNT(cd_rm) into vUsuario FROM usuario WHERE cd_rm = pRM AND md5(pSenha) = nm_senha;
-	IF (vUsuario = 0) THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Senha incorreta';
-	END IF;
-	
-	SELECT u.cd_rm, u.nm_usuario, u.nm_email, u.nm_referencia_imagem, tu.*
-	FROM usuario u JOIN tipo_usuario tu ON u.cd_tipo_usuario = tu.cd_tipo_usuario
-	WHERE u.cd_rm = pRM AND md5(pSenha) = u.nm_senha;
-	
-END$$
-
-DROP PROCEDURE IF EXISTS alterarSenhaUsuario$$
-CREATE PROCEDURE alterarSenhaUsuario(pRM INT,  pSenha VARCHAR(255), pNovaSenha VARCHAR(255), pConfirmacaoSenha VARCHAR(255))
-BEGIN
-	DECLARE vUsuario INT DEFAULT 0;
-    
-	IF(!verificaSeUsuarioExiste(pRM)) THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Usuário não existe';
-	END IF;
-	
-    SELECT COUNT(cd_rm) into vUsuario FROM usuario WHERE cd_rm = pRM AND md5(pSenha) = nm_senha;
-	IF (vUsuario = 0) THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Senha incorreta';
-	END IF;
-	
-	IF (pNovaSenha <> pConfirmacaoSenha) THEN 
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'As senhas não coincidem';
-	END IF;
-	
-	UPDATE usuario SET nm_senha = md5(pNovaSenha) WHERE cd_rm = pRM;
-    
+    WHERE DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = CURDATE()
+    ORDER BY re.dt_saida_prevista ASC;
 END$$
 
 /* ------------------------------ RESERVA AMBIENTE ------------------------------ */
@@ -422,7 +413,32 @@ BEGIN
 	END IF;
 
 	INSERT INTO reserva_ambiente VALUES (pSiglaEquipamento, pRM, pDTSaidaPrevista, pDTDevolucaoPrevista, null, null, null);		
-    
+END$$
+
+DROP PROCEDURE IF EXISTS atualizarDevolucaoReservaAmbiente$$
+CREATE PROCEDURE atualizarDevolucaoReservaAmbiente(pSiglaAmbiente VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
+BEGIN
+	UPDATE reserva_ambiente SET dt_devolucao = curdate() 
+	WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
+END$$
+
+DROP PROCEDURE IF EXISTS atualizarSaidaReservaAmbiente$$
+CREATE PROCEDURE atualizarSaidaReservaAmbiente(pSiglaAmbiente VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
+BEGIN
+	UPDATE reserva_ambiente SET dt_saida = curdate() 
+	WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
+END$$
+
+DROP PROCEDURE IF EXISTS cancelarReservaAmbiente$$
+CREATE PROCEDURE cancelarReservaAmbiente(pSiglaAmbiente VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
+BEGIN
+	UPDATE reserva_ambiente SET dt_cancelamento = curdate() 
+	WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
+END$$
+
+DROP PROCEDURE IF EXISTS listarReservasAmbientesDeHoje$$
+CREATE PROCEDURE listarReservasAmbientesDeHoje()
+BEGIN
 	SELECT 
 	a.sg_ambiente, a.nm_ambiente,
     u.cd_rm, u.nm_usuario, u.nm_email, u.nm_referencia_imagem,
@@ -432,43 +448,8 @@ BEGIN
     JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
     JOIN usuario u ON ra.cd_rm = u.cd_rm
     JOIN tipo_usuario tu ON tu.cd_tipo_usuario = u.cd_tipo_usuario
-    WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
-END$$
-
-DROP PROCEDURE IF EXISTS atualizarDevolucaoReservaAmbiente$$
-CREATE PROCEDURE atualizarDevolucaoReservaAmbiente(pSiglaAmbiente VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
-BEGIN
-	UPDATE reserva_ambiente SET dt_devolucao = curdate() 
-	WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
-    
-    SELECT 
-	a.sg_ambiente, a.nm_ambiente,
-    u.cd_rm, u.nm_usuario, u.nm_email, u.nm_referencia_imagem,
-    tu.cd_tipo_usuario, tu.nm_tipo_usuario,
-    ra.dt_saida_prevista, ra.dt_devolucao_prevista, ra.dt_saida, ra.dt_devolucao, ra.dt_cancelamento
-	FROM reserva_ambiente ra
-    JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
-    JOIN usuario u ON ra.cd_rm = u.cd_rm
-    JOIN tipo_usuario tu ON tu.cd_tipo_usuario = u.cd_tipo_usuario
-    WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
-END$$
-
-DROP PROCEDURE IF EXISTS atualizarSaidaReservaAmbiente$$
-CREATE PROCEDURE atualizarSaidaReservaAmbiente(pSiglaAmbiente VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
-BEGIN
-	UPDATE reserva_ambiente SET dt_saida = curdate() 
-	WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
-    
-    SELECT 
-	a.sg_ambiente, a.nm_ambiente,
-    u.cd_rm, u.nm_usuario, u.nm_email, u.nm_referencia_imagem,
-    tu.cd_tipo_usuario, tu.nm_tipo_usuario,
-    ra.dt_saida_prevista, ra.dt_devolucao_prevista, ra.dt_saida, ra.dt_devolucao, ra.dt_cancelamento
-	FROM reserva_ambiente ra
-    JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
-    JOIN usuario u ON ra.cd_rm = u.cd_rm
-    JOIN tipo_usuario tu ON tu.cd_tipo_usuario = u.cd_tipo_usuario
-    WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
+    WHERE DATE_FORMAT(ra.dt_saida_prevista, "%Y-%m-%d") = CURDATE()
+    ORDER BY ra.dt_saida_prevista ASC;
 END$$
 
 /* ------------------------------ USO AMBIENTE ------------------------------ */
@@ -503,9 +484,66 @@ END$$
 DROP PROCEDURE IF EXISTS listarUsosAmbientes$$
 CREATE PROCEDURE listarUsosAmbientes()
 BEGIN
-	SELECT * FROM uso_ambiente;
+	SELECT * FROM uso_ambiente ORDER BY cd_dia_semana ASC, hr_inicio_uso ASC;
 END$$
 
-DELIMITER ;
+/* ------------------------------ OCORRENCIA AMBIENTE ------------------------------ */
 
--- endregion STORED PROCEDURES
+DROP FUNCTION IF EXISTS ocorrenciaAmbienteJaExiste$$
+CREATE FUNCTION ocorrenciaAmbienteJaExiste(pDataOcorrencia DATETIME, pSiglaAmbiente VARCHAR(20), pRm INT, pDataSaidaPrevista DATETIME) RETURNS BOOL
+BEGIN
+	DECLARE vRm INT DEFAULT 0;
+	SELECT cd_rm INTO vRm FROM ocorrencia_ambiente
+    WHERE dt_ocorrencia = pDataOcorrencia AND sg_ambiente = pSiglaAmbiente AND cd_rm = pRm AND dt_saida_prevista = pDataSaidaPrevista;
+    RETURN vRm <> 0;
+END$$
+
+DROP PROCEDURE IF EXISTS registrarOcorrenciaAmbiente$$
+CREATE PROCEDURE registrarOcorrenciaAmbiente(pDataOcorrencia DATETIME, pSiglaAmbiente VARCHAR(20), pRm INT, pDataSaidaPrevista DATETIME, pTipoOcorrencia INT, pDescricao TEXT)
+BEGIN
+	IF ocorrenciaAmbienteJaExiste(pDataOcorrencia, pSiglaAmbiente, pRm, pDataSaidaPrevista) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ocorrencia para esta reserva já registrada';
+    END IF;
+	INSERT INTO ocorrencia_ambiente VALUES (pDataOcorrencia , pSiglaAmbiente , pRm, pDataSaidaPrevista, pTipoOcorrencia, pDescricao);
+END$$
+
+/* ------------------------------ OCORRENCIA EQUIPAMENTO ------------------------------ */
+
+DROP FUNCTION IF EXISTS ocorrenciaEquipamentoJaExiste$$
+CREATE FUNCTION ocorrenciaEquipamentoJaExiste(pDataOcorrencia DATETIME, pSiglaEquipamento VARCHAR(20), pRm INT, pDataSaidaPrevista DATETIME) RETURNS BOOL
+BEGIN
+	DECLARE vRm INT DEFAULT 0;
+	SELECT cd_rm INTO vRm FROM ocorrencia_equipamento
+    WHERE dt_ocorrencia = pDataOcorrencia AND sg_equipamento = pSiglaEquipamento AND cd_rm = pRm AND dt_saida_prevista = pDataSaidaPrevista;
+    RETURN vRm <> 0;
+END$$
+
+DROP PROCEDURE IF EXISTS registrarOcorrenciaEquipamento$$
+CREATE PROCEDURE registrarOcorrenciaEquipamento(pDataOcorrencia DATETIME, pSiglaEquipamento VARCHAR(20), pRm INT, pDataSaidaPrevista DATETIME, pTipoOcorrencia INT, pDescricao TEXT)
+BEGIN
+	IF ocorrenciaEquipamentoJaExiste(pDataOcorrencia, pSiglaEquipamento, pRm, pDataSaidaPrevista) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ocorrencia para esta reserva já registrada';
+    END IF;
+	INSERT INTO ocorrencia_equipamento VALUES (pDataOcorrencia , pSiglaEquipamento , pRm, pDataSaidaPrevista, pTipoOcorrencia, pDescricao);
+END$$
+
+/* ------------------------------ NOTIFICACAO ------------------------------ */
+
+DROP PROCEDURE IF EXISTS criarNotificacao$$
+CREATE PROCEDURE criarNotificacao(pTitulo VARCHAR(100), pDescricao TEXT, pRm INT)
+BEGIN
+	INSERT INTO notificacao VALUES(DEFAULT, pDescricao, now(), pTitulo);
+    INSERT INTO usuario_notificacao VALUES (pRm, last_insert_id(), false);
+END$$
+
+DROP PROCEDURE IF EXISTS exibirNotificacaoUsuario$$
+CREATE PROCEDURE exibirNotificacaoUsuario(pRm int)
+BEGIN
+	SELECT n.* FROM usuario_notificacao un
+    JOIN notificacao n ON n.cd_notificacao = un.cd_notificacao
+    WHERE cd_rm = pRm;
+END$$
+
+/* ------------------------------ RELATORIOS ------------------------------ */
+
+DELIMITER ;

@@ -33,7 +33,7 @@ namespace CPD.Repositorio.Controller
             return list;
         }
 
-        public UsoAmbiente Adicionar(UsoAmbiente usoAmbiente)
+        public void Adicionar(UsoAmbiente usoAmbiente)
         {
             List<Parametro> parametros = new List<Parametro>
             {
@@ -42,24 +42,8 @@ namespace CPD.Repositorio.Controller
                 new Parametro("pHorarioInicio", usoAmbiente.Inicio.ToString("HH:mm:ss")),
                 new Parametro("pHorarioFim", usoAmbiente.Termino.ToString("HH:mm:ss")),
             };
-            MySqlDataReader reader = Executar("adicionarUsoAmbiente", parametros);
-            UsoAmbiente da = null;
-
-            if (reader.Read())
-            {
-                da = new UsoAmbiente()
-                {
-                    Ambiente = new Ambiente { Sigla = reader.GetString("sg_ambiente"), Nome = reader.GetString("nm_ambiente") },
-                    DiaSemana = new DiaSemana { Codigo = reader.GetInt16("cd_dia_semana"), Nome = reader.GetString("nm_dia_semana") },
-                    Inicio = DateTime.Parse(reader.GetString("hr_inicio_disponibilidade")),
-                    Termino = DateTime.Parse(reader.GetString("hr_termino_disponibilidade"))
-                };
-            }
-
-            if (reader.IsClosed) reader.Close();
+            Executar("adicionarUsoAmbiente", parametros);
             Desconectar();
-
-            return da;
         }
 
         public void Remover(UsoAmbiente usoAmbiente)
