@@ -97,12 +97,16 @@
     <Compile Include="Banco\SPException.cs" />
     <Compile Include="Banco\StringConexao.cs" />
     <Compile Include="Banco\Parametro.cs" />
+    <Compile Include="Controller\NotificacaoController.cs" />
+    <Compile Include="Controller\OcorrenciaAmbienteController.cs" />
+    <Compile Include="Controller\OcorrenciaEquipamentoController.cs" />
     <Compile Include="Controller\ReservaAmbienteController.cs" />
     <Compile Include="Controller\ReservaEquipamentoController.cs" />
     <Compile Include="Controller\UsoAmbienteController.cs" />
     <Compile Include="Controller\UsuarioController.cs" />
     <Compile Include="Model\DiaSemana.cs" />
     <Compile Include="Model\Ambiente.cs" />
+    <Compile Include="Model\Notificacao.cs" />
     <Compile Include="Model\UsoAmbiente.cs" />
     <Compile Include="Model\Equipamento.cs" />
     <Compile Include="Model\OcorrenciaAmbiente.cs" />
@@ -113,6 +117,7 @@
     <Compile Include="Model\TipoOcorrenciaAmbiente.cs" />
     <Compile Include="Model\TipoUsuario.cs" />
     <Compile Include="Model\Usuario.cs" />
+    <Compile Include="Model\UsuarioNotificacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

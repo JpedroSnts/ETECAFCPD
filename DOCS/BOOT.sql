@@ -529,10 +529,10 @@ END$$
 
 /* ------------------------------ NOTIFICACAO ------------------------------ */
 
-DROP PROCEDURE IF EXISTS criarNotificacao$$
-CREATE PROCEDURE criarNotificacao(pTitulo VARCHAR(100), pDescricao TEXT, pRm INT)
+DROP PROCEDURE IF EXISTS enviarNotificacao$$
+CREATE PROCEDURE enviarNotificacao(pTitulo VARCHAR(100), pConteudo TEXT, pRm INT)
 BEGIN
-	INSERT INTO notificacao VALUES(DEFAULT, pDescricao, now(), pTitulo);
+	INSERT INTO notificacao VALUES(DEFAULT, pConteudo, now(), pTitulo);
     INSERT INTO usuario_notificacao VALUES (pRm, last_insert_id(), false);
 END$$
 
