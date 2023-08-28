@@ -3,9 +3,6 @@ using CPD.Repositorio.Model;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CPD.Repositorio.Controller
 {
@@ -58,6 +55,64 @@ namespace CPD.Repositorio.Controller
             };
             Executar("cancelarReservaAmbiente", parametros);
             Desconectar();
+        }
+
+        public List<ReservaAmbiente> ListarReservasAmbientesDeHoje()
+        {
+            List<ReservaAmbiente> list = new List<ReservaAmbiente>();
+            MySqlDataReader reader = Executar("listarReservasAmbientesDeHoje", null);
+
+            while (reader.Read())
+            {
+                ReservaAmbiente da = new ReservaAmbiente()
+                {
+                    Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString() },
+                    Ambiente = new Ambiente { Sigla = reader["sg_ambiente"].ToString() },
+                    DataSaidaPrevista = DateTime.Parse(reader.GetString("dt_saida_prevista")),
+                    DataDevolucaoPrevista = DateTime.Parse(reader.GetString("dt_devolucao_prevista")),
+                    DataSaida = DateTime.Parse(reader.GetString("dt_saida")),
+                    DataDevolucao = DateTime.Parse(reader.GetString("dt_devolucao")),
+                    DataCancelamento = DateTime.Parse(reader.GetString("dt_cancelamento"))
+                };
+
+                list.Add(da);
+            }
+
+            if (reader.IsClosed) reader.Close();
+            Desconectar();
+
+            return list;
+        }
+
+        public List<ReservaAmbiente> ListarReservasAmbientesDoUsuario(Usuario usuario)
+        {
+            List<ReservaAmbiente> list = new List<ReservaAmbiente>();
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pRm", usuario.RM.ToString())
+            };
+            MySqlDataReader reader = Executar("listarReservasAmbientesDoUsuario", parametros);
+
+            while (reader.Read())
+            {
+                ReservaAmbiente da = new ReservaAmbiente()
+                {
+                    Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString() },
+                    Ambiente = new Ambiente { Sigla = reader["sg_ambiente"].ToString(), Nome = reader["nm_ambiente"].ToString() },
+                    DataSaidaPrevista = DateTime.Parse(reader.GetString("dt_saida_prevista")),
+                    DataDevolucaoPrevista = DateTime.Parse(reader.GetString("dt_devolucao_prevista")),
+                    DataSaida = DateTime.Parse(reader.GetString("dt_saida")),
+                    DataDevolucao = DateTime.Parse(reader.GetString("dt_devolucao")),
+                    DataCancelamento = DateTime.Parse(reader.GetString("dt_cancelamento"))
+                };
+
+                list.Add(da);
+            }
+
+            if (reader.IsClosed) reader.Close();
+            Desconectar();
+
+            return list;
         }
     }
 }

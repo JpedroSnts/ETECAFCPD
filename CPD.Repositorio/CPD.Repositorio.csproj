@@ -97,6 +97,8 @@
     <Compile Include="Banco\SPException.cs" />
     <Compile Include="Banco\StringConexao.cs" />
     <Compile Include="Banco\Parametro.cs" />
+    <Compile Include="Controller\AmbienteController.cs" />
+    <Compile Include="Controller\EquipamentoController.cs" />
     <Compile Include="Controller\NotificacaoController.cs" />
     <Compile Include="Controller\OcorrenciaAmbienteController.cs" />
     <Compile Include="Controller\OcorrenciaEquipamentoController.cs" />

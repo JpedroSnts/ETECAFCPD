@@ -3,9 +3,6 @@ using CPD.Repositorio.Model;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CPD.Repositorio.Controller
 {
@@ -59,5 +56,64 @@ namespace CPD.Repositorio.Controller
             Executar("cancelarReservaEquipamento", parametros);
             Desconectar();
         }
+
+        public List<ReservaEquipamento> ListarReservasEquipamentosDeHoje()
+        {
+            List<ReservaEquipamento> list = new List<ReservaEquipamento>();
+            MySqlDataReader reader = Executar("listarReservasEquipamentosDeHoje", null);
+
+            while (reader.Read())
+            {
+                ReservaEquipamento da = new ReservaEquipamento()
+                {
+                    Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString() },
+                    Equipamento = new Equipamento { Sigla = reader["sg_equipamento"].ToString() },
+                    DataSaidaPrevista = DateTime.Parse(reader.GetString("dt_saida_prevista")),
+                    DataDevolucaoPrevista = DateTime.Parse(reader.GetString("dt_devolucao_prevista")),
+                    DataSaida = DateTime.Parse(reader.GetString("dt_saida")),
+                    DataDevolucao = DateTime.Parse(reader.GetString("dt_devolucao")),
+                    DataCancelamento = DateTime.Parse(reader.GetString("dt_cancelamento"))
+                };
+
+                list.Add(da);
+            }
+
+            if (reader.IsClosed) reader.Close();
+            Desconectar();
+
+            return list;
+        }
+
+        public List<ReservaEquipamento> ListarReservasEquipamentosDoUsuario(Usuario usuario)
+        {
+            List<ReservaEquipamento> list = new List<ReservaEquipamento>();
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pRm", usuario.RM.ToString())
+            };
+            MySqlDataReader reader = Executar("listarReservasEquipamentosDoUsuario", parametros);
+
+            while (reader.Read())
+            {
+                ReservaEquipamento da = new ReservaEquipamento()
+                {
+                    Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString() },
+                    Equipamento = new Equipamento { Sigla = reader["sg_equipamento"].ToString(), Nome = reader["nm_equipamento"].ToString() },
+                    DataSaidaPrevista = DateTime.Parse(reader.GetString("dt_saida_prevista")),
+                    DataDevolucaoPrevista = DateTime.Parse(reader.GetString("dt_devolucao_prevista")),
+                    DataSaida = DateTime.Parse(reader.GetString("dt_saida")),
+                    DataDevolucao = DateTime.Parse(reader.GetString("dt_devolucao")),
+                    DataCancelamento = DateTime.Parse(reader.GetString("dt_cancelamento"))
+                };
+
+                list.Add(da);
+            }
+
+            if (reader.IsClosed) reader.Close();
+            Desconectar();
+
+            return list;
+        }
+
     }
 }

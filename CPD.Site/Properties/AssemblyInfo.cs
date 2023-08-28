@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // As Informações Gerais sobre um assembly são controladas por meio do 
 // conjunto de atributos a seguir. Altere esses valores de atributo para modificar as informações
 // associadas a um assembly.
-[assembly: AssemblyTitle("CPD.Api")]
+[assembly: AssemblyTitle("CPD.Site")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("CPD.Api")]
+[assembly: AssemblyProduct("CPD.Site")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // A GUID a seguir será referente à ID do typelib se este projeto for exposto ao COM
-[assembly: Guid("aaf84555-be36-4e6d-aa67-c02c12fd959c")]
+[assembly: Guid("ce76b17f-a3ba-416d-807e-aeaf4218f157")]
 
 // As informações de versão de um assembly consistem nos quatro valores a seguir:
 //
