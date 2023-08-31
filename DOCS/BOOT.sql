@@ -231,63 +231,44 @@ END$$
 
 /* ------------------------------ RESERVA EQUIPAMENTO ------------------------------ */
 
+DROP FUNCTION IF EXISTS verificarSeDataPassaDe7Dias$$
+CREATE FUNCTION verificarSeDataPassaDe7Dias(pData DATETIME) RETURNS BOOL
+BEGIN
+	DECLARE vDataAcimaDoLimite BOOL DEFAULT FALSE;
+    
+    SELECT DATE(pData) > DATE_ADD(CURDATE(), INTERVAL 7 DAY) INTO vDataAcimaDoLimite;
+    
+    RETURN vDataAcimaDoLimite;
+END$$
+
 DROP FUNCTION IF EXISTS verificarSeEquipamentoPodeSerReservado$$
 CREATE FUNCTION verificarSeEquipamentoPodeSerReservado(pSiglaEquipamento VARCHAR(20), pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME) RETURNS BOOL
 BEGIN
-	DECLARE vDanificado bool default false;
-	DECLARE vJaDevolvido bool default false;
-    DECLARE vParaHoje bool default false;
-    DECLARE vPodeReservarHoje bool default false;
-    DECLARE vReservaJaPassou bool default false;
-
-	IF (pDTSaidaPrevista > DATE_ADD(curdate(), INTERVAL 7 DAY)) THEN 
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Data acima do prazo (7 dias)';
-	END IF;
-	
-    -- Verifica se equipamento está danificado
-	SELECT ic_danificado = 1 INTO vDanificado FROM equipamento
-	WHERE sg_equipamento = pSiglaEquipamento;
+	DECLARE vPodeSerReservado BOOL DEFAULT FALSE;
     
-    -- Verifica se equipamento ja foi devolvido
-	SELECT COUNT(re.sg_equipamento) = 0 INTO vJaDevolvido FROM reserva_equipamento re
-	JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
-	WHERE 	re.sg_equipamento = pSiglaEquipamento
-    AND 	re.dt_devolucao is null;
-	
-    -- Verifica se tem reserva para hoje
-    SELECT COUNT(re.sg_equipamento) <> 0 INTO vParaHoje FROM reserva_equipamento re
-	JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
-	WHERE 	re.sg_equipamento = pSiglaEquipamento
-    AND 	DATE(pDTSaidaPrevista) = DATE(re.dt_saida_prevista)
-    AND 	DATE(pDTDevolucaoPrevista) = DATE(re.dt_devolucao_prevista);
-    
-    -- Verifica se equipamento pode ser reservado hoje
-    SELECT COUNT(re.sg_equipamento) <> 0 INTO vPodeReservarHoje FROM reserva_equipamento re
-	JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
-	WHERE 	re.sg_equipamento = pSiglaEquipamento
-    AND 	pDTSaidaPrevista < re.dt_saida_prevista
-    AND 	pDTDevolucaoPrevista <= re.dt_saida_prevista;
-    
-    SELECT COUNT(re.sg_equipamento) <> 0 INTO vReservaJaPassou FROM reserva_equipamento re
-	JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
-	WHERE 	re.sg_equipamento = pSiglaAmbiente
-    AND 	curdate() > DATE(re.dt_saida_prevista)
-    AND 	curdate() > DATE(re.dt_devolucao_prevista);
-    
-    IF vDanificado THEN
-		return false;
-    ELSE
-		IF vParaHoje THEN
-			return vPodeReservarHoje;
-		ELSE
-			IF vReservaJaPassou THEN
-				IF vJaDevolvido THEN 
-					return true;
-				END IF;
-				return false;
-			END IF;
-		END IF;
+    IF verificarSeDataPassaDe7Dias(pDTSaidaPrevista) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Data de saída acima do limite de 7 dias';
     END IF;
+    
+    SELECT COUNT(e.sg_equipamento) <> 0 INTO vPodeSerReservado FROM equipamento e
+	LEFT JOIN reserva_equipamento re ON e.sg_equipamento = re.sg_equipamento
+		AND (
+			(dt_saida_prevista >= pDTSaidaPrevista AND dt_saida_prevista < pDTDevolucaoPrevista) OR
+			(dt_devolucao_prevista > pDTSaidaPrevista AND dt_devolucao_prevista <= pDTDevolucaoPrevista)
+		)
+	WHERE
+		e.sg_equipamento = pSiglaEquipamento
+		AND re.sg_equipamento IS NULL
+		AND e.ic_danificado = FALSE
+        AND NOT EXISTS (
+			SELECT 1
+			FROM reserva_equipamento re2
+			WHERE re2.sg_equipamento = e.sg_equipamento
+			AND DATE(re2.dt_saida_prevista) < CURDATE()
+            AND re2.dt_devolucao IS NULL
+		);
+
+	RETURN vPodeSerReservado;
 END$$
 
 DROP PROCEDURE IF EXISTS reservarEquipamento$$
@@ -330,16 +311,49 @@ DROP PROCEDURE IF EXISTS listarReservasEquipamentosDeHoje$$
 CREATE PROCEDURE listarReservasEquipamentosDeHoje()
 BEGIN
 	SELECT 
-	e.sg_equipamento, e.nm_equipamento, e.ic_danificado,
-    u.cd_rm, u.nm_usuario, u.nm_email, u.nm_referencia_imagem,
-    tu.cd_tipo_usuario, tu.nm_tipo_usuario,
-    re.dt_saida_prevista, re.dt_devolucao_prevista, re.dt_saida, re.dt_devolucao ,re.dt_cancelamento
+	e.sg_equipamento,
+    u.cd_rm, u.nm_usuario,
+    re.dt_saida_prevista, re.dt_devolucao_prevista, re.dt_saida, re.dt_devolucao, re.dt_cancelamento
 	FROM reserva_equipamento re
     JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
     JOIN usuario u ON re.cd_rm = u.cd_rm
-    JOIN tipo_usuario tu ON tu.cd_tipo_usuario = u.cd_tipo_usuario
     WHERE DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = CURDATE()
     ORDER BY re.dt_saida_prevista ASC;
+END$$
+
+DROP PROCEDURE IF EXISTS listarReservasEquipamentosDoUsuario$$
+CREATE PROCEDURE listarReservasEquipamentosDoUsuario(pRm INT)
+BEGIN
+	SELECT 
+	re.cd_rm, e.sg_equipamento, e.nm_equipamento,
+    re.dt_saida_prevista, re.dt_devolucao_prevista, re.dt_saida, re.dt_devolucao, re.dt_cancelamento
+	FROM reserva_equipamento re
+    JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
+    WHERE re.cd_rm = pRm 
+    AND DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") > CURDATE()
+    AND re.dt_cancelamento IS NULL
+    ORDER BY re.dt_saida_prevista ASC;
+END$$
+
+DROP PROCEDURE IF EXISTS listarEquipamentosDisponiveis$$
+CREATE PROCEDURE listarEquipamentosDisponiveis(pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
+BEGIN
+	SELECT e.sg_equipamento, e.nm_equipamento FROM equipamento e
+	LEFT JOIN reserva_equipamento re ON e.sg_equipamento = re.sg_equipamento
+		AND (
+			(dt_saida_prevista >= pDTSaidaPrevista AND dt_saida_prevista < pDTDevolucaoPrevista) OR
+			(dt_devolucao_prevista > pDTSaidaPrevista AND dt_devolucao_prevista <= pDTDevolucaoPrevista)
+		)
+	WHERE
+		re.sg_equipamento IS NULL
+		AND e.ic_danificado = FALSE
+        AND NOT EXISTS (
+			SELECT 1
+			FROM reserva_equipamento re2
+			WHERE re2.sg_equipamento = e.sg_equipamento
+			AND DATE(re2.dt_saida_prevista) < CURDATE()
+            AND re2.dt_devolucao IS NULL
+		);
 END$$
 
 /* ------------------------------ RESERVA AMBIENTE ------------------------------ */
@@ -347,58 +361,26 @@ END$$
 DROP FUNCTION IF EXISTS verificarSeAmbientePodeSerReservado$$
 CREATE FUNCTION verificarSeAmbientePodeSerReservado(pSiglaAmbiente VARCHAR(20), pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME) RETURNS BOOL
 BEGIN
-	DECLARE vJaDevolvido bool default false;
-    DECLARE vParaHoje bool default false;
-    DECLARE vPodeReservarHoje bool default false;
-    DECLARE vReservaJaPassou bool default false;
-	DECLARE vEstaNaGrade bool default false;
-    
-    -- Verifica se equipamento ja foi devolvido
-	SELECT COUNT(ra.sg_ambiente) = 0 INTO vJaDevolvido FROM reserva_ambiente ra
-	JOIN ambiente a ON ra.sg_ambiente  = a.sg_ambiente
-	WHERE 	ra.sg_ambiente = pSiglaAmbiente
-    AND 	ra.dt_devolucao is null;
-	
-    -- Verifica se tem reserva para hoje
-    SELECT COUNT(ra.sg_ambiente) <> 0 INTO vParaHoje FROM reserva_ambiente ra
-	JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
-	WHERE 	ra.sg_ambiente = pSiglaAmbiente
-    AND 	DATE(pDTSaidaPrevista) = DATE(ra.dt_saida_prevista)
-    AND 	DATE(pDTDevolucaoPrevista) = DATE(ra.dt_devolucao_prevista);
-    
-    -- Verifica se equipamento pode ser reservado hoje
-    SELECT COUNT(ra.sg_ambiente) <> 0 INTO vPodeReservarHoje FROM reserva_ambiente ra
-	JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
-	WHERE 	ra.sg_ambiente = pSiglaAmbiente
-    AND 	pDTSaidaPrevista < ra.dt_saida_prevista
-    AND 	pDTDevolucaoPrevista <= ra.dt_saida_prevista;
-    
-    SELECT COUNT(ra.sg_ambiente) <> 0 INTO vReservaJaPassou FROM reserva_ambiente ra
-	JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
-	WHERE 	ra.sg_ambiente = pSiglaAmbiente
-    AND 	curdate() > DATE(ra.dt_saida_prevista)
-    AND 	curdate() > DATE(ra.dt_devolucao_prevista);
+	DECLARE vPodeSerReservado BOOL DEFAULT FALSE;
 
-	SELECT COUNT(sg_ambiente) <> 0 INTO vEstaNaGrade FROM uso_ambiente
-	WHERE sg_ambiente = pSiglaAmbiente
-	AND WEEKDAY(pDTSaidaPrevista) + 1 = cd_dia_semana
-	AND DATE_FORMAT(pDTSaidaPrevista, "%H:%i:%s") <= hr_inicio_uso
-	AND DATE_FORMAT(pDTDevolucaoPrevista, "%H:%i:%s") < hr_inicio_uso;
-    
-	IF vParaHoje THEN
-		return vPodeReservarHoje;
-	ELSE
-		IF vReservaJaPassou THEN
-			IF vJaDevolvido THEN 
-				IF vEstaNaGrade THEN
-					return true;
-				END IF;
-					return false;
-			END IF;
-			return false;
-		END IF;
-	END IF;
-END$$
+	SELECT COUNT(DISTINCT a.sg_ambiente) <> 0 INTO vPodeSerReservado FROM ambiente a
+	LEFT JOIN reserva_ambiente ra ON a.sg_ambiente = ra.sg_ambiente
+		AND (
+			(ra.dt_saida_prevista >= pDTSaidaPrevista AND ra.dt_saida_prevista < pDTDevolucaoPrevista) OR
+			(ra.dt_devolucao_prevista > pDTSaidaPrevista AND ra.dt_devolucao_prevista <= pDTDevolucaoPrevista)
+		)
+	LEFT JOIN uso_ambiente ua ON a.sg_ambiente = ua.sg_ambiente
+		AND (
+			(ua.hr_inicio_uso <= pDTDevolucaoPrevista AND ua.hr_termino_uso >= pDTSaidaPrevista)
+			AND ua.cd_dia_semana = DAYOFWEEK(pDTSaidaPrevista)
+		)
+	WHERE
+		ra.sg_ambiente IS NULL
+        AND a.sg_ambiente = pSiglaAmbiente
+		AND ua.sg_ambiente IS NULL;
+        
+	RETURN vPodeSerReservado;
+END;
 
 DROP PROCEDURE IF EXISTS reservarAmbiente$$
 CREATE PROCEDURE reservarAmbiente(pSiglaAmbiente VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
@@ -440,16 +422,47 @@ DROP PROCEDURE IF EXISTS listarReservasAmbientesDeHoje$$
 CREATE PROCEDURE listarReservasAmbientesDeHoje()
 BEGIN
 	SELECT 
-	a.sg_ambiente, a.nm_ambiente,
-    u.cd_rm, u.nm_usuario, u.nm_email, u.nm_referencia_imagem,
-    tu.cd_tipo_usuario, tu.nm_tipo_usuario,
+	a.sg_ambiente,
+    u.cd_rm, u.nm_usuario,
     ra.dt_saida_prevista, ra.dt_devolucao_prevista, ra.dt_saida, ra.dt_devolucao, ra.dt_cancelamento
 	FROM reserva_ambiente ra
     JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
     JOIN usuario u ON ra.cd_rm = u.cd_rm
-    JOIN tipo_usuario tu ON tu.cd_tipo_usuario = u.cd_tipo_usuario
     WHERE DATE_FORMAT(ra.dt_saida_prevista, "%Y-%m-%d") = CURDATE()
     ORDER BY ra.dt_saida_prevista ASC;
+END$$
+
+DROP PROCEDURE IF EXISTS listarReservasAmbientesDoUsuario$$
+CREATE PROCEDURE listarReservasAmbientesDoUsuario(pRm INT)
+BEGIN
+	SELECT 
+	ra.cd_rm, a.sg_ambiente, a.nm_ambiente,
+    ra.dt_saida_prevista, ra.dt_devolucao_prevista, ra.dt_saida, ra.dt_devolucao, ra.dt_cancelamento
+	FROM reserva_ambiente ra
+    JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
+    WHERE ra.cd_rm = pRm 
+    AND DATE_FORMAT(ra.dt_saida_prevista, "%Y-%m-%d") > CURDATE()
+    AND ra.dt_cancelamento IS NULL
+    ORDER BY ra.dt_saida_prevista ASC;
+END$$
+
+DROP PROCEDURE IF EXISTS listarAmbientesDisponiveis$$
+CREATE PROCEDURE listarAmbientesDisponiveis(pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
+BEGIN
+	SELECT DISTINCT a.sg_ambiente, a.nm_ambiente FROM ambiente a
+	LEFT JOIN reserva_ambiente ra ON a.sg_ambiente = ra.sg_ambiente
+		AND (
+			(ra.dt_saida_prevista >= pDTSaidaPrevista AND ra.dt_saida_prevista < pDTDevolucaoPrevista) OR
+			(ra.dt_devolucao_prevista > pDTSaidaPrevista AND ra.dt_devolucao_prevista <= pDTDevolucaoPrevista)
+		)
+	LEFT JOIN uso_ambiente ua ON a.sg_ambiente = ua.sg_ambiente
+		AND (
+			(ua.hr_inicio_uso <= pDTDevolucaoPrevista AND ua.hr_termino_uso >= pDTSaidaPrevista)
+			AND ua.cd_dia_semana = DAYOFWEEK(pDTSaidaPrevista)
+		)
+	WHERE
+		ra.sg_ambiente IS NULL
+		AND ua.sg_ambiente IS NULL;
 END$$
 
 /* ------------------------------ USO AMBIENTE ------------------------------ */
@@ -545,5 +558,115 @@ BEGIN
 END$$
 
 /* ------------------------------ RELATORIOS ------------------------------ */
+
+DROP PROCEDURE IF EXISTS relatorioOcorrenciaEquipamento$$
+CREATE PROCEDURE relatorioOcorrenciaEquipamento(pDataInicio DATE, pDataFinal DATE)
+BEGIN
+	SELECT
+	re.sg_equipamento, e.nm_equipamento, re.dt_saida, re.dt_devolucao, re.dt_saida_prevista, re.dt_devolucao_prevista,
+	u.cd_rm, u.nm_usuario, u.nm_email,
+	oe.dt_ocorrencia, oe.ds_ocorrencia,
+	toe.nm_tipo_ocorrencia
+	FROM reserva_equipamento re
+	JOIN usuario u ON u.cd_rm = re.cd_rm
+	JOIN equipamento e ON e.sg_equipamento = re.sg_equipamento 
+	JOIN ocorrencia_equipamento oe ON re.sg_equipamento = oe.sg_equipamento AND re.dt_saida_prevista = oe.dt_saida_prevista AND re.cd_rm = oe.cd_rm
+	JOIN tipo_ocorrencia_equipamento toe ON oe.cd_tipo_ocorrencia = toe.cd_tipo_ocorrencia
+	where pDataInicio >= DATE(re.dt_saida_prevista) AND pDataFinal <= DATE(re.dt_saida_prevista);
+END$$
+
+DROP PROCEDURE IF EXISTS relatorioOcorrenciaAmbiente$$
+CREATE PROCEDURE relatorioOcorrenciaAmbiente(pDataInicio DATE, pDataFinal DATE)
+BEGIN
+	SELECT 
+	ra.sg_ambiente, a.nm_ambiente, ra.dt_saida, ra.dt_devolucao, ra.dt_saida_prevista, ra.dt_devolucao_prevista,
+	u.cd_rm, u.nm_usuario, u.nm_email,
+	oa.dt_ocorrencia, oa.ds_ocorrencia,
+	toa.nm_tipo_ocorrencia
+	FROM reserva_ambiente ra
+	JOIN usuario u ON u.cd_rm = ra.cd_rm
+	JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente 
+	JOIN ocorrencia_ambiente oa ON ra.sg_ambiente = oa.sg_ambiente AND ra.dt_saida_prevista = oa.dt_saida_prevista AND ra.cd_rm = oa.cd_rm
+	JOIN tipo_ocorrencia_ambiente toa ON oa.cd_tipo_ocorrencia = toa.cd_tipo_ocorrencia
+	where pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista);
+END$$
+
+DROP PROCEDURE IF EXISTS relatorioReservasCanceladasEquipamento$$
+CREATE PROCEDURE relatorioReservasCanceladasEquipamento(pDataInicio DATE, pDataFinal DATE)
+BEGIN
+	SELECT
+	re.sg_equipamento, e.nm_equipamento ,re.dt_saida, re.dt_devolucao, re.dt_saida_prevista, re.dt_devolucao_prevista,
+	u.cd_rm, u.nm_usuario, u.nm_email
+	FROM reserva_equipamento re
+	JOIN usuario u ON u.cd_rm = re.cd_rm
+	JOIN equipamento e ON e.sg_ambiente = re.sg_equipamento
+	where re.dt_cancelamento is not null AND
+	(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista));
+END$$
+
+DROP PROCEDURE IF EXISTS relatorioReservasCanceladasAmbiente$$
+CREATE PROCEDURE relatorioReservasCanceladasAmbiente(pDataInicio DATE, pDataFinal DATE)
+BEGIN
+	SELECT
+	ra.sg_ambiente, a.nm_ambiente ,ra.dt_saida, ra.dt_devolucao, ra.dt_saida_prevista, ra.dt_devolucao_prevista,
+	u.cd_rm, u.nm_usuario, u.nm_email
+	FROM reserva_ambiente ra
+	JOIN usuario u ON u.cd_rm = ra.cd_rm
+	JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente
+	where ra.dt_cancelamento is not null AND
+	(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista));
+END$$
+
+DROP PROCEDURE IF EXISTS relatorioReservasAtrasadasEquipamento$$
+CREATE PROCEDURE relatorioReservasAtrasadasEquipamento(pDataInicio DATE, pDataFinal DATE)
+BEGIN
+	SELECT
+	re.sg_equipamento, e.nm_equipamento ,re.dt_saida, re.dt_devolucao, re.dt_saida_prevista, re.dt_devolucao_prevista,
+	u.cd_rm, u.nm_usuario, u.nm_email
+	FROM reserva_equipamento re
+	JOIN usuario u ON u.cd_rm = re.cd_rm
+	JOIN equipamento e ON e.sg_ambiente = re.sg_equipamento 
+	where dt_saida_prevista < dt_saida AND
+	(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista));
+END$$
+
+DROP PROCEDURE IF EXISTS relatorioReservasAtrasadasAmbiente$$
+CREATE PROCEDURE relatorioReservasAtrasadasAmbiente(pDataInicio DATE, pDataFinal DATE)
+BEGIN
+	SELECT
+	ra.sg_ambiente, a.nm_ambiente ,ra.dt_saida, ra.dt_devolucao, ra.dt_saida_prevista, ra.dt_devolucao_prevista,
+	u.cd_rm, u.nm_usuario, u.nm_email
+	FROM reserva_ambiente ra
+	JOIN usuario u ON u.cd_rm = ra.cd_rm
+	JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente 
+	where ra.dt_saida_prevista < ra.dt_saida AND
+	(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista));
+END$$
+
+DROP PROCEDURE IF EXISTS relatorioReservasNaoRealizadasEquipamento$$
+CREATE PROCEDURE relatorioReservasNaoRealizadasEquipamento(pDataInicio DATE, pDataFinal DATE)
+BEGIN
+	SELECT
+	re.sg_equipamento, e.nm_equipamento ,re.dt_saida, re.dt_devolucao, re.dt_saida_prevista, re.dt_devolucao_prevista,
+	u.cd_rm, u.nm_usuario, u.nm_email
+	FROM reserva_equipamento re
+	JOIN usuario u ON u.cd_rm = re.cd_rm
+	JOIN equipamento e ON e.sg_ambiente = re.sg_equipamento 
+	where re.dt_devolucao is null and re.dt_saida is null and re.dt_saida_prevista < now() AND
+	(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista));
+END$$
+
+DROP PROCEDURE IF EXISTS relatorioReservasNaoRealizadasAmbiente$$
+CREATE PROCEDURE relatorioReservasNaoRealizadasAmbiente(pDataInicio DATE, pDataFinal DATE)
+BEGIN
+	SELECT
+	ra.sg_ambiente, a.nm_ambiente ,ra.dt_saida, ra.dt_devolucao, ra.dt_saida_prevista, ra.dt_devolucao_prevista,
+	u.cd_rm, u.nm_usuario, u.nm_email
+	FROM reserva_ambiente ra
+	JOIN usuario u ON u.cd_rm = ra.cd_rm
+	JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente 
+	where ra.dt_devolucao is null and ra.dt_saida is null and ra.dt_saida_prevista < now() AND
+	(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista));
+END$$
 
 DELIMITER ;

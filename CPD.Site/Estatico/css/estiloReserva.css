@@ -1,0 +1,385 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    margin: 0%;
+}
+
+header{
+    width: 100%;
+    padding: 0 20px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#headerConteudo {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#logoCPD{
+    margin-bottom: 5px;
+    margin-top: 10px;
+    width: 50px;
+    height: 66px;
+}
+
+#iconeMenu{
+    display: none;
+}
+
+#opMenu{
+    display: contents;
+}
+
+#iconePerson{
+    width: 40px;
+    height: 40px;
+}
+
+main {
+    padding: 10px;
+    width: 920px;
+    margin: auto;
+}
+
+h1 {
+    color: #000;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: bold;
+    margin: 30px 0px 30px 0px;
+}
+
+#Calendario{
+    display: flex;
+}
+
+#Agenda
+{
+    display: flex;
+    margin-top: 10px;
+    justify-content: space-between;
+}
+
+input {
+    width: 50%;
+    border-radius: 5px;
+    border: 1px solid #114A55;
+    background: #FFF;
+    color: #BBB;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 4px 5px 1px 10px;
+    margin: auto;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url("../imagens/Calendario.png") no-repeat;
+    width: 20px;
+    height: 22px;
+    border-width: thin;
+}
+input[type="time"]::-webkit-calendar-picker-indicator {
+    color: rgba(0, 0, 0, 0);
+    opacity: 1;
+    display: block;
+    background: url("../imagens/Clock.png") no-repeat;
+    width: 20px;
+    height: 20px;
+    border-width: thin;
+}
+#InputHorario
+{
+    width: 25%;
+}
+
+button
+{
+    color: #114A55;;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    border: 0px;
+    background: white;
+    padding: 30px 10px 10px 0px;
+}
+
+#reserva{
+    display: flex;
+    justify-content: space-between;
+    height: 300px;
+}
+
+#nomeEquip{
+    display: flex;
+    flex-direction: column;
+    color: #000;
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    justify-content: space-between;
+    margin-bottom: 130px;
+}
+
+#qtEquip{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 130px;
+}
+
+.iconMais{
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+.numQtEquip{
+    color: #000;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    border-radius: 5px;
+    border: 1px solid #114A55;
+    background: #FFF;
+    width: 20px;
+    height: 19px;
+    padding: 0px;
+}
+.iconMenos{
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
+}
+
+.item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media only screen and (max-width: 800px)
+{
+    main {
+        padding: 10px;
+        width: auto;
+    }
+    
+    
+    body{
+        margin: 0%;
+    }
+    
+    header{
+        width: 100%;
+        padding: 0 20px;
+        background: #FFF;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    #headerConteu{
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        margin: auto;
+    }
+    #opMenu{
+        display: none;
+    }
+    
+    #iconeMenu{
+        display: initial;
+        width: 30px;
+        height: 30px;
+    }
+    #iconePerson{
+        display: none;
+    }
+    
+    #imagem{
+        margin-bottom: 5px;
+        margin-top: 10px;
+        width: 50px;
+        height: 66px;
+    }
+    
+    h1 {
+        color: #000;
+        text-align: center;
+        font-size: 14px;
+        font-style: normal;
+        line-height: normal;
+        font-weight: bold;
+        margin: 30px 0px 30px 0px;
+    }
+    
+    #Calendario{
+        display: flex;
+        margin:auto;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    #Agenda
+    {
+        display: flex;
+        margin-top: 10px;
+        justify-content: space-between;
+    }
+
+    #InputData{
+        width: 40%;
+        margin: 5px 5px;
+    }
+    
+    input {
+        border-radius: 5px;
+        border: 1px solid #114A55;
+        background: #FFF;
+        color: #BBB;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding: 4px 5px 1px 10px;
+    }
+    
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        color: rgba(0, 0, 0, 0);
+        opacity: 1;
+        display: block;
+        background: url("../imagens/Calendario.png") no-repeat;
+        width: 20px;
+        height: 22px;
+        border-width: thin;
+    }
+    input[type="time"]::-webkit-calendar-picker-indicator {
+        color: rgba(0, 0, 0, 0);
+        opacity: 1;
+        display: block;
+        background: url("../imagens/Clock.png") no-repeat;
+        width: 20px;
+        height: 20px;
+        border-width: thin;
+    }
+    #InputHorario
+    {
+        width: 25%;
+        margin: 5px;
+    }
+    #btnBuscar{
+
+        flex-shrink: 0;
+        width: 100px;
+        height: 30px;
+        border-radius: 20px;
+        padding: 5px 5px 5px 5px;
+        background-color: #114A55;
+        color: white;
+        font-family: Montserrat;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        margin-top: 15px;
+        margin-bottom: 10px;
+}
+    }
+    
+    button
+    {
+        color: #114A55;;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        border: 0px;
+        background: white;
+        padding: 10px 10px 10px 15px;
+
+    }
+    
+    #reserva{
+        display: flex;
+        justify-content: space-between;
+        height: 300px;
+        width: 90%;
+        margin: auto;
+    }
+    
+    #nomeEquip{
+        display: flex;
+        flex-direction: column;
+        color: #000;
+        font-family: Montserrat;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        justify-content: space-between;
+        margin-bottom: 130px;
+    }
+    
+    #qtEquip{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 130px;
+    }
+    
+    .iconMais{
+        width: 12px;
+        height: 12px;
+        margin-right: 5px;
+    }
+    .numQtEquip{
+        color: #000;
+        text-align: center;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        border-radius: 5px;
+        border: 1px solid #114A55;
+        background: #FFF;
+        width: 16px;
+        height: 15px;
+        padding: 0px;
+    }
+    .iconMenos{
+        width: 12px;
+        height: 12px;
+        margin-left: 5px;
+    }
+    
+    .item{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    

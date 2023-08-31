@@ -1,16 +1,22 @@
 ﻿using CPD.Repositorio.Banco;
 using CPD.Repositorio.Model;
 using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 
 namespace CPD.Repositorio.Controller
 {
     public class AmbienteController : ConexaoBanco
     {
-        public List<Ambiente> ListarAmbientesDisponiveis()
+        public List<Ambiente> ListarAmbientesDisponiveis(DateTime inicio, DateTime fim)
         {
             List<Ambiente> list = new List<Ambiente>();
-            MySqlDataReader reader = Executar("listarAmbientesDisponiveis", null);
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pDTSaidaPrevista", inicio.ToString("yyyy-MM-dd HH:mm:ss")),
+                new Parametro("pDTDevolucaoPrevista", fim.ToString("yyyy-MM-dd HH:mm:ss"))
+            };
+            MySqlDataReader reader = Executar("listarAmbientesDisponiveis", parametros);
 
             while (reader.Read())
             {

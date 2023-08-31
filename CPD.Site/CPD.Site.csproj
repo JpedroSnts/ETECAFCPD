@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls, Version=1.0.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net45\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -67,10 +70,82 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Api\dashboard.aspx" />
+    <Content Include="dashboard.aspx" />
+    <Content Include="Estatico\css\estilo.css" />
+    <Content Include="Estatico\css\estiloReserva.css" />
+    <Content Include="Estatico\css\verificacao.css" />
+    <Content Include="Estatico\imagens\alterarSenha.png" />
+    <Content Include="Estatico\imagens\calendario.png" />
+    <Content Include="Estatico\imagens\carta.png" />
+    <Content Include="Estatico\imagens\clock.png" />
+    <Content Include="Estatico\imagens\logoCPD.png" />
+    <Content Include="Estatico\imagens\logoETECAF.png" />
+    <Content Include="Estatico\imagens\mais.png" />
+    <Content Include="Estatico\imagens\menos.png" />
+    <Content Include="Estatico\imagens\menuSanduiche.png" />
+    <Content Include="Estatico\imagens\novaReserva.png" />
+    <Content Include="Estatico\imagens\sair.png" />
+    <Content Include="Estatico\imagens\semReserva.png" />
+    <Content Include="Estatico\imagens\senha.png" />
+    <Content Include="Estatico\imagens\suasReservas.png" />
+    <Content Include="Estatico\imagens\user.png" />
+    <Content Include="Estatico\imagens\userProf.png" />
+    <Content Include="Estatico\js\menuSanduiche.js" />
+    <Content Include="home.aspx" />
+    <Content Include="login.aspx" />
+    <Content Include="logout.aspx" />
+    <Content Include="reserva.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Api\dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Api\dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Controller\DashboardController.cs" />
+    <Compile Include="Controller\ReservaController.cs" />
+    <Compile Include="dashboard.aspx.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="dashboard.aspx.designer.cs">
+      <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="home.aspx.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="home.aspx.designer.cs">
+      <DependentUpon>home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="login.aspx.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="login.aspx.designer.cs">
+      <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="logout.aspx.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="logout.aspx.designer.cs">
+      <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="reserva.aspx.cs">
+      <DependentUpon>reserva.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="reserva.aspx.designer.cs">
+      <DependentUpon>reserva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\EquipamentoLivre.cs" />
+    <Compile Include="ViewModel\ReservaGenerica.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -87,9 +162,7 @@
       <Name>CPD.Repositorio</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pagina\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

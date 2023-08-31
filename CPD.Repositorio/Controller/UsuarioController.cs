@@ -29,10 +29,10 @@ namespace CPD.Repositorio.Controller
         public Usuario Login(Usuario usuario)
         {
             List<Parametro> parametros = new List<Parametro>
-            {
-                new Parametro("pRM", usuario.RM.ToString()),
-                new Parametro("pSenha", usuario.Senha)
-            };
+                {
+                    new Parametro("pRM", usuario.RM.ToString()),
+                    new Parametro("pSenha", usuario.Senha)
+                };
             MySqlDataReader reader = Executar("loginUsuario", parametros);
             Usuario usuarioLogado = null;
             if (reader.Read())
