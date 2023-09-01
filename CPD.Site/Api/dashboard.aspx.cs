@@ -1,4 +1,5 @@
 ﻿using CPD.Site.Controller;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +15,9 @@ namespace CPD.Site.Api
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.ContentType = "application/json";
             DashboardController dashboardController = new DashboardController();
-            JavaScriptSerializer serializer = new JavaScriptSerializer();
-            string json = serializer.Serialize(dashboardController.ListarReservasDeHoje());
-            Response.Headers.Add("Content-Type", "application/json");
+            string json = JsonConvert.SerializeObject(dashboardController.ListarReservasDeHoje());
             Response.Write(json);
         }
     }

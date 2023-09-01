@@ -121,6 +121,7 @@
     <Compile Include="Model\Usuario.cs" />
     <Compile Include="Model\UsuarioNotificacao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\Data.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

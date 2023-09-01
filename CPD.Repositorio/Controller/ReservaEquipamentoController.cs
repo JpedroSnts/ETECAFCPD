@@ -1,5 +1,6 @@
 ﻿using CPD.Repositorio.Banco;
 using CPD.Repositorio.Model;
+using CPD.Repositorio.Util;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -68,11 +69,11 @@ namespace CPD.Repositorio.Controller
                 {
                     Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString() },
                     Equipamento = new Equipamento { Sigla = reader["sg_equipamento"].ToString() },
-                    DataSaidaPrevista = DateTime.Parse(reader.GetString("dt_saida_prevista")),
-                    DataDevolucaoPrevista = DateTime.Parse(reader.GetString("dt_devolucao_prevista")),
-                    DataSaida = DateTime.Parse(reader.GetString("dt_saida")),
-                    DataDevolucao = DateTime.Parse(reader.GetString("dt_devolucao")),
-                    DataCancelamento = DateTime.Parse(reader.GetString("dt_cancelamento"))
+                    DataSaidaPrevista = Data.DateTimeParse(reader["dt_saida_prevista"].ToString()),
+                    DataDevolucaoPrevista = Data.DateTimeParse(reader["dt_devolucao_prevista"].ToString()),
+                    DataSaida = Data.DateTimeParse(reader["dt_saida"].ToString()),
+                    DataDevolucao = Data.DateTimeParse(reader["dt_devolucao"].ToString()),
+                    DataCancelamento = Data.DateTimeParse(reader["dt_cancelamento"].ToString())
                 };
 
                 list.Add(da);
