@@ -116,5 +116,36 @@ namespace CPD.Repositorio.Controller
             return list;
         }
 
+        public List<ReservaEquipamento> ListarReservasEquipamentosComFiltro(string filtro, DateTime data)
+        {
+            List<ReservaEquipamento> list = new List<ReservaEquipamento>();
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pFiltro", filtro),
+                new Parametro("pDia", data.ToString("yyyy-MM-dd"))
+            };
+            MySqlDataReader reader = Executar("listarReservasEquipamentosFiltro", parametros);
+
+            while (reader.Read())
+            {
+                ReservaEquipamento da = new ReservaEquipamento()
+                {
+                    Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString() },
+                    Equipamento = new Equipamento { Sigla = reader["sg_equipamento"].ToString(), Nome = reader["nm_equipamento"].ToString() },
+                    DataSaidaPrevista = DateTime.Parse(reader.GetString("dt_saida_prevista")),
+                    DataDevolucaoPrevista = DateTime.Parse(reader.GetString("dt_devolucao_prevista")),
+                    DataSaida = DateTime.Parse(reader.GetString("dt_saida")),
+                    DataDevolucao = DateTime.Parse(reader.GetString("dt_devolucao")),
+                    DataCancelamento = DateTime.Parse(reader.GetString("dt_cancelamento"))
+                };
+
+                list.Add(da);
+            }
+
+            if (reader.IsClosed) reader.Close();
+            Desconectar();
+
+            return list;
+        }
     }
 }

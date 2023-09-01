@@ -321,6 +321,20 @@ BEGIN
     ORDER BY re.dt_saida_prevista ASC;
 END$$
 
+DROP PROCEDURE IF EXISTS listarReservasEquipamentosFiltro$$
+CREATE PROCEDURE listarReservasEquipamentosFiltro(pFiltro VARCHAR(255), pDia DATE)
+BEGIN
+    SELECT 
+	e.sg_equipamento,
+    u.cd_rm, u.nm_usuario,
+    re.dt_saida_prevista, re.dt_devolucao_prevista, re.dt_saida, re.dt_devolucao, re.dt_cancelamento
+	FROM reserva_equipamento re
+    JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
+    JOIN usuario u ON re.cd_rm = u.cd_rm
+    WHERE (u.cd_rm = pFiltro || e.sg_equipamento = pFiltro) ||  DATE_FORMAT(rE.dt_saida_prevista, "%Y-%m-%d") = pDia
+    ORDER BY re.dt_saida_prevista ASC;
+END$$
+
 DROP PROCEDURE IF EXISTS listarReservasEquipamentosDoUsuario$$
 CREATE PROCEDURE listarReservasEquipamentosDoUsuario(pRm INT)
 BEGIN
@@ -429,6 +443,20 @@ BEGIN
     JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
     JOIN usuario u ON ra.cd_rm = u.cd_rm
     WHERE DATE_FORMAT(ra.dt_saida_prevista, "%Y-%m-%d") = CURDATE()
+    ORDER BY ra.dt_saida_prevista ASC;
+END$$
+
+DROP PROCEDURE IF EXISTS listarReservasAmbientesFiltro$$
+CREATE PROCEDURE listarReservasAmbientesFiltro(pFiltro VARCHAR(255), pDia DATE)
+BEGIN
+	SELECT 
+	a.sg_ambiente,
+    u.cd_rm, u.nm_usuario,
+    ra.dt_saida_prevista, ra.dt_devolucao_prevista, ra.dt_saida, ra.dt_devolucao, ra.dt_cancelamento
+	FROM reserva_ambiente ra
+    JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
+    JOIN usuario u ON ra.cd_rm = u.cd_rm
+    WHERE (u.cd_rm = pFiltro || a.sg_ambiente = pFiltro) ||  DATE_FORMAT(ra.dt_saida_prevista, "%Y-%m-%d") = pDia
     ORDER BY ra.dt_saida_prevista ASC;
 END$$
 
