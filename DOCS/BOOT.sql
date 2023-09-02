@@ -322,8 +322,73 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS listarReservasEquipamentosFiltro$$
-CREATE PROCEDURE listarReservasEquipamentosFiltro(pFiltro VARCHAR(255), pDia DATE)
+CREATE PROCEDURE listarReservasEquipamentosFiltro(pFiltro VARCHAR(255), pDia DATE, pCodigoStatus INT)
 BEGIN
+	-- 1. Em andamento
+    -- 2. Entrega Atrasada
+    -- 3. Aguardando Retirada
+    -- 4. Não Retirados
+    -- 5. Canceladas
+    IF (pCodigoStatus = 1) THEN
+        SELECT 
+		e.sg_equipamento,
+		u.cd_rm, u.nm_usuario,
+		re.dt_saida_prevista, re.dt_devolucao_prevista, re.dt_saida, re.dt_devolucao, re.dt_cancelamento
+		FROM reserva_equipamento re
+		JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
+		JOIN usuario u ON re.cd_rm = u.cd_rm
+        WHERE re.dt_devolucao IS NULL AND re.dt_devolucao_prevista < CURDATE()
+		AND (u.cd_rm = pFiltro || e.sg_equipamento = pFiltro) ||  DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = pDia
+		ORDER BY re.dt_saida_prevista ASC;
+    END IF;
+	IF (pCodigoStatus = 2) THEN
+        SELECT 
+		e.sg_equipamento,
+		u.cd_rm, u.nm_usuario,
+		re.dt_saida_prevista, re.dt_devolucao_prevista, re.dt_saida, re.dt_devolucao, re.dt_cancelamento
+		FROM reserva_equipamento re
+		JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
+		JOIN usuario u ON re.cd_rm = u.cd_rm
+        WHERE re.dt_devolucao IS NULL AND re.dt_devolucao_prevista > CURDATE()
+		AND (u.cd_rm = pFiltro || e.sg_equipamento = pFiltro) ||  DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = pDia
+		ORDER BY re.dt_saida_prevista ASC;
+    END IF;
+    IF (pCodigoStatus = 3) THEN
+        SELECT 
+		e.sg_equipamento,
+		u.cd_rm, u.nm_usuario,
+		re.dt_saida_prevista, re.dt_devolucao_prevista, re.dt_saida, re.dt_devolucao, re.dt_cancelamento
+		FROM reserva_equipamento re
+		JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
+		JOIN usuario u ON re.cd_rm = u.cd_rm
+        WHERE re.dt_saida IS NULL
+		AND (u.cd_rm = pFiltro || e.sg_equipamento = pFiltro) ||  DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = pDia
+		ORDER BY re.dt_saida_prevista ASC;
+    END IF;
+    IF (pCodigoStatus = 4) THEN
+        SELECT 
+		e.sg_equipamento,
+		u.cd_rm, u.nm_usuario,
+		re.dt_saida_prevista, re.dt_devolucao_prevista, re.dt_saida, re.dt_devolucao, re.dt_cancelamento
+		FROM reserva_equipamento re
+		JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
+		JOIN usuario u ON re.cd_rm = u.cd_rm
+		WHERE re.dt_saida IS NULL AND re.dt_saida_prevista > CURDATE()
+		AND (u.cd_rm = pFiltro || e.sg_equipamento = pFiltro) ||  DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = pDia
+		ORDER BY re.dt_saida_prevista ASC;
+	END IF;
+    IF (pCodigoStatus = 5) THEN
+        SELECT 
+		e.sg_equipamento,
+		u.cd_rm, u.nm_usuario,
+		re.dt_saida_prevista, re.dt_devolucao_prevista, re.dt_saida, re.dt_devolucao, re.dt_cancelamento
+		FROM reserva_equipamento re
+		JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
+		JOIN usuario u ON re.cd_rm = u.cd_rm
+        WHERE re.dt_cancelamento IS NOT NULL
+		AND (u.cd_rm = pFiltro || e.sg_equipamento = pFiltro) ||  DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = pDia
+		ORDER BY re.dt_saida_prevista ASC;
+    END IF;
     SELECT 
 	e.sg_equipamento,
     u.cd_rm, u.nm_usuario,
@@ -331,7 +396,7 @@ BEGIN
 	FROM reserva_equipamento re
     JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
     JOIN usuario u ON re.cd_rm = u.cd_rm
-    WHERE (u.cd_rm = pFiltro || e.sg_equipamento = pFiltro) ||  DATE_FORMAT(rE.dt_saida_prevista, "%Y-%m-%d") = pDia
+    WHERE (u.cd_rm = pFiltro || e.sg_equipamento = pFiltro) ||  DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = pDia
     ORDER BY re.dt_saida_prevista ASC;
 END$$
 
@@ -447,17 +512,82 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS listarReservasAmbientesFiltro$$
-CREATE PROCEDURE listarReservasAmbientesFiltro(pFiltro VARCHAR(255), pDia DATE)
+CREATE PROCEDURE listarReservasAmbientesFiltro(pFiltro VARCHAR(255), pDia DATE, pCodigoStatus INT)
 BEGIN
-	SELECT 
+	-- 1. Em andamento
+    -- 2. Entrega Atrasada
+    -- 3. Aguardando Retirada
+    -- 4. Não Retirados
+    -- 5. Canceladas
+    IF (pCodigoStatus = 1) THEN
+		SELECT 
+		a.sg_ambiente,
+		u.cd_rm, u.nm_usuario,
+		ra.dt_saida_prevista, ra.dt_devolucao_prevista, ra.dt_saida, ra.dt_devolucao, ra.dt_cancelamento
+		FROM reserva_ambiente ra
+		JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
+		JOIN usuario u ON ra.cd_rm = u.cd_rm
+		WHERE dt_devolucao IS NULL AND dt_devolucao_prevista < CURDATE()
+        AND (u.cd_rm = pFiltro || a.sg_ambiente = pFiltro) ||  DATE_FORMAT(ra.dt_saida_prevista, "%Y-%m-%d") = pDia
+		ORDER BY ra.dt_saida_prevista ASC;
+    END IF;
+	IF (pCodigoStatus = 2) THEN
+		SELECT 
+		a.sg_ambiente,
+		u.cd_rm, u.nm_usuario,
+		ra.dt_saida_prevista, ra.dt_devolucao_prevista, ra.dt_saida, ra.dt_devolucao, ra.dt_cancelamento
+		FROM reserva_ambiente ra
+		JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
+		JOIN usuario u ON ra.cd_rm = u.cd_rm
+		WHERE dt_devolucao IS NULL AND dt_devolucao_prevista > CURDATE()
+        AND (u.cd_rm = pFiltro || a.sg_ambiente = pFiltro) ||  DATE_FORMAT(ra.dt_saida_prevista, "%Y-%m-%d") = pDia
+		ORDER BY ra.dt_saida_prevista ASC;
+    END IF;
+    IF (pCodigoStatus = 3) THEN
+		SELECT 
+		a.sg_ambiente,
+		u.cd_rm, u.nm_usuario,
+		ra.dt_saida_prevista, ra.dt_devolucao_prevista, ra.dt_saida, ra.dt_devolucao, ra.dt_cancelamento
+		FROM reserva_ambiente ra
+		JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
+		JOIN usuario u ON ra.cd_rm = u.cd_rm
+		WHERE dt_saida IS NULL
+        AND (u.cd_rm = pFiltro || a.sg_ambiente = pFiltro) ||  DATE_FORMAT(ra.dt_saida_prevista, "%Y-%m-%d") = pDia
+		ORDER BY ra.dt_saida_prevista ASC;
+    END IF;
+    IF (pCodigoStatus = 4) THEN
+		SELECT 
+		a.sg_ambiente,
+		u.cd_rm, u.nm_usuario,
+		ra.dt_saida_prevista, ra.dt_devolucao_prevista, ra.dt_saida, ra.dt_devolucao, ra.dt_cancelamento
+		FROM reserva_ambiente ra
+		JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
+		JOIN usuario u ON ra.cd_rm = u.cd_rm
+		WHERE dt_saida IS NULL AND dt_saida_prevista > CURDATE()
+        AND (u.cd_rm = pFiltro || a.sg_ambiente = pFiltro) ||  DATE_FORMAT(ra.dt_saida_prevista, "%Y-%m-%d") = pDia
+		ORDER BY ra.dt_saida_prevista ASC;
+    END IF;
+    IF (pCodigoStatus = 5) THEN
+		SELECT 
+		a.sg_ambiente,
+		u.cd_rm, u.nm_usuario,
+		ra.dt_saida_prevista, ra.dt_devolucao_prevista, ra.dt_saida, ra.dt_devolucao, ra.dt_cancelamento
+		FROM reserva_ambiente ra
+		JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
+		JOIN usuario u ON ra.cd_rm = u.cd_rm
+		WHERE dt_cancelamento IS NOT NULL
+        AND (u.cd_rm = pFiltro || a.sg_ambiente = pFiltro) ||  DATE_FORMAT(ra.dt_saida_prevista, "%Y-%m-%d") = pDia
+		ORDER BY ra.dt_saida_prevista ASC;
+    END IF;
+    SELECT 
 	a.sg_ambiente,
-    u.cd_rm, u.nm_usuario,
-    ra.dt_saida_prevista, ra.dt_devolucao_prevista, ra.dt_saida, ra.dt_devolucao, ra.dt_cancelamento
+	u.cd_rm, u.nm_usuario,
+	ra.dt_saida_prevista, ra.dt_devolucao_prevista, ra.dt_saida, ra.dt_devolucao, ra.dt_cancelamento
 	FROM reserva_ambiente ra
-    JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
-    JOIN usuario u ON ra.cd_rm = u.cd_rm
-    WHERE (u.cd_rm = pFiltro || a.sg_ambiente = pFiltro) ||  DATE_FORMAT(ra.dt_saida_prevista, "%Y-%m-%d") = pDia
-    ORDER BY ra.dt_saida_prevista ASC;
+	JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
+	JOIN usuario u ON ra.cd_rm = u.cd_rm
+	WHERE (u.cd_rm = pFiltro || a.sg_ambiente = pFiltro) ||  DATE_FORMAT(ra.dt_saida_prevista, "%Y-%m-%d") = pDia
+	ORDER BY ra.dt_saida_prevista ASC;
 END$$
 
 DROP PROCEDURE IF EXISTS listarReservasAmbientesDoUsuario$$

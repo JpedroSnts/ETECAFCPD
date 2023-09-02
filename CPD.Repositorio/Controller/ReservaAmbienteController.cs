@@ -116,13 +116,14 @@ namespace CPD.Repositorio.Controller
             return list;
         }
 
-        public List<ReservaAmbiente> ListarReservasAmbientesComFiltro(string filtro, DateTime data)
+        public List<ReservaAmbiente> ListarReservasAmbientesComFiltro(string filtro, DateTime data, EStatusReserva status)
         {
             List<ReservaAmbiente> list = new List<ReservaAmbiente>();
             List<Parametro> parametros = new List<Parametro>
             {
                 new Parametro("pFiltro", filtro),
-                new Parametro("pDia", data.ToString("yyyy-MM-dd"))
+                new Parametro("pDia", data.ToString("yyyy-MM-dd")),
+                new Parametro("pCodigoStatus", (status).ToString()),
             };
             MySqlDataReader reader = Executar("listarReservasAmbientesFiltro", parametros);
 
