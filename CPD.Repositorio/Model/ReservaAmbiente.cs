@@ -11,5 +11,6 @@ namespace CPD.Repositorio.Model
         public DateTime DataDevolucaoPrevista { get; set; }
         public DateTime DataDevolucao { get; set; }
         public DateTime DataCancelamento { get; set; }
+        public EStatusReserva StatusReserva { get; set; }
     }
 }

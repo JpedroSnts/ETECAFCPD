@@ -7,10 +7,12 @@ namespace CPD.Repositorio.Model
 {
     public enum EStatusReserva
     {
-        EmAndamento = 1,
-        EntregaAtrasada = 2,
-        AguardandoRetirada = 3,
-        NaoRetirado = 4,
-        Cancelada = 5,
+        Reservadp = 1,
+        EmAndamento = 2,
+        EntregaAtrasada = 3,
+        AguardandoRetirada = 4,
+        NaoRetirado = 5,
+        Cancelada = 6,
+        Concluida = 7
     }
 }

@@ -108,6 +108,7 @@
     <Compile Include="Controller\UsuarioController.cs" />
     <Compile Include="Model\DiaSemana.cs" />
     <Compile Include="Model\Ambiente.cs" />
+    <Compile Include="Model\EStatusReserva.cs" />
     <Compile Include="Model\Notificacao.cs" />
     <Compile Include="Model\UsoAmbiente.cs" />
     <Compile Include="Model\Equipamento.cs" />

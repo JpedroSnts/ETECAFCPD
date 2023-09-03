@@ -1,4 +1,5 @@
 ﻿using CPD.Repositorio.Controller;
+using CPD.Repositorio.Model;
 using CPD.Site.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -9,16 +10,16 @@ namespace CPD.Site.Controller
 {
     public class DashboardController
     {
-        public List<ReservaGenerica> ListarReservasDeHoje()
+        public List<ReservaGenerica> ListarReservas(string filtro, EStatusReserva status, DateTime data)
         {
             var list = new List<ReservaGenerica>();
             var raController = new ReservaAmbienteController();
             var reController = new ReservaEquipamentoController();
-            foreach (var ra in raController.ListarReservasAmbientesDeHoje())
+            foreach (var ra in raController.ListarReservasAmbientesComFiltro(filtro, data, status))
             {
                 list.Add(new ReservaGenerica(ra));
             }
-            foreach (var re in reController.ListarReservasEquipamentosDeHoje())
+            foreach (var re in reController.ListarReservasEquipamentosComFiltro(filtro, data, status))
             {
                 list.Add(new ReservaGenerica(re));
             }

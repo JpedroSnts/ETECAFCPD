@@ -148,7 +148,7 @@
       <DependentUpon>reserva.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\EquipamentoLivre.cs" />
-    <Compile Include="ViewModel\EStatusReserva.cs" />
+    <Compile Include="ViewModel\ReservaDTO.cs" />
     <Compile Include="ViewModel\ReservaGenerica.cs" />
   </ItemGroup>
   <ItemGroup>
