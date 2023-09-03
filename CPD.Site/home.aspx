@@ -32,37 +32,37 @@
 				</div>
 			</main>
 
-			<div class="bloqueio escondido" id="escondido"></div>
-			<div id="divMenu" class="caixaFlutuante escondido">
-				<div id="menuSanduiche">
-					<div id="divUser">
-						<asp:Literal ID="litImagem" runat="server"></asp:Literal>
-						<%--<img id="userProf" src="../Estatico/imagens/userProf.png" />--%>
-						<div>
-							<p><asp:Literal ID="litNome" runat="server"></asp:Literal></p>
-							<p><asp:Literal ID="litRm" runat="server"></asp:Literal></p>
-						</div>
+		<div class="bloqueio escondido" id="escondido"></div>
+		<div id="divMenu" class="caixaFlutuante escondido">
+			<div id="menuSanduiche">
+				<div id="divUser">
+					<asp:Literal ID="litImagem" runat="server"></asp:Literal>
+					<%--<img id="userProf" src="../Estatico/imagens/userProf.png" />--%>
+					<div>
+						<p><asp:Literal ID="litNome" runat="server"></asp:Literal></p>
+						<p><asp:Literal ID="litRm" runat="server"></asp:Literal></p>
 					</div>
-					<div id="divItemsMenu">
-						<div class="itemsMenu">
-							<a href="index.html"><p>Suas Reservas</p></a>
-							<img class="iconsMenu" src="../Estatico/imagens/suasReservas.png" />
-						</div>
-						<div class="itemsMenu">
-							<a href="reserva.html"><p>Nova Reserva</p></a>
-							<img class="iconsMenu" src="../Estatico/imagens/novaReserva.png" />
-						</div>
-						<div class="itemsMenu">
-							<a href="alterarSenha.html"><p>Alterar Senha</p></a>
-							<img class="iconsMenu" src="../Estatico/imagens/alterarSenha.png" />
-						</div>
-						<div class="itemsMenu">
-							<a href="/logout.aspx"><p>Sair</p></a>
-							<img class="iconsMenu" src="../Estatico/imagens/sair.png" />
-						</div>
+				</div>
+				<div id="divItemsMenu">
+					<div class="itemsMenu">
+						<a href="index.html"><p>Suas Reservas</p></a>
+						<img class="iconsMenu" src="Estatico/imagens/suasReservas.png" />
+					</div>
+					<div class="itemsMenu">
+						<a href="reserva.html"><p>Nova Reserva</p></a>
+						<img class="iconsMenu" src="Estatico/imagens/novaReserva.png" />
+					</div>
+					<div class="itemsMenu">
+						<a href="/alterarSenha.aspx"><p>Alterar Senha</p></a>
+						<img class="iconsMenu" src="Estatico/imagens/alterarSenha.png" />
+					</div>
+					<div class="itemsMenu">
+						<a href="/logout.aspx"><p>Sair</p></a>
+						<img class="iconsMenu" src="Estatico/imagens/sair.png" />
 					</div>
 				</div>
 			</div>
+		</div>
 		<script src="../Estatico/js/menuSanduiche.js"></script>
 		<script src="https://kit.fontawesome.com/8e814353c3.js" crossorigin="anonymous"></script>
     </form>

@@ -35,6 +35,7 @@
                 <div class="display">
                     <img class="iconInput" src="../Estatico/imagens/senha.png" /><asp:TextBox ID="txtSenha" type="password" runat="server" placeholder="Insira sua senha"></asp:TextBox>
                     <br />
+                    <br />
                 </div>
             </div>
             <p>Esqueceu sua senha? <a href="esqueciSenha.html">Clique aqui</a></p>

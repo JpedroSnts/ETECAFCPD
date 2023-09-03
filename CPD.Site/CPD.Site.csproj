@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="alterarSenha.aspx" />
     <Content Include="Api\dashboard.aspx" />
     <Content Include="dashboard.aspx" />
     <Content Include="Estatico\css\dashboard.css" />
@@ -104,6 +105,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="alterarSenha.aspx.cs">
+      <DependentUpon>alterarSenha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="alterarSenha.aspx.designer.cs">
+      <DependentUpon>alterarSenha.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Api\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -149,6 +157,7 @@
     <Compile Include="reserva.aspx.designer.cs">
       <DependentUpon>reserva.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Util\Email.cs" />
     <Compile Include="ViewModel\ItemGenerico.cs" />
     <Compile Include="ViewModel\ItemLivreDTO.cs" />
     <Compile Include="ViewModel\ReservaDTO.cs" />

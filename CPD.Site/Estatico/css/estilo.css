@@ -121,13 +121,15 @@ input:focus {
     font-size: 12px;
 }
 
-button {
+button, .btn, input[type="submit"], input[type="button"] {
     border: thin solid #114A55;
     color: #fff;
     background-color: #114A55;
     border-radius: 20px;
     padding: 5px 20px;
     margin-top: 10px;
+    cursor: pointer;
+    width: auto;
 }
 
 #pVersao {

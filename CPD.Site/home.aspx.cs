@@ -15,9 +15,9 @@ namespace CPD.Site
             {
                 Response.Redirect("~/login.aspx");
             }
-            litImagem.Text = $"<img id=\"userProf\" src=\"../Estatico/imagens/{Session["foto_usuario"]}\" />";
+            litImagem.Text = $"<img id=\"userProf\" src=\"Estatico/imagens/{Session["foto_usuario"]}\" />";
             litNome.Text = Session["nome_usuario"].ToString();
-            litNome.Text = Session["rm_usuario"].ToString();
+            litRm.Text = Session["rm_usuario"].ToString();
         }
     }
 }
