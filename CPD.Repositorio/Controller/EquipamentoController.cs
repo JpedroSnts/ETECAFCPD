@@ -29,6 +29,28 @@ namespace CPD.Repositorio.Controller
             return list;
         }
 
+        public List<Equipamento> ListarEquipamentosDisponiveisSigla(string sigla, DateTime inicio, DateTime fim)
+        {
+            List<Equipamento> list = new List<Equipamento>();
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pSigla", sigla),
+                new Parametro("pDTSaidaPrevista", inicio.ToString("yyyy-MM-dd HH:mm:ss")),
+                new Parametro("pDTDevolucaoPrevista", fim.ToString("yyyy-MM-dd HH:mm:ss"))
+            };
+            MySqlDataReader reader = Executar("listarEquipamentosDisponiveisSigla", parametros);
+
+            while (reader.Read())
+            {
+                list.Add(new Equipamento { Sigla = reader["sg_equipamento"].ToString(), Nome = reader["nm_equipamento"].ToString() });
+            }
+
+            if (reader.IsClosed) reader.Close();
+            Desconectar();
+
+            return list;
+        }
+
         public Equipamento ListarEquipamento(Equipamento equipamento)
         {
             List<Parametro> parametros = new List<Parametro>

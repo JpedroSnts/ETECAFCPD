@@ -29,6 +29,28 @@ namespace CPD.Repositorio.Controller
             return list;
         }
 
+        public List<Ambiente> ListarAmbientesDisponiveisSigla(string sigla, DateTime inicio, DateTime fim)
+        {
+            List<Ambiente> list = new List<Ambiente>();
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pSigla", sigla),
+                new Parametro("pDTSaidaPrevista", inicio.ToString("yyyy-MM-dd HH:mm:ss")),
+                new Parametro("pDTDevolucaoPrevista", fim.ToString("yyyy-MM-dd HH:mm:ss"))
+            };
+            MySqlDataReader reader = Executar("listarAmbientesDisponiveisSigla", parametros);
+
+            while (reader.Read())
+            {
+                list.Add(new Ambiente { Sigla = reader["sg_ambiente"].ToString(), Nome = reader["nm_ambiente"].ToString() });
+            }
+
+            if (reader.IsClosed) reader.Close();
+            Desconectar();
+
+            return list;
+        }
+
         public Ambiente ListarAmbiente(Ambiente ambiente)
         {
             List<Parametro> parametros = new List<Parametro>

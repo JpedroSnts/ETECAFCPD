@@ -9,7 +9,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <asp:Literal ID="litTeste" runat="server"></asp:Literal>
+        <asp:Panel ID="pnlEquipamentos" runat="server"></asp:Panel>
     </form>
 </body>
 </html>
