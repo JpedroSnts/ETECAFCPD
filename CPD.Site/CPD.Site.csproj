@@ -75,6 +75,7 @@
   <ItemGroup>
     <Content Include="Api\dashboard.aspx" />
     <Content Include="dashboard.aspx" />
+    <Content Include="Estatico\css\dashboard.css" />
     <Content Include="Estatico\css\estilo.css" />
     <Content Include="Estatico\css\estiloReserva.css" />
     <Content Include="Estatico\css\verificacao.css" />
@@ -94,6 +95,7 @@
     <Content Include="Estatico\imagens\suasReservas.png" />
     <Content Include="Estatico\imagens\user.png" />
     <Content Include="Estatico\imagens\userProf.png" />
+    <Content Include="Estatico\js\dashboard.js" />
     <Content Include="Estatico\js\menuSanduiche.js" />
     <Content Include="home.aspx" />
     <Content Include="login.aspx" />
@@ -147,7 +149,8 @@
     <Compile Include="reserva.aspx.designer.cs">
       <DependentUpon>reserva.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\EquipamentoLivre.cs" />
+    <Compile Include="ViewModel\ItemGenerico.cs" />
+    <Compile Include="ViewModel\ItemLivreDTO.cs" />
     <Compile Include="ViewModel\ReservaDTO.cs" />
     <Compile Include="ViewModel\ReservaGenerica.cs" />
   </ItemGroup>

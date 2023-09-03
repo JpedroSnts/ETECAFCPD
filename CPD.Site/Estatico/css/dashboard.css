@@ -1,0 +1,185 @@
+* {
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+}
+
+body {
+	margin: 0%;
+}
+
+header {
+	width: 100%;
+	padding: 0 20px;
+	background: #fff;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#imagem {
+	margin-bottom: 5px;
+	margin-top: 10px;
+	width: 50px;
+	height: 66px;
+}
+
+main {
+	width: min(90%, 1200px);
+	margin: auto;
+	margin-top: 30px;
+}
+
+.iconInput {
+	width: 15px;
+	margin: 5px 0px 0px 0px;
+}
+
+input {
+	font-size: 12px;
+	border: none;
+	margin: 12px 0px 0px 5px;
+	width: 100%;
+}
+input:focus {
+	box-shadow: 0 0 0 0;
+	outline: 0;
+}
+
+#inputsBusca {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+input,
+select {
+	border-radius: 5px;
+	border: 1px solid #114a55;
+	background: #fff;
+	color: #000;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	margin: auto;
+	height: 35px;
+	padding: 10px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+	color: rgba(0, 0, 0, 0);
+	opacity: 1;
+	display: block;
+	background: url("../imagens/Calendario.png") no-repeat;
+	width: 20px;
+	height: 20px;
+	border-width: thin;
+}
+
+.dropbtn {
+	padding: 10px;
+	font-size: 16px;
+	min-width: 160px;
+	cursor: pointer;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+}
+
+.dropdown-content a:hover {
+	background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+#reservas {
+	width: 75%;
+}
+
+#itens-livres {
+	width: 24%;
+}
+
+#tbodyItensLivres tr td:nth-child(2) {
+	width: 25px;
+}
+
+#itens-livres {
+	height: min-content;
+}
+
+.tabelas {
+	display: flex;
+	justify-content: space-between;
+}
+
+table {
+	background-color: #000;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	height: min-content;
+}
+
+table tbody tr td {
+	background-color: #fff;
+	border: #000 solid 1px;
+}
+
+table thead {
+	background-color: #114a55;
+	color: #fff;
+}
+
+.status-em-andamento {
+	background-color: #ffeb9c;
+	color: #9f580b;
+	font-weight: bold;
+}
+
+.status-entrega-atrasada {
+	background-color: #ffc7ce;
+	color: #9e0506;
+	font-weight: bold;
+}
+
+.status-aguardando-retirada {
+	background-color: #b4c6e7;
+	color: #343681;
+	font-weight: bold;
+}
+.status-nao-retirado {
+}
+.status-cancelada {
+}
+
+button {
+	border: thin solid #114a55;
+	color: #fff;
+	background-color: #114a55;
+	border-radius: 20px;
+	padding: 5px 20px;
+	cursor: pointer;
+}

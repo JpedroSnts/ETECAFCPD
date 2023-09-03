@@ -25,5 +25,10 @@ namespace CPD.Site.Controller
             }
             return list;
         }
+
+        public List<ItemLivreDTO> ListarItensDisponiveis()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

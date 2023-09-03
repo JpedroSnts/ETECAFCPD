@@ -12,15 +12,15 @@ namespace CPD.Site.Controller
 {
     public class ReservaController
     {
-        public List<EquipamentoLivre> ListarEquipamentosLivres(DateTime inicio, DateTime fim)
+        public List<ItemLivreDTO> ListarItensLivres(DateTime inicio, DateTime fim)
         {
             EquipamentoController equipamentoController = new EquipamentoController();
+            AmbienteController ambienteController = new AmbienteController();
             List<Equipamento> equipamentos = equipamentoController.ListarEquipamentosDisponiveis(inicio, fim);
-
-            // Lógica para transformar List<Equipamento> em List<EquipamentoLivre>
-
-            List<EquipamentoLivre> equipamentosLivres = new List<EquipamentoLivre>();
-            return equipamentosLivres;
+            List<Ambiente> ambientes = ambienteController.ListarAmbientesDisponiveis(inicio, fim);
+            List<ItemGenerico> itensGenericos = ItemGenerico.GerarListaItemGenerico(equipamentos, ambientes);
+            return ItemLivreDTO.GerarListaItemLivreDTO(itensGenericos);
         }
+
     }
 }
