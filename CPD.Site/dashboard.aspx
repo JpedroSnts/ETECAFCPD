@@ -12,7 +12,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
 		<title>Dashboard</title>
-		<link rel="icon" href="Estatico/imagens/logo.png" type="image/png" /></head>
+		<link rel="icon" href="Estatico/imagens/logoCPD.png" type="image/png" /></head>
 <body>
     <form id="form1" runat="server">
 		<header>

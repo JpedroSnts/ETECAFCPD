@@ -23,21 +23,36 @@ namespace CPD.Site.Api
                 string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/home.aspx";
                 Response.Redirect(ultimaPagina);
             }
-            Response.AddHeader("Access-Control-Allow-Origin", "*");
             Response.ContentType = "application/json";
-            var dashboardController = new DashboardController();
-            var reservaController = new ReservaController();
-            if (String.IsNullOrEmpty(Request["itens-livres"]))
+
+            if (!String.IsNullOrEmpty(Request["rm"]) && !String.IsNullOrEmpty(Request["dt_saida"]) && !String.IsNullOrEmpty(Request["itens"]) && !String.IsNullOrEmpty(Request["status"]))
             {
-                var status = (EStatusReserva) int.Parse(Request["status"] ?? "0");
-                var filtro = Request["filtro"];
-                var data = DateTime.MinValue;
-                if (!String.IsNullOrEmpty(Request["data"])) data = DateTime.Parse(Request["data"]);
-                Response.Write(JsonConvert.SerializeObject(ReservaDTO.OrdenarReservas(dashboardController.ListarReservas(filtro, status, data))));
+                var dashboarController = new DashboardController();
+                dashboarController.ConcluirReserva(int.Parse(Request["rm"]), Request["itens"], Request["status"], DateTime.Parse(Request["dt_saida"]));
+            }
+            if (!String.IsNullOrEmpty(Request["itens-livres"]))
+            {
+                ListarItensLivres();
                 return;
             }
+            ListarReservas();
+        }
+
+        private void ListarItensLivres()
+        {
+            var reservaController = new ReservaController();
             DateTime dataFinalDoDia = DateTime.Today.AddHours(23).AddMinutes(59).AddSeconds(59);
             Response.Write(JsonConvert.SerializeObject(reservaController.ListarItensLivres(DateTime.Now, dataFinalDoDia)));
+        }
+
+        private void ListarReservas()
+        {
+            var dashboardController = new DashboardController();
+            var status = (EStatusReserva)int.Parse(Request["status"] ?? "0");
+            var filtro = Request["filtro"];
+            var data = DateTime.MinValue;
+            if (!String.IsNullOrEmpty(Request["data"])) data = DateTime.Parse(Request["data"]);
+            Response.Write(JsonConvert.SerializeObject(ReservaDTO.OrdenarReservas(dashboardController.ListarReservas(filtro, status, data))));
         }
     }
 }

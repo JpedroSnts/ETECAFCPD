@@ -28,5 +28,24 @@ namespace CPD.Repositorio.Controller
 
             return list;
         }
+
+        public Ambiente ListarAmbiente(Ambiente ambiente)
+        {
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pSigla", ambiente.Sigla)
+            };
+            MySqlDataReader reader = Executar("listarAmbiente", parametros);
+            Ambiente a = null;
+            if (reader.Read())
+            {
+                a = new Ambiente { Sigla = reader["sg_ambiente"].ToString(), Nome = reader["nm_ambiente"].ToString() };
+            }
+
+            if (reader.IsClosed) reader.Close();
+            Desconectar();
+
+            return a;
+        }
     }
 }

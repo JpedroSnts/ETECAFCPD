@@ -175,11 +175,13 @@ table thead {
 .status-cancelada {
 }
 
-button {
+button, .btn {
 	border: thin solid #114a55;
 	color: #fff;
 	background-color: #114a55;
 	border-radius: 20px;
 	padding: 5px 20px;
 	cursor: pointer;
+	display: block;
+	text-decoration: none;
 }

@@ -288,22 +288,22 @@ END$$
 DROP PROCEDURE IF EXISTS atualizarDevolucaoReservaEquipamento$$
 CREATE PROCEDURE atualizarDevolucaoReservaEquipamento(pSiglaEquipamento VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
 BEGIN
-	UPDATE reserva_equipamento SET dt_devolucao = curdate() 
-	WHERE sg_ambiente = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
+	UPDATE reserva_equipamento SET dt_devolucao = now()
+	WHERE sg_equipamento = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
 END$$
 
 DROP PROCEDURE IF EXISTS atualizarSaidaReservaEquipamento$$
 CREATE PROCEDURE atualizarSaidaReservaEquipamento(pSiglaEquipamento VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
 BEGIN
-	UPDATE reserva_equipamento SET dt_saida = curdate() 
-	WHERE sg_ambiente = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
+	UPDATE reserva_equipamento SET dt_saida = now()
+	WHERE sg_equipamento = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
 END$$
 
 DROP PROCEDURE IF EXISTS cancelarReservaEquipamento$$
 CREATE PROCEDURE cancelarReservaEquipamento(pSiglaEquipamento VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
 BEGIN
-	UPDATE reserva_equipamento SET dt_cancelamento = curdate() 
-	WHERE sg_ambiente = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
+	UPDATE reserva_equipamento SET dt_cancelamento = now()
+	WHERE sg_equipamento = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
 END$$
 
 DROP PROCEDURE IF EXISTS listarReservasEquipamentos$$
@@ -438,6 +438,12 @@ BEGIN
 		);
 END$$
 
+DROP PROCEDURE IF EXISTS listarEquipamento$$
+CREATE PROCEDURE listarEquipamento(pSigla VARCHAR(20))
+BEGIN
+	SELECT * FROM equipamento WHERE sg_equipamento = pSigla;
+END$$
+
 /* ------------------------------ RESERVA AMBIENTE ------------------------------ */
 
 DROP FUNCTION IF EXISTS verificarSeAmbientePodeSerReservado$$
@@ -482,21 +488,21 @@ END$$
 DROP PROCEDURE IF EXISTS atualizarDevolucaoReservaAmbiente$$
 CREATE PROCEDURE atualizarDevolucaoReservaAmbiente(pSiglaAmbiente VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
 BEGIN
-	UPDATE reserva_ambiente SET dt_devolucao = curdate() 
+	UPDATE reserva_ambiente SET dt_devolucao = now()
 	WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
 END$$
 
 DROP PROCEDURE IF EXISTS atualizarSaidaReservaAmbiente$$
 CREATE PROCEDURE atualizarSaidaReservaAmbiente(pSiglaAmbiente VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
 BEGIN
-	UPDATE reserva_ambiente SET dt_saida = curdate() 
+	UPDATE reserva_ambiente SET dt_saida = now()
 	WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
 END$$
 
 DROP PROCEDURE IF EXISTS cancelarReservaAmbiente$$
 CREATE PROCEDURE cancelarReservaAmbiente(pSiglaAmbiente VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
 BEGIN
-	UPDATE reserva_ambiente SET dt_cancelamento = curdate() 
+	UPDATE reserva_ambiente SET dt_cancelamento = now()
 	WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
 END$$
 
@@ -627,6 +633,12 @@ BEGIN
 	WHERE
 		ra.sg_ambiente IS NULL
 		AND ua.sg_ambiente IS NULL;
+END$$
+
+DROP PROCEDURE IF EXISTS listarAmbiente$$
+CREATE PROCEDURE listarAmbiente(pSigla VARCHAR(20))
+BEGIN
+	SELECT * FROM ambiente WHERE sg_ambiente = pSigla;
 END$$
 
 /* ------------------------------ USO AMBIENTE ------------------------------ */
