@@ -1,10 +1,8 @@
 window.addEventListener("load", () => {
-    let DATA = null;
     let STATUS = null;
     let FILTRO = null;
 
     const ddlStatus = document.querySelector("#ddlStatus");
-    const txtData = document.querySelector("#txtData");
     const txtFiltro = document.querySelector("#txtFiltro");
     const tbodyReservas = document.querySelector("#tbodyReservas");
     const tbodyItensLivres = document.querySelector("#tbodyItensLivres");
@@ -103,52 +101,30 @@ window.addEventListener("load", () => {
     }
 
     function listarReservas() {
-        if ((DATA == null || DATA == "") && (FILTRO == null || FILTRO.trim() == "") && (STATUS == null || STATUS == "")) {
-            const dt = new Date();
-            const yyyy_mm_dd = `${dt.getFullYear()}-${dt.getUTCMonth() + 1}-${dt.getUTCDate()}`;
+        const dt = new Date();
+        const yyyy_mm_dd = `${dt.getFullYear()}-${dt.getUTCMonth() + 1}-${dt.getUTCDate()}`;
+        if ((FILTRO == null || FILTRO.trim() == "") && (STATUS == null || STATUS == "")) {
             fetchListar(`/Api/dashboard.aspx?data=${yyyy_mm_dd}`);
             return;
         }
 
-        if (DATA != null && DATA != "" && FILTRO != null && FILTRO.trim() != "" && STATUS != null && STATUS != "") {
-            fetchListar(`/Api/dashboard.aspx?status=${STATUS}&filtro=${FILTRO}&data=${DATA}`);
-            return;
-        }
-
-        if (DATA != null && DATA != "" && FILTRO != null && FILTRO.trim() != "") {
-            fetchListar(`/Api/dashboard.aspx?&filtro=${FILTRO}&data=${DATA}`);
-            return;
-        }
-        if (DATA != null && DATA != "" && STATUS != null && STATUS != "") {
-            fetchListar(`/Api/dashboard.aspx?status=${STATUS}&data=${DATA}`);
-            return;
-        }
-        if (DATA != null && DATA != "") {
-            fetchListar(`/Api/dashboard.aspx?data=${DATA}`);
-            return;
-        }
-
         if (FILTRO != null && FILTRO.trim() != "" && STATUS != null && STATUS != "") {
-            fetchListar(`/Api/dashboard.aspx?status=${STATUS}&filtro=${FILTRO}`);
+            fetchListar(`/Api/dashboard.aspx?status=${STATUS}&filtro=${FILTRO}&data=${yyyy_mm_dd}`);
             return;
         }
         if (FILTRO != null && FILTRO.trim() != "") {
-            fetchListar(`/Api/dashboard.aspx?filtro=${FILTRO}`);
+            fetchListar(`/Api/dashboard.aspx?filtro=${FILTRO}&data=${yyyy_mm_dd}`);
             return;
         }
 
         if (STATUS != null && STATUS != "") {
-            fetchListar(`/Api/dashboard.aspx?status=${STATUS}`);
+            fetchListar(`/Api/dashboard.aspx?status=${STATUS}&data=${yyyy_mm_dd}`);
             return;
         }
     }
 
     ddlStatus.addEventListener("change", e => {
         STATUS = e.target.value;
-        listarReservas();
-    });
-    txtData.addEventListener("change", e => {
-        DATA = e.target.value;
         listarReservas();
     });
     let keyupTimer;

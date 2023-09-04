@@ -44,7 +44,6 @@
 				<select id="ddlStatus" placeholder="Status">
 					<option value="">Status</option>
 				</select>
-				<input type="date" id="txtData" />
 				<input type="text" id="txtFiltro" placeholder="Professor/Equipamento/Ambiente" />
 			</div>
 			<div class="tabelas">

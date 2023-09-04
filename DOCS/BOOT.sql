@@ -129,8 +129,8 @@ CREATE TABLE reserva_ambiente
 	sg_ambiente VARCHAR(20),
 	cd_rm INT,
 	dt_saida_prevista DATETIME,
+    dt_devolucao_prevista DATETIME,
 	dt_saida DATETIME,
-	dt_devolucao_prevista DATETIME,
 	dt_devolucao DATETIME,
 	dt_cancelamento DATETIME,
 	CONSTRAINT pk_reserva_ambiente PRIMARY KEY (sg_ambiente, cd_rm, dt_saida_prevista),
@@ -414,6 +414,88 @@ BEGIN
             e.sg_equipamento LIKE CONCAT(pFiltro, '%') OR e.nm_equipamento LIKE CONCAT(pFiltro, '%'))
         AND (pData IS NULL OR
             DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = pData)
+    ORDER BY re.dt_saida_prevista ASC;
+END$$
+
+DROP PROCEDURE IF EXISTS listarReservasEquipamentosDashboard$$
+CREATE PROCEDURE listarReservasEquipamentosDashboard()
+BEGIN
+	-- 1. Reservado
+	-- 2. Em andamento
+    -- 3. Entrega Atrasada
+    -- 4. Aguardando Retirada
+    -- 5. Não Retirados
+    -- 6. Canceladas
+    -- 7. Concluida
+	SELECT 
+        e.sg_equipamento,
+        u.cd_rm,
+        u.nm_usuario,
+        re.dt_saida_prevista,
+        re.dt_devolucao_prevista,
+        re.dt_saida,
+        re.dt_devolucao,
+        re.dt_cancelamento,
+        CASE
+			WHEN 	
+				dt_cancelamento IS NULL
+				AND dt_devolucao IS NULL
+				AND dt_saida IS NULL
+				AND NOW() < dt_devolucao_prevista
+				AND NOW() < dt_saida_prevista THEN 1
+			WHEN 	
+				dt_cancelamento IS NULL
+				AND dt_devolucao IS NULL
+				AND dt_saida IS NOT NULL
+				AND NOW() < dt_devolucao_prevista
+				AND NOW() > dt_saida_prevista THEN 2
+			WHEN 
+				dt_cancelamento IS NULL
+				AND dt_devolucao IS NULL
+				AND dt_saida IS NOT NULL
+				AND NOW() > dt_devolucao_prevista
+				AND NOW() > dt_saida_prevista THEN 3
+			WHEN 
+				dt_cancelamento IS NULL
+				AND dt_devolucao IS NULL
+				AND dt_saida IS NULL
+				AND NOW() < dt_devolucao_prevista
+				AND NOW() > dt_saida_prevista THEN 4
+			WHEN
+				dt_cancelamento IS NULL
+				AND dt_devolucao IS NULL
+				AND dt_saida IS NULL
+				AND NOW() > dt_devolucao_prevista
+				AND NOW() > dt_saida_prevista THEN 5
+			WHEN 
+				dt_cancelamento IS NOT NULL
+				AND dt_devolucao IS NULL
+				AND dt_saida IS NULL THEN 6
+			WHEN 
+				dt_cancelamento IS NULL
+				AND dt_devolucao IS NOT NULL
+				AND dt_saida IS NOT NULL THEN 7
+			ELSE 0
+		END as cd_status
+    FROM reserva_equipamento re
+    JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
+    JOIN usuario u ON re.cd_rm = u.cd_rm
+    WHERE 
+			((dt_cancelamento IS NULL
+			AND dt_devolucao IS NULL
+			AND dt_saida IS NOT NULL
+			AND NOW() < dt_devolucao_prevista
+			AND NOW() > dt_saida_prevista AND DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = CURDATE()) OR
+            (dt_cancelamento IS NULL
+			AND dt_devolucao IS NULL
+			AND dt_saida IS NOT NULL
+			AND NOW() > dt_devolucao_prevista
+			AND NOW() > dt_saida_prevista) OR
+            (dt_cancelamento IS NULL
+			AND dt_devolucao IS NULL
+			AND dt_saida IS NULL
+			AND NOW() < dt_devolucao_prevista
+			AND NOW() > dt_saida_prevista AND DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = CURDATE()))
     ORDER BY re.dt_saida_prevista ASC;
 END$$
 

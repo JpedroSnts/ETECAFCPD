@@ -18,11 +18,12 @@ namespace CPD.Site.Api
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["rm_usuario"] == null || Session["tipo_usuario"].ToString() != "1")
-            {
-                string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/home.aspx";
-                Response.Redirect(ultimaPagina);
-            }
+            //if (Session["rm_usuario"] == null || Session["tipo_usuario"].ToString() != "1")
+            //{
+            //    string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/home.aspx";
+            //    Response.Redirect(ultimaPagina);
+            //}
+            Response.AddHeader("Access-Control-Allow-Origin", "*");
             Response.ContentType = "application/json";
 
             if (!String.IsNullOrEmpty(Request["rm"]) && !String.IsNullOrEmpty(Request["dt_saida"]) && !String.IsNullOrEmpty(Request["itens"]) && !String.IsNullOrEmpty(Request["status"]))
