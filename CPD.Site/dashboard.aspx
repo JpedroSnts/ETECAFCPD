@@ -39,38 +39,46 @@
 			</nav>
 			<div><img id="user" src="Estatico/imagens/user.png" /></div>
 		</header>
-		<main>
-			<div id="inputsBusca">
-				<select id="ddlStatus" placeholder="Status">
-					<option value="">Status</option>
-				</select>
-				<input type="text" id="txtFiltro" placeholder="Professor/Equipamento/Ambiente" />
-			</div>
-			<div class="tabelas">
-				<table id="reservas">
-					<thead>
-						<tr>
-							<th class="th-data">Data</th>
-							<th class="th-horario">Horário</th>
-							<th class="th-itens">Itens</th>
-							<th class="th-professor">Professor</th>
-							<th class="th-status">Status</th>
-							<th class="th-acao">Ação</th>
-						</tr>
-					</thead>
-					<tbody id="tbodyReservas"></tbody>
-				</table>
+        <main>
+            <div id="dashboard">
+                <div id="tabelaReserva">
+                    <div>
+                        <h1>Reservas de Hoje</h1>
+                        <div id="inputsBusca">
+                            <select id="ddlStatus" placeholder="Status">
+                                <option value="">Status</option>
+                            </select>
+                            <input type="text" id="txtFiltro" placeholder="Professor/Equipamento/Ambiente" />
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="th-data">Data</th>
+                                <th class="th-horario">Horário</th>
+                                <th class="th-itens">Itens</th>
+                                <th class="th-professor">Professor</th>
+                                <th class="th-status">Status</th>
+                                <th class="th-acao">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyReservas"></tbody>
+                    </table>
+                </div>
 
-				<table id="itens-livres">
-					<thead>
-						<tr>
-							<th colspan="2">Itens Livres</th>
-						</tr>
-					</thead>
-					<tbody id="tbodyItensLivres"></tbody>
-				</table>
-			</div>
-		</main>
+                <div id="tabelaDisponivel">
+                    <h1>Disponiveis</h1>
+                    <table id="itens-livres">
+                        <thead>
+                            <tr>
+                                <th colspan="2">Itens</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbodyItensLivres"></tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
 		<script src="Estatico/js/dashboard.js"></script>
     </form>
 </body>

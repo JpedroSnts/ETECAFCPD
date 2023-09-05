@@ -1,10 +1,20 @@
 * {
 	box-sizing: border-box;
 	font-family: "Montserrat", sans-serif;
+	font-size: 13px;
 }
 
 body {
 	margin: 0%;
+}
+
+h1 {
+	font-size: 20px;
+}
+
+tr {
+	height: 45px;
+	padding: 10px;
 }
 
 header {
@@ -16,6 +26,10 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+}
+
+#txtFiltro {
+	height: 40px;
 }
 
 #imagem {
@@ -37,7 +51,6 @@ main {
 }
 
 input {
-	font-size: 12px;
 	border: none;
 	margin: 12px 0px 0px 5px;
 	width: 100%;
@@ -59,12 +72,10 @@ select {
 	border: 1px solid #114a55;
 	background: #fff;
 	color: #000;
-	font-size: 12px;
 	font-style: normal;
 	font-weight: 400;
 	line-height: normal;
 	margin: auto;
-	height: 35px;
 	padding: 10px;
 }
 
@@ -114,14 +125,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	display: block;
 }
 
-#reservas {
-	width: 75%;
-}
-
-#itens-livres {
-	width: 20%;
-}
-
 #tbodyItensLivres tr td:nth-child(2) {
 	width: 25px;
 }
@@ -136,16 +139,18 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 table {
-	background-color: #000;
 	border-collapse: collapse;
 	width: 100%;
 	text-align: center;
 	height: min-content;
+	
+	border-radius: 5px;
+	overflow: hidden;
+	border: solid 1px #114a55;
 }
 
-table tbody tr td {
-	background-color: #fff;
-	border: #000 solid 1px;
+table tbody tr:nth-child(odd) {
+	background-color: #00a4c510 ;
 }
 
 table thead {
@@ -153,26 +158,46 @@ table thead {
 	color: #fff;
 }
 
+#tabelaDisponivel table tr td {
+	text-align: left;
+	padding: 0px 10px;
+}
+
+#tabelaDisponivel table tr td:nth-child(2) {
+	font-weight: bold;
+}
+
 .status-em-andamento {
-	background-color: #ffeb9c;
-	color: #9f580b;
+	color: #ef9b0f;
 	font-weight: bold;
 }
 
 .status-entrega-atrasada {
-	background-color: #ffc7ce;
-	color: #9e0506;
+	color: #ff0000;
 	font-weight: bold;
 }
 
-.status-aguardando-retirada {
-	background-color: #b4c6e7;
-	color: #343681;
+.status-aguardando-retirada {	
+	color: #ef9b0f;
 	font-weight: bold;
 }
 .status-nao-retirado {
+	color: #ff0000;
+	font-weight: bold;
 }
 .status-cancelada {
+	color: #ff0000;
+	font-weight: bold;
+}
+
+.status-concluida {
+	color: #00a100;
+	font-weight: bold;
+}
+
+.status-reservado {
+	color: #ef9b0f;
+	font-weight: bold;
 }
 
 button, .btn {
@@ -184,4 +209,23 @@ button, .btn {
 	cursor: pointer;
 	display: block;
 	text-decoration: none;
+}
+
+.btnAcaoReserva {
+	width: 75%;
+	margin: auto;
+}
+
+#dashboard {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+}
+
+#tabelaReserva {
+	width: 75%;
+}
+
+#tabelaDisponivel {
+	width: 20%;
 }

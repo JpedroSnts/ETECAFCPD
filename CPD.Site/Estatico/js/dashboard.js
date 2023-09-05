@@ -9,7 +9,7 @@ window.addEventListener("load", () => {
 
     const status = [
         { codigo: 0, css: "", nome: "Desconhecido", botao: "Ação" },
-        { codigo: 1, css: "status-em-reservado", nome: "Reservado", botao: "" },
+        { codigo: 1, css: "status-reservado", nome: "Reservado", botao: "" },
         { codigo: 2, css: "status-em-andamento", nome: "Em andamento", botao: "Entregar" },
         { codigo: 3, css: "status-entrega-atrasada", nome: "Entrega atrasada", botao: "Entregar" },
         { codigo: 4, css: "status-aguardando-retirada", nome: "Aguardando Retirada", botao: "Retirar" },
@@ -62,7 +62,6 @@ window.addEventListener("load", () => {
 			<td>
 				${status.botao == ""
                 ? ""
-                // href="/Api/dashboard.aspx?rm=${reserva.RM}&dt_saida=${reserva.DataSaidaPrevista}&itens=${reserva.Itens.replaceAll(" ", "")}&status=${status.codigo}"
                 : `<div class="btn btnAcaoReserva" rm="${reserva.RM}" dt_saida="${reserva.DataSaidaPrevista}" itens="${reserva.Itens.replaceAll(" ", "")}" status="${status.codigo}">${status.botao}</div>`
             }
 				
@@ -72,7 +71,7 @@ window.addEventListener("load", () => {
 
     function fetchListar(url) {
         tbodyReservas.innerHTML = "<tr><td colspan='6'>Carregando...</td></tr>";
-        fetch(`${url}`)
+        fetch(`http://localhost:54802/${url}`)
             .then(res => res.json())
             .then(reservas => {
                 tbodyReservas.innerHTML = "";
@@ -85,7 +84,7 @@ window.addEventListener("load", () => {
 
     function fetchListarItens() {
         tbodyItensLivres.innerHTML = "<tr><td colspan='2'>Carregando...</td></tr>";
-        fetch(`/Api/dashboard.aspx?itens-livres=_`)
+        fetch(`http://localhost:54802/Api/dashboard.aspx?itens-livres=_`)
             .then(res => res.json())
             .then(itens => {
                 tbodyItensLivres.innerHTML = "";
