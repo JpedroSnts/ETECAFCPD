@@ -71,7 +71,7 @@ window.addEventListener("load", () => {
 
     function fetchListar(url) {
         tbodyReservas.innerHTML = "<tr><td colspan='6'>Carregando...</td></tr>";
-        fetch(`http://localhost:54802/${url}`)
+        fetch(`${url}`)
             .then(res => res.json())
             .then(reservas => {
                 tbodyReservas.innerHTML = "";
@@ -84,7 +84,7 @@ window.addEventListener("load", () => {
 
     function fetchListarItens() {
         tbodyItensLivres.innerHTML = "<tr><td colspan='2'>Carregando...</td></tr>";
-        fetch(`http://localhost:54802/Api/dashboard.aspx?itens-livres=_`)
+        fetch(`/Api/dashboard.aspx?itens-livres=_`)
             .then(res => res.json())
             .then(itens => {
                 tbodyItensLivres.innerHTML = "";
