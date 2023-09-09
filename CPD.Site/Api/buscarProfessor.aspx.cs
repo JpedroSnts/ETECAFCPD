@@ -14,11 +14,11 @@ namespace CPD.Site.Api
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!Logado.Admin(Session))
-            //{
-            //    Response.StatusCode = 401;
-            //    Response.End();
-            //}
+            if (!Logado.Admin(Session))
+            {
+                Response.StatusCode = 401;
+                Response.End();
+            }
             Response.ContentType = "application/json";
             UsuarioController usuarioController = new UsuarioController();
             List<Usuario> usuarios = usuarioController.BuscarProfessores(Request["q"]?.Trim());

@@ -76,7 +76,7 @@ namespace CPD.Site
         {
             if (!IsPostBack)
             {
-                //ddlNmProf.Visible = false;
+                ddlNmProf.Visible = false;
                 if (Logado.Admin(Session))
                 {
                     ddlNmProf.Visible = true;
