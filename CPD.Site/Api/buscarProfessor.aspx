@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="buscarProfessor.aspx.cs" Inherits="CPD.Site.Api.buscarProfessor" %>

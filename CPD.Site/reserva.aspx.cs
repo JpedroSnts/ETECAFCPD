@@ -76,9 +76,10 @@ namespace CPD.Site
         {
             if (!IsPostBack)
             {
-                if (!Logado.Admin(Session))
+                //ddlNmProf.Visible = false;
+                if (Logado.Admin(Session))
                 {
-                    txtInputNmProf.Visible = false;
+                    ddlNmProf.Visible = true;
                 }
                 DateTime inicio = DateTime.Today;
                 DateTime fim = inicio.AddDays(1);

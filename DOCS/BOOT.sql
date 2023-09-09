@@ -228,6 +228,15 @@ BEGIN
     
 END$$
 
+DROP PROCEDURE IF EXISTS buscarProfessores$$
+CREATE PROCEDURE buscarProfessores(pFiltro VARCHAR(255))
+BEGIN
+    SELECT cd_rm, nm_usuario FROM usuario 
+    WHERE cd_tipo_usuario = 2 
+    AND (nm_usuario LIKE CONCAT(pFiltro, "%") OR cd_rm LIKE CONCAT(pFiltro, "%")) 
+    ORDER BY nm_usuario;
+END$$
+
 /* ------------------------------ RESERVA EQUIPAMENTO ------------------------------ */
 
 DROP FUNCTION IF EXISTS verificarSeDataPassaDe7Dias$$

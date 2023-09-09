@@ -21,8 +21,8 @@ namespace CPD.Site.Api
         {
             if (!Logado.Admin(Session))
             {
-                string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/home.aspx";
-                Response.Redirect(ultimaPagina);
+                Response.StatusCode = 401;
+                Response.End();
             }
             Response.ContentType = "application/json";
 

@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="icon" href="Estatico/imagens/logoCPD.png" type="image/png" />
     <title>CPD - Reserva</title>
 </head>
@@ -47,10 +48,13 @@
                 <asp:Panel ID="pnlAmbientes" runat="server"></asp:Panel>
             </div>
             <div class="reservar">
-                <asp:TextBox ID="txtInputNmProf" runat="server" placeholder="Professor"></asp:TextBox>
+                <asp:DropDownList ID="ddlNmProf" runat="server"></asp:DropDownList>
                 <asp:Button ID="btnReservar" runat="server" Text="Reservar" />
             </div>
         </main>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/i18n/pt-BR.min.js" integrity="sha512-H1yBoUnrE7X+NeWpeZvBuy2RvrbvLEAEjX/Mu8L2ggUBja62g1z49fAboGidE5YEQyIVMCWJC9krY4/KEqkgag==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="Estatico/js/reserva.js"></script>
         <script language="javascript" type="text/javascript">
             function SelectSingleRadiobutton(rdbtnid) {
@@ -62,6 +66,16 @@
                     }
                 }
             }
+            $("#ddlNmProf").select2({
+                ajax: {
+                    url: "/api/buscarProfessor.aspx",
+                    dataType: "json"
+                },
+                placeholder: "Nome ou RM do professor",
+                width: "250px",
+                language: "pt-BR",
+                minimumInputLength: 2
+            });
         </script>
     </form>
 </body>

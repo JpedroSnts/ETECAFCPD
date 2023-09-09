@@ -67,5 +67,22 @@ namespace CPD.Repositorio.Controller
             Executar("alterarSenhaUsuario", parametros);
             Desconectar();
         }
+
+        public List<Usuario> BuscarProfessores(string filtro)
+        {
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pFiltro", filtro),
+            };
+            MySqlDataReader reader = Executar("buscarProfessores", parametros);
+            List<Usuario> usuarios = new List<Usuario>();
+            while (reader.Read())
+            {
+                usuarios.Add(new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString() });
+            }
+            if (!reader.IsClosed) reader.Close();
+            Desconectar();
+            return usuarios;
+        }
     }
 }

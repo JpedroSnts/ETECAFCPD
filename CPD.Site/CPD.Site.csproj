@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="alterarSenha.aspx" />
+    <Content Include="Api\buscarProfessor.aspx" />
     <Content Include="Api\dashboard.aspx" />
     <Content Include="Api\excluirGradeHorario.aspx" />
     <Content Include="dashboard.aspx" />
@@ -119,6 +120,13 @@
     </Compile>
     <Compile Include="alterarSenha.aspx.designer.cs">
       <DependentUpon>alterarSenha.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Api\buscarProfessor.aspx.cs">
+      <DependentUpon>buscarProfessor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Api\buscarProfessor.aspx.designer.cs">
+      <DependentUpon>buscarProfessor.aspx</DependentUpon>
     </Compile>
     <Compile Include="Api\dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>

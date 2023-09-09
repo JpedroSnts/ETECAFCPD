@@ -223,9 +223,9 @@ button, input[type="button"], input[type="submit"] {
 	margin-top: 30px;
 }
 
-#txtInputNmProf {
+/*#ddlNmProf {
 	padding: 8px 5px 8px 10px;
-}
+}*/
 
 @media only screen and (max-width: 900px) {
 	header {
@@ -391,7 +391,7 @@ button, input[type="button"], input[type="submit"] {
 		align-items: center;
 	}
 
-	#txtInputNmProf {
+	#ddlNmProf {
 		padding: 8px 5px 8px 10px;
 		width: 50%;
 	}
