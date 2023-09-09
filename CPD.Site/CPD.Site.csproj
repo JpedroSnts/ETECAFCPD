@@ -104,6 +104,7 @@
     <Content Include="Estatico\js\dashboard.js" />
     <Content Include="Estatico\js\gradeHorario.js" />
     <Content Include="Estatico\js\menuSanduiche.js" />
+    <Content Include="Estatico\js\reserva.js" />
     <Content Include="gradeHorario.aspx" />
     <Content Include="home.aspx" />
     <Content Include="login.aspx" />
@@ -180,6 +181,7 @@
     </Compile>
     <Compile Include="Util\Email.cs" />
     <Compile Include="Util\Logado.cs" />
+    <Compile Include="ViewModel\ETipoItem.cs" />
     <Compile Include="ViewModel\ItemGenerico.cs" />
     <Compile Include="ViewModel\ItemLivreDTO.cs" />
     <Compile Include="ViewModel\ReservaDTO.cs" />

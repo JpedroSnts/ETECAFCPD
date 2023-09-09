@@ -417,88 +417,6 @@ BEGIN
     ORDER BY re.dt_saida_prevista ASC;
 END$$
 
-DROP PROCEDURE IF EXISTS listarReservasEquipamentosDashboard$$
-CREATE PROCEDURE listarReservasEquipamentosDashboard()
-BEGIN
-	-- 1. Reservado
-	-- 2. Em andamento
-    -- 3. Entrega Atrasada
-    -- 4. Aguardando Retirada
-    -- 5. Não Retirados
-    -- 6. Canceladas
-    -- 7. Concluida
-	SELECT 
-        e.sg_equipamento,
-        u.cd_rm,
-        u.nm_usuario,
-        re.dt_saida_prevista,
-        re.dt_devolucao_prevista,
-        re.dt_saida,
-        re.dt_devolucao,
-        re.dt_cancelamento,
-        CASE
-			WHEN 	
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() < dt_saida_prevista THEN 1
-			WHEN 	
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NOT NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista THEN 2
-			WHEN 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NOT NULL
-				AND NOW() > dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista THEN 3
-			WHEN 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista THEN 4
-			WHEN
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() > dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista THEN 5
-			WHEN 
-				dt_cancelamento IS NOT NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL THEN 6
-			WHEN 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NOT NULL
-				AND dt_saida IS NOT NULL THEN 7
-			ELSE 0
-		END as cd_status
-    FROM reserva_equipamento re
-    JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
-    JOIN usuario u ON re.cd_rm = u.cd_rm
-    WHERE 
-			((dt_cancelamento IS NULL
-			AND dt_devolucao IS NULL
-			AND dt_saida IS NOT NULL
-			AND NOW() < dt_devolucao_prevista
-			AND NOW() > dt_saida_prevista AND DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = CURDATE()) OR
-            (dt_cancelamento IS NULL
-			AND dt_devolucao IS NULL
-			AND dt_saida IS NOT NULL
-			AND NOW() > dt_devolucao_prevista
-			AND NOW() > dt_saida_prevista) OR
-            (dt_cancelamento IS NULL
-			AND dt_devolucao IS NULL
-			AND dt_saida IS NULL
-			AND NOW() < dt_devolucao_prevista
-			AND NOW() > dt_saida_prevista AND DATE_FORMAT(re.dt_saida_prevista, "%Y-%m-%d") = CURDATE()))
-    ORDER BY re.dt_saida_prevista ASC;
-END$$
-
 DROP PROCEDURE IF EXISTS listarEquipamentosDisponiveis$$
 CREATE PROCEDURE listarEquipamentosDisponiveis(pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
 BEGIN
@@ -509,6 +427,28 @@ BEGIN
 			(dt_devolucao_prevista > pDTSaidaPrevista AND dt_devolucao_prevista <= pDTDevolucaoPrevista)
 		)
 	WHERE
+		re.sg_equipamento IS NULL
+		AND e.ic_danificado = FALSE
+        AND NOT EXISTS (
+			SELECT 1
+			FROM reserva_equipamento re2
+			WHERE re2.sg_equipamento = e.sg_equipamento
+			AND DATE(re2.dt_saida_prevista) < CURDATE()
+            AND re2.dt_devolucao IS NULL
+		);
+END$$
+
+DROP PROCEDURE IF EXISTS listarEquipamentosDisponiveisSigla$$
+CREATE PROCEDURE listarEquipamentosDisponiveisSigla(pSigla VARCHAR(20), pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
+BEGIN
+	SELECT e.sg_equipamento, e.nm_equipamento FROM equipamento e
+	LEFT JOIN reserva_equipamento re ON e.sg_equipamento = re.sg_equipamento
+		AND (
+			(dt_saida_prevista >= pDTSaidaPrevista AND dt_saida_prevista < pDTDevolucaoPrevista) OR
+			(dt_devolucao_prevista > pDTSaidaPrevista AND dt_devolucao_prevista <= pDTDevolucaoPrevista)
+		)
+	WHERE
+		e.sg_equipamento LIKE CONCAT(pSigla, '%') AND
 		re.sg_equipamento IS NULL
 		AND e.ic_danificado = FALSE
         AND NOT EXISTS (
@@ -717,10 +657,36 @@ BEGIN
 		AND ua.sg_ambiente IS NULL;
 END$$
 
+DROP PROCEDURE IF EXISTS listarAmbientesDisponiveisSigla$$
+CREATE PROCEDURE listarAmbientesDisponiveisSigla(pSigla VARCHAR(20), pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
+BEGIN
+	SELECT DISTINCT a.sg_ambiente, a.nm_ambiente FROM ambiente a
+	LEFT JOIN reserva_ambiente ra ON a.sg_ambiente = ra.sg_ambiente
+		AND (
+			(ra.dt_saida_prevista >= pDTSaidaPrevista AND ra.dt_saida_prevista < pDTDevolucaoPrevista) OR
+			(ra.dt_devolucao_prevista > pDTSaidaPrevista AND ra.dt_devolucao_prevista <= pDTDevolucaoPrevista)
+		)
+	LEFT JOIN uso_ambiente ua ON a.sg_ambiente = ua.sg_ambiente
+		AND (
+			(ua.hr_inicio_uso <= pDTDevolucaoPrevista AND ua.hr_termino_uso >= pDTSaidaPrevista)
+			AND ua.cd_dia_semana = DAYOFWEEK(pDTSaidaPrevista)
+		)
+	WHERE
+		a.sg_ambiente LIKE CONCAT(pSigla, '%') AND
+		ra.sg_ambiente IS NULL
+		AND ua.sg_ambiente IS NULL;
+END$$
+
 DROP PROCEDURE IF EXISTS listarAmbiente$$
 CREATE PROCEDURE listarAmbiente(pSigla VARCHAR(20))
 BEGIN
 	SELECT * FROM ambiente WHERE sg_ambiente = pSigla;
+END$$
+
+DROP PROCEDURE IF EXISTS listarAmbientes$$
+CREATE PROCEDURE listarAmbientes()
+BEGIN
+	SELECT * FROM ambiente;
 END$$
 
 /* ------------------------------ USO AMBIENTE ------------------------------ */
@@ -753,11 +719,16 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS listarUsosAmbientes$$
-CREATE PROCEDURE listarUsosAmbientes()
+CREATE PROCEDURE listarUsosAmbientes(pSiglaAmbiente VARCHAR(20), pDiaSemana INT, pInicio TIME, pFim TIME)
 BEGIN
-	SELECT * FROM uso_ambiente ORDER BY cd_dia_semana ASC, hr_inicio_uso ASC;
+	SELECT ua.*, ds.nm_dia_semana, a.nm_ambiente FROM uso_ambiente ua
+	JOIN dia_semana ds ON ua.cd_dia_semana = ds.cd_dia_semana
+    JOIN ambiente a ON a.sg_ambiente = ua.sg_ambiente
+	WHERE (pSiglaAmbiente IS NULL OR ua.sg_ambiente = pSiglaAmbiente) 
+	AND (pDiaSemana IS NULL OR ua.cd_dia_semana = pDiaSemana) 
+	AND ((pInicio IS NULL OR pFim IS NULL) OR ua.hr_inicio_uso BETWEEN pInicio AND pFim AND ua.hr_termino_uso BETWEEN pInicio AND pFim)
+	ORDER BY ua.cd_dia_semana ASC, ua.hr_inicio_uso ASC;
 END$$
-
 /* ------------------------------ OCORRENCIA AMBIENTE ------------------------------ */
 
 DROP FUNCTION IF EXISTS ocorrenciaAmbienteJaExiste$$
