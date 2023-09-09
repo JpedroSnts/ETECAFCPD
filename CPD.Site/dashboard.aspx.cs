@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CPD.Site.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -12,7 +13,7 @@ namespace CPD.Site
         protected void Page_Load(object sender, EventArgs e)
         {
 
-            if (Session["rm_usuario"] == null || Session["tipo_usuario"].ToString() != "1")
+            if (!Logado.Admin(Session))
             {
                 string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/home.aspx";
                 Response.Redirect(ultimaPagina);

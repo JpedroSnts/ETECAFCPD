@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CPD.Site.Util;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,7 @@ namespace CPD.Site
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["rm_usuario"] == null)
+            if (!Logado.Usuario(Session))
             {
                 Response.Redirect("~/login.aspx");
             }

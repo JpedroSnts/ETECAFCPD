@@ -1,6 +1,7 @@
 ﻿using CPD.Repositorio.Banco;
 using CPD.Repositorio.Controller;
 using CPD.Repositorio.Model;
+using CPD.Site.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace CPD.Site
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["rm_usuario"] == null)
+            if (!Logado.Usuario(Session))
             {
                 Response.Redirect("~/login.aspx");
             }
