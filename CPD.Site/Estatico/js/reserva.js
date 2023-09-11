@@ -7,11 +7,12 @@ window.addEventListener("load", () => {
 	pnlEquipamentos.childNodes.forEach(e => {
 		if (e.tagName == "DIV") {
 			const qts = e.querySelector("input.numQtEquip");
+			qts.setAttribute("readonly", "readonly");
 			e.querySelector(".iconMais").addEventListener("click", e => {
-				qts.value = Number(qts.value) == Number(qts.getAttribute("maxlength")) ? Number(qts.getAttribute("maxlength")) : Number(qts.value) + 1;
+				qts.setAttribute("value", Number(qts.value) == Number(qts.getAttribute("maxlength")) ? Number(qts.getAttribute("maxlength")) : Number(qts.value) + 1);
 			});
 			e.querySelector(".iconMenos").addEventListener("click", e => {
-				qts.value = Number(qts.value) == 0 ? 0 : Number(qts.value) - 1;
+				qts.setAttribute("value", Number(qts.value) == 0 ? 0 : Number(qts.value) - 1);
 			});
 		}
 	});
