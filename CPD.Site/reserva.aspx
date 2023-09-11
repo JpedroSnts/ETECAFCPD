@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="reserva.aspx.cs" Inherits="CPD.Site.reserva" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="reserva.aspx.cs" Inherits="CPD.Site.reserva" EnableEventValidation="false" %>
 
 <!DOCTYPE html>
 
@@ -48,8 +48,12 @@
                 <asp:Panel ID="pnlAmbientes" runat="server"></asp:Panel>
             </div>
             <div class="reservar">
-                <asp:DropDownList ID="ddlNmProf" runat="server"></asp:DropDownList>
-                <asp:Button ID="btnReservar" runat="server" Text="Reservar" />
+                <select id="ddlNmProf">
+                </select>
+                <div style="display: none;">
+                    <asp:TextBox ID="txtNmProf" runat="server"></asp:TextBox>
+                </div>
+                <asp:Button ID="btnReservar" runat="server" Text="Reservar" OnClick="btnReservar_Click"/>
             </div>
         </main>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -75,6 +79,9 @@
                 width: "250px",
                 language: "pt-BR",
                 minimumInputLength: 2
+            });
+            $("#ddlNmProf").on('select2:select', function (e) {
+                $("#txtNmProf").attr("value", e.target.value);
             });
         </script>
     </form>

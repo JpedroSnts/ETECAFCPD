@@ -74,17 +74,15 @@ namespace CPD.Site
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+
+            txtNmProf.Visible = false;
+            if (Logado.Admin(Session))
             {
-                ddlNmProf.Visible = false;
-                if (Logado.Admin(Session))
-                {
-                    ddlNmProf.Visible = true;
-                }
-                DateTime inicio = DateTime.Today;
-                DateTime fim = inicio.AddDays(1);
-                AdicionarItensLivresNoPanel(inicio, fim);
+                txtNmProf.Visible = true;
             }
+            DateTime inicio = DateTime.Today;
+            DateTime fim = inicio.AddDays(1);
+            AdicionarItensLivresNoPanel(inicio, fim);
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -107,6 +105,11 @@ namespace CPD.Site
                 new ItemLivreDTO("INFOLAB", "INFOLAB", 1)
             };
             controller.ReservarItens(itemLivreDTOs, 36403, DateTime.Today, DateTime.Now);
+        }
+
+        protected void btnReservar_Click(object sender, EventArgs e)
+        {
+            Response.Write(txtNmProf.Text);
         }
     }
 }

@@ -78,13 +78,13 @@ namespace CPD.Site
         protected global::System.Web.UI.WebControls.Panel pnlAmbientes;
 
         /// <summary>
-        /// Controle ddlNmProf.
+        /// Controle txtNmProf.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlNmProf;
+        protected global::System.Web.UI.WebControls.TextBox txtNmProf;
 
         /// <summary>
         /// Controle btnReservar.
