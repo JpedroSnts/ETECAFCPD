@@ -82,7 +82,7 @@
     <Content Include="Estatico\css\estilo.css" />
     <Content Include="Estatico\css\estiloGradeHorarios.css" />
     <Content Include="Estatico\css\estiloReserva.css" />
-    <Content Include="Estatico\css\verificacao.css" />
+    <Content Include="Estatico\css\estiloLogin.css" />
     <Content Include="Estatico\imagens\alterarSenha.png" />
     <Content Include="Estatico\imagens\calendario.png" />
     <Content Include="Estatico\imagens\carta.png" />

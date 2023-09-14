@@ -1,0 +1,204 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    margin: 0%;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#logoETECAF {
+    width: 80px;
+    margin: auto;
+    display: block;
+    margin-bottom: 30px;
+}
+
+/* ---------------------------- FORMULÁRIO ---------------------------- */
+main {
+    width: 370px;
+    padding: 30px;
+    box-shadow: 0px 1px 3px #565656;
+    border-radius: 30px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #114A55;
+}
+
+#logoCPD {
+    width: 60px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+div {
+    margin: 20px 0px 10px 0px;
+    text-align: left;
+}
+
+label {
+    font-size: 14px;
+}
+
+.display {
+    display: flex;
+    align-items: center;
+    margin: 0px;
+    border-bottom: thin solid #565656;
+    border-bottom-color: #565656;
+}
+
+.iconInput {
+    width: 15px;
+    margin: 5px 0px -5px 0px;
+}
+
+input {
+    font-size: 14px;
+    border: none;
+    margin: 12px 0px 0px 5px;
+    width: 100%;
+}
+
+    input:focus {
+        box-shadow: 0 0 0 0;
+        outline: 0;
+    }
+
+p {
+    font-size: 14px;
+}
+
+#pVoltar {
+    margin-top: 20px;
+}
+
+a {
+    color: #114A55;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+button, input[type="button"], input[type="submit"] {
+    border: thin solid #114A55;
+    color: #fff;
+    background-color: #114A55;
+    border-radius: 20px;
+    padding: 5px 20px;
+    margin: 0;
+    cursor: pointer;
+}
+
+#pVersao {
+    font-size: 12px;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+#mensagemVerificacao {
+    margin-top: 18px;
+    color: #f00;
+}
+
+@media only screen and (max-width: 800px) {
+    #logoETECAF {
+        width: 60px;
+        height: 30px;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    /* ---------------------------- FORMULÁRIO ---------------------------- */
+    main {
+        width: 280px;
+        padding: 30px;
+        box-shadow: 0px 1px 3px #565656;
+        border-radius: 30px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 14px;
+        font-weight: 600;
+        color: #114A55;
+    }
+
+    #logoCPD {
+        width: 60px;
+        height: 80px;
+        margin-bottom: 20px;
+    }
+
+    div {
+        margin: 10px 0px 10px 0px;
+        text-align: left;
+    }
+
+    label {
+        font-size: 12px;
+    }
+
+    .display {
+        display: flex;
+        align-items: center;
+        margin: 0px;
+        border-bottom: thin solid #565656;
+        border-bottom-color: #565656;
+    }
+
+    .iconInput {
+        width: 15px;
+        margin: 5px 0px -5px 0px;
+    }
+
+    input {
+        font-size: 12px;
+        border: none;
+        margin: 12px 0px 0px 5px;
+        width: 100%;
+    }
+
+        input:focus {
+            box-shadow: 0 0 0 0;
+            outline: 0;
+        }
+
+    p {
+        font-size: 12px;
+    }
+
+    #pVoltar {
+        margin-top: 20px;
+    }
+
+    a {
+        color: #114A55;
+        font-weight: 600;
+        text-decoration: none;
+    }
+
+    button, input[type="button"], input[type="submit"] {
+        border: thin solid #114A55;
+        color: #fff;
+        background-color: #114A55;
+        border-radius: 20px;
+        padding: 5px 20px;
+        margin: 0;
+    }
+
+    #pVersao {
+        font-size: 10px;
+        font-weight: 600;
+        margin-top: 30px;
+    }
+}

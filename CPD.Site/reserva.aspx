@@ -29,6 +29,7 @@
                 <img id="iconeMenu" src="Estatico/imagens/menu.svg" />
             </div>
         </header>
+        <asp:Literal ID="litErro" runat="server"></asp:Literal>
         <main>
             <p class="Titulo">Realizar Reserva</p>
             <div id="Calendario">

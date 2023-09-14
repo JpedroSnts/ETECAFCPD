@@ -1,4 +1,5 @@
-﻿using CPD.Site.Controller;
+﻿using CPD.Repositorio.Banco;
+using CPD.Site.Controller;
 using CPD.Site.Util;
 using CPD.Site.ViewModel;
 using System;
@@ -84,78 +85,87 @@ namespace CPD.Site
             }
             DateTime inicio = DateTime.Now;
             DateTime fim = inicio.AddDays(1);
+            if (!String.IsNullOrEmpty(txtInputData.Text) && !String.IsNullOrEmpty(txtHorarioInicio.Text) && !String.IsNullOrEmpty(txtHorarioFim.Text))
+            {
+                inicio = DateTime.Parse($"{txtInputData.Text} {txtHorarioInicio.Text}");
+                fim = DateTime.Parse($"{txtInputData.Text} {txtHorarioFim.Text}");
+            }
             AdicionarItensLivresNoPanel(inicio, fim);
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            if (!String.IsNullOrEmpty(txtInputData.Text) && !String.IsNullOrEmpty(txtHorarioInicio.Text) && !String.IsNullOrEmpty(txtHorarioFim.Text))
-            {
-                DateTime inicio = DateTime.Parse($"{txtInputData.Text} {txtHorarioInicio.Text}");
-                DateTime fim = DateTime.Parse($"{txtInputData.Text} {txtHorarioFim.Text}");
-                AdicionarItensLivresNoPanel(inicio, fim);
-            }
+            
         }
 
         protected void btnReservar_Click(object sender, EventArgs e)
         {
-            if (Logado.Admin(Session) && String.IsNullOrEmpty(txtNmProf.Text)) return;
-
-            List<ItemLivreDTO> itensReserva = new List<ItemLivreDTO>();
-            for (int i = 0; i < pnlAmbientes.Controls.Count; i++)
+            try
             {
-                for (int j = 0; j < pnlAmbientes.Controls[i].Controls.Count; j++)
-                {
-                    if (pnlAmbientes.Controls[i].Controls[j] is RadioButton)
-                    {
-                        RadioButton radioButton = (RadioButton)pnlAmbientes.Controls[i].Controls[j];
-                        if (radioButton.Checked)
-                        {
-                            itensReserva.Add(new ItemLivreDTO(radioButton.ID.Replace("rdb", ""), null, 1));
-                        }
-                    }
-                }
-            }
+                if (Logado.Admin(Session) && String.IsNullOrEmpty(txtNmProf.Text)) return;
 
-            for (int i = 0; i < pnlEquipamentos.Controls.Count; i++)
-            {
-                for (int j = 0; j < pnlEquipamentos.Controls[i].Controls.Count; j++)
+                List<ItemLivreDTO> itensReserva = new List<ItemLivreDTO>();
+                for (int i = 0; i < pnlAmbientes.Controls.Count; i++)
                 {
-                    for (int k = 0; k < pnlEquipamentos.Controls[i].Controls[j].Controls.Count; k++)
+                    for (int j = 0; j < pnlAmbientes.Controls[i].Controls.Count; j++)
                     {
-                        if (pnlEquipamentos.Controls[i].Controls[j].Controls[k] is TextBox)
+                        if (pnlAmbientes.Controls[i].Controls[j] is RadioButton)
                         {
-                            TextBox txt = (TextBox)pnlEquipamentos.Controls[i].Controls[j].Controls[k];
-                            if (txt.Text != "0")
+                            RadioButton radioButton = (RadioButton)pnlAmbientes.Controls[i].Controls[j];
+                            if (radioButton.Checked)
                             {
-                                itensReserva.Add(new ItemLivreDTO(txt.ID.Replace("txt", ""), null, int.Parse(txt.Text)));
+                                itensReserva.Add(new ItemLivreDTO(radioButton.ID.Replace("rdb", ""), null, 1));
                             }
                         }
                     }
                 }
-            }
 
-            DateTime inicio = DateTime.Now;
-            DateTime fim = DateTime.Today.AddHours(23).AddMinutes(59);
-            if (!String.IsNullOrEmpty(txtInputData.Text))
-            {
-                if (!String.IsNullOrEmpty(txtHorarioFim.Text))
+                for (int i = 0; i < pnlEquipamentos.Controls.Count; i++)
                 {
-                    fim = DateTime.Parse($"{txtInputData.Text} {txtHorarioFim.Text}");
+                    for (int j = 0; j < pnlEquipamentos.Controls[i].Controls.Count; j++)
+                    {
+                        for (int k = 0; k < pnlEquipamentos.Controls[i].Controls[j].Controls.Count; k++)
+                        {
+                            if (pnlEquipamentos.Controls[i].Controls[j].Controls[k] is TextBox)
+                            {
+                                TextBox txt = (TextBox)pnlEquipamentos.Controls[i].Controls[j].Controls[k];
+                                if (txt.Text != "0")
+                                {
+                                    itensReserva.Add(new ItemLivreDTO(txt.ID.Replace("txt", ""), null, int.Parse(txt.Text)));
+                                }
+                            }
+                        }
+                    }
                 }
-                if (!String.IsNullOrEmpty(txtHorarioInicio.Text))
-                {
-                    inicio = DateTime.Parse($"{txtInputData.Text} {txtHorarioInicio.Text}");
-                }
-            }
 
-            ReservaController controller = new ReservaController();
-            if (!Logado.Admin(Session))
-            {
-                controller.ReservarItens(itensReserva, int.Parse(Session["rm_usuario"].ToString()), inicio, fim);
-                return;
+                DateTime inicio = DateTime.Now;
+                DateTime fim = DateTime.Today.AddHours(23).AddMinutes(59);
+                if (!String.IsNullOrEmpty(txtInputData.Text))
+                {
+                    if (!String.IsNullOrEmpty(txtHorarioFim.Text))
+                    {
+                        fim = DateTime.Parse($"{txtInputData.Text} {txtHorarioFim.Text}");
+                    }
+                    if (!String.IsNullOrEmpty(txtHorarioInicio.Text))
+                    {
+                        inicio = DateTime.Parse($"{txtInputData.Text} {txtHorarioInicio.Text}");
+                    }
+                }
+
+                ReservaController controller = new ReservaController();
+                if (!Logado.Admin(Session))
+                {
+                    controller.ReservarItens(itensReserva, int.Parse(Session["rm_usuario"].ToString()), inicio, fim);
+                    Response.Redirect("~/home.aspx");
+                    return;
+                }
+                controller.ReservarItens(itensReserva, int.Parse(txtNmProf.Text), inicio, fim);
+                Response.Redirect("~/dashboard.aspx");
             }
-            controller.ReservarItens(itensReserva, int.Parse(txtNmProf.Text), inicio, fim);
+            catch (SPException ex)
+            {
+                litErro.Text = $"<div style='color: red;'>{ex.Message}</div>";
+            }
         }
     }
 }
