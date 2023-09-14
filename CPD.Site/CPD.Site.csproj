@@ -77,9 +77,10 @@
     <Content Include="Api\buscarProfessor.aspx" />
     <Content Include="Api\dashboard.aspx" />
     <Content Include="Api\excluirGradeHorario.aspx" />
+    <Content Include="Api\reservasProfessor.aspx" />
     <Content Include="dashboard.aspx" />
     <Content Include="Estatico\css\dashboard.css" />
-    <Content Include="Estatico\css\estilo.css" />
+    <Content Include="Estatico\css\estiloGeral.css" />
     <Content Include="Estatico\css\estiloGradeHorarios.css" />
     <Content Include="Estatico\css\estiloReserva.css" />
     <Content Include="Estatico\css\estiloLogin.css" />
@@ -87,6 +88,8 @@
     <Content Include="Estatico\imagens\calendario.png" />
     <Content Include="Estatico\imagens\carta.png" />
     <Content Include="Estatico\imagens\clock.png" />
+    <Content Include="Estatico\imagens\deslogar.svg" />
+    <Content Include="Estatico\imagens\lixeira.png" />
     <Content Include="Estatico\imagens\logoCPD.png" />
     <Content Include="Estatico\imagens\logoETECAF.png" />
     <Content Include="Estatico\imagens\mais.png" />
@@ -99,15 +102,19 @@
     <Content Include="Estatico\imagens\sair.png" />
     <Content Include="Estatico\imagens\semReserva.png" />
     <Content Include="Estatico\imagens\senha.png" />
+    <Content Include="Estatico\imagens\seta_baixo.png" />
     <Content Include="Estatico\imagens\suasReservas.png" />
     <Content Include="Estatico\imagens\user.png" />
+    <Content Include="Estatico\imagens\userProf.png" />
     <Content Include="Estatico\imagens\usuario.svg" />
+    <Content Include="Estatico\js\cardReserva.js" />
     <Content Include="Estatico\js\dashboard.js" />
     <Content Include="Estatico\js\gradeHorario.js" />
+    <Content Include="Estatico\js\indexProfessor.js" />
     <Content Include="Estatico\js\menuSanduiche.js" />
     <Content Include="Estatico\js\reserva.js" />
     <Content Include="gradeHorario.aspx" />
-    <Content Include="home.aspx" />
+    <Content Include="index.aspx" />
     <Content Include="login.aspx" />
     <Content Include="logout.aspx" />
     <Content Include="reserva.aspx" />
@@ -142,7 +149,15 @@
     <Compile Include="Api\excluirGradeHorario.aspx.designer.cs">
       <DependentUpon>excluirGradeHorario.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Api\reservasProfessor.aspx.cs">
+      <DependentUpon>reservasProfessor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Api\reservasProfessor.aspx.designer.cs">
+      <DependentUpon>reservasProfessor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Controller\DashboardController.cs" />
+    <Compile Include="Controller\HomeController.cs" />
     <Compile Include="Controller\ReservaController.cs" />
     <Compile Include="dashboard.aspx.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
@@ -158,12 +173,12 @@
     <Compile Include="gradeHorario.aspx.designer.cs">
       <DependentUpon>gradeHorario.aspx</DependentUpon>
     </Compile>
-    <Compile Include="home.aspx.cs">
-      <DependentUpon>home.aspx</DependentUpon>
+    <Compile Include="index.aspx.cs">
+      <DependentUpon>index.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="home.aspx.designer.cs">
-      <DependentUpon>home.aspx</DependentUpon>
+    <Compile Include="index.aspx.designer.cs">
+      <DependentUpon>index.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

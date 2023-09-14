@@ -21,7 +21,7 @@ namespace CPD.Site
                 {
                     Response.Redirect("~/dashboard.aspx");
                 }
-                Response.Redirect("~/home.aspx");
+                Response.Redirect("~/index.aspx");
             }
         }
 
@@ -47,7 +47,7 @@ namespace CPD.Site
                     Session["nome_usuario"] = usuarioLogado.Nome;
                     Session["foto_usuario"] = usuarioLogado.ReferenciaImagem;
                     Session["tipo_usuario"] = usuarioLogado.TipoUsuario.Codigo;
-                    string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/home.aspx";
+                    string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/index.aspx";
                     if (usuarioLogado.TipoUsuario.Codigo == 1) ultimaPagina = "~/dashboard.aspx";
                     Response.Redirect(ultimaPagina);
                 }

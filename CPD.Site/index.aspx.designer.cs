@@ -11,7 +11,7 @@ namespace CPD.Site
 {
 
 
-    public partial class home
+    public partial class index
     {
 
         /// <summary>
@@ -22,6 +22,33 @@ namespace CPD.Site
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+
+        /// <summary>
+        /// Controle litImagemDesktop.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litImagemDesktop;
+
+        /// <summary>
+        /// Controle litNomeDesktop.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNomeDesktop;
+
+        /// <summary>
+        /// Controle litRmDesktop.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litRmDesktop;
 
         /// <summary>
         /// Controle litImagem.

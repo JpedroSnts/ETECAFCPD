@@ -1,0 +1,524 @@
+* {
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+}
+body {
+	margin: 0%;
+}
+
+/* ---------------------------- HEADER ---------------------------- */
+header {
+	width: 100%;
+	padding: 0 20px;
+	background: #fff;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#logoCPD {
+	margin-bottom: 5px;
+	margin-top: 10px;
+	width: 50px;
+	height: 66px;
+	cursor: pointer;
+}
+
+#opMenu {
+	display: contents;
+}
+#displayOpMenu {
+	width: 50%;
+	display: flex;
+	justify-content: space-evenly;
+}
+#displayOpMenu a {
+	text-decoration: none;
+	color: #000;
+}
+
+/*  -  ÍCONES  - */
+#iconMenuSanduiche {
+	display: none;
+}
+#userProfDesktop {
+	width: 50px;
+	margin-right: 10px;
+	border-radius: 1000px;
+}
+
+/* - INFO USER DESKTOP - */
+#divUserLogoutDesktop {
+	display: flex;
+	align-items: center;
+}
+#divUserLogoutDesktop a {
+	margin-top: 4px;
+}
+#iconLogout {
+	height: 40px;
+	margin-left: 30px;
+}
+
+#displayDivUserDesktop {
+	display: flex;
+	align-items: center;
+}
+#displayInfoUserDesktop {
+	display: flex;
+	flex-direction: column;
+}
+#displayInfoUserDesktop p {
+	margin: 0;
+}
+
+/*  -  MENU E CARD ESCONDIDO  - */
+.bloqueio {
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #737373;
+	opacity: 0.5;
+	z-index: 2;
+}
+
+.escondido {
+	display: none;
+}
+
+.caixaFlutuante {
+	position: absolute;
+	top: 65px;
+	right: 15px;
+	width: 165px;
+	height: 266px;
+	border-radius: 10px;
+	background-color: #fff;
+	padding: 20px 10px;
+	z-index: 2;
+}
+
+.cardFlutuante {
+	position: absolute;
+	top: 35%;
+	left: 25%;
+	width: 50vw;
+	height: 266px;
+	border-radius: 10px;
+	background-color: #fff;
+	padding: 20px 10px;
+	z-index: 2;
+}
+
+#divUser {
+	text-align: center;
+}
+#userProf {
+	width: 60px;
+	height: 60px;
+	margin-bottom: 10px;
+	border-radius: 1000px;
+}
+#divUser div p {
+	font-size: 12px;
+	margin: 0;
+	font-weight: 600;
+}
+#divItemsMenu {
+	border-top: 2px solid #114a55;
+	padding: 5px 0px;
+	margin-top: 10px;
+}
+
+.itemsMenu {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 5px;
+}
+
+.itemsMenu a {
+	text-decoration: none;
+}
+
+.itemsMenu a p {
+	margin: 0;
+	font-size: 12px;
+	font-weight: 600;
+	text-decoration: none;
+	color: #000;
+}
+
+.iconsMenu {
+	width: 24px;
+	height: 24px;
+}
+
+/* ---------------------------- MAIN HOME ---------------------------- */
+
+#mainHome {
+	text-align: center;
+	display: flex;
+	width: 100vw;
+	height: 80vh;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+#btnNovaReserva {
+	border: thin solid #4a99cd;
+	background-color: #4a99cd;
+	font-size: 20px;
+	padding: 10px 20px;
+	border-radius: 24px;
+	cursor: pointer;
+}
+
+i.fa-solid.fa-plus {
+	color: #fff;
+	padding-right: 10px;
+}
+
+/* ---------------------------- HOME COM RESERVA ---------------------------- */
+#mainComReserva {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin-top: 30px;
+}
+
+#btnNovaReservaComReserva {
+	border: thin solid #4a99cd;
+	background-color: #4a99cd;
+	font-size: 20px;
+	padding: 10px 20px;
+	border-radius: 24px;
+	cursor: pointer;
+	margin-top: 30px;
+}
+
+.collapsible {
+	background-color: #fff;
+	color: #000;
+	cursor: pointer;
+	padding: 10px;
+	width: min(1200px, 90%);
+	border: thin solid #114a55;
+	text-align: left;
+	outline: none;
+	font-size: 16px;
+	z-index: 1;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.collapsible img {
+	object-fit: contain;
+	width: 25px;
+}
+
+.active,
+.collapsible:hover {
+	background-color: #fff;
+}
+
+.content {
+	width: min(1200px, 90%);
+	padding: 0px 12px;
+	max-height: 0;
+	overflow: hidden;
+	transition: max-height 0.2s ease-out;
+	background-color: #fff;
+	border: thin solid #114a55;
+	position: relative;
+	bottom: 25px;
+	border-radius: 10px;
+}
+
+.divTipoReserva {
+	text-align: left;
+	margin-bottom: 20px;
+}
+.divTipoReserva h1 {
+	color: #114a55;
+}
+#h1Equipamentos {
+	margin-top: 40px;
+}
+.divTipoReserva div {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+.divTipoReserva div p {
+	margin: 0;
+	font-size: 14px;
+}
+.divTipoReserva div img {
+	object-fit: contain;
+	width: 20px;
+}
+
+#btnCardReserva {
+	border: thin solid #114a55;
+	border-radius: 20px;
+	background-color: #fff;
+	color: #000;
+	margin-bottom: 20px;
+}
+
+/* ---------------------------- MAIN ALTERAR SENHA  ---------------------------- */
+#mainAlterarSenha {
+	width: 370px;
+	padding: 30px;
+	box-shadow: 0px 1px 3px #565656;
+	border-radius: 30px;
+	margin: auto;
+	margin-top: 30px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+h1 {
+	font-size: 16px;
+	font-weight: 600;
+	color: #114a55;
+}
+.divLabels {
+	margin: 10px 0px 10px 0px;
+	text-align: left;
+	width: 80%;
+}
+label {
+	font-size: 14px;
+}
+
+.display {
+	display: flex;
+	align-items: center;
+	margin: 0px;
+	border-bottom: thin solid #565656;
+	border-bottom-color: #565656;
+}
+
+.iconInput {
+	width: 15px;
+	margin: 5px 0px -5px 0px;
+}
+
+input {
+	font-size: 14px;
+	border: none;
+	margin: 12px 0px 0px 5px;
+	width: 100%;
+}
+
+input:focus {
+	box-shadow: 0 0 0 0;
+	outline: 0;
+}
+
+button {
+	border: thin solid #114a55;
+	color: #fff;
+	background-color: #114a55;
+	border-radius: 20px;
+	padding: 5px 20px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+#pVersao {
+	font-size: 12px;
+	font-weight: 600;
+	margin-top: 30px;
+}
+#mensagemVerificacao {
+	margin-top: 12px;
+	font-size: 14px;
+}
+
+@media only screen and (max-width: 800px) {
+	/* ---------------------------- HEADER ---------------------------- */
+	#iconMenuSanduiche {
+		display: initial;
+		width: 30px;
+		height: 30px;
+	}
+
+	#opMenu {
+		display: none;
+	}
+	#divUserLogoutDesktop {
+		display: none;
+	}
+
+	/* ---------------------------- ALTERAR SENHA ---------------------------- */
+	#mainAlterarSenha {
+		width: 280px;
+		padding: 30px 25px;
+		box-shadow: 0px 1px 3px #565656;
+		border-radius: 30px;
+		text-align: center;
+		margin: auto;
+		margin-top: 30px;
+	}
+
+	h1 {
+		font-size: 14px;
+		font-weight: 600;
+		color: #114a55;
+	}
+	.divLabels {
+		margin: 10px 0px 10px 0px;
+		text-align: left;
+		width: 180px;
+	}
+	label {
+		font-size: 12px;
+	}
+
+	.display {
+		display: flex;
+		align-items: center;
+		margin: 0px;
+		border-bottom: thin solid #565656;
+		border-bottom-color: #565656;
+	}
+
+	label {
+		font-size: 12px;
+	}
+	.iconInput {
+		width: 15px;
+		margin: 5px 0px -5px 0px;
+	}
+
+	input {
+		font-size: 12px;
+		border: none;
+		margin: 12px 0px 0px 5px;
+		width: 100%;
+	}
+
+	input:focus {
+		box-shadow: 0 0 0 0;
+		outline: 0;
+	}
+	#mainAlterarSenha p {
+		margin-top: 30px;
+		font-size: 12px;
+	}
+
+	button {
+		border: thin solid #114a55;
+		color: #fff;
+		background-color: #114a55;
+		border-radius: 20px;
+		padding: 5px 20px;
+		margin-top: 10px;
+	}
+
+	#pVersao {
+		font-size: 10px;
+		font-weight: 600;
+		margin-top: 30px;
+	}
+	#mensagemVerificacao {
+		margin-top: 16px;
+	}
+
+	/* ---------------------------- HOME COM RESERVA ---------------------------- */
+	.collapsible {
+		background-color: #fff;
+		color: #000;
+		cursor: pointer;
+		padding: 10px;
+		width: 90%;
+		border: thin solid #114a55;
+		text-align: left;
+		outline: none;
+		font-size: 14px;
+		z-index: 1;
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	.collapsible img {
+		object-fit: contain;
+		width: 15px;
+	}
+
+	.active,
+	.collapsible:hover {
+		background-color: #fff;
+	}
+
+	.content {
+		width: 90%;
+		padding: 0px 12px;
+		max-height: 0;
+		overflow: hidden;
+		transition: max-height 0.2s ease-out;
+		background-color: #fff;
+		border: thin solid #114a55;
+		position: relative;
+		bottom: 25px;
+		border-radius: 10px;
+	}
+
+	.divTipoReserva {
+		text-align: left;
+		margin-bottom: 20px;
+	}
+	.divTipoReserva h1 {
+		color: #114a55;
+	}
+	#h1Equipamentos {
+		margin-top: 40px;
+	}
+	.divTipoReserva div {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+	.divTipoReserva div p {
+		margin: 0;
+		font-size: 14px;
+	}
+	.divTipoReserva div img {
+		object-fit: contain;
+		width: 20px;
+	}
+
+	#btnCardReserva {
+		border: thin solid #114a55;
+		border-radius: 20px;
+		background-color: #fff;
+		color: #000;
+		margin-bottom: 20px;
+	}
+}
+
+#reservas {
+	width: 100%;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}

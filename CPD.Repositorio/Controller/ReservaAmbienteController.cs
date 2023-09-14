@@ -94,5 +94,36 @@ namespace CPD.Repositorio.Controller
 
             return list;
         }
+
+        public List<ReservaAmbiente> ListarReservasAmbientesProfessor(int rm)
+        {
+            List<ReservaAmbiente> list = new List<ReservaAmbiente>();
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pRm", rm.ToString()),
+            };
+            MySqlDataReader reader = Executar("listarReservasAmbientesProfessor", parametros);
+
+            while (reader.Read())
+            {
+                ReservaAmbiente da = new ReservaAmbiente()
+                {
+                    Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString() },
+                    Ambiente = new Ambiente { Sigla = reader["sg_ambiente"].ToString() },
+                    DataSaidaPrevista = Data.DateTimeParse(reader["dt_saida_prevista"].ToString()),
+                    DataDevolucaoPrevista = Data.DateTimeParse(reader["dt_devolucao_prevista"].ToString()),
+                    DataSaida = Data.DateTimeParse(reader["dt_saida"].ToString()),
+                    DataDevolucao = Data.DateTimeParse(reader["dt_devolucao"].ToString()),
+                    DataCancelamento = Data.DateTimeParse(reader["dt_cancelamento"].ToString())
+                };
+
+                list.Add(da);
+            }
+
+            if (reader.IsClosed) reader.Close();
+            Desconectar();
+
+            return list;
+        }
     }
 }
