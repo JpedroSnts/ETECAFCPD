@@ -107,7 +107,6 @@
     <Content Include="Estatico\imagens\user.png" />
     <Content Include="Estatico\imagens\userProf.png" />
     <Content Include="Estatico\imagens\usuario.svg" />
-    <Content Include="Estatico\js\cardReserva.js" />
     <Content Include="Estatico\js\dashboard.js" />
     <Content Include="Estatico\js\gradeHorario.js" />
     <Content Include="Estatico\js\indexProfessor.js" />

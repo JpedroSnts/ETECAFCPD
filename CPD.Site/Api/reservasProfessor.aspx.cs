@@ -25,9 +25,16 @@ namespace CPD.Site.Api
                 }
                 if (Session["rm_usuario"].ToString() == Request["rm"].ToString())
                 {
-                    Response.ContentType = "application/json";
-                    var rm = int.Parse(Request["rm"]);
                     var homeController = new HomeController();
+                    var rm = int.Parse(Request["rm"]);
+                    if (!String.IsNullOrEmpty(Request["itens"]) && !String.IsNullOrEmpty(Request["data"]))
+                    {
+                        var itens = Request["itens"];
+                        var data = DateTime.Parse(Request["data"]);
+                        homeController.CancelarReservas(itens, rm, data);
+                        return;
+                    }
+                    Response.ContentType = "application/json";
                     Response.Write(JsonConvert.SerializeObject(ReservaDTO.OrdenarReservas(homeController.ListarReservas(rm))));
                 }
                 Response.StatusCode = 401;

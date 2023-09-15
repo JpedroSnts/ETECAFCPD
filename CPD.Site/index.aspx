@@ -103,11 +103,9 @@
 			</div>
 		</div>
 		<script src="Estatico/js/menuSanduiche.js"></script>
-		<script src="Estatico/js/cardReserva.js"></script>
 		<script src="Estatico/js/cardCancelarReserva.js"></script>
 		<script src="Estatico/js/indexProfessor.js"></script>
 		<script src="https://kit.fontawesome.com/8e814353c3.js" crossorigin="anonymous"></script>
-	
     </form>
 </body>
 </html>
