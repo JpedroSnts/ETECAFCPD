@@ -156,7 +156,7 @@ namespace CPD.Site
                 if (!Logado.Admin(Session))
                 {
                     controller.ReservarItens(itensReserva, int.Parse(Session["rm_usuario"].ToString()), inicio, fim);
-                    Response.Redirect("~/home.aspx");
+                    Response.Redirect("~/index.aspx");
                     return;
                 }
                 controller.ReservarItens(itensReserva, int.Parse(txtNmProf.Text), inicio, fim);

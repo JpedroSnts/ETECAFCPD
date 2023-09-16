@@ -16,7 +16,7 @@ namespace CPD.Site
         {
             if (!Logado.Admin(Session))
             {
-                string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/home.aspx";
+                string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/index.aspx";
                 Response.Redirect(ultimaPagina);
             }
             if (!IsPostBack)
