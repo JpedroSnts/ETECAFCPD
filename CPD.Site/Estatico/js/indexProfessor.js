@@ -30,7 +30,7 @@ window.addEventListener("load", async () => {
 				const itens = e.target.getAttribute("itens");
 				const data = e.target.getAttribute("data");
 				cancelarReserva(itens, rm, data);
-				await listarReservas();
+				btnsCancelarReservas[i].parentElement.parentElement.remove();
 			});
 		}
 		for (let i = 0; i < lixeiras.length; i++) {
@@ -39,7 +39,26 @@ window.addEventListener("load", async () => {
 				const itens = e.target.getAttribute("itens");
 				const data = e.target.getAttribute("data");
 				cancelarReserva(itens, rm, data);
-				await listarReservas();
+
+				let count = 0;
+				let els1 = lixeiras[i].parentElement.parentElement.childNodes;
+				for (var j = 0; j < els1.length; j++) {
+					if (els1[j].tagName == "DIV") {
+						count++;
+					}
+				}
+				lixeiras[i].parentElement.parentElement.parentElement.childNodes.forEach((btn) => {
+					if (btn.tagName == "BUTTON") {
+						let arr = btn.getAttribute("itens").split(",");
+						arr = arr.filter((x) => x != itens);
+						btn.setAttribute("itens", arr.join(",").replace(" ", ""));
+					}
+				});
+				if (count == 1) {
+					lixeiras[i].parentElement.parentElement.parentElement.parentElement.remove();
+				} else {
+					lixeiras[i].parentElement.remove();
+				}
 			});
 		}
 	}
@@ -80,6 +99,7 @@ window.addEventListener("load", async () => {
 					})
 					.join(" ");
 				$reservas.innerHTML += `
+<div id='reservas'>
 			<button class="collapsible">${diaSemana} (${dd_mm}) <img src="Estatico/imagens/seta_baixo.png" /></button>
 			<div class="content">
 				<div class="divTipoReserva">
@@ -88,6 +108,7 @@ window.addEventListener("load", async () => {
 				</div>
 				<button id="btnCardReserva" itens="${el.Itens.replace(" ", "")}" data="${el.DataSaidaPrevista}">Cancelar todas</button>
 			</div>
+</div>
 			`;
 			}
 			cardReserva();

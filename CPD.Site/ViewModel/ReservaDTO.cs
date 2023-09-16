@@ -9,23 +9,25 @@ namespace CPD.Site.ViewModel
     public class ReservaDTO
     {
         public DateTime DataSaidaPrevista { get; set; }
+        private DateTime DataCancelamento { get; set; }
         public int RM { get; set; }
         public string Horario { get; set; }
         public string Itens { get; set; }
         public string Professor { get; set; }
         public EStatusReserva StatusReserva { get; set; }
 
-        public ReservaDTO(List<ReservaGenerica> reservas, DateTime data, int rm)
+        public ReservaDTO(List<ReservaGenerica> reservas, DateTime data, int rm, DateTime dataCancelamento)
         {
+            DataCancelamento = dataCancelamento;
             DataSaidaPrevista = data;
             RM = rm;
             List<ReservaGenerica> novaLista = new List<ReservaGenerica>();
             foreach (var reserva in reservas)
             {
-                if (reserva.DataSaidaPrevista == DataSaidaPrevista && reserva.Usuario.RM == rm)
+                if (reserva.DataSaidaPrevista == DataSaidaPrevista && reserva.Usuario.RM == rm && reserva.DataCancelamento == DataCancelamento)
                 {
                     novaLista.Add(reserva);
-                }
+                } 
             }
             Horario = novaLista[0].DataSaidaPrevista.ToString("HH:mm") + " - " + novaLista[0].DataDevolucaoPrevista.ToString("HH:mm");
             Professor = novaLista[0].Usuario.Nome;
@@ -42,7 +44,7 @@ namespace CPD.Site.ViewModel
             List<ReservaDTO> reservaDTOs = new List<ReservaDTO>();
             foreach (var l in reservas)
             {
-                reservaDTOs.Add(new ReservaDTO(reservas, l.DataSaidaPrevista, l.Usuario.RM));
+                reservaDTOs.Add(new ReservaDTO(reservas, l.DataSaidaPrevista, l.Usuario.RM, l.DataCancelamento));
             }
             return reservaDTOs.Distinct().ToList();
         }
