@@ -1,0 +1,183 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    margin: 0%;
+}
+
+header{
+    width: 100%;
+    height: 115px;
+    padding: 0px 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-size: 16px;
+    font-style: normal;
+    line-height: normal;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+header #aLogo {
+    height: 100px;
+}
+
+#logoCPD{
+    height: 100px;
+}
+
+#opcaoHeader{
+    width: 66%;
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+#usuario {
+    height: 40px;
+}
+
+#iconeUsuario{
+    height: 40px;
+    cursor: pointer;
+}
+
+#menuUsuario {
+    height: 210px;
+    width: 165px;
+    display: none;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    border-radius: 10px;
+    border: 1px solid #D9D9D9;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25), 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    padding: 15px 10px;
+    top: 80px; 
+    right: 120px;
+    font-size: 12px;
+}
+
+#menuUsuario p {
+    margin: 0px;
+}
+
+#menuUsuario div img, #menuUsuario div a {
+    height: 24px;
+}
+
+#perfilUsuario {
+    height: 60px;
+}
+
+#informacaoUsuario {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+#informacaoUsuario p {
+    margin-top: 5px;
+}
+
+#alterarSenha, #sair {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#alterarSenha {
+    border-top: 2px solid #114A55;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+#sair {
+    padding-top: 5px;
+}
+
+main {
+    margin: 30px 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    font-size: 14px;
+}
+
+#gerarRelatorio {
+    width: 100%;
+    display: flex;
+}
+
+select {
+    width: 36%;
+    height: 32px;
+    color: #bbb;
+    border-radius: 5px;
+    border: 1px solid #114A55;
+    padding: 0px 10px;
+    margin: 0px 5px;
+    font-size: 12px;
+}
+
+select.habilitado {
+    color: #000;
+}
+
+select option {
+    color: #000;
+    padding: 5px;
+}
+
+input[type="date"] {
+    width: 24%;
+    height: 32px;
+    color: #bbb;
+    border-radius: 5px;
+    border: 1px solid #114A55;
+    padding: 0px 10px;
+    margin: 0px 5px;
+    font-size: 12px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator{
+    background: url("../imagens/calendario.png") no-repeat;
+    width: 24px;
+    height: 20px;
+    margin-right: -10px;
+    cursor: pointer;
+}
+
+input[type="date"].habilitado {
+    color: #000;
+}
+
+button {
+    width: 16%;
+    height: 32px;
+    font-size: 12px;
+    border: 0px;
+    border-radius: 16px;
+    color: #fff;
+    background-color: #114A55;
+    padding: 0px 10px;
+    margin: 0px 5px;
+    cursor: pointer;
+}
+
+button:active {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 2);
+  }
