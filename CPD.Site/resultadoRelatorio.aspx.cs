@@ -1,4 +1,5 @@
-﻿using CPD.Repositorio.Model;
+﻿using CPD.Repositorio.Controller;
+using CPD.Repositorio.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,23 @@ namespace CPD.Site
                 string tipoRelatorio = Request["tipoRelatorio"];
 
                 Relatorio relatorio = null;
-                //if (tipoRelatorio == "ocorrencias")
-                //{
-                //    RelatorioController rC = new RelatorioController();
-                //    relatorio = rC.relatorioOcorrencia(inicio, fim);
-                //}
+                RelatorioController rC = new RelatorioController();
+
+                if (tipoRelatorio == "ocorrencias")
+                {
+                    relatorio = rC.relatorioOcorrencia(inicio, fim);
+                }
+                if (tipoRelatorio == "reservasC")
+                {
+                }
+                if (tipoRelatorio == "reservasA")
+                {
+
+                }
+                if (tipoRelatorio == "reservasNA")
+                {
+                }
+
             }
         }
     }
