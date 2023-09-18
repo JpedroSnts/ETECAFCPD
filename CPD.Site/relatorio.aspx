@@ -57,9 +57,9 @@
                 </asp:DropDownList>
 
                 <asp:TextBox runat="server" ID="dataInicio" TextMode="Date"></asp:TextBox>
-                <asp:TextBox runat="server" ID="dataFim" TextMode="Date"></asp:TextBox>
+                <asp:TextBox runat="server" ID="dataFinal" TextMode="Date"></asp:TextBox>
 
-                <button>Buscar</button>
+                <asp:Button ID="btnGerarRelatorio" runat="server" Text="Gerar Relatório" OnClick="btnGerarRelatorio_Click"/>
             </div>
         </main>
 

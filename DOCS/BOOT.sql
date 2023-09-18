@@ -810,7 +810,7 @@ BEGIN
 	JOIN equipamento e ON e.sg_equipamento = re.sg_equipamento 
 	JOIN ocorrencia_equipamento oe ON re.sg_equipamento = oe.sg_equipamento AND re.dt_saida_prevista = oe.dt_saida_prevista AND re.cd_rm = oe.cd_rm
 	JOIN tipo_ocorrencia_equipamento toe ON oe.cd_tipo_ocorrencia = toe.cd_tipo_ocorrencia
-	where pDataInicio >= DATE(re.dt_saida_prevista) AND pDataFinal <= DATE(re.dt_saida_prevista);
+	WHERE re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal;
 END$$
 
 DROP PROCEDURE IF EXISTS relatorioOcorrenciaAmbiente$$
@@ -826,7 +826,7 @@ BEGIN
 	JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente 
 	JOIN ocorrencia_ambiente oa ON ra.sg_ambiente = oa.sg_ambiente AND ra.dt_saida_prevista = oa.dt_saida_prevista AND ra.cd_rm = oa.cd_rm
 	JOIN tipo_ocorrencia_ambiente toa ON oa.cd_tipo_ocorrencia = toa.cd_tipo_ocorrencia
-	where pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista);
+	where ra.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal;
 END$$
 
 DROP PROCEDURE IF EXISTS relatorioReservasCanceladasEquipamento$$
@@ -839,7 +839,7 @@ BEGIN
 	JOIN usuario u ON u.cd_rm = re.cd_rm
 	JOIN equipamento e ON e.sg_ambiente = re.sg_equipamento
 	where re.dt_cancelamento is not null AND
-	(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista));
+	(re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal);
 END$$
 
 DROP PROCEDURE IF EXISTS relatorioReservasCanceladasAmbiente$$
@@ -852,7 +852,7 @@ BEGIN
 	JOIN usuario u ON u.cd_rm = ra.cd_rm
 	JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente
 	where ra.dt_cancelamento is not null AND
-	(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista));
+	(re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal);
 END$$
 
 DROP PROCEDURE IF EXISTS relatorioReservasAtrasadasEquipamento$$
@@ -865,7 +865,7 @@ BEGIN
 	JOIN usuario u ON u.cd_rm = re.cd_rm
 	JOIN equipamento e ON e.sg_ambiente = re.sg_equipamento 
 	where dt_saida_prevista < dt_saida AND
-	(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista));
+	(re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal);
 END$$
 
 DROP PROCEDURE IF EXISTS relatorioReservasAtrasadasAmbiente$$
@@ -878,7 +878,7 @@ BEGIN
 	JOIN usuario u ON u.cd_rm = ra.cd_rm
 	JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente 
 	where ra.dt_saida_prevista < ra.dt_saida AND
-	(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista));
+	(re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal);
 END$$
 
 DROP PROCEDURE IF EXISTS relatorioReservasNaoRealizadasEquipamento$$
@@ -891,7 +891,7 @@ BEGIN
 	JOIN usuario u ON u.cd_rm = re.cd_rm
 	JOIN equipamento e ON e.sg_ambiente = re.sg_equipamento 
 	where re.dt_devolucao is null and re.dt_saida is null and re.dt_saida_prevista < now() AND
-	(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista));
+	(re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal);
 END$$
 
 DROP PROCEDURE IF EXISTS relatorioReservasNaoRealizadasAmbiente$$
@@ -904,7 +904,7 @@ BEGIN
 	JOIN usuario u ON u.cd_rm = ra.cd_rm
 	JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente 
 	where ra.dt_devolucao is null and ra.dt_saida is null and ra.dt_saida_prevista < now() AND
-	(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista));
+	(re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal);
 END$$
 
 DELIMITER ;

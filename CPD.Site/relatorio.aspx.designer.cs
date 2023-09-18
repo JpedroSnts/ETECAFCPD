@@ -42,12 +42,21 @@ namespace CPD.Site
         protected global::System.Web.UI.WebControls.TextBox dataInicio;
 
         /// <summary>
-        /// Controle dataFim.
+        /// Controle dataFinal.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dataFim;
+        protected global::System.Web.UI.WebControls.TextBox dataFinal;
+
+        /// <summary>
+        /// Controle btnGerarRelatorio.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnGerarRelatorio;
     }
 }
