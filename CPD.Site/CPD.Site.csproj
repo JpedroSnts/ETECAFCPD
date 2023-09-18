@@ -119,6 +119,7 @@
     <Content Include="logout.aspx" />
     <Content Include="relatorio.aspx" />
     <Content Include="reserva.aspx" />
+    <Content Include="resultadoRelatorio.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +210,13 @@
     </Compile>
     <Compile Include="reserva.aspx.designer.cs">
       <DependentUpon>reserva.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="resultadoRelatorio.aspx.cs">
+      <DependentUpon>resultadoRelatorio.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="resultadoRelatorio.aspx.designer.cs">
+      <DependentUpon>resultadoRelatorio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Util\Email.cs" />
     <Compile Include="Util\Logado.cs" />

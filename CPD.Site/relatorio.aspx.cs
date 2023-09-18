@@ -22,14 +22,19 @@ namespace CPD.Site
 
         protected void btnGerarRelatorio_Click(object sender, EventArgs e)
         {
-            DateTime inicio = DateTime.Parse(dataInicio.Text);
-            DateTime fim = DateTime.Parse(dataFinal.Text);
-            Relatorio relatorio = null;
-            if (ddlRelatorio.SelectedValue == "ocorrencias")
+            string tipo = "";
+            if (ddlRelatorio.SelectedValue == "ocorrencia") tipo = "ocorrencia";
+            if (ddlRelatorio.SelectedValue == "reservasC") tipo = "reservasC";
+            if (ddlRelatorio.SelectedValue == "reservasA") tipo = "reservasA";
+            if (ddlRelatorio.SelectedValue == "reservasNA") tipo = "reservasNA";
+            if (tipo == "")
             {
-                RelatorioController rC = new RelatorioController();
-                relatorio = rC.relatorioOcorrencia(inicio, fim);
+                //ERRO
+                return;
             }
+            Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", 
+                $"window.open('/resultadoRelatorio.aspx?inicio={dataInicio.Text}&fim={dataFinal.Text}&tipoRelatorio={tipo}','_newtab');", true
+                );
         }
     }
 }

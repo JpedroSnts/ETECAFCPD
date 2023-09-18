@@ -74,15 +74,11 @@ namespace CPD.Site
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Logado.Usuario(Session) || !Logado.Admin(Session))
+            if (!Logado.Usuario(Session))
             {
                 Response.Redirect("~/login.aspx");
             }
-            txtNmProf.Visible = false;
-            if (Logado.Admin(Session))
-            {
-                txtNmProf.Visible = true;
-            }
+            litDdlNmProf.Visible = Logado.Admin(Session);
             DateTime inicio = DateTime.Now;
             DateTime fim = inicio.AddDays(1);
             if (!String.IsNullOrEmpty(txtInputData.Text) && !String.IsNullOrEmpty(txtHorarioInicio.Text) && !String.IsNullOrEmpty(txtHorarioFim.Text))

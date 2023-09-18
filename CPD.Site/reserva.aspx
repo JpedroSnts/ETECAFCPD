@@ -49,8 +49,10 @@
                 <asp:Panel ID="pnlAmbientes" runat="server"></asp:Panel>
             </div>
             <div class="reservar">
-                <select id="ddlNmProf">
-                </select>
+                <asp:Literal ID="litDdlNmProf" runat="server">
+                    <select id="ddlNmProf">
+                    </select>
+                </asp:Literal>
                 <div style="display: none;">
                     <asp:TextBox ID="txtNmProf" runat="server"></asp:TextBox>
                 </div>

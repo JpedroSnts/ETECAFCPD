@@ -176,6 +176,8 @@ header {
 	padding: 10px 20px;
 	border-radius: 24px;
 	cursor: pointer;
+	text-decoration: none;
+	color: #fff;
 }
 
 i.fa-solid.fa-plus {

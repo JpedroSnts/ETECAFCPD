@@ -46,7 +46,7 @@
 				<p><strong>Você não possui reservas!</strong></p>
 			</div>
 			<div>
-				<a href="/reserva.aspx"><button id="btnNovaReserva"><i class="fa-solid fa-plus"></i>Nova Reserva</button></a>
+				<a href="/reserva.aspx" id="btnNovaReserva"><i class="fa-solid fa-plus"></i>Nova Reserva</a>
 			</div>
 		</main>
 		<main id="mainComReserva" style="display: none">
@@ -57,9 +57,7 @@
 
 			<!-- ----------------------- CARD NOVA RESERVA ----------------------- -->
 
-			<a href="/reserva.aspx"
-				><button id="btnNovaReservaComReserva"><i class="fa-solid fa-plus"></i>Nova Reserva</button></a
-			>
+			<a href="/reserva.aspx"><button id="btnNovaReservaComReserva"><i class="fa-solid fa-plus"></i>Nova Reserva</button></a>
 		</main>
 
 		<!-- ----------------------- MENU ----------------------- -->
@@ -106,6 +104,12 @@
 		<script src="Estatico/js/cardCancelarReserva.js"></script>
 		<script src="Estatico/js/indexProfessor.js"></script>
 		<script src="https://kit.fontawesome.com/8e814353c3.js" crossorigin="anonymous"></script>
+        <script>
+			document.querySelector("#btnNovaReservaComReserva").addEventListener("click", (e) => {
+				e.preventDefault();
+				console.log("HJDASKDJ");
+            });
+        </script>
     </form>
 </body>
 </html>
