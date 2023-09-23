@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="reserva.aspx.cs" Inherits="CPD.Site.reserva" EnableEventValidation="false" %>
-
+<%@ Register Src="~/Partial/Header.ascx" TagPrefix="uc" TagName="Header" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt-br">
@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Estatico/css/estiloReserva.css" />
+    <link rel="stylesheet" href="Estatico/css/estiloHeader.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
@@ -17,17 +18,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <header>
-            <div id="headerConteu">
-                <img id="imagem" src="Estatico/imagens/logoCPD.png" />
-                <div id="opMenu">
-                    <a>Suas Reservas</a>
-                    <a>Ambientes</a>
-                    <a>Equipamentos</a>
-                </div>
-                <img id="iconeMenu" src="Estatico/imagens/menu.svg" />
-            </div>
-        </header>
+        <uc:Header ID="PartialHeader" runat="server" />
         <asp:Literal ID="litErro" runat="server"></asp:Literal>
         <main>
             <p class="Titulo">Realizar Reserva</p>
@@ -62,6 +53,7 @@
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/i18n/pt-BR.min.js" integrity="sha512-H1yBoUnrE7X+NeWpeZvBuy2RvrbvLEAEjX/Mu8L2ggUBja62g1z49fAboGidE5YEQyIVMCWJC9krY4/KEqkgag==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="Estatico/js/reserva.js"></script>
+        <script src="Estatico/js/menuSanduiche.js"></script>
         <script language="javascript" type="text/javascript">
             function SelectSingleRadiobutton(rdbtnid) {
                 var rdBtn = document.getElementById(rdbtnid);

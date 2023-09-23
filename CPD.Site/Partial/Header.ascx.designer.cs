@@ -7,74 +7,101 @@
 // </gerado automaticamente>
 //------------------------------------------------------------------------------
 
-namespace CPD.Site
+namespace CPD.Site.Partial
 {
 
 
-    public partial class gradeHorario
+    public partial class Header
     {
 
         /// <summary>
-        /// Controle form1.
+        /// Controle pnlHeaderFunc.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.WebControls.Panel pnlHeaderFunc;
 
         /// <summary>
-        /// Controle PartialHeader.
+        /// Controle litRmfunc.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::CPD.Site.Partial.Header PartialHeader;
+        protected global::System.Web.UI.WebControls.Literal litRmfunc;
 
         /// <summary>
-        /// Controle ddlPeriodos.
+        /// Controle litImagemDesktopFunc.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPeriodos;
+        protected global::System.Web.UI.WebControls.Literal litImagemDesktopFunc;
 
         /// <summary>
-        /// Controle ddlAmbiente.
+        /// Controle pnlHeaderProf.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlAmbiente;
+        protected global::System.Web.UI.WebControls.Panel pnlHeaderProf;
 
         /// <summary>
-        /// Controle ddlDiaSemana.
+        /// Controle litImagemDesktop.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDiaSemana;
+        protected global::System.Web.UI.WebControls.Literal litImagemDesktop;
 
         /// <summary>
-        /// Controle btnFiltrar.
+        /// Controle litNomeDesktop.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFiltrar;
+        protected global::System.Web.UI.WebControls.Literal litNomeDesktop;
 
         /// <summary>
-        /// Controle litHorarios.
+        /// Controle litRmDesktop.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litHorarios;
+        protected global::System.Web.UI.WebControls.Literal litRmDesktop;
+
+        /// <summary>
+        /// Controle litImagem.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litImagem;
+
+        /// <summary>
+        /// Controle litNome.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNome;
+
+        /// <summary>
+        /// Controle litRm.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litRm;
     }
 }

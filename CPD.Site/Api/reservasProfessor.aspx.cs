@@ -22,6 +22,7 @@ namespace CPD.Site.Api
                 {
                     Response.StatusCode = 400;
                     Response.End();
+                    return;
                 }
                 if (Session["rm_usuario"].ToString() == Request["rm"].ToString())
                 {
@@ -35,7 +36,9 @@ namespace CPD.Site.Api
                         return;
                     }
                     Response.ContentType = "application/json";
+                    Response.StatusCode = 200;
                     Response.Write(JsonConvert.SerializeObject(ReservaDTO.OrdenarReservas(homeController.ListarReservas(rm))));
+                    return;
                 }
                 Response.StatusCode = 401;
                 Response.End();

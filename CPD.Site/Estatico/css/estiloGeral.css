@@ -6,73 +6,6 @@ body {
 	margin: 0%;
 }
 
-/* ---------------------------- HEADER ---------------------------- */
-header {
-	width: 100%;
-	padding: 0 20px;
-	background: #fff;
-	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-#logoCPD {
-	margin-bottom: 5px;
-	margin-top: 10px;
-	width: 50px;
-	height: 66px;
-	cursor: pointer;
-}
-
-#opMenu {
-	display: contents;
-}
-#displayOpMenu {
-	width: 50%;
-	display: flex;
-	justify-content: space-evenly;
-}
-#displayOpMenu a {
-	text-decoration: none;
-	color: #000;
-}
-
-/*  -  ÍCONES  - */
-#iconMenuSanduiche {
-	display: none;
-}
-#userProfDesktop {
-	width: 50px;
-	margin-right: 10px;
-	border-radius: 1000px;
-}
-
-/* - INFO USER DESKTOP - */
-#divUserLogoutDesktop {
-	display: flex;
-	align-items: center;
-}
-#divUserLogoutDesktop a {
-	margin-top: 4px;
-}
-#iconLogout {
-	height: 40px;
-	margin-left: 30px;
-}
-
-#displayDivUserDesktop {
-	display: flex;
-	align-items: center;
-}
-#displayInfoUserDesktop {
-	display: flex;
-	flex-direction: column;
-}
-#displayInfoUserDesktop p {
-	margin: 0;
-}
-
 /*  -  MENU E CARD ESCONDIDO  - */
 .bloqueio {
 	width: 100%;
@@ -332,7 +265,7 @@ input:focus {
 	outline: 0;
 }
 
-button {
+button, input[type="button"], input[type="submit"] {
 	border: thin solid #114a55;
 	color: #fff;
 	background-color: #114a55;
@@ -353,19 +286,6 @@ button {
 }
 
 @media only screen and (max-width: 800px) {
-	/* ---------------------------- HEADER ---------------------------- */
-	#iconMenuSanduiche {
-		display: initial;
-		width: 30px;
-		height: 30px;
-	}
-
-	#opMenu {
-		display: none;
-	}
-	#divUserLogoutDesktop {
-		display: none;
-	}
 
 	/* ---------------------------- ALTERAR SENHA ---------------------------- */
 	#mainAlterarSenha {

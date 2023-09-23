@@ -82,6 +82,7 @@
     <Content Include="Estatico\css\dashboard.css" />
     <Content Include="Estatico\css\estiloGeral.css" />
     <Content Include="Estatico\css\estiloGradeHorarios.css" />
+    <Content Include="Estatico\css\estiloHeader.css" />
     <Content Include="Estatico\css\estiloRelatorioFunc.css" />
     <Content Include="Estatico\css\estiloReserva.css" />
     <Content Include="Estatico\css\estiloLogin.css" />
@@ -117,6 +118,7 @@
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
     <Content Include="logout.aspx" />
+    <Content Include="Partial\Header.ascx" />
     <Content Include="relatorio.aspx" />
     <Content Include="reserva.aspx" />
     <Content Include="resultadoRelatorio.aspx" />
@@ -195,6 +197,13 @@
     </Compile>
     <Compile Include="logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Partial\Header.ascx.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Partial\Header.ascx.designer.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="relatorio.aspx.cs">

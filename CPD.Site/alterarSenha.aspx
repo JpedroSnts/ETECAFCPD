@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="alterarSenha.aspx.cs" Inherits="CPD.Site.alterarSenha" %>
-
+<%@ Register Src="~/Partial/Header.ascx" TagPrefix="uc" TagName="Header" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -7,7 +7,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="Estatico/css/estilo.css" />
+    <link rel="stylesheet" href="Estatico/css/estiloHeader.css" />
+    <link rel="stylesheet" href="Estatico/css/estiloGeral.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
@@ -16,11 +17,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <header>
-            <a href="index.html">
-                <img id="logoCPD" src="Estatico/imagens/logoCPD.png" /></a>
-            <img id="iconMenuSanduiche" src="Estatico/imagens/menuSanduiche.png" />
-        </header>
+        <uc:Header ID="PartialHeader" runat="server" />
         <asp:Literal ID="litErro" runat="server"></asp:Literal>
         <main id="mainAlterarSenha">
             <h1>Alterar Senha</h1>
@@ -98,6 +95,7 @@
                 </div>
             </div>
         </div>
+        <script src="Estatico/js/menuSanduiche.js"></script>
         <script src="Estatico/js/menuSanduiche.js"></script>
     </form>
 </body>

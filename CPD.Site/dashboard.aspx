@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="dashboard.aspx.cs" Inherits="CPD.Site.dashboard" %>
-
+<%@ Register Src="~/Partial/Header.ascx" TagPrefix="uc" TagName="Header" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,6 +8,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="Estatico/css/dashboard.css" />
+        <link rel="stylesheet" href="Estatico/css/estiloHeader.css" />
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
@@ -15,30 +16,7 @@
 		<link rel="icon" href="Estatico/imagens/logoCPD.png" type="image/png" /></head>
 <body>
     <form id="form1" runat="server">
-		<header>
-			<img id="imagem" src="Estatico/imagens/logoCPD.png" />
-			<nav>
-				<ul>
-					<li class="dropdown">
-						<a class="dropbtn">Reserva</a>
-						<div class="dropdown-content">
-							<a href="#">Inserir</a>
-						</div>
-					</li>
-					<li class="dropdown">
-						<a href="#" class="dropbtn">Relatórios</a>
-					</li>
-					<li class="dropdown">
-						<a class="dropbtn">Grade de horários</a>
-						<div class="dropdown-content">
-							<a href="#">Listar</a>
-							<a href="#">Cadastrar</a>
-						</div>
-					</li>
-				</ul>
-			</nav>
-			<div><img id="user" src="Estatico/imagens/user.png" /></div>
-		</header>
+		<uc:Header ID="PartialHeader" runat="server" />
         <main>
             <div id="dashboard">
                 <div id="tabelaReserva">
@@ -79,6 +57,7 @@
                 </div>
             </div>
         </main>
+        <script src="Estatico/js/menuSanduiche.js"></script>
 		<script src="Estatico/js/dashboard.js"></script>
     </form>
 </body>

@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="gradeHorario.aspx.cs" Inherits="CPD.Site.gradeHorario" %>
-
+<%@ Register Src="~/Partial/Header.ascx" TagPrefix="uc" TagName="Header" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Estatico/css/estiloGradeHorarios.css" />
+    <link rel="stylesheet" href="Estatico/css/estiloHeader.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
@@ -17,17 +18,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <header>
-            <div id="headerConteu">
-                <img id="imagem" src="Estatico/imagens/logoCPD.png" />
-                <div id="opMenu">
-                    <a>Reservas</a>
-                    <a>Relatórios</a>
-                    <a>Grade de horários</a>
-                </div>
-                <img id="iconeMenu" src="Estatico/imagens/usuario.svg" />
-            </div>
-        </header>
+        <uc:Header ID="PartialHeader" runat="server" />
         <main>
             <h1>Grade de horários</h1>
             <div id="InfoGrade">
@@ -72,6 +63,7 @@
             </div>
             <a href="#" id="btnAdcHorario">Adicionar horário</a>
         </main>
+        <script src="Estatico/js/menuSanduiche.js"></script>
         <script src="Estatico/js/gradeHorario.js"></script>
     </form>
 </body>
