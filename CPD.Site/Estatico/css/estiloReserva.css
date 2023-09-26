@@ -1,412 +1,417 @@
 * {
-	box-sizing: border-box;
-	font-family: "Montserrat", sans-serif;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
 }
 
 main {
-	padding: 10px;
-	width: min(1200px, 90%);
-	margin: auto;
+    padding: 10px;
+    width: min(1200px, 90%);
+    margin: auto;
 }
 
 body {
-	margin: 0;
-	font-family: Montserrat;
+    margin: 0;
+    font-family: Montserrat;
 }
 
 header {
-	width: 100%;
-	background: #fff;
-	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-	font-size: 16px;
-	font-style: normal;
-	line-height: normal;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    font-size: 16px;
+    font-style: normal;
+    line-height: normal;
 }
 
 #headerConteu {
-	display: flex;
-	width: 62%;
-	align-items: center;
-	justify-content: space-around;
-	margin: auto;
+    display: flex;
+    width: 62%;
+    align-items: center;
+    justify-content: space-around;
+    margin: auto;
 }
 
 #opMenu {
-	display: contents;
+    display: contents;
 }
 
 #iconeMenu {
-	width: 40px;
-	height: 40px;
+    width: 40px;
+    height: 40px;
 }
 
 #imagem {
-	margin-bottom: 5px;
-	margin-top: 10px;
-	width: 50px;
-	height: 66px;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    width: 50px;
+    height: 66px;
 }
 
 .Titulo {
-	color: #000;
-	text-align: center;
-	font-size: 14px;
-	font-style: normal;
-	line-height: normal;
-	font-weight: bold;
-	margin: 30px 0px 30px 0px;
+    color: #000;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    line-height: normal;
+    font-weight: bold;
+    margin: 30px 0px 30px 0px;
 }
 
 #Calendario {
-	display: flex;
-	justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 #txtInputData {
-	margin-right: 10px;
-	margin-left: 0px;
+    margin-right: 10px;
+    margin-left: 0px;
 }
 
 #Equipamento {
-	font-size: 16px;
-	font-weight: bold;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 #Ambiente {
-	font-size: 16px;
-	font-weight: bold;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 #DivTipoReserva {
-	margin-bottom: 15px;
-	margin-top: 5px;
+    margin-bottom: 15px;
+    margin-top: 5px;
 }
 
 input {
-	width: 20%;
-	border-radius: 5px;
-	border: 1px solid #114a55;
-	background: #fff;
-	color: #bbb;
-	font-size: 12px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-	padding: 4px 5px 1px 10px;
-	margin: auto;
+    width: 20%;
+    border-radius: 5px;
+    border: 1px solid #114a55;
+    background: #fff;
+    color: #bbb;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    padding: 4px 5px 1px 10px;
+    margin: auto;
 }
 
-	input[type="date"]::-webkit-calendar-picker-indicator {
-		color: rgba(0, 0, 0, 0);
-		opacity: 1;
-		display: block;
-		background: url("../imagens/Calendario.png") no-repeat;
-		width: 20px;
-		height: 22px;
-		border-width: thin;
-		margin-left: 20px;
-	}
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        color: rgba(0, 0, 0, 0);
+        opacity: 1;
+        display: block;
+        background: url("../imagens/Calendario.png") no-repeat;
+        width: 20px;
+        height: 22px;
+        border-width: thin;
+        margin-left: 20px;
+    }
 
-	input[type="time"]::-webkit-calendar-picker-indicator {
-		color: rgba(0, 0, 0, 0);
-		opacity: 1;
-		display: block;
-		background: url("../imagens/Clock.png") no-repeat;
-		width: 20px;
-		height: 20px;
-		border-width: thin;
-		margin-left: 20px;
-	}
+    input[type="time"]::-webkit-calendar-picker-indicator {
+        color: rgba(0, 0, 0, 0);
+        opacity: 1;
+        display: block;
+        background: url("../imagens/Clock.png") no-repeat;
+        width: 20px;
+        height: 20px;
+        border-width: thin;
+        margin-left: 20px;
+    }
 
 .InputHorario {
-	width: 12%;
-	margin-left: 0px;
-	margin-right: 10px;
+    width: 12%;
+    margin-left: 0px;
+    margin-right: 10px;
 }
 
 #btnBuscar {
-	width: 100px;
-	height: 30px;
-	margin: auto 10px;
+    width: 100px;
+    height: 30px;
+    margin: auto 10px;
 }
 
 button, input[type="button"], input[type="submit"] {
-	width: 100px;
-	height: 30px;
-	border-radius: 20px;
-	padding: 5px 5px 5px 5px;
-	background-color: #114a55;
-	color: white;
-	font-family: Montserrat;
-	font-size: 12px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-	outline: none;
-	border: none;
-	cursor: pointer;
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    padding: 5px 5px 5px 5px;
+    background-color: #114a55;
+    color: white;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    outline: none;
+    border: none;
+    cursor: pointer;
 }
+
+    button:disabled, input[type="button"]:disabled, input[type="submit"]:disabled {
+        background-color: #888;
+        cursor: not-allowed;
+    }
 
 #TitulosReserva {
-	display: flex;
-	justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
-	#TitulosReserva p {
-		width: 47%;
-	}
+    #TitulosReserva p {
+        width: 47%;
+    }
 
 #reserva {
-	display: flex;
-	justify-content: space-between;
+    display: flex;
+    justify-content: space-between;
 }
 
 #pnlEquipamentos,
 #pnlAmbientes {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	width: 47%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 47%;
 }
 
-	#pnlEquipamentos .item-reserva,
-	#pnlAmbientes .item-reserva {
-		width: 100%;
-		display: flex;
-		justify-content: space-between;
-	}
+    #pnlEquipamentos .item-reserva,
+    #pnlAmbientes .item-reserva {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
 
 .rdbAmb {
-	width: 20%;
-	text-align: end;
+    width: 20%;
+    text-align: end;
 }
 
-	.rdbAmb input {
-		vertical-align: middle;
-	}
+    .rdbAmb input {
+        vertical-align: middle;
+    }
 
 .iconMais {
-	width: 16px;
-	height: 16px;
-	margin-left: 5px;
+    width: 16px;
+    height: 16px;
+    margin-left: 5px;
 }
 
 .numQtEquip {
-	color: #000;
-	text-align: center;
-	font-size: 14px;
-	font-style: normal;
-	font-weight: 400;
-	border-radius: 5px;
-	border: 1px solid #114a55;
-	background: #fff;
-	width: 20px;
-	height: 19px;
-	padding: 0px;
-	margin: 0;
+    color: #000;
+    text-align: center;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    border-radius: 5px;
+    border: 1px solid #114a55;
+    background: #fff;
+    width: 20px;
+    height: 19px;
+    padding: 0px;
+    margin: 0;
 }
 
 .iconMenos {
-	width: 16px;
-	height: 16px;
-	margin-right: 5px;
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
 }
 
 .item {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .reservar {
-	text-align: center;
-	margin-top: 30px;
+    text-align: center;
+    margin-top: 30px;
 }
 
 .select2-container--default .select2-selection--single {
-	border: 1px solid #114a55 !important;
+    border: 1px solid #114a55 !important;
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field {
-	border: 1px solid #114a55 !important;
-	outline: none;
+    border: 1px solid #114a55 !important;
+    outline: none;
 }
 
 .select2-container--open .select2-dropdown--below {
-	border: solid 1px #114a55 !important;
-	border-top: none !important;
+    border: solid 1px #114a55 !important;
+    border-top: none !important;
 }
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-	background-color: #114a55 !important;
+    background-color: #114a55 !important;
 }
 
 @media only screen and (max-width: 900px) {
-	header {
-		width: 100%;
-		padding: 0 20px;
-		background: #fff;
-		box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
+    header {
+        width: 100%;
+        padding: 0 20px;
+        background: #fff;
+        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-	#headerConteu {
-		display: flex;
-		width: 100%;
-		align-items: center;
-		justify-content: space-between;
-		margin: auto;
-	}
+    #headerConteu {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        margin: auto;
+    }
 
-	#opMenu {
-		display: none;
-	}
+    #opMenu {
+        display: none;
+    }
 
-	#iconeMenu {
-		display: initial;
-		width: 30px;
-		height: 30px;
-	}
+    #iconeMenu {
+        display: initial;
+        width: 30px;
+        height: 30px;
+    }
 
-	#imagem {
-		margin-bottom: 5px;
-		margin-top: 10px;
-		width: 50px;
-		height: 66px;
-	}
+    #imagem {
+        margin-bottom: 5px;
+        margin-top: 10px;
+        width: 50px;
+        height: 66px;
+    }
 }
 
 @media only screen and (max-width: 800px) {
-	main {
-		padding: 10px;
-		width: auto;
-	}
+    main {
+        padding: 10px;
+        width: auto;
+    }
 
-	body {
-		margin: 0%;
-	}
+    body {
+        margin: 0%;
+    }
 
-	.Titulo {
-		color: #000;
-		text-align: center;
-		font-size: 14px;
-		font-style: normal;
-		line-height: normal;
-		font-weight: bold;
-		margin: 30px 0px 30px 0px;
-	}
+    .Titulo {
+        color: #000;
+        text-align: center;
+        font-size: 14px;
+        font-style: normal;
+        line-height: normal;
+        font-weight: bold;
+        margin: 30px 0px 30px 0px;
+    }
 
-	#Calendario {
-		display: flex;
-		margin: auto;
-		justify-content: center;
-		flex-wrap: wrap;
-	}
+    #Calendario {
+        display: flex;
+        margin: auto;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 
-	#Equipamento {
-		font-weight: bold;
-		font-size: 14px;
-	}
+    #Equipamento {
+        font-weight: bold;
+        font-size: 14px;
+    }
 
-	#Ambiente {
-		font-size: 14px;
-		font-weight: bold;
-	}
+    #Ambiente {
+        font-size: 14px;
+        font-weight: bold;
+    }
 
-	input {
-		border-radius: 5px;
-		border: 1px solid #114a55;
-		background: #fff;
-		color: #bbb;
-		font-size: 12px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		padding: 4px 5px 1px 10px;
-	}
+    input {
+        border-radius: 5px;
+        border: 1px solid #114a55;
+        background: #fff;
+        color: #bbb;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        padding: 4px 5px 1px 10px;
+    }
 
-		input[type="date"]::-webkit-calendar-picker-indicator {
-			color: rgba(0, 0, 0, 0);
-			opacity: 1;
-			display: block;
-			background: url("../imagens/Calendario.png") no-repeat;
-			width: 20px;
-			height: 22px;
-			border-width: thin;
-		}
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            color: rgba(0, 0, 0, 0);
+            opacity: 1;
+            display: block;
+            background: url("../imagens/Calendario.png") no-repeat;
+            width: 20px;
+            height: 22px;
+            border-width: thin;
+        }
 
-		input[type="time"]::-webkit-calendar-picker-indicator {
-			color: rgba(0, 0, 0, 0);
-			opacity: 1;
-			display: block;
-			background: url("../imagens/Clock.png") no-repeat;
-			width: 20px;
-			height: 20px;
-			border-width: thin;
-		}
+        input[type="time"]::-webkit-calendar-picker-indicator {
+            color: rgba(0, 0, 0, 0);
+            opacity: 1;
+            display: block;
+            background: url("../imagens/Clock.png") no-repeat;
+            width: 20px;
+            height: 20px;
+            border-width: thin;
+        }
 
-	#btnBuscar {
-		width: 100px;
-		margin: auto;
-	}
+    #btnBuscar {
+        width: 100px;
+        margin: auto;
+    }
 
-	button, input[type="button"], input[type="submit"] {
-		border-radius: 20px;
-		background-color: #114a55;
-		color: white;
-		font-family: Montserrat;
-		font-size: 12px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: normal;
-		outline: none;
-		border: none;
-		cursor: pointer;
-	}
+    button, input[type="button"], input[type="submit"] {
+        border-radius: 20px;
+        background-color: #114a55;
+        color: white;
+        font-family: Montserrat;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
 
-	#txtInputData {
-		width: 40%;
-		margin: 5px 5px;
-	}
+    #txtInputData {
+        width: 40%;
+        margin: 5px 5px;
+    }
 
-	.InputHorario {
-		width: 25%;
-		margin: 5px;
-	}
+    .InputHorario {
+        width: 25%;
+        margin: 5px;
+    }
 
-	#TitulosReserva {
-		display: flex;
-		justify-content: space-between;
-	}
+    #TitulosReserva {
+        display: flex;
+        justify-content: space-between;
+    }
 
-		#TitulosReserva p {
-			width: 50%;
-		}
+        #TitulosReserva p {
+            width: 50%;
+        }
 
-			#TitulosReserva p:nth-child(2) {
-				text-align: right;
-			}
+            #TitulosReserva p:nth-child(2) {
+                text-align: right;
+            }
 
-	#pnlEquipamentos,
-	#pnlAmbientes {
-		width: 100%;
-		margin: auto;
-	}
+    #pnlEquipamentos,
+    #pnlAmbientes {
+        width: 100%;
+        margin: auto;
+    }
 
-	#pnlAmbientes {
-		display: none;
-	}
+    #pnlAmbientes {
+        display: none;
+    }
 
-	.item {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-	}
+    .item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-	#ddlNmProf {
-		padding: 8px 5px 8px 10px;
-		width: 50%;
-	}
+    #ddlNmProf {
+        padding: 8px 5px 8px 10px;
+        width: 50%;
+    }
 }

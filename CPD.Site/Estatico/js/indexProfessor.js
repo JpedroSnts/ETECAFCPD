@@ -1,4 +1,9 @@
 window.addEventListener("load", async () => {
+	const rmUsuario = document.querySelector("#rm_usuario").textContent;
+	const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+	const mainHome = document.querySelector("#mainHome");
+	const mainComReserva = document.querySelector("#mainComReserva");
+	const $reservas = document.querySelector("#reservas");
 
 	function cancelarReserva(itens, rm, data) {
 		fetch(`/api/reservasProfessor.aspx?rm=${rm}&data=${data}&itens=${itens}`).then();
@@ -23,51 +28,6 @@ window.addEventListener("load", async () => {
 	}
 	cardReserva();
 
-	const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
-	const mainHome = document.querySelector("#mainHome");
-	const rmUsuario = document.querySelector("#rm_usuario").textContent;
-	const mainComReserva = document.querySelector("#mainComReserva");
-	const $reservas = document.querySelector("#reservas");
-	const btnsCancelarReservas = document.querySelectorAll("#btnCardReserva");
-	const lixeiras = document.querySelectorAll("#iconLixeira");
-	for (let i = 0; i < btnsCancelarReservas.length; i++) {
-		btnsCancelarReservas[i].addEventListener("click", async (e) => {
-			e.preventDefault();
-			const itens = e.target.getAttribute("itens");
-			const data = e.target.getAttribute("data");
-			cancelarReserva(itens, rm, data);
-			btnsCancelarReservas[i].parentElement.parentElement.remove();
-		});
-	}
-	for (let i = 0; i < lixeiras.length; i++) {
-		lixeiras[i].addEventListener("click", async (e) => {
-			e.preventDefault();
-			const itens = e.target.getAttribute("itens");
-			const data = e.target.getAttribute("data");
-			cancelarReserva(itens, rm, data);
-
-			let count = 0;
-			let els1 = lixeiras[i].parentElement.parentElement.childNodes;
-			for (var j = 0; j < els1.length; j++) {
-				if (els1[j].tagName == "DIV") {
-					count++;
-				}
-			}
-			lixeiras[i].parentElement.parentElement.parentElement.childNodes.forEach((btn) => {
-				if (btn.tagName == "BUTTON") {
-					let arr = btn.getAttribute("itens").split(",");
-					arr = arr.filter((x) => x != itens);
-					btn.setAttribute("itens", arr.join(",").replace(" ", ""));
-				}
-			});
-			if (count == 1) {
-				lixeiras[i].parentElement.parentElement.parentElement.parentElement.remove();
-			} else {
-				lixeiras[i].parentElement.remove();
-			}
-		});
-	}
-
 	function buscarReservas() {
 		fetch(`/api/reservasProfessor.aspx?rm=${rmUsuario}`).then((res) => {
 			return res.json();
@@ -81,7 +41,9 @@ window.addEventListener("load", async () => {
 					const el = reservas[i];
 					const dt = new Date(el.DataSaidaPrevista);
 					const diaSemana = diasSemana[dt.getDay()];
-					const dd_mm = `${dt.getDate()}/${(dt.getMonth() + 1).length == 2 ? dt.getMonth() + 1 : "0" + (dt.getMonth() + 1)}`;
+					const dd = String(dt.getDate()).length == 2 ? dt.getDate() : "0" + dt.getDate();
+					const mm = String(dt.getMonth() + 1).length == 2 ? dt.getMonth() + 1 : "0" + (dt.getMonth() + 1);
+					const dd_mm = `${dd}/${mm}`;
 					const codigos = el.Itens.split(", ").map(e => e);
 					const itens = codigos
 						.map(e => {
@@ -101,7 +63,7 @@ window.addEventListener("load", async () => {
 					<h1 id="h1Equipamentos">Itens</h1>
 					${itens}
 				</div>
-				<button id="btnCardReserva" itens="${el.Itens.replace(" ", "")}" data="${el.DataSaidaPrevista}">Cancelar todas</button>
+				<button id="btnCardReserva" itens="${el.Itens.replaceAll(" ", "")}" data="${el.DataSaidaPrevista}">Cancelar todas</button>
 			</div>
 </div>
 			`;
@@ -110,6 +72,56 @@ window.addEventListener("load", async () => {
 			} else {
 				mainComReserva.style.display = "none";
 				mainHome.style.display = "flex";
+			}
+			const btnsCancelarReservas = document.querySelectorAll("#btnCardReserva");
+			const lixeiras = document.querySelectorAll("#iconLixeira");
+			for (let i = 0; i < btnsCancelarReservas.length; i++) {
+				btnsCancelarReservas[i].addEventListener("click", async (e) => {
+					e.preventDefault();
+					const itens = e.target.getAttribute("itens");
+					const data = e.target.getAttribute("data");
+					cancelarReserva(itens, rmUsuario, data);
+					btnsCancelarReservas[i].parentElement.parentElement.remove();
+					const qtReservas = document.querySelector("#reservas").childElementCount;
+					if (qtReservas == 0) {
+						mainHome.style.display = "flex";
+						mainComReserva.style.display = "none";
+					}
+				});
+			}
+			for (let i = 0; i < lixeiras.length; i++) {
+
+				lixeiras[i].addEventListener("click", async (e) => {
+					e.preventDefault();
+					const itens = e.target.getAttribute("itens");
+					const data = e.target.getAttribute("data");
+					cancelarReserva(itens, rmUsuario, data);
+
+					let count = 0;
+					let els1 = lixeiras[i].parentElement.parentElement.childNodes;
+					for (var j = 0; j < els1.length; j++) {
+						if (els1[j].tagName == "DIV") {
+							count++;
+						}
+					}
+					lixeiras[i].parentElement.parentElement.parentElement.childNodes.forEach((btn) => {
+						if (btn.tagName == "BUTTON") {
+							let arr = btn.getAttribute("itens").split(",");
+							arr = arr.filter((x) => x != itens);
+							btn.setAttribute("itens", arr.join(",").replaceAll(" ", ""));
+						}
+					});
+					if (count == 1) {
+						lixeiras[i].parentElement.parentElement.parentElement.parentElement.remove();
+					} else {
+						lixeiras[i].parentElement.remove();
+					}
+					const qtReservas = document.querySelector("#reservas").childElementCount;
+					if (qtReservas == 0) {
+						mainHome.style.display = "flex";
+						mainComReserva.style.display = "none";
+					}
+				});
 			}
 		});
 	}
