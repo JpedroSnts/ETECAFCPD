@@ -114,6 +114,7 @@
     <Content Include="Estatico\js\indexProfessor.js" />
     <Content Include="Estatico\js\menuSanduiche.js" />
     <Content Include="Estatico\js\reserva.js" />
+    <Content Include="Global.asax" />
     <Content Include="gradeHorario.aspx" />
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
@@ -169,6 +170,9 @@
     </Compile>
     <Compile Include="dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="gradeHorario.aspx.cs">
       <DependentUpon>gradeHorario.aspx</DependentUpon>

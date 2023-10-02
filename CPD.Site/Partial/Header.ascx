@@ -5,7 +5,8 @@
         <div id="headerConteu">
             <img id="imagem" src="Estatico/imagens/logoCPD.png" />
             <div id="opMenuFunc">
-                <a href="/dashboard.aspx">Reservas</a>
+                <a href="/dashboard.aspx">Dashboard</a>
+				<a href="/reserva.aspx">Reservar</a>
                 <a href="/relatorio.aspx">Relatórios</a>
                 <a href="/gradeHorario.aspx">Grade de horário</a>
             </div>
