@@ -83,6 +83,7 @@ namespace CPD.Site
                 DateTime inicio = DateTime.Parse($"{txtInputData.Text} {txtHorarioInicio.Text}");
                 DateTime fim = DateTime.Parse($"{txtInputData.Text} {txtHorarioFim.Text}");
                 if (DateTime.Compare(inicio, fim) > 0) return;
+                if (DateTime.Compare(inicio, DateTime.Now) < 0) return;
                 AdicionarItensLivresNoPanel(inicio, fim);
             }
         }

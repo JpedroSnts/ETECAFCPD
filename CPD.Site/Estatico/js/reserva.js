@@ -40,9 +40,12 @@ window.addEventListener("load", () => {
     const txtHorarioFim = document.querySelector("#txtHorarioFim");
     const btnReservar = document.querySelector("#btnReservar");
 
+    if (!txtInputData.value || !txtHorarioInicio.value || !txtHorarioFim.fim) {
+        btnReservar.setAttribute("disabled", "disabled");
+    }
+
     const data7dias = new Date(new Date().setDate(new Date().getDate() + 7));
     txtInputData.max = data7dias.toISOString().split("T")[0];
-    btnReservar.setAttribute("disabled", "disabled");
 
     function limparItensEBloquearBotao() {
         btnReservar.setAttribute("disabled", "disabled");
