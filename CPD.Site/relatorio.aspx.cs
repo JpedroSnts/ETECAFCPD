@@ -1,5 +1,6 @@
 ﻿using CPD.Repositorio.Controller;
 using CPD.Repositorio.Model;
+using CPD.Site.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,11 @@ namespace CPD.Site
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!Logado.Admin(Session))
-            //{
-            //    string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/index.aspx";
-            //    Response.Redirect(ultimaPagina);
-            //}
+            if (!Logado.Admin(Session))
+            {
+                string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/index.aspx";
+                Response.Redirect(ultimaPagina);
+            }
         }
 
         protected void btnGerarRelatorio_Click(object sender, EventArgs e)
