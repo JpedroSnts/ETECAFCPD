@@ -40,7 +40,7 @@ window.addEventListener("load", () => {
     const txtHorarioFim = document.querySelector("#txtHorarioFim");
     const btnReservar = document.querySelector("#btnReservar");
 
-    if (!txtInputData.value || !txtHorarioInicio.value || !txtHorarioFim.fim) {
+    if (txtInputData.value == "" || txtHorarioInicio.value == "" || txtHorarioFim.fim == "") {
         btnReservar.setAttribute("disabled", "disabled");
     }
 
