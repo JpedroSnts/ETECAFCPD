@@ -24,14 +24,14 @@
                 <div class="itemsMenu">
                     <a href="/alterarSenha.aspx">
                         <p>Alterar Senha</p>
+						<img class="iconsMenu" src="Estatico/imagens/alterarSenha.png" />
                     </a>
-                    <img class="iconsMenu" src="Estatico/imagens/alterarSenha.png" />
                 </div>
                 <div class="itemsMenu">
                     <a href="/logout.aspx">
                         <p>Sair</p>
+						<img class="iconsMenu" src="Estatico/imagens/sair.png" />
                     </a>
-                    <img class="iconsMenu" src="Estatico/imagens/sair.png" />
                 </div>
             </div>
         </div>
@@ -76,20 +76,20 @@
 			</div>
 			<div id="divItemsMenu">
 				<div class="itemsMenu">
-					<a href="/index.aspx"><p>Suas Reservas</p></a>
-					<img class="iconsMenu" src="Estatico/imagens/suasReservas.png" />
+					<a href="/index.aspx"><p>Suas Reservas</p><img class="iconsMenu" src="Estatico/imagens/suasReservas.png" />
+					</a>
 				</div>
 				<div class="itemsMenu">
-					<a href="/reserva.aspx"><p>Nova Reserva</p></a>
-					<img class="iconsMenu" src="Estatico/imagens/novaReserva.png" />
+					<a href="/reserva.aspx"><p>Nova Reserva</p><img class="iconsMenu" src="Estatico/imagens/novaReserva.png" />
+					</a>
 				</div>
 				<div class="itemsMenu">
-					<a href="/alterarSenha.aspx"><p>Alterar Senha</p></a>
-					<img class="iconsMenu" src="Estatico/imagens/alterarSenha.png" />
+					<a href="/alterarSenha.aspx"><p>Alterar Senha</p><img class="iconsMenu" src="Estatico/imagens/alterarSenha.png" />
+					</a>
 				</div>
 				<div class="itemsMenu">
-					<a href="/logout.aspx"><p>Sair</p></a>
-					<img class="iconsMenu" src="Estatico/imagens/sair.png" />
+					<a href="/logout.aspx"><p>Sair</p><img class="iconsMenu" src="Estatico/imagens/sair.png" />
+					</a>
 				</div>
 			</div>
 		</div>

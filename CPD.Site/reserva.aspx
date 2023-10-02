@@ -21,30 +21,34 @@
         <uc:Header ID="PartialHeader" runat="server" />
         <asp:Literal ID="litErro" runat="server"></asp:Literal>
         <main>
-            <p class="Titulo">Realizar Reserva</p>
-            <div id="Calendario">
+            <h1>Realizar Reserva</h1>
+            <div id="inputs">
                 <asp:TextBox ID="txtInputData" runat="server" TextMode="Date"></asp:TextBox>
                 <asp:TextBox ID="txtHorarioInicio" runat="server" TextMode="Time" class="InputHorario"></asp:TextBox>
                 <asp:TextBox ID="txtHorarioFim" runat="server" TextMode="Time" class="InputHorario"></asp:TextBox>
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
+                <img id="btnBuscarResponsivo" src="/Estatico/imagens/lupa.png">
             </div>
-
-            <div id="TitulosReserva">
-                <p id="Equipamento">Equipamentos</p>
-                <p id="Ambiente">Ambientes</p>
+                
+            <div id="tipoReserva">
+                <div id="pnlEquipamentos">
+                    <h1>Equipamentos</h1>
+                    <asp:Panel ID="pnlEquipamentosItens" runat="server"></asp:Panel>
+                </div>
+                <div id="pnlAmbientes">
+                    <h1>Ambientes</h1>
+                    <asp:Panel ID="pnlAmbientesItens" runat="server"></asp:Panel>
+                </div>
             </div>
-
-            <div id="reserva">
-                <asp:Panel ID="pnlEquipamentos" runat="server"></asp:Panel>
-                <asp:Panel ID="pnlAmbientes" runat="server"></asp:Panel>
+            <div style="display: none;">
+                <asp:TextBox ID="txtNmProf" runat="server"></asp:TextBox>
             </div>
             <div class="reservar">
+                <div>
                 <asp:Literal ID="litDdlNmProf" runat="server">
                     <select id="ddlNmProf">
                     </select>
                 </asp:Literal>
-                <div style="display: none;">
-                    <asp:TextBox ID="txtNmProf" runat="server"></asp:TextBox>
                 </div>
                 <asp:Button ID="btnReservar" runat="server" Text="Reservar" OnClick="btnReservar_Click"/>
             </div>

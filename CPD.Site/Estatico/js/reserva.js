@@ -1,8 +1,8 @@
 window.addEventListener("load", () => {
     const btnAmbiente = document.querySelector("#Ambiente");
     const btnEquipamento = document.querySelector("#Equipamento");
-    const pnlAmbientes = document.querySelector("#pnlAmbientes");
-    const pnlEquipamentos = document.querySelector("#pnlEquipamentos");
+    const pnlAmbientes = document.querySelector("#pnlAmbientesItens");
+    const pnlEquipamentos = document.querySelector("#pnlEquipamentosItens");
 
     pnlEquipamentos.childNodes.forEach(e => {
         if (e.tagName == "DIV") {
@@ -39,6 +39,10 @@ window.addEventListener("load", () => {
     const txtHorarioInicio = document.querySelector("#txtHorarioInicio");
     const txtHorarioFim = document.querySelector("#txtHorarioFim");
     const btnReservar = document.querySelector("#btnReservar");
+
+    const data7dias = new Date(new Date().setDate(new Date().getDate() + 7));
+    txtInputData.max = data7dias.toISOString().split("T")[0];
+    btnReservar.setAttribute("disabled", "disabled");
 
     function limparItensEBloquearBotao() {
         btnReservar.setAttribute("disabled", "disabled");

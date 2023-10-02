@@ -123,9 +123,13 @@ a {
 	margin: 5px;
 }
 
-.itemsMenu a {
-	text-decoration: none;
-}
+	.itemsMenu a {
+		text-decoration: none;
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		align-items: center;
+	}
 
 .itemsMenu a p {
 	margin: 0;

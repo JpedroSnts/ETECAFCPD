@@ -1,417 +1,249 @@
-* {
-    box-sizing: border-box;
-    font-family: "Montserrat", sans-serif;
-}
+* { box-sizing: border-box; font-family:'Montserrat', sans-serif; }
+body { margin: 0%; }
 
-main {
-    padding: 10px;
-    width: min(1200px, 90%);
-    margin: auto;
-}
-
-body {
-    margin: 0;
-    font-family: Montserrat;
-}
-
+/* ---------------------------- HEADER ---------------------------- */
 header {
     width: 100%;
-    background: #fff;
+    padding: 0 20px;
+    background: #FFF;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    font-size: 16px;
-    font-style: normal;
-    line-height: normal;
-}
-
-#headerConteu {
     display: flex;
-    width: 62%;
     align-items: center;
-    justify-content: space-around;
-    margin: auto;
+    justify-content: space-between;
+    margin-bottom: 30px;
 }
 
-#opMenu {
-    display: contents;
-}
-
-#iconeMenu {
-    width: 40px;
-    height: 40px;
-}
-
-#imagem {
+#logoCPD {
     margin-bottom: 5px;
     margin-top: 10px;
     width: 50px;
     height: 66px;
-}
-
-.Titulo {
-    color: #000;
-    text-align: center;
-    font-size: 14px;
-    font-style: normal;
-    line-height: normal;
-    font-weight: bold;
-    margin: 30px 0px 30px 0px;
-}
-
-#Calendario {
-    display: flex;
-    justify-content: center;
-}
-
-#txtInputData {
-    margin-right: 10px;
-    margin-left: 0px;
-}
-
-#Equipamento {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-#Ambiente {
-    font-size: 16px;
-    font-weight: bold;
-}
-
-#DivTipoReserva {
-    margin-bottom: 15px;
-    margin-top: 5px;
-}
-
-input {
-    width: 20%;
-    border-radius: 5px;
-    border: 1px solid #114a55;
-    background: #fff;
-    color: #bbb;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    padding: 4px 5px 1px 10px;
-    margin: auto;
-}
-
-    input[type="date"]::-webkit-calendar-picker-indicator {
-        color: rgba(0, 0, 0, 0);
-        opacity: 1;
-        display: block;
-        background: url("../imagens/Calendario.png") no-repeat;
-        width: 20px;
-        height: 22px;
-        border-width: thin;
-        margin-left: 20px;
-    }
-
-    input[type="time"]::-webkit-calendar-picker-indicator {
-        color: rgba(0, 0, 0, 0);
-        opacity: 1;
-        display: block;
-        background: url("../imagens/Clock.png") no-repeat;
-        width: 20px;
-        height: 20px;
-        border-width: thin;
-        margin-left: 20px;
-    }
-
-.InputHorario {
-    width: 12%;
-    margin-left: 0px;
-    margin-right: 10px;
-}
-
-#btnBuscar {
-    width: 100px;
-    height: 30px;
-    margin: auto 10px;
-}
-
-button, input[type="button"], input[type="submit"] {
-    width: 100px;
-    height: 30px;
-    border-radius: 20px;
-    padding: 5px 5px 5px 5px;
-    background-color: #114a55;
-    color: white;
-    font-family: Montserrat;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    outline: none;
-    border: none;
     cursor: pointer;
 }
 
-    button:disabled, input[type="button"]:disabled, input[type="submit"]:disabled {
-        background-color: #888;
-        cursor: not-allowed;
-    }
+#opMenu { display: contents; }
+#displayOpMenu { width: 50%; display: flex; justify-content: space-evenly; }
+#displayOpMenu a { text-decoration: none; color: #000; }
 
-#TitulosReserva {
-    display: flex;
-    justify-content: space-between;
+/*  -  ÍCONES  - */
+#iconMenuSanduiche { display: none; }
+#userProfDesktop { width: 50px; margin-right: 10px; border-radius: 25px; }
+
+/* - INFO USER DESKTOP - */
+#divUserLogoutDesktop { display: flex; align-items: center; }
+#divUserLogoutDesktop a { margin-top: 4px; }
+#iconLogout { height: 40px; margin-left: 30px; }
+
+#displayDivUserDesktop { display: flex; align-items: center; }
+#displayInfoUserDesktop { display: flex; flex-direction: column; }
+#displayInfoUserDesktop p { margin: 0; }
+
+/*  -  MENU ESCONDIDO  - */
+.bloqueio {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #737373;
+    opacity: 0.5;
 }
 
-    #TitulosReserva p {
-        width: 47%;
-    }
+.escondido { display: none; }
 
-#reserva {
-    display: flex;
-    justify-content: space-between;
+.caixaFlutuante {
+    position: absolute;
+    top: 65px;
+    right: 15px;
+    width: 165px;
+    height: 266px;
+    border-radius: 10px;
+    background-color: #FFF;
+    padding: 20px 10px;
 }
 
-#pnlEquipamentos,
-#pnlAmbientes {
+#divUser { text-align: center; }
+#userProf { width: 60px; height: 60px; margin-bottom: 10px; }
+#divUser div p { font-size: 12px; margin: 0; font-weight: 600; }
+#divItemsMenu { border-top: 2px solid #114A55; padding: 5px 0px; margin-top: 10px; }
+
+.itemsMenu {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+}
+
+.itemsMenu a { text-decoration: none; }
+
+.itemsMenu a p {
+    margin: 0;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    color: #000;
+}
+
+.iconsMenu { width: 24px; height: 24px; }
+
+/* ---------------------------- MAIN ---------------------------- */
+
+main { width: min(1200px, 90%); margin: auto; }
+h1 { font-size: 18px; text-align: center; }
+#inputs { display: flex;justify-content: center; margin-top: 30px; align-items: center; }
+
+input {
+	width: 40%;
+	border-radius: 5px;
+	border: 1px solid #114a55;
+	background: #fff;
+	color: #bbb;
+	font-size: 14px;
+	padding: 6px 8px 3px 12px;
+	margin: 0 10px 0px 0px;
+}
+
+#txtInputData { margin-right: 10px; margin-left: 0px; }
+.inputsHorario { width: 25%; margin-left: 0px; margin-right: 10px; }
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+	background: url("../imagens/Calendario.png") no-repeat;
+	width: 20px;
+	height: 22px;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+	background: url("../imagens/Clock.png") no-repeat;
+	width: 20px;
+	height: 22px;
+}
+
+button {
+    border: thin solid #114A55;
+    color: #fff;
+    background-color: #114A55;
+    border-radius: 20px;
+    padding: 5px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+button, input[type="button"], input[type="submit"] {
+	width: 100px;
+	height: 35px;
+	border-radius: 20px;
+	padding: 5px 20px;
+	background-color: #114a55;
+	color: #fff;
+	font-size: 14px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	margin: 0px;
+}
+
+#btnBuscarResponsivo { display: none; }
+#tipoReserva { display: flex; justify-content: center; margin-top: 30px; gap: 25px; }
+#pnlEquipamentos, #pnlAmbientes { 
+	display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 47%;
+    width: 50%;
+    border: thin solid #bbbbbbbf;
+    border-radius: 10px;
+	box-shadow: 1px 1px 5px #bbbbbbbf;
+    padding: 5px 15px 10px 15px;
 }
+#pnlEquipamentos h1, #pnlAmbientes h1 { text-align: left; margin-bottom: 0px; }
 
-    #pnlEquipamentos .item-reserva,
-    #pnlAmbientes .item-reserva {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-    }
-
-.rdbAmb {
-    width: 20%;
-    text-align: end;
+.item-reserva {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
 }
-
-    .rdbAmb input {
-        vertical-align: middle;
-    }
-
-.iconMais {
-    width: 16px;
-    height: 16px;
-    margin-left: 5px;
-}
+.item { display: flex; justify-content: space-between; align-items: center; }
+p { margin: 0px 0px 0px 0px; }
+.iconMenos { width: 18px; margin-right: 5px; }
+.iconMais { width: 18px; margin-left: 5px; }
 
 .numQtEquip {
-    color: #000;
-    text-align: center;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    border-radius: 5px;
-    border: 1px solid #114a55;
-    background: #fff;
-    width: 20px;
-    height: 19px;
-    padding: 0px;
-    margin: 0;
+	color: #000;
+	text-align: center;
+	font-size: 16px;
+	border-radius: 5px;
+	border: thin solid #114a55;
+	background: #fff;
+	width: 20px;
+	height: 20px;
+	padding: 0px;
+	margin: 0px;
 }
 
-.iconMenos {
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
-}
+.rdbAmb { width: 20%; text-align: end; }
+	.rdbAmb input {
+		vertical-align: middle;
+		width: 13px;
+		margin: 0;
+	}
 
-.item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+.reservar { width: 30%; display: flex; justify-content: space-between; margin-top: 20px; align-items: center; float: right; }
 
-.reservar {
-    text-align: center;
-    margin-top: 30px;
+@media only screen and (max-width: 800px) 
+{
+	/* ---------------------------- HEADER ---------------------------- */
+	#iconMenuSanduiche {
+		display: initial;
+		width: 30px;
+		height: 30px;
+	}
+
+	#opMenu { display: none; }
+	#divUserLogoutDesktop { display: none; }
+
+	/* ---------------------------- MAIN ---------------------------- */
+	h1, p { font-size: 14px; }
+    input { font-size: 12px; padding: 6px 8px 3px 6px; }
+	#txtInputData { width: 42%; margin-right: 5px; padding-right: 3px; }
+	.inputsHorario { width: 24%; margin-left: 0px; margin-right: 5px; padding-right: 3px; }
+
+	#btnBuscarResponsivo {
+		display: initial;
+		width: 35px;
+		height: 35px;
+		border-radius: 20px;
+		padding: 5px;
+		background-color: #114a55;
+		color: #fff;
+	}
+
+	#btnBuscar { display: none; }
+	#tipoReserva { display: flex; flex-direction: column; gap: 10px; }
+	#pnlEquipamentos, #pnlAmbientes { width: 100%; }
+    #reservar { width: 100%; }
+	#btnReservar { margin: 20px 0 0 0; width: 100%; }
 }
 
 .select2-container--default .select2-selection--single {
-    border: 1px solid #114a55 !important;
+	border: 1px solid #114a55 !important;
 }
 
 .select2-container--default .select2-search--dropdown .select2-search__field {
-    border: 1px solid #114a55 !important;
-    outline: none;
+	border: 1px solid #114a55 !important;
+	outline: none;
 }
 
 .select2-container--open .select2-dropdown--below {
-    border: solid 1px #114a55 !important;
-    border-top: none !important;
+	border: solid 1px #114a55 !important;
+	border-top: none !important;
 }
 
 .select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
-    background-color: #114a55 !important;
+	background-color: #114a55 !important;
 }
 
-@media only screen and (max-width: 900px) {
-    header {
-        width: 100%;
-        padding: 0 20px;
-        background: #fff;
-        box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
 
-    #headerConteu {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: space-between;
-        margin: auto;
-    }
-
-    #opMenu {
-        display: none;
-    }
-
-    #iconeMenu {
-        display: initial;
-        width: 30px;
-        height: 30px;
-    }
-
-    #imagem {
-        margin-bottom: 5px;
-        margin-top: 10px;
-        width: 50px;
-        height: 66px;
-    }
-}
-
-@media only screen and (max-width: 800px) {
-    main {
-        padding: 10px;
-        width: auto;
-    }
-
-    body {
-        margin: 0%;
-    }
-
-    .Titulo {
-        color: #000;
-        text-align: center;
-        font-size: 14px;
-        font-style: normal;
-        line-height: normal;
-        font-weight: bold;
-        margin: 30px 0px 30px 0px;
-    }
-
-    #Calendario {
-        display: flex;
-        margin: auto;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    #Equipamento {
-        font-weight: bold;
-        font-size: 14px;
-    }
-
-    #Ambiente {
-        font-size: 14px;
-        font-weight: bold;
-    }
-
-    input {
-        border-radius: 5px;
-        border: 1px solid #114a55;
-        background: #fff;
-        color: #bbb;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        padding: 4px 5px 1px 10px;
-    }
-
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            color: rgba(0, 0, 0, 0);
-            opacity: 1;
-            display: block;
-            background: url("../imagens/Calendario.png") no-repeat;
-            width: 20px;
-            height: 22px;
-            border-width: thin;
-        }
-
-        input[type="time"]::-webkit-calendar-picker-indicator {
-            color: rgba(0, 0, 0, 0);
-            opacity: 1;
-            display: block;
-            background: url("../imagens/Clock.png") no-repeat;
-            width: 20px;
-            height: 20px;
-            border-width: thin;
-        }
-
-    #btnBuscar {
-        width: 100px;
-        margin: auto;
-    }
-
-    button, input[type="button"], input[type="submit"] {
-        border-radius: 20px;
-        background-color: #114a55;
-        color: white;
-        font-family: Montserrat;
-        font-size: 12px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-        outline: none;
-        border: none;
-        cursor: pointer;
-    }
-
-    #txtInputData {
-        width: 40%;
-        margin: 5px 5px;
-    }
-
-    .InputHorario {
-        width: 25%;
-        margin: 5px;
-    }
-
-    #TitulosReserva {
-        display: flex;
-        justify-content: space-between;
-    }
-
-        #TitulosReserva p {
-            width: 50%;
-        }
-
-            #TitulosReserva p:nth-child(2) {
-                text-align: right;
-            }
-
-    #pnlEquipamentos,
-    #pnlAmbientes {
-        width: 100%;
-        margin: auto;
-    }
-
-    #pnlAmbientes {
-        display: none;
-    }
-
-    .item {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    #ddlNmProf {
-        padding: 8px 5px 8px 10px;
-        width: 50%;
-    }
+button:disabled, input[type="button"]:disabled, input[type="submit"]:disabled {
+	background-color: #888;
+	cursor: not-allowed;
 }

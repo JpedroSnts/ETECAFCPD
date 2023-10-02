@@ -78,31 +78,22 @@ namespace CPD.Site
         protected global::System.Web.UI.WebControls.Button btnBuscar;
 
         /// <summary>
-        /// Controle pnlEquipamentos.
+        /// Controle pnlEquipamentosItens.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlEquipamentos;
+        protected global::System.Web.UI.WebControls.Panel pnlEquipamentosItens;
 
         /// <summary>
-        /// Controle pnlAmbientes.
+        /// Controle pnlAmbientesItens.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAmbientes;
-
-        /// <summary>
-        /// Controle litDdlNmProf.
-        /// </summary>
-        /// <remarks>
-        /// Campo gerado automaticamente.
-        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litDdlNmProf;
+        protected global::System.Web.UI.WebControls.Panel pnlAmbientesItens;
 
         /// <summary>
         /// Controle txtNmProf.
@@ -112,6 +103,15 @@ namespace CPD.Site
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtNmProf;
+
+        /// <summary>
+        /// Controle litDdlNmProf.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litDdlNmProf;
 
         /// <summary>
         /// Controle btnReservar.

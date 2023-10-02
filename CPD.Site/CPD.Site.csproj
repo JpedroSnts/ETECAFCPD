@@ -85,8 +85,8 @@
     <Content Include="Estatico\css\estiloHeader.css" />
     <Content Include="Estatico\css\estiloOcorrencias.css" />
     <Content Include="Estatico\css\estiloRelatorioFunc.css" />
-    <Content Include="Estatico\css\estiloReserva.css" />
     <Content Include="Estatico\css\estiloLogin.css" />
+    <Content Include="Estatico\css\estiloReserva.css" />
     <Content Include="Estatico\imagens\alterarSenha.png" />
     <Content Include="Estatico\imagens\calendario.png" />
     <Content Include="Estatico\imagens\carta.png" />
@@ -95,6 +95,7 @@
     <Content Include="Estatico\imagens\lixeira.png" />
     <Content Include="Estatico\imagens\logoCPD.png" />
     <Content Include="Estatico\imagens\logoETECAF.png" />
+    <Content Include="Estatico\imagens\lupa.png" />
     <Content Include="Estatico\imagens\mais.png" />
     <Content Include="Estatico\imagens\mais.svg" />
     <Content Include="Estatico\imagens\menos.png" />

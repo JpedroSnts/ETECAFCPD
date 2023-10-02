@@ -48,9 +48,8 @@ namespace CPD.Site
                     imgMais.CssClass = "iconMais";
                     imgMais.ImageUrl = "Estatico/imagens/mais.svg";
                     lblItem.Controls.Add(imgMais);
-
                     pnl.Controls.Add(lblItem);
-                    pnlEquipamentos.Controls.Add(pnl);
+                    pnlEquipamentosItens.Controls.Add(pnl);
                 }
                 else
                 {
@@ -67,7 +66,7 @@ namespace CPD.Site
                     rdb.CssClass = "rdbAmb";
                     rdb.Attributes.Add("OnClick", $"javascript:SelectSingleRadiobutton('rdb{el.Sigla}')");
                     pnl.Controls.Add(rdb);
-                    pnlAmbientes.Controls.Add(pnl);
+                    pnlAmbientesItens.Controls.Add(pnl);
                 }
             }
         }
@@ -79,14 +78,13 @@ namespace CPD.Site
                 Response.Redirect("~/login.aspx");
             }
             litDdlNmProf.Visible = Logado.Admin(Session);
-            DateTime inicio = DateTime.Now;
-            DateTime fim = inicio.AddDays(1);
             if (!String.IsNullOrEmpty(txtInputData.Text) && !String.IsNullOrEmpty(txtHorarioInicio.Text) && !String.IsNullOrEmpty(txtHorarioFim.Text))
             {
-                inicio = DateTime.Parse($"{txtInputData.Text} {txtHorarioInicio.Text}");
-                fim = DateTime.Parse($"{txtInputData.Text} {txtHorarioFim.Text}");
+                DateTime inicio = DateTime.Parse($"{txtInputData.Text} {txtHorarioInicio.Text}");
+                DateTime fim = DateTime.Parse($"{txtInputData.Text} {txtHorarioFim.Text}");
+                if (DateTime.Compare(inicio, fim) > 0) return;
+                AdicionarItensLivresNoPanel(inicio, fim);
             }
-            AdicionarItensLivresNoPanel(inicio, fim);
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -101,13 +99,13 @@ namespace CPD.Site
                 if (Logado.Admin(Session) && String.IsNullOrEmpty(txtNmProf.Text)) return;
 
                 List<ItemLivreDTO> itensReserva = new List<ItemLivreDTO>();
-                for (int i = 0; i < pnlAmbientes.Controls.Count; i++)
+                for (int i = 0; i < pnlAmbientesItens.Controls.Count; i++)
                 {
-                    for (int j = 0; j < pnlAmbientes.Controls[i].Controls.Count; j++)
+                    for (int j = 0; j < pnlAmbientesItens.Controls[i].Controls.Count; j++)
                     {
-                        if (pnlAmbientes.Controls[i].Controls[j] is RadioButton)
+                        if (pnlAmbientesItens.Controls[i].Controls[j] is RadioButton)
                         {
-                            RadioButton radioButton = (RadioButton)pnlAmbientes.Controls[i].Controls[j];
+                            RadioButton radioButton = (RadioButton)pnlAmbientesItens.Controls[i].Controls[j];
                             if (radioButton.Checked)
                             {
                                 itensReserva.Add(new ItemLivreDTO(radioButton.ID.Replace("rdb", ""), null, 1));
@@ -116,15 +114,15 @@ namespace CPD.Site
                     }
                 }
 
-                for (int i = 0; i < pnlEquipamentos.Controls.Count; i++)
+                for (int i = 0; i < pnlEquipamentosItens.Controls.Count; i++)
                 {
-                    for (int j = 0; j < pnlEquipamentos.Controls[i].Controls.Count; j++)
+                    for (int j = 0; j < pnlEquipamentosItens.Controls[i].Controls.Count; j++)
                     {
-                        for (int k = 0; k < pnlEquipamentos.Controls[i].Controls[j].Controls.Count; k++)
+                        for (int k = 0; k < pnlEquipamentosItens.Controls[i].Controls[j].Controls.Count; k++)
                         {
-                            if (pnlEquipamentos.Controls[i].Controls[j].Controls[k] is TextBox)
+                            if (pnlEquipamentosItens.Controls[i].Controls[j].Controls[k] is TextBox)
                             {
-                                TextBox txt = (TextBox)pnlEquipamentos.Controls[i].Controls[j].Controls[k];
+                                TextBox txt = (TextBox)pnlEquipamentosItens.Controls[i].Controls[j].Controls[k];
                                 if (txt.Text != "0")
                                 {
                                     itensReserva.Add(new ItemLivreDTO(txt.ID.Replace("txt", ""), null, int.Parse(txt.Text)));

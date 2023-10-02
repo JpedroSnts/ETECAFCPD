@@ -137,6 +137,11 @@ window.addEventListener("load", () => {
         }, 800);
     });
 
+    const form = document.querySelector("#form1");
+    form.addEventListener("submit", (e) => {
+        e.preventDefault();
+    });
+
     listarReservas();
     fetchListarItens();
 });
