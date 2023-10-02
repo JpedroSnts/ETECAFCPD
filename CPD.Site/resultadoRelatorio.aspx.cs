@@ -29,19 +29,69 @@ namespace CPD.Site
 
                 if (tipoRelatorio == "ocorrencias")
                 {
+                    litTipoRelatorio.Text = char.ToUpper(tipoRelatorio[0]) + tipoRelatorio.Substring(1) + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
+
+                    litTituloTabela.Text = $@"<tr>
+                                                <th>DATA</th>
+                                                <th>RM</th>
+                                                <th>PROFESSOR</th>
+                                                <th>E-MAIL</th>
+                                                <th>ITEM</th>
+                                                <th>TIPO OCORRÊNCIA</th>
+                                            </tr>";
+
                     relatorio = rC.relatorioOcorrencia(inicio, fim);
+
+                    
                 }
                 if (tipoRelatorio == "reservasC")
                 {
+                    litTipoRelatorio.Text = char.ToUpper(tipoRelatorio[0]) + tipoRelatorio.Substring(1) + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
+
+                    litTituloTabela.Text = $@"<tr>
+                                                <th>DATA</th>
+                                                <th>RM</th>
+                                                <th>PROFESSOR</th>
+                                                <th>E-MAIL</th>
+                                                <th>ITEM</th>
+                                                <th>DATA CANCELAMENTO</th>
+                                            </tr>";
+
+                    relatorio = rC.relatorioReservasCanceladas(inicio, fim);
+                    
                 }
                 if (tipoRelatorio == "reservasA")
                 {
+                    litTipoRelatorio.Text = char.ToUpper(tipoRelatorio[0]) + tipoRelatorio.Substring(1) + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
+
+                    litTituloTabela.Text = $@"<tr>
+                                                <th>DATA</th>
+                                                <th>HORARIO PREVISTO</th>
+                                                <th>HORARIO RETIRADO</th>
+                                                <th>RM</th>
+                                                <th>PROFESSOR</th>
+                                                <th>E-MAIL</th>
+                                                <th>ITEM</th>
+                                            </tr>";
+
+                    relatorio = rC.relatorioReservasAtrasadas(inicio, fim);
 
                 }
                 if (tipoRelatorio == "reservasNA")
                 {
-                }
+                    litTipoRelatorio.Text = char.ToUpper(tipoRelatorio[0]) + tipoRelatorio.Substring(1) + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
 
+                    litTituloTabela.Text = $@"<tr>
+                                                <th>DATA</th>
+                                                <th>RM</th>
+                                                <th>PROFESSOR</th>
+                                                <th>E-MAIL</th>
+                                                <th>ITEM</th>
+                                            </tr>";
+
+                    relatorio = rC.relatorioReservasNaoRealizadas(inicio, fim);
+
+                }
             }
         }
     }
