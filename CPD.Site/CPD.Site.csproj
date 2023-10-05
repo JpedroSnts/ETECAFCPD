@@ -90,6 +90,7 @@
     <Content Include="Estatico\imagens\alterarSenha.png" />
     <Content Include="Estatico\imagens\calendario.png" />
     <Content Include="Estatico\imagens\carta.png" />
+    <Content Include="Estatico\imagens\check.png" />
     <Content Include="Estatico\imagens\clock.png" />
     <Content Include="Estatico\imagens\deslogar.svg" />
     <Content Include="Estatico\imagens\lixeira.png" />

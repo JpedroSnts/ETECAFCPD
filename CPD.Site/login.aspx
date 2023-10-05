@@ -37,7 +37,7 @@
                     <br />
                 </div>
             </div>
-            <p id="mensagemVerificacao"><asp:Literal ID="litErro" runat="server" Text=""></asp:Literal></p>
+            <p id="mensagemVerificacao"><asp:Literal ID="litErro" runat="server"></asp:Literal>‎</p>
             <asp:Button ID="btnAcessar" runat="server" Text="Acessar" OnClick="btnAcessar_Click"/>
             <p>Esqueceu sua senha? <a href="esqueciSenha.html">Clique aqui</a></p>
             <p id="pVersao">Versão 1.0 - 2023</p>

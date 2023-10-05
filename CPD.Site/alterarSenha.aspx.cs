@@ -28,7 +28,7 @@ namespace CPD.Site
         {
             if (String.IsNullOrEmpty(txtSenhaAtual.Text) || String.IsNullOrEmpty(txtNovaSenha.Text) || String.IsNullOrEmpty(txtConfirmarSenha.Text))
             {
-                litErro.Text = $"<div style='color: red;'>Preencha todos os campos</div>";
+                litErro.Text = "Preencha os campos";
                 return;
             }
             try
@@ -36,11 +36,12 @@ namespace CPD.Site
                 UsuarioController usuarioController = new UsuarioController();
                 Usuario usuario = new Usuario { RM = int.Parse(Session["rm_usuario"].ToString()), Senha = txtSenhaAtual.Text };
                 usuarioController.AlterarSenha(usuario, txtNovaSenha.Text, txtConfirmarSenha.Text);
-                Response.Redirect("~/logout.aspx");
+                litErro.Text = "";
+                //Response.Redirect("~/logout.aspx");
             }
             catch (SPException ex)
             {
-                litErro.Text = $"<div style='color: red;'>${ex.Message}</div>";
+                litErro.Text = ex.Message;
             }
         }
     }

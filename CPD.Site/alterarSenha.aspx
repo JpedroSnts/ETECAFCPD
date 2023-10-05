@@ -18,7 +18,6 @@
 <body>
     <form id="form1" runat="server">
         <uc:Header ID="PartialHeader" runat="server" />
-        <asp:Literal ID="litErro" runat="server"></asp:Literal>
         <main id="mainAlterarSenha">
             <h1>Alterar Senha</h1>
             <div class="divLabels">
@@ -48,9 +47,13 @@
                     <br />
                 </div>
             </div>
+            <p id="mensagemVerificacao"><asp:Literal ID="litErro" runat="server"></asp:Literal>‎</p>
             <asp:Button ID="btnAlterarSenha" runat="server" Text="Alterar Senha" OnClick="btnAlterarSenha_Click" />
             <p id="pVersao">Versão 1.0 - 2023</p>
         </main>
+
+        <div id="bloqueio" class="bloqueio escondido"></div>
+        <div id="resultado" class="cardSucesso escondido"></div>
 
         <div class="bloqueio escondido" id="escondido"></div>
         <div id="divMenu" class="caixaFlutuante escondido">
