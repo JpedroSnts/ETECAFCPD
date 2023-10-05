@@ -6,7 +6,7 @@
     <a href="/dashboard.aspx"><img id="logoCPD" src="Estatico/imagens/logoCPD.png"></a>
         <div id="opMenu">
             <div id="displayOpMenu">
-                <a href="/dashboard.aspx">Dashboard</a>
+                <a href="/painelControle.aspx">Painel de Controle</a>
 				<a href="/reserva.aspx">Reservar</a>
                 <a href="/relatorio.aspx">Relatórios</a>
                 <a href="/gradeHorario.aspx">Grade de horários</a>
@@ -17,10 +17,11 @@
         <div id="divUserLogoutDesktop">
             <div id="divUserDesktop">
                 <div id="displayDivUserDesktop">
-                    <img id="userProfDesktop" src="Estatico/imagens/36400.png">
+                    <%--<img id="userProfDesktop" src="Estatico/imagens/36400.png">--%>
+					<asp:Literal ID="litImgFunc" runat="server"></asp:Literal>
                     <div id="displayInfoUserDesktop">
-                        <p>Funcionário</p>
-                        <p>36400</p>
+                        <p><asp:Literal ID="litNomefunc" runat="server"></asp:Literal></p>
+                        <p><asp:Literal ID="litRmfunc2" runat="server"></asp:Literal></p>
                     </div>
                 </div>
             </div>
@@ -37,7 +38,7 @@
             </div>
             <div id="divItemsMenu">
                 <div class="itemsMenu">
-                    <a href="dashboard.aspx"><p>Dashboard</p></a>
+                    <a href="painelControle.aspx"><p>Painel de Controle</p></a>
                     <img class="iconsMenu" src="Estatico/imagens/suasReservas.png">
                 </div>
                 <div class="itemsMenu">

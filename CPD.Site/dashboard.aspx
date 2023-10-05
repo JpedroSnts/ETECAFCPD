@@ -21,12 +21,15 @@
             <div id="dashboard">
                 <div id="tabelaReserva">
                     <div>
-                        <h1>Reservas de Hoje</h1>
+                        <div id="tituloTabela">
+                            <h1>Reservas de Hoje</h1>
+                            <img src="/Estatico/imagens/refresh.svg" alt="icone de reload" id="iconeReload"/>
+                        </div>
                         <div id="inputsBusca">
+                            <input type="text" id="txtFiltro" placeholder="Professor/Equipamento/Ambiente" />
                             <select id="ddlStatus" placeholder="Status">
                                 <option value="">Status</option>
                             </select>
-                            <input type="text" id="txtFiltro" placeholder="Professor/Equipamento/Ambiente" />
                         </div>
                     </div>
                     <table>

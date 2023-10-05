@@ -17,10 +17,6 @@ tr {
 	padding: 10px;
 }
 
-#txtFiltro {
-	height: 40px;
-}
-
 #imagem {
 	margin-bottom: 5px;
 	margin-top: 10px;
@@ -66,6 +62,8 @@ select {
 	line-height: normal;
 	margin: auto;
 	padding: 10px;
+	height: 40px;
+	box-sizing: border-box;
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
@@ -205,27 +203,18 @@ button, .btn {
 	margin: auto;
 }
 
-#dashboard {
-	display: flex;
-	justify-content: space-between;
+#tabelaReserva {
 	width: 100%;
 }
 
-#tabelaReserva {
-	width: 75%;
+#txtData {
+	width: 30%;
 }
 
-#tabelaDisponivel {
-	width: 20%;
+#ddlStatus{
+	width: 30%;
 }
 
-#tituloTabela {
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-}
-
-#iconeReload {
-	width: 30px;
-	cursor: pointer;
+.escondido {
+	display: none;
 }

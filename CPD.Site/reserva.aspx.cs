@@ -73,6 +73,7 @@ namespace CPD.Site
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            pnlBodyReservar.Visible = false;
             if (!Logado.Usuario(Session))
             {
                 Response.Redirect("~/login.aspx");
@@ -85,6 +86,7 @@ namespace CPD.Site
                 if (DateTime.Compare(inicio, fim) > 0) return;
                 if (DateTime.Compare(inicio, DateTime.Now) < 0) return;
                 AdicionarItensLivresNoPanel(inicio, fim);
+                pnlBodyReservar.Visible = true;
             }
         }
 

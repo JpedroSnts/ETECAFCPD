@@ -33,6 +33,33 @@ namespace CPD.Site.Partial
         protected global::System.Web.UI.WebControls.Literal litRmfunc;
 
         /// <summary>
+        /// Controle litImgFunc.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litImgFunc;
+
+        /// <summary>
+        /// Controle litNomefunc.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNomefunc;
+
+        /// <summary>
+        /// Controle litRmfunc2.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litRmfunc2;
+
+        /// <summary>
         /// Controle litImagemDesktopFunc.
         /// </summary>
         /// <remarks>
