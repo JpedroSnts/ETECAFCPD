@@ -218,3 +218,14 @@ button, .btn {
 #tabelaDisponivel {
 	width: 20%;
 }
+
+#tituloTabela {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+#iconeReload {
+	width: 30px;
+	cursor: pointer;
+}

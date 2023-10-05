@@ -122,6 +122,12 @@ window.addEventListener("load", () => {
         }
     }
 
+    const iconeReload = document.querySelector("#iconeReload");
+    iconeReload.addEventListener("click", () => {
+        listarReservas();
+        fetchListarItens();
+    });
+
     ddlStatus.addEventListener("change", e => {
         STATUS = e.target.value;
         listarReservas();
@@ -144,4 +150,9 @@ window.addEventListener("load", () => {
 
     listarReservas();
     fetchListarItens();
+
+    setInterval(() => {
+        listarReservas();
+        fetchListarItens();
+    }, 1000 * 15);
 });
