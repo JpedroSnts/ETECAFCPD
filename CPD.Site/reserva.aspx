@@ -29,29 +29,30 @@
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                 <img id="btnBuscarResponsivo" src="/Estatico/imagens/lupa.png">
             </div>
-                
-            <div id="tipoReserva">
-                <div id="pnlEquipamentos">
-                    <h1>Equipamentos</h1>
-                    <asp:Panel ID="pnlEquipamentosItens" runat="server"></asp:Panel>
+            <asp:Panel ID="pnlBodyReservar" runat="server">   
+                <div id="tipoReserva">
+                    <div id="pnlEquipamentos">
+                        <h1>Equipamentos</h1>
+                        <asp:Panel ID="pnlEquipamentosItens" runat="server"></asp:Panel>
+                    </div>
+                    <div id="pnlAmbientes">
+                        <h1>Ambientes</h1>
+                        <asp:Panel ID="pnlAmbientesItens" runat="server"></asp:Panel>
+                    </div>
                 </div>
-                <div id="pnlAmbientes">
-                    <h1>Ambientes</h1>
-                    <asp:Panel ID="pnlAmbientesItens" runat="server"></asp:Panel>
+                <div style="display: none;">
+                    <asp:TextBox ID="txtNmProf" runat="server"></asp:TextBox>
                 </div>
-            </div>
-            <div style="display: none;">
-                <asp:TextBox ID="txtNmProf" runat="server"></asp:TextBox>
-            </div>
-            <div class="reservar">
-                <div>
-                <asp:Literal ID="litDdlNmProf" runat="server">
-                    <select id="ddlNmProf">
-                    </select>
-                </asp:Literal>
+                <div class="reservar">
+                    <div>
+                    <asp:Literal ID="litDdlNmProf" runat="server">
+                        <select id="ddlNmProf">
+                        </select>
+                    </asp:Literal>
+                    </div>
+                    <asp:Button ID="btnReservar" runat="server" Text="Reservar" OnClick="btnReservar_Click"/>
                 </div>
-                <asp:Button ID="btnReservar" runat="server" Text="Reservar" OnClick="btnReservar_Click"/>
-            </div>
+            </asp:Panel> 
         </main>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
