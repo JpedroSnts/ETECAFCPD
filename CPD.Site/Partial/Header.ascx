@@ -6,7 +6,7 @@
     <a href="/dashboard.aspx"><img id="logoCPD" src="Estatico/imagens/logoCPD.png"></a>
         <div id="opMenu">
             <div id="displayOpMenu">
-                <a href="/dashboard.aspx">Dashboard</a>
+                <a href="/painelControle.aspx">Painel de Controle</a>
 				<a href="/reserva.aspx">Reservar</a>
                 <a href="/relatorio.aspx">Relatórios</a>
                 <a href="/gradeHorario.aspx">Grade de horários</a>
@@ -38,7 +38,7 @@
             </div>
             <div id="divItemsMenu">
                 <div class="itemsMenu">
-                    <a href="dashboard.aspx"><p>Dashboard</p></a>
+                    <a href="painelControle.aspx"><p>Painel de Controle</p></a>
                     <img class="iconsMenu" src="Estatico/imagens/suasReservas.png">
                 </div>
                 <div class="itemsMenu">
