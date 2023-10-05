@@ -17,10 +17,11 @@
         <div id="divUserLogoutDesktop">
             <div id="divUserDesktop">
                 <div id="displayDivUserDesktop">
-                    <img id="userProfDesktop" src="Estatico/imagens/36400.png">
+                    <%--<img id="userProfDesktop" src="Estatico/imagens/36400.png">--%>
+					<asp:Literal ID="litImgFunc" runat="server"></asp:Literal>
                     <div id="displayInfoUserDesktop">
-                        <p>Funcionário</p>
-                        <p>36400</p>
+                        <p><asp:Literal ID="litNomefunc" runat="server"></asp:Literal></p>
+                        <p><asp:Literal ID="litRmfunc2" runat="server"></asp:Literal></p>
                     </div>
                 </div>
             </div>

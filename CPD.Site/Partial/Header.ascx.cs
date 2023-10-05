@@ -28,7 +28,10 @@ namespace CPD.Site.Partial
             litNomeDesktop.Text = Session["nome_usuario"].ToString();
             litRm.Text = Session["rm_usuario"].ToString();
             litRmfunc.Text = Session["rm_usuario"].ToString();
+            litNomefunc.Text = Session["nome_usuario"].ToString();
             litRmDesktop.Text = Session["rm_usuario"].ToString();
+            litRmfunc2.Text = Session["rm_usuario"].ToString();
+            litImgFunc.Text = $"<img id=\"userProfDesktop\" src=\"Estatico/imagens/{Session["foto_usuario"]}\" />";
         }
     }
 }
