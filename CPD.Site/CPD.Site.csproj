@@ -167,6 +167,7 @@
     <Compile Include="Api\reservasProfessor.aspx.designer.cs">
       <DependentUpon>reservasProfessor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="APPCONFIG.cs" />
     <Compile Include="Controller\DashboardController.cs" />
     <Compile Include="Controller\HomeController.cs" />
     <Compile Include="Controller\ReservaController.cs" />

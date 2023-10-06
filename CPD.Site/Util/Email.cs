@@ -11,21 +11,17 @@ namespace CPD.Site.Util
     {
         public static bool Enviar(string destinatario, string assunto, string texto)
         {
-            string nomeRemetente = "Contato CPD";
-            string remetente = "cpd_contato_teste@outlook.com";
-            string senha = "SENHA DO EMAIL";
-
             SmtpClient client = new SmtpClient
             {
-                Credentials = new NetworkCredential(remetente, senha),
-                Host = "smtp-mail.outlook.com",
-                Port = 587,
-                EnableSsl = true
+                Credentials = new NetworkCredential(APPCONFIG.EMAIL_REMETENTE, APPCONFIG.SENHA_REMETENTE),
+                Host = APPCONFIG.SMTP_HOST,
+                Port = APPCONFIG.SMTP_PORT,
+                EnableSsl = APPCONFIG.SMTP_SSL
             };
 
             MailMessage mail = new MailMessage();
             mail.To.Add(destinatario);
-            mail.From = new MailAddress(remetente, nomeRemetente, System.Text.Encoding.UTF8);
+            mail.From = new MailAddress(APPCONFIG.EMAIL_REMETENTE, APPCONFIG.NOME_REMETENTE, System.Text.Encoding.UTF8);
             mail.Subject = assunto;
             mail.SubjectEncoding = System.Text.Encoding.UTF8;
             mail.Body = $"<html><body>{texto}</body></html>";
