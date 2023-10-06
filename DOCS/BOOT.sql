@@ -254,31 +254,56 @@ END$$
 DROP FUNCTION IF EXISTS verificarSeEquipamentoPodeSerReservado$$
 CREATE FUNCTION verificarSeEquipamentoPodeSerReservado(pSiglaEquipamento VARCHAR(20), pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME) RETURNS BOOL
 BEGIN
-	DECLARE vPodeSerReservado BOOL DEFAULT FALSE;
-    
-    IF verificarSeDataPassaDe7Dias(pDTSaidaPrevista) THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Data de saída acima do limite de 7 dias';
-    END IF;
-    
-    SELECT COUNT(e.sg_equipamento) <> 0 INTO vPodeSerReservado FROM equipamento e
-	LEFT JOIN reserva_equipamento re ON e.sg_equipamento = re.sg_equipamento
-		AND (
-			(dt_saida_prevista >= pDTSaidaPrevista AND dt_saida_prevista < pDTDevolucaoPrevista) OR
-			(dt_devolucao_prevista > pDTSaidaPrevista AND dt_devolucao_prevista <= pDTDevolucaoPrevista)
-		)
-	WHERE
-		e.sg_equipamento = pSiglaEquipamento
-		AND re.sg_equipamento IS NULL
-		AND e.ic_danificado = FALSE
-        AND NOT EXISTS (
-			SELECT 1
-			FROM reserva_equipamento re2
-			WHERE re2.sg_equipamento = e.sg_equipamento
-			AND DATE(re2.dt_saida_prevista) < CURDATE()
-            AND re2.dt_devolucao IS NULL
-		);
+	DECLARE vDanificado BOOL DEFAULT FALSE;
+	DECLARE vDevolvido BOOL DEFAULT FALSE;
+	DECLARE vNaoPego BOOL DEFAULT FALSE;
+	DECLARE vJaReservadoParaDataEHora BOOL DEFAULT FALSE;
 
-	RETURN vPodeSerReservado;
+	IF verificarSeDataPassaDe7Dias(pDTSaidaPrevista) THEN
+		RETURN false;
+    END IF;
+
+	SELECT ic_danificado INTO vDanificado FROM equipamento 
+	WHERE sg_equipamento = pSiglaEquipamento;
+	IF (vDanificado = TRUE) THEN 
+		RETURN false;
+	END IF;
+
+	SELECT 
+		COUNT(*) = 0 INTO vNaoPego
+	FROM
+		reserva_equipamento
+	WHERE
+		sg_equipamento = pSiglaEquipamento
+			AND dt_saida IS NULL;
+
+	SELECT 
+		COUNT(*) = 0 INTO vDevolvido
+	FROM
+		reserva_equipamento
+	WHERE
+		sg_equipamento = pSiglaEquipamento 
+	AND ((dt_saida IS NOT NULL AND dt_devolucao IS NULL));
+
+	SELECT 
+		COUNT(*) <> 0 INTO vJaReservadoParaDataEHora
+	FROM
+		reserva_equipamento
+	WHERE
+		sg_equipamento = pSiglaEquipamento
+			AND pDTSaidaPrevista <= dt_devolucao_prevista AND pDTDevolucaoPrevista >= dt_saida_prevista
+			AND dt_cancelamento IS NULL;
+
+	IF (vDevolvido = FALSE) THEN 
+		IF (vNaoPego = FALSE) THEN
+			RETURN FALSE;
+		END IF;
+		RETURN FALSE;
+	END IF;
+	IF (vJaReservadoParaDataEHora = FALSE) THEN 
+		RETURN TRUE;
+	END IF;
+	RETURN FALSE;
 END$$
 
 DROP PROCEDURE IF EXISTS reservarEquipamento$$
@@ -452,44 +477,16 @@ END$$
 DROP PROCEDURE IF EXISTS listarEquipamentosDisponiveis$$
 CREATE PROCEDURE listarEquipamentosDisponiveis(pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
 BEGIN
-	SELECT e.sg_equipamento, e.nm_equipamento FROM equipamento e
-	LEFT JOIN reserva_equipamento re ON e.sg_equipamento = re.sg_equipamento
-		AND (
-			(dt_saida_prevista >= pDTSaidaPrevista AND dt_saida_prevista < pDTDevolucaoPrevista) OR
-			(dt_devolucao_prevista > pDTSaidaPrevista AND dt_devolucao_prevista <= pDTDevolucaoPrevista)
-		)
-	WHERE
-		re.sg_equipamento IS NULL
-		AND e.ic_danificado = FALSE
-        AND NOT EXISTS (
-			SELECT 1
-			FROM reserva_equipamento re2
-			WHERE re2.sg_equipamento = e.sg_equipamento
-			AND DATE(re2.dt_saida_prevista) < CURDATE()
-            AND re2.dt_devolucao IS NULL
-		);
+	SELECT sg_equipamento, nm_equipamento FROM equipamento 
+	WHERE verificarSeEquipamentoPodeSerReservado(sg_equipamento, pDTSaidaPrevista, pDTDevolucaoPrevista);
 END$$
 
 DROP PROCEDURE IF EXISTS listarEquipamentosDisponiveisSigla$$
 CREATE PROCEDURE listarEquipamentosDisponiveisSigla(pSigla VARCHAR(20), pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
 BEGIN
-	SELECT e.sg_equipamento, e.nm_equipamento FROM equipamento e
-	LEFT JOIN reserva_equipamento re ON e.sg_equipamento = re.sg_equipamento
-		AND (
-			(dt_saida_prevista >= pDTSaidaPrevista AND dt_saida_prevista < pDTDevolucaoPrevista) OR
-			(dt_devolucao_prevista > pDTSaidaPrevista AND dt_devolucao_prevista <= pDTDevolucaoPrevista)
-		)
-	WHERE
-		e.sg_equipamento LIKE CONCAT(pSigla, '%') AND
-		re.sg_equipamento IS NULL
-		AND e.ic_danificado = FALSE
-        AND NOT EXISTS (
-			SELECT 1
-			FROM reserva_equipamento re2
-			WHERE re2.sg_equipamento = e.sg_equipamento
-			AND DATE(re2.dt_saida_prevista) < CURDATE()
-            AND re2.dt_devolucao IS NULL
-		);
+	SELECT sg_equipamento, nm_equipamento FROM equipamento 
+	WHERE sg_equipamento LIKE CONCAT(pSigla, '%') 
+	AND verificarSeEquipamentoPodeSerReservado(sg_equipamento, pDTSaidaPrevista, pDTDevolucaoPrevista);
 END$$
 
 DROP PROCEDURE IF EXISTS listarEquipamento$$
@@ -503,26 +500,55 @@ END$$
 DROP FUNCTION IF EXISTS verificarSeAmbientePodeSerReservado$$
 CREATE FUNCTION verificarSeAmbientePodeSerReservado(pSiglaAmbiente VARCHAR(20), pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME) RETURNS BOOL
 BEGIN
-	DECLARE vPodeSerReservado BOOL DEFAULT FALSE;
+	DECLARE vEmUsoPorAulaFixa BOOL DEFAULT FALSE;
+	DECLARE vDevolvido BOOL DEFAULT FALSE;
+	DECLARE vJaReservadoParaDataEHora BOOL DEFAULT FALSE;
 
-	SELECT COUNT(DISTINCT a.sg_ambiente) <> 0 INTO vPodeSerReservado FROM ambiente a
-	LEFT JOIN reserva_ambiente ra ON a.sg_ambiente = ra.sg_ambiente
-		AND (
-			(ra.dt_saida_prevista >= pDTSaidaPrevista AND ra.dt_saida_prevista < pDTDevolucaoPrevista) OR
-			(ra.dt_devolucao_prevista > pDTSaidaPrevista AND ra.dt_devolucao_prevista <= pDTDevolucaoPrevista)
-		)
-	LEFT JOIN uso_ambiente ua ON a.sg_ambiente = ua.sg_ambiente
-		AND (
-			(ua.hr_inicio_uso <= pDTDevolucaoPrevista AND ua.hr_termino_uso >= pDTSaidaPrevista)
-			AND ua.cd_dia_semana = DAYOFWEEK(pDTSaidaPrevista)
-		)
+	IF verificarSeDataPassaDe7Dias(pDTSaidaPrevista) THEN
+		RETURN false;
+    END IF;
+
+	SELECT 
+		COUNT(cd_dia_semana) = 0
+	INTO vEmUsoPorAulaFixa FROM
+		uso_ambiente
 	WHERE
-		ra.sg_ambiente IS NULL
-        AND a.sg_ambiente = pSiglaAmbiente
-		AND ua.sg_ambiente IS NULL;
-        
-	RETURN vPodeSerReservado;
-END;
+		sg_ambiente = pSiglaAmbiente
+			AND cd_dia_semana = WEEKDAY(pDTSaidaPrevista) + 1
+			AND ((TIME(pDTSaidaPrevista) BETWEEN hr_inicio_uso AND hr_termino_uso)
+			OR (TIME(pDTDevolucaoPrevista) BETWEEN hr_inicio_uso AND hr_termino_uso));
+
+	IF (vEmUsoPorAulaFixa = false) THEN
+		RETURN false;
+	END IF;
+
+	SELECT 
+		COUNT(*) = 0 INTO vDevolvido
+	FROM
+		reserva_ambiente
+	WHERE
+		sg_ambiente = pSiglaAmbiente 
+	AND ((dt_saida IS NOT NULL AND dt_devolucao IS NULL));
+
+	SELECT 
+		COUNT(*) <> 0 INTO vJaReservadoParaDataEHora
+	FROM
+		reserva_ambiente
+	WHERE
+		sg_ambiente = pSiglaAmbiente
+			AND pDTSaidaPrevista <= dt_devolucao_prevista AND pDTDevolucaoPrevista >= dt_saida_prevista
+			AND dt_cancelamento IS NULL;
+
+	IF (vJaReservadoParaDataEHora = FALSE) THEN 
+		RETURN TRUE;
+	ELSE 
+		IF (vDevolvido = FALSE) THEN 
+			RETURN TRUE;
+		END IF;
+	END IF;
+	RETURN FALSE;
+
+END$$
 
 DROP PROCEDURE IF EXISTS reservarAmbiente$$
 CREATE PROCEDURE reservarAmbiente(pSiglaAmbiente VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
@@ -694,40 +720,16 @@ END$$
 DROP PROCEDURE IF EXISTS listarAmbientesDisponiveis$$
 CREATE PROCEDURE listarAmbientesDisponiveis(pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
 BEGIN
-	SELECT DISTINCT a.sg_ambiente, a.nm_ambiente FROM ambiente a
-	LEFT JOIN reserva_ambiente ra ON a.sg_ambiente = ra.sg_ambiente
-		AND (
-			(ra.dt_saida_prevista >= pDTSaidaPrevista AND ra.dt_saida_prevista < pDTDevolucaoPrevista) OR
-			(ra.dt_devolucao_prevista > pDTSaidaPrevista AND ra.dt_devolucao_prevista <= pDTDevolucaoPrevista)
-		)
-	LEFT JOIN uso_ambiente ua ON a.sg_ambiente = ua.sg_ambiente
-		AND (
-			(ua.hr_inicio_uso <= pDTDevolucaoPrevista AND ua.hr_termino_uso >= pDTSaidaPrevista)
-			AND ua.cd_dia_semana = DAYOFWEEK(pDTSaidaPrevista)
-		)
-	WHERE
-		ra.sg_ambiente IS NULL
-		AND ua.sg_ambiente IS NULL;
+	SELECT sg_ambiente, nm_ambiente FROM ambiente 
+	WHERE verificarSeAmbientePodeSerReservado(sg_ambiente, pDTSaidaPrevista, pDTDevolucaoPrevista);
 END$$
 
 DROP PROCEDURE IF EXISTS listarAmbientesDisponiveisSigla$$
 CREATE PROCEDURE listarAmbientesDisponiveisSigla(pSigla VARCHAR(20), pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
 BEGIN
-	SELECT DISTINCT a.sg_ambiente, a.nm_ambiente FROM ambiente a
-	LEFT JOIN reserva_ambiente ra ON a.sg_ambiente = ra.sg_ambiente
-		AND (
-			(ra.dt_saida_prevista >= pDTSaidaPrevista AND ra.dt_saida_prevista < pDTDevolucaoPrevista) OR
-			(ra.dt_devolucao_prevista > pDTSaidaPrevista AND ra.dt_devolucao_prevista <= pDTDevolucaoPrevista)
-		)
-	LEFT JOIN uso_ambiente ua ON a.sg_ambiente = ua.sg_ambiente
-		AND (
-			(ua.hr_inicio_uso <= pDTDevolucaoPrevista AND ua.hr_termino_uso >= pDTSaidaPrevista)
-			AND ua.cd_dia_semana = DAYOFWEEK(pDTSaidaPrevista)
-		)
-	WHERE
-		a.sg_ambiente LIKE CONCAT(pSigla, '%') AND
-		ra.sg_ambiente IS NULL
-		AND ua.sg_ambiente IS NULL;
+	SELECT sg_ambiente, nm_ambiente FROM ambiente 
+	WHERE sg_ambiente LIKE CONCAT(pSigla, '%') 
+	AND verificarSeAmbientePodeSerReservado(sg_ambiente, pDTSaidaPrevista, pDTDevolucaoPrevista);
 END$$
 
 DROP PROCEDURE IF EXISTS listarAmbiente$$
