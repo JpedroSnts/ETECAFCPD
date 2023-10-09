@@ -155,6 +155,13 @@ CREATE TABLE ocorrencia_ambiente
 		REFERENCES tipo_ocorrencia_ambiente (cd_tipo_ocorrencia)
 );
 
+CREATE TABLE token
+(
+	cd_token VARCHAR(32),
+	cd_rm INT,
+	CONSTRAINT pk_token PRIMARY KEY (cd_token, cd_rm)
+);
+
 DELIMITER $$
 
 /* ------------------------------ USUARIO ------------------------------ */
@@ -951,6 +958,34 @@ BEGIN
 	JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente 
 	where ra.dt_devolucao is null and ra.dt_saida is null and ra.dt_saida_prevista < now() AND
 	(re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal);
+END$$
+
+-- TOKEN
+
+DROP PROCEDURE IF EXISTS buscarToken$$
+CREATE PROCEDURE buscarToken(pCodigoToken VARCHAR(32))
+BEGIN
+	SELECT * FROM token WHERE cd_token = pCodigoToken;
+END$$
+
+DROP PROCEDURE IF EXISTS gerarToken$$
+CREATE PROCEDURE gerarToken(pCodigoUsuario INT, pCodigoToken VARCHAR(32))
+BEGIN
+	INSERT INTO token VALUES (pCodigoToken, pCodigoUsuario);
+END$$
+
+DROP PROCEDURE IF EXISTS alterarSenhaToken$$
+CREATE PROCEDURE alterarSenhaToken(pCodigoToken VARCHAR(32), pNovaSenha VARCHAR(255), pConfirmacaoSenha VARCHAR(255))
+BEGIN
+	DECLARE vRM INT DEFAULT 0;
+	SELECT cd_rm INTO vRM FROM token WHERE cd_token = pCodigoToken;
+	IF (vRM = 0) THEN 
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Token inexistente';
+	END IF;
+	IF (pNovaSenha <> pConfirmacaoSenha) THEN 
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'As senhas não coincidem';
+	END IF;
+	UPDATE usuario SET nm_senha = md5(pNovaSenha) WHERE cd_rm = vRM;
 END$$
 
 DELIMITER ;
