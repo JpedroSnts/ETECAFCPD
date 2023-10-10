@@ -106,6 +106,7 @@
     <Compile Include="Controller\RelatorioController.cs" />
     <Compile Include="Controller\ReservaAmbienteController.cs" />
     <Compile Include="Controller\ReservaEquipamentoController.cs" />
+    <Compile Include="Controller\TokenController.cs" />
     <Compile Include="Controller\UsoAmbienteController.cs" />
     <Compile Include="Controller\UsuarioController.cs" />
     <Compile Include="Model\DiaSemana.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Model\EStatusReserva.cs" />
     <Compile Include="Model\Notificacao.cs" />
     <Compile Include="Model\Relatorio.cs" />
+    <Compile Include="Model\Token.cs" />
     <Compile Include="Model\UsoAmbiente.cs" />
     <Compile Include="Model\Equipamento.cs" />
     <Compile Include="Model\OcorrenciaAmbiente.cs" />
