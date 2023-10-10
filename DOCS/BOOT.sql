@@ -158,9 +158,9 @@ CREATE TABLE ocorrencia_ambiente
 CREATE TABLE token
 (
 	cd_token VARCHAR(32),
-	cd_rm INT,
+	nm_email VARCHAR(255),
 	dt_token DATETIME,
-	CONSTRAINT pk_token PRIMARY KEY (cd_token, cd_rm)
+	CONSTRAINT pk_token PRIMARY KEY (cd_token)
 );
 
 DELIMITER $$
@@ -970,18 +970,24 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS gerarToken$$
-CREATE PROCEDURE gerarToken(pCodigoUsuario INT, pCodigoToken VARCHAR(32))
+CREATE PROCEDURE gerarToken(pEmailUsuario VARCHAR(255), pCodigoToken VARCHAR(32))
 BEGIN
-	INSERT INTO token VALUES (pCodigoToken, pCodigoUsuario, now());
+	DECLARE vQtUsuarios INT DEFAULT 0;
+	SELECT COUNT(*) INTO vQtUsuarios FROM usuario WHERE nm_email = pEmailUsuario;
+	IF (vQtUsuarios = 0) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Email não cadastrado';
+	END IF;
+	INSERT INTO token VALUES (pCodigoToken, pEmailUsuario, now());
 END$$
 
 DROP PROCEDURE IF EXISTS alterarSenhaToken$$
 CREATE PROCEDURE alterarSenhaToken(pCodigoToken VARCHAR(32), pNovaSenha VARCHAR(255), pConfirmacaoSenha VARCHAR(255))
 BEGIN
-	DECLARE vRM INT DEFAULT 0;
+	DECLARE vRm INT DEFAULT 0;
+	DECLARE vEmail VARCHAR(255) DEFAULT '';
 	DECLARE vDataToken DATETIME;
-	SELECT cd_rm, dt_token INTO vRM , vDataToken FROM token WHERE cd_token = pCodigoToken;
-	IF (vRM = 0) THEN 
+	SELECT nm_email, dt_token INTO vEmail, vDataToken FROM token WHERE cd_token = pCodigoToken;
+	IF (vEmail = '') THEN 
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Token inexistente';
 	END IF;
 	IF (DATE_ADD(vDataToken, INTERVAL 5 MINUTE) > NOW()) THEN
@@ -991,6 +997,7 @@ BEGIN
 	IF (pNovaSenha <> pConfirmacaoSenha) THEN 
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'As senhas não coincidem';
 	END IF;
+	SELECT cd_rm INTO vRm FROM usuario WHERE nm_email = vEmail;
 	UPDATE usuario SET nm_senha = md5(pNovaSenha) WHERE cd_rm = vRM;
 	DELETE FROM token WHERE cd_token = pCodigoToken;
 END$$
