@@ -1,6 +1,7 @@
 DROP SCHEMA IF EXISTS gerenciamento_cpd;
 CREATE SCHEMA gerenciamento_cpd;
 USE gerenciamento_cpd;
+SET SQL_SAFE_UPDATES = 0;
 
 CREATE TABLE tipo_usuario
 (
@@ -973,7 +974,7 @@ DROP PROCEDURE IF EXISTS gerarToken$$
 CREATE PROCEDURE gerarToken(pEmailUsuario VARCHAR(255), pCodigoToken VARCHAR(32))
 BEGIN
 	DECLARE vQtUsuarios INT DEFAULT 0;
-	
+	DELETE FROM token WHERE nm_email = pEmailUsuario;
 	SELECT COUNT(*) INTO vQtUsuarios FROM usuario WHERE nm_email = pEmailUsuario;
 	IF (vQtUsuarios = 0) THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Email não cadastrado';

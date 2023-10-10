@@ -286,6 +286,7 @@ button, input[type="button"], input[type="submit"] {
 	font-size: 14px;
 	margin-top: 18px;
 	color: #f00;
+	margin: 5px;
 }
 
 .cardSucesso {
@@ -361,7 +362,6 @@ button, input[type="button"], input[type="submit"] {
 		outline: 0;
 	}
 	#mainAlterarSenha p {
-		margin-top: 30px;
 		font-size: 12px;
 	}
 
@@ -378,10 +378,6 @@ button, input[type="button"], input[type="submit"] {
 		font-size: 10px;
 		font-weight: 600;
 		margin-top: 30px;
-	}
-
-	#mensagemVerificacao {
-		margin-top: 16px;
 	}
 
 	/* ---------------------------- HOME COM RESERVA ---------------------------- */
@@ -465,4 +461,19 @@ button, input[type="button"], input[type="submit"] {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+}
+
+.centro {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.loginEsqueciSenha {
+	color: #114A55;
+	font-weight: 600;
+	text-decoration: none;
+	font-size: 14px;
 }

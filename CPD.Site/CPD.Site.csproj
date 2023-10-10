@@ -79,6 +79,7 @@
     <Content Include="Api\excluirGradeHorario.aspx" />
     <Content Include="Api\reservasProfessor.aspx" />
     <Content Include="dashboard.aspx" />
+    <Content Include="esqueciMinhaSenha.aspx" />
     <Content Include="Estatico\css\painelControle.css" />
     <Content Include="Estatico\css\dashboard.css" />
     <Content Include="Estatico\css\estiloGeral.css" />
@@ -177,6 +178,13 @@
     </Compile>
     <Compile Include="dashboard.aspx.designer.cs">
       <DependentUpon>dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="esqueciMinhaSenha.aspx.cs">
+      <DependentUpon>esqueciMinhaSenha.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="esqueciMinhaSenha.aspx.designer.cs">
+      <DependentUpon>esqueciMinhaSenha.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
