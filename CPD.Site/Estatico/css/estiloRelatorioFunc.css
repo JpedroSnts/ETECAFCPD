@@ -76,3 +76,15 @@ button {
 button:active {
     box-shadow: inset 0 0 5px rgba(0, 0, 0, 2);
   }
+
+#ddlRelatorio {
+    color:black;
+}
+
+#dataInicio {
+    color: black;
+}
+
+#dataFinal {
+    color: black;
+}

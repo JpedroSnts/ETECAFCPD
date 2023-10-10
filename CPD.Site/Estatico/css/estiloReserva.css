@@ -92,6 +92,7 @@ main { width: min(1200px, 90%); margin: auto; }
 h1 { font-size: 18px; text-align: center; }
 #inputs { display: flex;justify-content: center; margin-top: 30px; align-items: center; }
 
+
 input {
 	width: 40%;
 	border-radius: 5px;
@@ -103,19 +104,38 @@ input {
 	margin: 0 10px 0px 0px;
 }
 
-#txtInputData { margin-right: 10px; margin-left: 0px; }
-.inputsHorario { width: 25%; margin-left: 0px; margin-right: 10px; }
+#txtInputData {
+	margin-right: 10px;
+	margin-left: 0px;
+	color: black;
+}
+
+#txtHorarioInicio{
+	color: black;
+}
+
+#txtHorarioFim {
+	color: black;
+}
+
+.inputsHorario {
+	width: 25%;
+	margin-left: 0px;
+	margin-right: 10px;
+}
 
 input[type="date"]::-webkit-calendar-picker-indicator {
 	background: url("../imagens/Calendario.png") no-repeat;
 	width: 20px;
 	height: 22px;
+	color: black;
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator {
 	background: url("../imagens/Clock.png") no-repeat;
 	width: 20px;
 	height: 22px;
+	color: black;
 }
 
 button {
