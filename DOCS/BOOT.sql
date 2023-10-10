@@ -973,6 +973,7 @@ DROP PROCEDURE IF EXISTS gerarToken$$
 CREATE PROCEDURE gerarToken(pEmailUsuario VARCHAR(255), pCodigoToken VARCHAR(32))
 BEGIN
 	DECLARE vQtUsuarios INT DEFAULT 0;
+	
 	SELECT COUNT(*) INTO vQtUsuarios FROM usuario WHERE nm_email = pEmailUsuario;
 	IF (vQtUsuarios = 0) THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Email não cadastrado';
@@ -990,7 +991,7 @@ BEGIN
 	IF (vEmail = '') THEN 
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Token inexistente';
 	END IF;
-	IF (DATE_ADD(vDataToken, INTERVAL 5 MINUTE) > NOW()) THEN
+	IF (DATE_ADD(vDataToken, INTERVAL 5 MINUTE) < NOW()) THEN
 		DELETE FROM token WHERE cd_token = pCodigoToken;
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Token inválido';
 	END IF;
