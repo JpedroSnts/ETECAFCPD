@@ -159,6 +159,7 @@ CREATE TABLE token
 (
 	cd_token VARCHAR(32),
 	cd_rm INT,
+	dt_token DATETIME,
 	CONSTRAINT pk_token PRIMARY KEY (cd_token, cd_rm)
 );
 
@@ -971,21 +972,27 @@ END$$
 DROP PROCEDURE IF EXISTS gerarToken$$
 CREATE PROCEDURE gerarToken(pCodigoUsuario INT, pCodigoToken VARCHAR(32))
 BEGIN
-	INSERT INTO token VALUES (pCodigoToken, pCodigoUsuario);
+	INSERT INTO token VALUES (pCodigoToken, pCodigoUsuario, now());
 END$$
 
 DROP PROCEDURE IF EXISTS alterarSenhaToken$$
 CREATE PROCEDURE alterarSenhaToken(pCodigoToken VARCHAR(32), pNovaSenha VARCHAR(255), pConfirmacaoSenha VARCHAR(255))
 BEGIN
 	DECLARE vRM INT DEFAULT 0;
-	SELECT cd_rm INTO vRM FROM token WHERE cd_token = pCodigoToken;
+	DECLARE vDataToken DATETIME;
+	SELECT cd_rm, dt_token INTO vRM , vDataToken FROM token WHERE cd_token = pCodigoToken;
 	IF (vRM = 0) THEN 
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Token inexistente';
+	END IF;
+	IF (DATE_ADD(vDataToken, INTERVAL 5 MINUTE) > NOW()) THEN
+		DELETE FROM token WHERE cd_token = pCodigoToken;
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Token inválido';
 	END IF;
 	IF (pNovaSenha <> pConfirmacaoSenha) THEN 
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'As senhas não coincidem';
 	END IF;
 	UPDATE usuario SET nm_senha = md5(pNovaSenha) WHERE cd_rm = vRM;
+	DELETE FROM token WHERE cd_token = pCodigoToken;
 END$$
 
 DELIMITER ;
