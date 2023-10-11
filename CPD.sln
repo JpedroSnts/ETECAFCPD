@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPD.Repositorio", "CPD.Repositorio\CPD.Repositorio.csproj", "{D3BB4593-7BA1-435B-9188-9311CA5C7456}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPD.Site", "CPD.Site\CPD.Site.csproj", "{CE76B17F-A3BA-416D-807E-AEAF4218F157}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPD.Repositorio", "CPD.Repositorio\CPD.Repositorio.csproj", "{D3BB4593-7BA1-435B-9188-9311CA5C7456}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
