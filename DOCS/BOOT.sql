@@ -1016,13 +1016,14 @@ INSERT INTO tipo_usuario VALUES (03, 'Diretor');
 INSERT INTO usuario VALUES (36400, 'Thiago Lima', 'thiago.lima144@etec.sp.gov.br', md5('123321'), '36400.png', 1);
 INSERT INTO usuario VALUES (36401, 'Rafael dos Santos', 'rafael.santos11@etec.sp.gov.br', md5('123'), '36401.png', 2);
 INSERT INTO usuario VALUES (36402, 'João Lima', 'joao.lima143@etec.sp.gov.br', md5('123'), '36402.png', 2);
-INSERT INTO usuario VALUES (36403, 'Miguel Soares Nascimento', 'miguel.nascimento11@etec.sp.gov.br', 'uuaapgdf', '36403.png', 2);
-INSERT INTO usuario VALUES (36404, 'Caio Victor Gonçalves', 'caio.goncalves2@etec.sp.gov.br', 'hhgsqazx', '36404.png', 2);
-INSERT INTO usuario VALUES (36427, 'Rafael Gomes da Costa', 'rafael.costa23@etec.sp.gov.br', 'jjdswwa', '36427.png', 2);
-INSERT INTO usuario VALUES (36421, 'Carlos Eduardo Pietro Costa', 'carlos.costa08@etec.sp.gov.br', 'ggddeqq234', '36421.png', 2);
-INSERT INTO usuario VALUES (36429, 'Márcia Heloise Teixeira', 'marcia.teixeira03@etec.sp.gov.br', '883432kj', '36429.png', 2);
-INSERT INTO usuario VALUES (36300, 'Isabela Marli Helena Moraes', 'isabela.moraes@etec.sp.gov.br', 'ddggjfi', '36300.png', 3);
+INSERT INTO usuario VALUES (36403, 'Miguel Soares Nascimento', 'miguel.nascimento11@etec.sp.gov.br', md5('123'), '36403.png', 2);
+INSERT INTO usuario VALUES (36404, 'Caio Victor Gonçalves', 'caio.goncalves2@etec.sp.gov.br', md5('123'), '36404.png', 2);
+INSERT INTO usuario VALUES (36427, 'Rafael Gomes da Costa', 'rafael.costa23@etec.sp.gov.br', md5('123'), '36427.png', 2);
+INSERT INTO usuario VALUES (36421, 'Carlos Eduardo Pietro Costa', 'carlos.costa08@etec.sp.gov.br', md5('123'), '36421.png', 2);
+INSERT INTO usuario VALUES (36429, 'Márcia Heloise Teixeira', 'marcia.teixeira03@etec.sp.gov.br', md5('123'), '36429.png', 2);
+INSERT INTO usuario VALUES (36300, 'Isabela Marli Helena Moraes', 'isabela.moraes@etec.sp.gov.br', md5('123'), '36300.png', 3);
 /*SELECT * FROM usuario;*/
+
 INSERT INTO notificacao VALUES(1, '1 Notebook está disponivel para reserva', '2023-08-01 08:50:00', 'Equipamento Disponível');
 INSERT INTO notificacao VALUES(2, '3 Notebooks estão disponíveis para reserva', '2023-08-02 10:00:00', 'Equipamento Disponível');
 INSERT INTO notificacao VALUES(3, '1 Laboratório está disponível para reserva', '2023-08-03 14:50:00', 	'Espaço Disponível');
@@ -1062,9 +1063,9 @@ INSERT INTO reserva_equipamento VALUES ('CONTROLE12', 36402, '2023-06-06 07:50:0
 INSERT INTO reserva_equipamento VALUES ('NOTE02', 36402, '2023-06-05 13:30:00', '2023-06-05 14:25:00', '2023-06-05 13:27:00', '2023-06-05 14:23:00', null);
 INSERT INTO reserva_equipamento VALUES ('HDMI05', 36402, '2023-06-05 13:30:01', '2023-06-05 14:25:00', '2023-06-05 13:27:00', '2023-06-05 14:23:00', null);
 INSERT INTO reserva_equipamento VALUES ('HDMI05', 36402, '2023-06-06 13:30:01', '2023-06-06 14:25:00', '2023-06-06 13:25:00', '2023-06-06 14:22:00', null);
-INSERT INTO reserva_equipamento VALUES ('NOTE05', 36401, DATE_ADD(ADDTIME(NOW(), "03:00:00"), INTERVAL 2 DAY), DATE_ADD(NOW(), INTERVAL 2 DAY), null, null, null);
-INSERT INTO reserva_equipamento VALUES ('HDMI03', 36401, DATE_ADD(ADDTIME(NOW(), "02:00:00"), INTERVAL 4 DAY), DATE_ADD(NOW(), INTERVAL 4 DAY), null, null, null);
-INSERT INTO reserva_equipamento VALUES ('CONTROLE12', 36401, DATE_ADD(ADDTIME(NOW(), "06:00:00"), INTERVAL 6 DAY), DATE_ADD(NOW(), INTERVAL 6 DAY), null, null, DATE_ADD(NOW(), INTERVAL 1 DAY));
+INSERT INTO reserva_equipamento VALUES ('NOTE05', 36401, DATE_ADD(ADDTIME(NOW(), "03:00:00"), INTERVAL 2 DAY), DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 2 DAY), null, null, null);
+INSERT INTO reserva_equipamento VALUES ('HDMI03', 36401, DATE_ADD(ADDTIME(NOW(), "02:00:00"), INTERVAL 4 DAY), DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 4 DAY), null, null, null);
+INSERT INTO reserva_equipamento VALUES ('CONTROLE12', 36401, DATE_ADD(ADDTIME(NOW(), "06:00:00"), INTERVAL 6 DAY), DATE_ADD(ADDTIME(NOW(), "08:00:00"), INTERVAL 6 DAY), null, null, DATE_ADD(NOW(), INTERVAL 1 DAY));
 /*SELECT * FROM reserva_equipamento;*/
 
 INSERT INTO tipo_ocorrencia_equipamento VALUES (1, 'Notebook com defeito fisico leve');
@@ -1129,9 +1130,9 @@ INSERT INTO reserva_ambiente VALUES ('INFOLAB07', 36402, '2023-06-14 17:10:00', 
 INSERT INTO reserva_ambiente VALUES ('INFOLAB01', 36401, '2023-06-05 13:30:00', '2023-06-05 13:32:00', '2023-06-05 14:20:00', '2023-06-05 14:21:30', null);
 INSERT INTO reserva_ambiente VALUES ('INFOLAB05', 36401, '2023-06-06 13:30:00', '2023-06-06 13:31:43', '2023-06-06 14:15:00', '2023-06-06 14:17:00', null);
 INSERT INTO reserva_ambiente VALUES ('INFOLAB07', 36402, '2023-06-07 16:00:00', '2023-06-07 16:01:46', '2023-06-07 17:10:00', '2023-06-07 17:11:20', null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB01', 36401, DATE_ADD(ADDTIME(NOW(), "02:00:00"), INTERVAL 3 DAY), DATE_ADD(NOW(), INTERVAL 3 DAY), null, null, null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB05', 36401, DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 5 DAY), DATE_ADD(NOW(), INTERVAL 5 DAY), null, null, null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB07', 36401, DATE_ADD(ADDTIME(NOW(), "07:00:00"), INTERVAL 7 DAY), DATE_ADD(NOW(), INTERVAL 7 DAY), null, null, DATE_ADD(NOW(), INTERVAL 1 DAY));
+INSERT INTO reserva_ambiente VALUES ('INFOLAB01', 36401, DATE_ADD(ADDTIME(NOW(), "02:00:00"), INTERVAL 3 DAY), DATE_ADD(ADDTIME(NOW(), "04:00:00"), INTERVAL 3 DAY), null, null, null);
+INSERT INTO reserva_ambiente VALUES ('INFOLAB05', 36401, DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 5 DAY), DATE_ADD(ADDTIME(NOW(), "08:00:00"), INTERVAL 5 DAY), null, null, null);
+INSERT INTO reserva_ambiente VALUES ('INFOLAB07', 36401, DATE_ADD(ADDTIME(NOW(), "07:00:00"), INTERVAL 7 DAY), DATE_ADD(ADDTIME(NOW(), "09:00:00"), INTERVAL 7 DAY), null, null, DATE_ADD(NOW(), INTERVAL 1 DAY));
 /*SELECT * FROM reserva_ambiente;*/
 
 INSERT INTO ocorrencia_ambiente VALUES ('2023-06-12 08:55:00', 'INFOLAB01', 36402, '2023-06-12 08:00:00', 2, 'O professor João, novamente, ao entrar no laboratório notou que o laboratório tinha 4 computadores ligados'); 
