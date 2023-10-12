@@ -83,10 +83,34 @@ namespace CPD.Site
             {
                 DateTime inicio = DateTime.Parse($"{txtInputData.Text} {txtHorarioInicio.Text}");
                 DateTime fim = DateTime.Parse($"{txtInputData.Text} {txtHorarioFim.Text}");
-                if (DateTime.Compare(inicio, fim) > 0) return;
-                if (DateTime.Compare(inicio, DateTime.Now) < 0) return;
+                if (DateTime.Compare(inicio, fim) > 0)
+                {
+                    litErro.Text = $@"<div class='box1'>
+				        <p class='erro'>Horário inválido</p>
+				        <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			        </div>";
+                    return;
+                };
+                if (DateTime.Compare(inicio, DateTime.Now) < 0)
+                {
+                    litErro.Text = $@"<div class='box1'>
+				        <p class='erro'>Data inválida</p>
+				        <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			        </div>";
+                    return;
+                };
                 AdicionarItensLivresNoPanel(inicio, fim);
                 pnlBodyReservar.Visible = true;
+            } 
+            else
+            {
+                if (IsPostBack)
+                {
+                    litErro.Text = $@"<div class='box1'>
+				        <p class='erro'>Preencha todos os campos</p>
+				        <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			        </div>";
+                }
             }
         }
 

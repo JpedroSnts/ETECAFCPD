@@ -19,8 +19,8 @@
 <body>
     <form id="form1" runat="server">
         <uc:Header ID="PartialHeader" runat="server" />
-        <asp:Literal ID="litErro" runat="server"></asp:Literal>
         <main>
+            <div class="caixa-flutuante-erros"><asp:Literal ID="litErro" runat="server"></asp:Literal></div>
             <h1>Realizar Reserva</h1>
             <div id="inputs">
                 <asp:TextBox ID="txtInputData" runat="server" TextMode="Date"></asp:TextBox>

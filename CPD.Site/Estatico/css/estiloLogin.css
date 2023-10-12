@@ -75,14 +75,14 @@ input {
         outline: 0;
     }
 
-input[type=number]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-}
+    input[type=number]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+    }
 
-input[type=number] {
-    -moz-appearance: textfield;
-    appearance: textfield;
-}
+    input[type=number] {
+        -moz-appearance: textfield;
+        appearance: textfield;
+    }
 
 p {
     font-size: 14px;
@@ -104,7 +104,7 @@ button, input[type="button"], input[type="submit"] {
     background-color: #114A55;
     border-radius: 20px;
     padding: 5px 20px;
-    margin: 0;
+    margin-top: 10px;
     cursor: pointer;
 }
 
@@ -210,4 +210,56 @@ button, input[type="button"], input[type="submit"] {
         font-weight: 600;
         margin-top: 30px;
     }
+}
+
+/* CAIXA DE ERRO */
+
+.caixa-flutuante-erros {
+    width: min(500px, 90%);
+    position: absolute;
+    top: 10px;
+    right: 50%;
+    transform: translateX(50%);
+}
+
+@media only screen and (max-width: 800px) {
+    .caixa-flutuante-erros {
+        position: absolute;
+        bottom: 10px;
+        top: auto;
+        width: 90%;
+        transform: translateX(50%);
+        right: 50%;
+    }
+}
+
+.box1 {
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding: 10px;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #fff;
+    border: thin solid #bbbbbbbf;
+    box-shadow: 1px 1px 5px #bbbbbbbf;
+}
+
+    .box1 p {
+        padding: 0;
+        margin: 0;
+        margin-right: 20px;
+        font-size: 14px;
+    }
+
+        .box1 p.erro {
+            color: #dc3545;
+            font-weight: 600;
+        }
+
+.close-box {
+    width: 15px;
+    cursor: pointer;
 }

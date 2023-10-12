@@ -50,7 +50,10 @@ namespace CPD.Site
         {
             if (String.IsNullOrEmpty(txtNovaSenha.Text) || String.IsNullOrEmpty(txtConfirmarSenha.Text))
             {
-                litErro.Text = "Preencha todos os campos";
+                litErro.Text = $@"<div class='box1'>
+				    <p class='erro'>Preencha todos os campos</p>
+				    <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			    </div>";
                 return;
             }
             try
@@ -61,7 +64,10 @@ namespace CPD.Site
             }
             catch (SPException ex)
             {
-                litErro.Text = ex.Message;
+                litErro.Text = $@"<div class='box1'>
+				    <p class='erro'>{ex.Message}</p>
+				    <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			    </div>";
             }
         }
 
@@ -82,15 +88,24 @@ namespace CPD.Site
                 }
                 catch (SPException ex)
                 {
-                    litErro2.Text = ex.Message;
+                    litErro.Text = $@"<div class='box1'>
+				        <p class='erro'>{ex.Message}</p>
+				        <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			        </div>";
                 }
                 catch (Exception ex) 
                 {
-                    litErro2.Text = ex.Message;
+                    litErro.Text = $@"<div class='box1'>
+				        <p class='erro'>{ex.Message}</p>
+				        <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			        </div>";
                 }
                 return;
             }
-            litErro2.Text = "Insira um email válido!";
+            litErro.Text = $@"<div class='box1'>
+				<p class='erro'>Insira um email válido</p>
+				<img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			</div>";
         }
     }
 }

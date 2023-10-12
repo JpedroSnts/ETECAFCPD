@@ -19,6 +19,7 @@
     <form id="form1" runat="server">
         <uc:Header ID="PartialHeader" runat="server" />
         <main id="mainAlterarSenha">
+            <div class="caixa-flutuante-erros"><asp:Literal ID="litErro" runat="server"></asp:Literal></div>
             <h1>Alterar Senha</h1>
             <div class="divLabels">
                 <label for="atualSenhaUsuario">Senha Atual</label><br />
@@ -47,7 +48,6 @@
                     <br />
                 </div>
             </div>
-            <p id="mensagemVerificacao"><asp:Literal ID="litErro" runat="server"></asp:Literal>‎</p>
             <asp:Button ID="btnAlterarSenha" runat="server" Text="Alterar Senha" OnClick="btnAlterarSenha_Click" />
             <p id="pVersao">Versão 1.0 - 2023</p>
         </main>

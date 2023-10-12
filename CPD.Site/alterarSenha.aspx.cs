@@ -28,7 +28,10 @@ namespace CPD.Site
         {
             if (String.IsNullOrEmpty(txtSenhaAtual.Text) || String.IsNullOrEmpty(txtNovaSenha.Text) || String.IsNullOrEmpty(txtConfirmarSenha.Text))
             {
-                litErro.Text = "Preencha os campos";
+                litErro.Text = $@"<div class='box1'>
+				    <p class='erro'>Preencha todos os campos</p>
+				    <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			    </div>";
                 return;
             }
             try
@@ -36,12 +39,18 @@ namespace CPD.Site
                 UsuarioController usuarioController = new UsuarioController();
                 Usuario usuario = new Usuario { RM = int.Parse(Session["rm_usuario"].ToString()), Senha = txtSenhaAtual.Text };
                 usuarioController.AlterarSenha(usuario, txtNovaSenha.Text, txtConfirmarSenha.Text);
-                litErro.Text = "";
-                //Response.Redirect("~/logout.aspx");
+                if (Logado.Admin(Session))
+                {
+                    Response.Redirect("~/dashboard.aspx");
+                }
+                Response.Redirect("index.aspx");
             }
             catch (SPException ex)
             {
-                litErro.Text = ex.Message;
+                litErro.Text = $@"<div class='box1'>
+				    <p class='erro'>{ex.Message}</p>
+				    <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			    </div>";
             }
         }
     }

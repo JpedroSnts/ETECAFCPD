@@ -16,6 +16,7 @@
 </head>
 <body class="centro">
     <form id="form1" runat="server">
+        <div class="caixa-flutuante-erros"><asp:Literal ID="litErro" runat="server"></asp:Literal></div>
         <asp:Panel ID="pnlAlterarSenha" runat="server">
             <main id="mainAlterarSenha">
                 <h1>Alterar senha</h1>
@@ -37,8 +38,6 @@
                         <br />
                     </div>
                 </div>
-                <p id="mensagemVerificacao">
-                    <asp:Literal ID="litErro" runat="server"></asp:Literal></p>
                 <asp:Button ID="btnAlterarSenha" runat="server" Text="Alterar Senha" OnClick="btnAlterarSenha_Click"/>
                 <p><a class="loginEsqueciSenha" href="/login.aspx">Fazer Login</a></p>
                 <p id="pVersao">Versão 1.0 - 2023</p>
@@ -56,7 +55,6 @@
                          <br />
                      </div>
                  </div>
-                 <p id="mensagemVerificacao"><asp:Literal ID="litErro2" runat="server"></asp:Literal></p>
                  <asp:Button ID="btnRecuperar" runat="server" Text="Enviar email de recuperação" OnClick="btnRecuperar_Click"/>
                  <p><a class="loginEsqueciSenha" href="/login.aspx">Fazer Login</a></p>
                  <p id="pVersao">Versão 1.0 - 2023</p>

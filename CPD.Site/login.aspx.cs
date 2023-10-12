@@ -27,9 +27,12 @@ namespace CPD.Site
 
         protected void btnAcessar_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrEmpty(txtRm.Text) && String.IsNullOrEmpty(txtSenha.Text))
+            if (String.IsNullOrEmpty(txtRm.Text) || String.IsNullOrEmpty(txtSenha.Text))
             {
-                litErro.Text = "Preencha os campos";
+                litErro.Text = $@"<div class='box1'>
+				<p class='erro'>Preencha todos os campos</p>
+				<img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			</div>";
                 return;
             }
             try
@@ -54,7 +57,10 @@ namespace CPD.Site
             }
             catch (SPException ex)
             {
-                litErro.Text = ex.Message;
+                litErro.Text = $@"<div class='box1'>
+				<p class='erro'>{ex.Message}</p>
+				<img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			</div>";
             }
         }
     }
