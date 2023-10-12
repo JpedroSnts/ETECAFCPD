@@ -46,7 +46,7 @@
             </div>
         </main>
         <script src="Estatico/js/menuSanduiche.js"></script>
-		<script src="Estatico/js/dashboard.js"></script>
+		<script src="Estatico/js/painelControle.js"></script>
     </form>
 </body>
 </html>

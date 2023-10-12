@@ -119,6 +119,7 @@
     <Content Include="Estatico\js\gradeHorario.js" />
     <Content Include="Estatico\js\indexProfessor.js" />
     <Content Include="Estatico\js\menuSanduiche.js" />
+    <Content Include="Estatico\js\painelControle.js" />
     <Content Include="Estatico\js\reserva.js" />
     <Content Include="Global.asax" />
     <Content Include="gradeHorario.aspx" />
