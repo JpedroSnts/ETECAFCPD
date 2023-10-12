@@ -37,6 +37,7 @@ window.addEventListener("load", async () => {
 				mainHome.style.display = "none";
 				mainComReserva.style.display = "flex";
 
+				console.log(reservas);
 				for (let i = 0; i < reservas.length; i++) {
 					const el = reservas[i];
 					const dt = new Date(el.DataSaidaPrevista);
@@ -45,12 +46,13 @@ window.addEventListener("load", async () => {
 					const mm = String(dt.getMonth() + 1).length == 2 ? dt.getMonth() + 1 : "0" + (dt.getMonth() + 1);
 					const dd_mm = `${dd}/${mm}`;
 					const codigos = el.Itens.split(", ").map(e => e);
+					const nomes = el.ItensNome.split(", ").map(e => e);
 					const itens = codigos
-						.map(e => {
+						.map((e, j) => {
 							return `
 				<div style="margin-bottom: 5px;">
-					<p>${e} (${el.Horario})</p>
-					<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${e}" data="${el.DataSaidaPrevista}" />
+					<p>${nomes[j]} (${el.Horario})</p>
+					${el.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${e}" data="${el.DataSaidaPrevista}" />` : ""}
 				</div>
 				`;
 						})
@@ -63,7 +65,7 @@ window.addEventListener("load", async () => {
 					<h1 id="h1Equipamentos">Itens</h1>
 					${itens}
 				</div>
-				<button id="btnCardReserva" itens="${el.Itens.replaceAll(" ", "")}" data="${el.DataSaidaPrevista}">Cancelar todas</button>
+				${el.StatusReserva == 1 ? `<button id="btnCardReserva" itens="${el.Itens.replaceAll(" ", "")}" data="${el.DataSaidaPrevista}">Cancelar todas</button>` : ""}
 			</div>
 </div>
 			`;

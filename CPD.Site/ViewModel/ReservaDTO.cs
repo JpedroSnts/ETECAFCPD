@@ -13,6 +13,7 @@ namespace CPD.Site.ViewModel
         public int RM { get; set; }
         public string Horario { get; set; }
         public string Itens { get; set; }
+        public string ItensNome { get; set; }
         public string Professor { get; set; }
         public EStatusReserva StatusReserva { get; set; }
 
@@ -35,8 +36,10 @@ namespace CPD.Site.ViewModel
             foreach (var reserva in novaLista)
             {
                 Itens += reserva.SiglaItem + ", ";
+                ItensNome += reserva.NomeItem + ", ";
             }
             Itens = Itens.Substring(0, Itens.Length - 2);
+            ItensNome = ItensNome.Substring(0, ItensNome.Length - 2);
         }
 
         public static List<ReservaDTO> OrdenarReservas(List<ReservaGenerica> reservas)

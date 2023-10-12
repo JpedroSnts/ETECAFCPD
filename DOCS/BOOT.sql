@@ -370,47 +370,7 @@ BEGIN
         re.dt_saida,
         re.dt_devolucao,
         re.dt_cancelamento,
-        CASE
-			WHEN 	
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() < dt_saida_prevista THEN 1
-			WHEN 	
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NOT NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista THEN 2
-			WHEN 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NOT NULL
-				AND NOW() > dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista THEN 3
-			WHEN 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista THEN 4
-			WHEN
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() > dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista THEN 5
-			WHEN 
-				dt_cancelamento IS NOT NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL THEN 6
-			WHEN 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NOT NULL
-				AND dt_saida IS NOT NULL THEN 7
-			ELSE 0
-		END as cd_status
+        verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
     FROM reserva_equipamento re
     JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
     JOIN usuario u ON re.cd_rm = u.cd_rm
@@ -467,13 +427,15 @@ CREATE PROCEDURE listarReservasEquipamentosProfessor(pRm INT)
 BEGIN 
 	SELECT 
         e.sg_equipamento,
+		e.nm_equipamento,
         u.cd_rm,
         u.nm_usuario,
         re.dt_saida_prevista,
         re.dt_devolucao_prevista,
         re.dt_saida,
         re.dt_devolucao,
-        re.dt_cancelamento
+        re.dt_cancelamento,
+		verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
 	FROM reserva_equipamento re
     JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
     JOIN usuario u ON re.cd_rm = u.cd_rm
@@ -595,6 +557,52 @@ BEGIN
 	WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
 END$$
 
+DROP FUNCTION IF EXISTS verificarStatusReserva$$
+CREATE FUNCTION verificarStatusReserva(pDataSaidaPrevista DATETIME, pDataDevolucaoPrevista DATETIME, pDataSaida DATETIME, pDataDevolucao DATETIME, pDataCancelamento DATETIME) RETURNS INT
+BEGIN
+	RETURN CASE
+			WHEN 	
+				pDataCancelamento IS NULL
+				AND pDataDevolucao IS NULL
+				AND pDataSaida IS NULL
+				AND NOW() < pDataDevolucaoPrevista
+				AND NOW() < pDataSaidaPrevista THEN 1
+			WHEN 	
+				pDataCancelamento IS NULL
+				AND pDataDevolucao IS NULL
+				AND pDataSaida IS NOT NULL
+				AND NOW() < pDataDevolucaoPrevista
+				AND NOW() > pDataSaidaPrevista THEN 2
+			WHEN 
+				pDataCancelamento IS NULL
+				AND pDataDevolucao IS NULL
+				AND pDataSaida IS NOT NULL
+				AND NOW() > pDataDevolucaoPrevista
+				AND NOW() > pDataSaidaPrevista THEN 3
+			WHEN 
+				pDataCancelamento IS NULL
+				AND pDataDevolucao IS NULL
+				AND pDataSaida IS NULL
+				AND NOW() < pDataDevolucaoPrevista
+				AND NOW() > pDataSaidaPrevista THEN 4
+			WHEN
+				pDataCancelamento IS NULL
+				AND pDataDevolucao IS NULL
+				AND pDataSaida IS NULL
+				AND NOW() > pDataDevolucaoPrevista
+				AND NOW() > pDataSaidaPrevista THEN 5
+			WHEN 
+				pDataCancelamento IS NOT NULL
+				AND pDataDevolucao IS NULL
+				AND pDataSaida IS NULL THEN 6
+			WHEN 
+				pDataCancelamento IS NULL
+				AND pDataDevolucao IS NOT NULL
+				AND pDataSaida IS NOT NULL THEN 7
+			ELSE 0
+		END;
+END$$
+
 DROP PROCEDURE IF EXISTS listarReservasAmbientes$$
 CREATE PROCEDURE listarReservasAmbientes(pCodigoStatus int, pFiltro VARCHAR(255), pData DATE)
 BEGIN
@@ -614,47 +622,7 @@ BEGIN
         ra.dt_saida,
         ra.dt_devolucao,
         ra.dt_cancelamento,
-        CASE
-			WHEN 	
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() < dt_saida_prevista THEN 1
-			WHEN 	
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NOT NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista THEN 2
-			WHEN 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NOT NULL
-				AND NOW() > dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista THEN 3
-			WHEN 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista THEN 4
-			WHEN
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() > dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista THEN 5
-			WHEN 
-				dt_cancelamento IS NOT NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL THEN 6
-			WHEN 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NOT NULL
-				AND dt_saida IS NOT NULL THEN 7
-			ELSE 0
-		END as cd_status
+        verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
     FROM reserva_ambiente ra
     JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
     JOIN usuario u ON ra.cd_rm = u.cd_rm
@@ -710,13 +678,15 @@ CREATE PROCEDURE listarReservasAmbientesProfessor(pRm INT)
 BEGIN 
 	SELECT 
         a.sg_ambiente,
+		a.nm_ambiente,
         u.cd_rm,
         u.nm_usuario,
         ra.dt_saida_prevista,
         ra.dt_devolucao_prevista,
         ra.dt_saida,
         ra.dt_devolucao,
-        ra.dt_cancelamento
+        ra.dt_cancelamento,
+		verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
 	FROM reserva_ambiente ra
     JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
     JOIN usuario u ON ra.cd_rm = u.cd_rm

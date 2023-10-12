@@ -25,7 +25,7 @@ namespace CPD.Site.Controller
             {
                 list.Add(new ReservaGenerica(re));
             }
-            return list;
+            return list.OrderBy(e => e.DataSaidaPrevista).ToList();
         }
 
         public void CancelarReservas(string itens, int rm, DateTime data)
