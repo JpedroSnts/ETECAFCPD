@@ -35,6 +35,10 @@ namespace CPD.Site.Api
         private string PrimeiroEUltimoNome(string nomeCompleto)
         {
             var nomes = nomeCompleto.Split(' ');
+            if (nomes.Length == 1)
+            {
+                return nomeCompleto;
+            }
             return nomes[0] + " " + nomes[nomes.Length - 1];
         }
     }
