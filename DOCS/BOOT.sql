@@ -1027,14 +1027,14 @@ INSERT INTO tipo_usuario VALUES (03, 'Diretor');
 
 INSERT INTO usuario VALUES (36400, 'Thiago Lima', 'thiago.lima144@etec.sp.gov.br', md5('123321'), '36400.png', 1);
 INSERT INTO usuario VALUES (36401, 'Rafael dos Santos', 'rafael.santos11@etec.sp.gov.br', md5('123'), '36401.png', 2);
-INSERT INTO usuario VALUES (36402, 'João Lima', 'joao.lima143@etec.sp.gov.br', md5('123'), '36402.png', 2);
-INSERT INTO usuario VALUES (36403, 'Miguel Soares Nascimento', 'miguel.nascimento11@etec.sp.gov.br', md5('123'), '36403.png', 2);
-INSERT INTO usuario VALUES (36404, 'Caio Victor Gonçalves', 'caio.goncalves2@etec.sp.gov.br', md5('123'), '36404.png', 2);
-INSERT INTO usuario VALUES (36427, 'Rafael Gomes da Costa', 'rafael.costa23@etec.sp.gov.br', md5('123'), '36427.png', 2);
-INSERT INTO usuario VALUES (36421, 'Carlos Eduardo Pietro Costa', 'carlos.costa08@etec.sp.gov.br', md5('123'), '36421.png', 2);
-INSERT INTO usuario VALUES (36429, 'Márcia Heloise Teixeira', 'marcia.teixeira03@etec.sp.gov.br', md5('123'), '36429.png', 2);
-INSERT INTO usuario VALUES (36300, 'Isabela Marli Helena Moraes', 'isabela.moraes@etec.sp.gov.br', md5('123'), '36300.png', 3);
-INSERT INTO usuario VALUES (36412, 'João Pedro Santos', 'siqueirasantos100@gmail.com', md5('123'), '36412.png', 2);
+INSERT INTO usuario VALUES (36402, 'João Lima', 'joao.lima143@etec.sp.gov.br', md5('123'), 'default.png', 2);
+INSERT INTO usuario VALUES (36403, 'Miguel Soares Nascimento', 'miguel.nascimento11@etec.sp.gov.br', md5('123'), 'default.png', 2);
+INSERT INTO usuario VALUES (36404, 'Caio Victor Gonçalves', 'caio.goncalves2@etec.sp.gov.br', md5('123'), 'default.png', 2);
+INSERT INTO usuario VALUES (36427, 'Rafael Gomes da Costa', 'rafael.costa23@etec.sp.gov.br', md5('123'), 'default.png', 2);
+INSERT INTO usuario VALUES (36421, 'Carlos Eduardo Pietro Costa', 'carlos.costa08@etec.sp.gov.br', md5('123'), 'default.png', 2);
+INSERT INTO usuario VALUES (36429, 'Márcia Heloise Teixeira', 'marcia.teixeira03@etec.sp.gov.br', md5('123'), 'default.png', 2);
+INSERT INTO usuario VALUES (36300, 'Isabela Marli Helena Moraes', 'isabela.moraes@etec.sp.gov.br', md5('123'), 'default.png', 3);
+INSERT INTO usuario VALUES (36412, 'João Pedro Santos', 'siqueirasantos100@gmail.com', md5('123'), 'default.png', 2);
 /*SELECT * FROM usuario;*/
 
 INSERT INTO notificacao VALUES(1, '1 Notebook está disponivel para reserva', '2023-08-01 08:50:00', 'Equipamento Disponível');

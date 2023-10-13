@@ -80,6 +80,8 @@
     <Content Include="Api\reservasProfessor.aspx" />
     <Content Include="dashboard.aspx" />
     <Content Include="esqueciMinhaSenha.aspx" />
+    <Content Include="Estatico\imagens\usuarios\36400.png" />
+    <Content Include="Estatico\imagens\usuarios\36401.png" />
     <Content Include="Estatico\imagens\close.svg" />
     <Content Include="Estatico\css\painelControle.css" />
     <Content Include="Estatico\css\dashboard.css" />
@@ -95,6 +97,7 @@
     <Content Include="Estatico\imagens\carta.png" />
     <Content Include="Estatico\imagens\check.png" />
     <Content Include="Estatico\imagens\clock.png" />
+    <Content Include="Estatico\imagens\usuarios\default.png" />
     <Content Include="Estatico\imagens\deslogar.svg" />
     <Content Include="Estatico\imagens\lixeira.png" />
     <Content Include="Estatico\imagens\logoCPD.png" />
@@ -114,7 +117,6 @@
     <Content Include="Estatico\imagens\seta_baixo.png" />
     <Content Include="Estatico\imagens\suasReservas.png" />
     <Content Include="Estatico\imagens\user.png" />
-    <Content Include="Estatico\imagens\userProf.png" />
     <Content Include="Estatico\imagens\usuario.svg" />
     <Content Include="Estatico\js\dashboard.js" />
     <Content Include="Estatico\js\gradeHorario.js" />
