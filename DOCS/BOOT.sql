@@ -55,6 +55,7 @@ CREATE TABLE equipamento
 
 CREATE TABLE reserva_equipamento
 (
+	cd_reserva_equipamento INT,
 	sg_equipamento VARCHAR(20),
 	cd_rm INT,
 	dt_saida_prevista DATETIME,
@@ -62,7 +63,7 @@ CREATE TABLE reserva_equipamento
 	dt_saida DATETIME,
 	dt_devolucao DATETIME,
 	dt_cancelamento DATETIME,
-	CONSTRAINT pk_reserva_equipamento PRIMARY KEY (sg_equipamento, cd_rm, dt_saida_prevista),
+	CONSTRAINT pk_reserva_equipamento PRIMARY KEY (cd_reserva_equipamento),
 	CONSTRAINT fk_reserva_equipamento_equipamento FOREIGN KEY (sg_equipamento)
 		REFERENCES equipamento (sg_equipamento),
 	CONSTRAINT fk_reserva_equipamento_usuario FOREIGN KEY (cd_rm)
@@ -79,14 +80,12 @@ CREATE TABLE tipo_ocorrencia_equipamento
 CREATE TABLE ocorrencia_equipamento
 (
 	dt_ocorrencia DATETIME,
-	sg_equipamento VARCHAR(20),
-	cd_rm INT,
-    dt_saida_prevista DATETIME,
+	cd_reserva_equipamento INT,
 	cd_tipo_ocorrencia INT,
 	ds_ocorrencia TEXT,
-	CONSTRAINT pk_ocorrencia_equipamento PRIMARY KEY (dt_ocorrencia, sg_equipamento, cd_rm, dt_saida_prevista),
-	CONSTRAINT fk_ocorrencia_equipamento_reserva_equipamento FOREIGN KEY(sg_equipamento, cd_rm, dt_saida_prevista)
-		REFERENCES reserva_equipamento (sg_equipamento, cd_rm, dt_saida_prevista),
+	CONSTRAINT pk_ocorrencia_equipamento PRIMARY KEY (dt_ocorrencia, cd_reserva_equipamento),
+	CONSTRAINT fk_ocorrencia_equipamento_reserva_equipamento FOREIGN KEY(cd_reserva_equipamento)
+		REFERENCES reserva_equipamento (cd_reserva_equipamento),
 	CONSTRAINT fk_ocorrencia_equipamento_tipo_ocorrencia_equipamento FOREIGN KEY (cd_tipo_ocorrencia)
 		REFERENCES tipo_ocorrencia_equipamento (cd_tipo_ocorrencia)
 );
@@ -127,6 +126,7 @@ CREATE TABLE uso_ambiente
 
 CREATE TABLE reserva_ambiente
 (
+	cd_reserva_ambiente INT,
 	sg_ambiente VARCHAR(20),
 	cd_rm INT,
 	dt_saida_prevista DATETIME,
@@ -134,7 +134,7 @@ CREATE TABLE reserva_ambiente
 	dt_saida DATETIME,
 	dt_devolucao DATETIME,
 	dt_cancelamento DATETIME,
-	CONSTRAINT pk_reserva_ambiente PRIMARY KEY (sg_ambiente, cd_rm, dt_saida_prevista),
+	CONSTRAINT pk_reserva_ambiente PRIMARY KEY (cd_reserva_ambiente),
 	CONSTRAINT fk_reserva_ambiente_ambiente FOREIGN KEY (sg_ambiente)
 		REFERENCES ambiente (sg_ambiente),
 	CONSTRAINT fk_reserva_ambiente_usuario FOREIGN KEY (cd_rm)
@@ -144,14 +144,12 @@ CREATE TABLE reserva_ambiente
 CREATE TABLE ocorrencia_ambiente
 (
 	dt_ocorrencia DATETIME,
-	sg_ambiente VARCHAR(20),
-	cd_rm INT,
-    dt_saida_prevista DATETIME,
+	cd_reserva_ambiente INT,
 	cd_tipo_ocorrencia INT,
 	ds_ocorrencia TEXT,
-	CONSTRAINT pk_ocorrencia_ambiente PRIMARY KEY (dt_ocorrencia, sg_ambiente, cd_rm, dt_saida_prevista),
-	CONSTRAINT fk_ocorrencia_ambiente_reserva_ambiente FOREIGN KEY(sg_ambiente, cd_rm, dt_saida_prevista)
-		REFERENCES reserva_ambiente (sg_ambiente, cd_rm, dt_saida_prevista),
+	CONSTRAINT pk_ocorrencia_ambiente PRIMARY KEY (dt_ocorrencia, cd_reserva_ambiente),
+	CONSTRAINT fk_ocorrencia_ambiente_reserva_ambiente FOREIGN KEY(cd_reserva_ambiente)
+		REFERENCES reserva_ambiente (cd_reserva_ambiente),
 	CONSTRAINT fk_ocorrencia_ambiente_tipo_ocorrencia_ambiente FOREIGN KEY (cd_tipo_ocorrencia)
 		REFERENCES tipo_ocorrencia_ambiente (cd_tipo_ocorrencia)
 );
@@ -327,6 +325,7 @@ END$$
 DROP PROCEDURE IF EXISTS reservarEquipamento$$
 CREATE PROCEDURE reservarEquipamento(pSiglaEquipamento VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
 BEGIN
+	DECLARE vCodigo INT DEFAULT 0;
 
 	IF(!verificaSeUsuarioExiste(pRM)) THEN 
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Usuário não existe';
@@ -335,8 +334,10 @@ BEGIN
 	IF (!verificarSeEquipamentoPodeSerReservado(pSiglaEquipamento , pDTSaidaPrevista , pDTDevolucaoPrevista)) THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Equipamento já reservado';
 	END IF;
+		
+	SELECT COALESCE((SELECT cd_reserva_equipamento FROM reserva_equipamento ORDER BY cd_reserva_equipamento DESC LIMIT 1) + 1, 1) INTO vCodigo;
 
-	INSERT INTO reserva_equipamento VALUES (pSiglaEquipamento, pRM, pDTSaidaPrevista, pDTDevolucaoPrevista, null ,null, null);
+	INSERT INTO reserva_equipamento VALUES (vCodigo, pSiglaEquipamento, pRM, pDTSaidaPrevista, pDTDevolucaoPrevista, null ,null, null);
 END$$
 
 DROP PROCEDURE IF EXISTS atualizarDevolucaoReservaEquipamento$$
@@ -562,6 +563,7 @@ END$$
 DROP PROCEDURE IF EXISTS reservarAmbiente$$
 CREATE PROCEDURE reservarAmbiente(pSiglaAmbiente VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME, pDTDevolucaoPrevista DATETIME)
 BEGIN
+	DECLARE vCodigo INT DEFAULT 0;
 
 	IF(!verificaSeUsuarioExiste(pRM)) THEN 
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Usuário não existe';
@@ -571,7 +573,9 @@ BEGIN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ambiente já reservado';
 	END IF;
 
-	INSERT INTO reserva_ambiente VALUES (pSiglaAmbiente, pRM, pDTSaidaPrevista, pDTDevolucaoPrevista, null, null, null);		
+	SELECT COALESCE((SELECT cd_reserva_ambiente FROM reserva_ambiente ORDER BY cd_reserva_ambiente DESC LIMIT 1) + 1, 1) INTO vCodigo;
+
+	INSERT INTO reserva_ambiente VALUES (vCodigo, pSiglaAmbiente, pRM, pDTSaidaPrevista, pDTDevolucaoPrevista, null, null, null);		
 END$$
 
 DROP PROCEDURE IF EXISTS atualizarDevolucaoReservaAmbiente$$
@@ -1030,6 +1034,7 @@ INSERT INTO usuario VALUES (36427, 'Rafael Gomes da Costa', 'rafael.costa23@etec
 INSERT INTO usuario VALUES (36421, 'Carlos Eduardo Pietro Costa', 'carlos.costa08@etec.sp.gov.br', md5('123'), '36421.png', 2);
 INSERT INTO usuario VALUES (36429, 'Márcia Heloise Teixeira', 'marcia.teixeira03@etec.sp.gov.br', md5('123'), '36429.png', 2);
 INSERT INTO usuario VALUES (36300, 'Isabela Marli Helena Moraes', 'isabela.moraes@etec.sp.gov.br', md5('123'), '36300.png', 3);
+INSERT INTO usuario VALUES (36412, 'João Pedro Santos', 'siqueirasantos100@gmail.com', md5('123'), '36412.png', 2);
 /*SELECT * FROM usuario;*/
 
 INSERT INTO notificacao VALUES(1, '1 Notebook está disponivel para reserva', '2023-08-01 08:50:00', 'Equipamento Disponível');
@@ -1065,15 +1070,15 @@ INSERT INTO equipamento VALUES ('DS01', 'DataShow 1', 0);
 INSERT INTO equipamento VALUES ('DS02', 'DataShow 2', 0);
 /*SELECT * FROM equipamento;*/
 
-INSERT INTO reserva_equipamento VALUES ('NOTE05', 36401, '2023-06-23 12:00:00', '2023-06-23 18:00:00', null, null, null);
-INSERT INTO reserva_equipamento VALUES ('HDMI03', 36401, '2023-06-23 12:00:00', '2023-06-23 18:00:00', '2023-06-23 12:00:00', null, null);
-INSERT INTO reserva_equipamento VALUES ('CONTROLE12', 36402, '2023-06-06 07:50:00', '2023-06-06 12:35:00', null, null, null);
-INSERT INTO reserva_equipamento VALUES ('NOTE02', 36402, '2023-06-05 13:30:00', '2023-06-05 14:25:00', '2023-06-05 13:27:00', '2023-06-05 14:23:00', null);
-INSERT INTO reserva_equipamento VALUES ('HDMI05', 36402, '2023-06-05 13:30:01', '2023-06-05 14:25:00', '2023-06-05 13:27:00', '2023-06-05 14:23:00', null);
-INSERT INTO reserva_equipamento VALUES ('HDMI05', 36402, '2023-06-06 13:30:01', '2023-06-06 14:25:00', '2023-06-06 13:25:00', '2023-06-06 14:22:00', null);
-INSERT INTO reserva_equipamento VALUES ('NOTE05', 36401, DATE_ADD(ADDTIME(NOW(), "03:00:00"), INTERVAL 2 DAY), DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 2 DAY), null, null, null);
-INSERT INTO reserva_equipamento VALUES ('HDMI03', 36401, DATE_ADD(ADDTIME(NOW(), "02:00:00"), INTERVAL 4 DAY), DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 4 DAY), null, null, null);
-INSERT INTO reserva_equipamento VALUES ('CONTROLE12', 36401, DATE_ADD(ADDTIME(NOW(), "06:00:00"), INTERVAL 6 DAY), DATE_ADD(ADDTIME(NOW(), "08:00:00"), INTERVAL 6 DAY), null, null, DATE_ADD(NOW(), INTERVAL 1 DAY));
+INSERT INTO reserva_equipamento VALUES (1, 'NOTE05', 36401, '2023-06-23 12:00:00', '2023-06-23 18:00:00', null, null, null);
+INSERT INTO reserva_equipamento VALUES (2, 'HDMI03', 36401, '2023-06-23 12:00:00', '2023-06-23 18:00:00', '2023-06-23 12:00:00', null, null);
+INSERT INTO reserva_equipamento VALUES (3, 'CONTROLE12', 36402, '2023-06-06 07:50:00', '2023-06-06 12:35:00', null, null, null);
+INSERT INTO reserva_equipamento VALUES (4, 'NOTE02', 36402, '2023-06-05 13:30:00', '2023-06-05 14:25:00', '2023-06-05 13:27:00', '2023-06-05 14:23:00', null);
+INSERT INTO reserva_equipamento VALUES (5, 'HDMI05', 36402, '2023-06-05 13:30:01', '2023-06-05 14:25:00', '2023-06-05 13:27:00', '2023-06-05 14:23:00', null);
+INSERT INTO reserva_equipamento VALUES (6, 'HDMI05', 36402, '2023-06-06 13:30:01', '2023-06-06 14:25:00', '2023-06-06 13:25:00', '2023-06-06 14:22:00', null);
+INSERT INTO reserva_equipamento VALUES (7, 'NOTE05', 36401, DATE_ADD(ADDTIME(NOW(), "03:00:00"), INTERVAL 2 DAY), DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 2 DAY), null, null, null);
+INSERT INTO reserva_equipamento VALUES (8, 'HDMI03', 36401, DATE_ADD(ADDTIME(NOW(), "02:00:00"), INTERVAL 4 DAY), DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 4 DAY), null, null, null);
+INSERT INTO reserva_equipamento VALUES (9, 'CONTROLE12', 36401, DATE_ADD(ADDTIME(NOW(), "06:00:00"), INTERVAL 6 DAY), DATE_ADD(ADDTIME(NOW(), "08:00:00"), INTERVAL 6 DAY), null, null, DATE_ADD(NOW(), INTERVAL 1 DAY));
 /*SELECT * FROM reserva_equipamento;*/
 
 INSERT INTO tipo_ocorrencia_equipamento VALUES (1, 'Notebook com defeito fisico leve');
@@ -1090,7 +1095,7 @@ INSERT INTO tipo_ocorrencia_equipamento VALUES (11, 'Controle remoto com defeito
 INSERT INTO tipo_ocorrencia_equipamento VALUES (12, 'Controle remoto com defeito físico grave');
 /*SELECT * FROM tipo_ocorrencia_equipamento;*/
 
-INSERT INTO ocorrencia_equipamento VALUES ('2023-06-06 14:22:00', 'HDMI05', 36402, '2023-06-06 13:30:01', 5, 'Cabo após testado está dando mau contato');
+INSERT INTO ocorrencia_equipamento VALUES ('2023-06-06 14:22:00', 6, 5, 'Cabo após testado está dando mau contato');
 /*SELECT * FROM ocorrencia_equipamento;*/
 
 INSERT INTO dia_semana VALUES (1, 'Segunda-Feira');
@@ -1128,24 +1133,24 @@ INSERT INTO uso_ambiente VALUES ('INFOLAB01', 1, '08:00:00', '10:00:00');
 INSERT INTO uso_ambiente VALUES ('INFOLAB07', 3, '17:10:00', '18:00:00');
 /*SELECT * FROM disponibilidade_ambiente;*/
 
-INSERT INTO reserva_ambiente VALUES ('INFOLAB01', 36401, '2023-06-12 13:30:00', '2023-06-12 14:20:00', null, null, null);
-INSERT INTO reserva_ambiente VALUES ('MINIAUDIT05', 36402, '2023-05-21 11:00:00', '2023-05-21 15:00:00', '2023-05-21 11:00:00', null, null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB05', 36401, '2023-06-13 13:30:00', '2023-06-13 14:15:00', null, null, null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB07', 36401, '2023-06-14 16:00:00', '2023-06-14 17:10:00', null, null, null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB01', 36402, '2023-06-12 08:00:00', '2023-06-12 08:02:00', '2023-06-12 08:50:00', '2023-06-12 08:49:23', null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB05', 36402, '2023-06-13 10:00:00', '2023-06-13 10:50:00', null, null, null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB07', 36402, '2023-06-14 17:10:00', '2023-06-14 18:00:00', null , null, null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB01', 36401, '2023-06-05 13:30:00', '2023-06-05 13:32:00', '2023-06-05 14:20:00', '2023-06-05 14:21:30', null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB05', 36401, '2023-06-06 13:30:00', '2023-06-06 13:31:43', '2023-06-06 14:15:00', '2023-06-06 14:17:00', null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB07', 36402, '2023-06-07 16:00:00', '2023-06-07 16:01:46', '2023-06-07 17:10:00', '2023-06-07 17:11:20', null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB01', 36401, DATE_ADD(ADDTIME(NOW(), "02:00:00"), INTERVAL 3 DAY), DATE_ADD(ADDTIME(NOW(), "04:00:00"), INTERVAL 3 DAY), null, null, null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB05', 36401, DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 5 DAY), DATE_ADD(ADDTIME(NOW(), "08:00:00"), INTERVAL 5 DAY), null, null, null);
-INSERT INTO reserva_ambiente VALUES ('INFOLAB07', 36401, DATE_ADD(ADDTIME(NOW(), "07:00:00"), INTERVAL 7 DAY), DATE_ADD(ADDTIME(NOW(), "09:00:00"), INTERVAL 7 DAY), null, null, DATE_ADD(NOW(), INTERVAL 1 DAY));
+INSERT INTO reserva_ambiente VALUES (1, 'INFOLAB01', 36401, '2023-06-12 13:30:00', '2023-06-12 14:20:00', null, null, null);
+INSERT INTO reserva_ambiente VALUES (2, 'MINIAUDIT05', 36402, '2023-05-21 11:00:00', '2023-05-21 15:00:00', '2023-05-21 11:00:00', null, null);
+INSERT INTO reserva_ambiente VALUES (3, 'INFOLAB05', 36401, '2023-06-13 13:30:00', '2023-06-13 14:15:00', null, null, null);
+INSERT INTO reserva_ambiente VALUES (4, 'INFOLAB07', 36401, '2023-06-14 16:00:00', '2023-06-14 17:10:00', null, null, null);
+INSERT INTO reserva_ambiente VALUES (5, 'INFOLAB01', 36402, '2023-06-12 08:00:00', '2023-06-12 08:02:00', '2023-06-12 08:50:00', '2023-06-12 08:49:23', null);
+INSERT INTO reserva_ambiente VALUES (6, 'INFOLAB05', 36402, '2023-06-13 10:00:00', '2023-06-13 10:50:00', null, null, null);
+INSERT INTO reserva_ambiente VALUES (7, 'INFOLAB07', 36402, '2023-06-14 17:10:00', '2023-06-14 18:00:00', null , null, null);
+INSERT INTO reserva_ambiente VALUES (8, 'INFOLAB01', 36401, '2023-06-05 13:30:00', '2023-06-05 13:32:00', '2023-06-05 14:20:00', '2023-06-05 14:21:30', null);
+INSERT INTO reserva_ambiente VALUES (9, 'INFOLAB05', 36401, '2023-06-06 13:30:00', '2023-06-06 13:31:43', '2023-06-06 14:15:00', '2023-06-06 14:17:00', null);
+INSERT INTO reserva_ambiente VALUES (10, 'INFOLAB07', 36402, '2023-06-07 16:00:00', '2023-06-07 16:01:46', '2023-06-07 17:10:00', '2023-06-07 17:11:20', null);
+INSERT INTO reserva_ambiente VALUES (11, 'INFOLAB01', 36401, DATE_ADD(ADDTIME(NOW(), "02:00:00"), INTERVAL 3 DAY), DATE_ADD(ADDTIME(NOW(), "04:00:00"), INTERVAL 3 DAY), null, null, null);
+INSERT INTO reserva_ambiente VALUES (12, 'INFOLAB05', 36401, DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 5 DAY), DATE_ADD(ADDTIME(NOW(), "08:00:00"), INTERVAL 5 DAY), null, null, null);
+INSERT INTO reserva_ambiente VALUES (13, 'INFOLAB07', 36401, DATE_ADD(ADDTIME(NOW(), "07:00:00"), INTERVAL 7 DAY), DATE_ADD(ADDTIME(NOW(), "09:00:00"), INTERVAL 7 DAY), null, null, DATE_ADD(NOW(), INTERVAL 1 DAY));
 /*SELECT * FROM reserva_ambiente;*/
 
-INSERT INTO ocorrencia_ambiente VALUES ('2023-06-12 08:55:00', 'INFOLAB01', 36402, '2023-06-12 08:00:00', 2, 'O professor João, novamente, ao entrar no laboratório notou que o laboratório tinha 4 computadores ligados'); 
-INSERT INTO ocorrencia_ambiente VALUES ('2023-06-05 14:27:00', 'INFOLAB01', 36401, '2023-06-12 13:30:00', 2, 'O professor João ao entrar no laboratório notou que o laboratório tinha 4 computadores ligados'); 
-INSERT INTO ocorrencia_ambiente VALUES ('2023-06-07 18:01:00', 'INFOLAB07', 36402, '2023-06-14 17:10:00', 2, 'O professor Rafael ao entrar no laboratório notou que o laboratório estava com a luz ligada'); 
+INSERT INTO ocorrencia_ambiente VALUES ('2023-06-12 08:55:00', 1, 2, 'O professor João, novamente, ao entrar no laboratório notou que o laboratório tinha 4 computadores ligados'); 
+INSERT INTO ocorrencia_ambiente VALUES ('2023-06-05 14:27:00', 1, 2, 'O professor João ao entrar no laboratório notou que o laboratório tinha 4 computadores ligados'); 
+INSERT INTO ocorrencia_ambiente VALUES ('2023-06-07 18:01:00', 7, 2, 'O professor Rafael ao entrar no laboratório notou que o laboratório estava com a luz ligada'); 
 
 call reservarAmbiente('AUDIT', 36401, DATE_ADD(now(), INTERVAL 67 MINUTE), DATE_ADD(DATE_ADD(now(), INTERVAL 4 HOUR), INTERVAL 12 MINUTE));
 call reservarAmbiente('MINIAUDIT04', 36402, now(), DATE_ADD(DATE_ADD(now(), INTERVAL 3 HOUR), INTERVAL 22 MINUTE));
