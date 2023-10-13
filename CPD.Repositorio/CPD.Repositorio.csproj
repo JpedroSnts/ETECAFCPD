@@ -105,6 +105,7 @@
     <Compile Include="Controller\OcorrenciaEquipamentoController.cs" />
     <Compile Include="Controller\RelatorioController.cs" />
     <Compile Include="Controller\ReservaAmbienteController.cs" />
+    <Compile Include="Controller\ReservaGenericaController.cs" />
     <Compile Include="Controller\ReservaEquipamentoController.cs" />
     <Compile Include="Controller\TokenController.cs" />
     <Compile Include="Controller\UsoAmbienteController.cs" />

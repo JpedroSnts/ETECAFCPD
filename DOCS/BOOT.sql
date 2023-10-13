@@ -248,6 +248,15 @@ BEGIN
     
 END$$
 
+DROP PROCEDURE IF EXISTS buscarUsuarioPorRM$$
+CREATE PROCEDURE buscarUsuarioPorRM(pRM INT)
+BEGIN
+	
+    SELECT nm_usuario, nm_email FROM usuario 
+    WHERE cd_rm = pRM;
+    
+END$$
+
 /* ------------------------------ RESERVA EQUIPAMENTO ------------------------------ */
 
 DROP FUNCTION IF EXISTS verificarSeDataPassaDe7Dias$$
@@ -464,6 +473,35 @@ DROP PROCEDURE IF EXISTS listarEquipamento$$
 CREATE PROCEDURE listarEquipamento(pSigla VARCHAR(20))
 BEGIN
 	SELECT * FROM equipamento WHERE sg_equipamento = pSigla;
+END$$
+
+DROP PROCEDURE IF EXISTS listarReservaParaEnviarEmail$$
+CREATE PROCEDURE listarReservaParaEnviarEmail(pDataSaidaPrevista DATETIME, pRM INT)
+BEGIN
+	
+	SELECT 
+		e.nm_equipamento,
+		re.dt_saida_prevista,
+		re.dt_devolucao_prevista
+	FROM
+		reserva_equipamento re
+			JOIN
+		equipamento e ON re.sg_equipamento = e.sg_equipamento
+	WHERE
+		re.cd_rm = pRM
+			AND re.dt_saida_prevista = pDataSaidaPrevista
+	UNION SELECT 
+		a.nm_ambiente,
+		ra.dt_saida_prevista,
+		ra.dt_devolucao_prevista
+	FROM
+		reserva_ambiente ra
+			JOIN
+		ambiente a ON ra.sg_ambiente = a.sg_ambiente
+	WHERE
+		ra.cd_rm = pRM
+			AND ra.dt_saida_prevista = pDataSaidaPrevista;
+
 END$$
 
 /* ------------------------------ RESERVA AMBIENTE ------------------------------ */

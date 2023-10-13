@@ -1,4 +1,6 @@
 ﻿using CPD.Repositorio.Banco;
+using CPD.Repositorio.Controller;
+using CPD.Repositorio.Model;
 using CPD.Site.Controller;
 using CPD.Site.Util;
 using CPD.Site.ViewModel;
@@ -174,18 +176,32 @@ namespace CPD.Site
                 }
 
                 ReservaController controller = new ReservaController();
-                if (!Logado.Admin(Session))
+                int rm = int.Parse(Session["rm_usuario"].ToString());
+                if (Logado.Admin(Session))
                 {
-                    controller.ReservarItens(itensReserva, int.Parse(Session["rm_usuario"].ToString()), inicio, fim);
-                    Response.Redirect("~/index.aspx");
-                    return;
+                    rm = int.Parse(txtNmProf.Text);
                 }
-                controller.ReservarItens(itensReserva, int.Parse(txtNmProf.Text), inicio, fim);
-                Response.Redirect("~/dashboard.aspx");
+                controller.ReservarItens(itensReserva, rm, inicio, fim);
+                Usuario usuario = new UsuarioController().BuscarUsuarioPorRM(rm);
+                List<ReservaEquipamento> reservas = new ReservaGenericaController().ListarReservasEquipamentosComFiltro(rm, inicio);
+                string html = 
+                $@"<table border><tr><th>Dia da reserva</th><th>Horário inicio</th><th>Horário fim</th></tr><tr><td align='center'>{inicio:dd/MM/yyyy}</td><td align='center'>{inicio:HH:mm}</td><td align='center'>{fim:HH:mm}</td></tr></table>
+                <br>
+                <table border><tr><th>Ítens</th></tr>";
+                reservas.ForEach(it =>
+                {
+                    html += $@"<tr><td>{it.Equipamento.Nome}</td></tr>";
+                });
+                html += "</table>";
+                Email.Enviar(usuario.Email, "Reserva de ítens CPD", html);
+                Response.Redirect("~/index.aspx");
             }
             catch (SPException ex)
             {
-                litErro.Text = $"<div style='color: red;'>{ex.Message}</div>";
+                litErro.Text = $@"<div class='box1'>
+				    <p class='erro'>{ex.Message}</p>
+				    <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			    </div>";
             }
         }
     }

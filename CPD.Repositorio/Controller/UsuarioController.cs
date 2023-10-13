@@ -84,5 +84,22 @@ namespace CPD.Repositorio.Controller
             Desconectar();
             return usuarios;
         }
+
+        public Usuario BuscarUsuarioPorRM(int rm)
+        {
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pRM", rm.ToString()),
+            };
+            MySqlDataReader reader = Executar("buscarUsuarioPorRM", parametros);
+            Usuario usuario = null;
+            if (reader.Read())
+            {
+                usuario = new Usuario { RM = rm, Nome = reader["nm_usuario"].ToString(), Email = reader["nm_email"].ToString() };
+            }
+            if (!reader.IsClosed) reader.Close();
+            Desconectar();
+            return usuario;
+        }
     }
 }
