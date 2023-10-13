@@ -2,8 +2,6 @@ window.addEventListener("load", () => {
     const data7dias = new Date(new Date().setDate(new Date().getDate() + 7));
     txtInputData.max = data7dias.toISOString().split("T")[0];
 
-    const btnAmbiente = document.querySelector("#Ambiente");
-    const btnEquipamento = document.querySelector("#Equipamento");
     const pnlAmbientes = document.querySelector("#pnlAmbientesItens");
     const pnlEquipamentos = document.querySelector("#pnlEquipamentosItens");
     if (pnlAmbientes) {
@@ -42,4 +40,9 @@ window.addEventListener("load", () => {
         txtHorarioInicio.addEventListener("change", limparItensEBloquearBotao);
         txtHorarioFim.addEventListener("change", limparItensEBloquearBotao);
     } 
+    txtHorarioInicio.addEventListener("change", (e) => {
+        let dt = new Date("2023-12-12 " +  e.target.value);
+        dt = new Date(dt.setMinutes(dt.getMinutes() + 50));
+        txtHorarioFim.value = dt.toLocaleTimeString("pt-BR");
+    });
 });
