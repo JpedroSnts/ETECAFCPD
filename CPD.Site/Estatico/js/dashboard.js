@@ -9,10 +9,10 @@ window.addEventListener("load", () => {
 
     const status = [
         { codigo: 0, css: "", nome: "Desconhecido", botao: "Ação" },
-        { codigo: 1, css: "status-reservado", nome: "Reservado", botao: "" },
-        { codigo: 2, css: "status-em-andamento", nome: "Em andamento", botao: "Entregar" },
-        { codigo: 3, css: "status-entrega-atrasada", nome: "Entrega atrasada", botao: "Entregar" },
-        { codigo: 4, css: "status-aguardando-retirada", nome: "Aguardando Retirada", botao: "Retirar" },
+        { codigo: 1, css: "status-reservado", nome: "Reservado", botao: "Entregar" },
+        { codigo: 2, css: "status-em-andamento", nome: "Em andamento", botao: "Devolver" },
+        { codigo: 3, css: "status-entrega-atrasada", nome: "Entrega atrasada", botao: "Devolver" },
+        { codigo: 4, css: "status-aguardando-retirada", nome: "Aguardando Retirada", botao: "Entregar" },
         { codigo: 5, css: "status-nao-retirado", nome: "Não Retirado", botao: "Encerrar" },
         { codigo: 6, css: "status-cancelada", nome: "Cancelada", botao: "" },
         { codigo: 7, css: "status-concluida", nome: "Concluída", botao: "" },
