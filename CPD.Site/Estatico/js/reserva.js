@@ -22,9 +22,12 @@ window.addEventListener("load", () => {
         const txtHorarioInicio = document.querySelector("#txtHorarioInicio");
         const txtHorarioFim = document.querySelector("#txtHorarioFim");
         const btnReservar = document.querySelector("#btnReservar");
+        const mensagemReserva = document.querySelector(".pMensagemReserva");
 
         if (txtInputData.value == "" || txtHorarioInicio.value == "" || txtHorarioFim.fim == "") {
             btnReservar.setAttribute("disabled", "disabled");
+        } else {
+            mensagemReserva.remove();
         }
 
         function limparItensEBloquearBotao() {
