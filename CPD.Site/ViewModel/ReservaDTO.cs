@@ -16,9 +16,11 @@ namespace CPD.Site.ViewModel
         public string ItensNome { get; set; }
         public string Professor { get; set; }
         public EStatusReserva StatusReserva { get; set; }
+        public List<ETipoItem> TiposItens { get; set; }
 
         public ReservaDTO(List<ReservaGenerica> reservas, DateTime data, int rm, DateTime dataCancelamento)
         {
+            TiposItens = new List<ETipoItem>();
             DataCancelamento = dataCancelamento;
             DataSaidaPrevista = data;
             RM = rm;
@@ -28,7 +30,7 @@ namespace CPD.Site.ViewModel
                 if (reserva.DataSaidaPrevista == DataSaidaPrevista && reserva.Usuario.RM == rm && reserva.DataCancelamento == DataCancelamento)
                 {
                     novaLista.Add(reserva);
-                } 
+                }
             }
             Horario = novaLista[0].DataSaidaPrevista.ToString("HH:mm") + " - " + novaLista[0].DataDevolucaoPrevista.ToString("HH:mm");
             Professor = novaLista[0].Usuario.Nome;
@@ -37,6 +39,7 @@ namespace CPD.Site.ViewModel
             {
                 Itens += reserva.SiglaItem + ", ";
                 ItensNome += reserva.NomeItem + ", ";
+                TiposItens.Add(reserva.TipoItem);
             }
             Itens = Itens.Substring(0, Itens.Length - 2);
             ItensNome = ItensNome.Substring(0, ItensNome.Length - 2);

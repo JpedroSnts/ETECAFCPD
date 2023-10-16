@@ -32,7 +32,7 @@ window.addEventListener("load", async () => {
 		fetch(`/api/reservasProfessor.aspx?rm=${rmUsuario}`).then((res) => {
 			return res.json();
 		}).then((reservas) => {
-
+			console.log(reservas);
 			let reservasAgrupadas = {};
 
 			reservas.forEach(reserva => {
@@ -62,8 +62,24 @@ window.addEventListener("load", async () => {
 					const dd_mm = `${dd}/${mm}`;
 					const codigos = el.Itens.split(", ").map(e => e);
 					const nomes = el.ItensNome.split(", ").map(e => e);
-					const itens = codigos
+					const ambs = codigos
 						.map((e, j) => {
+							if (el.TiposItens[j] == 2) {
+								return;	
+							}
+							return `
+				<div style="margin-bottom: 5px;">
+					<p>${nomes[j]} (${el.Horario})</p>
+					${el.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${e}" data="${el.DataSaidaPrevista}" />` : ""}
+				</div>
+				`;
+						})
+						.join(" ");
+					const eqps = codigos
+						.map((e, j) => {
+							if (el.TiposItens[j] == 1) {
+								return
+                            }
 							return `
 				<div style="margin-bottom: 5px;">
 					<p>${nomes[j]} (${el.Horario})</p>
@@ -77,8 +93,10 @@ window.addEventListener("load", async () => {
 			<button class="collapsible">${diaSemana} (${dd_mm}) <img src="Estatico/imagens/seta_baixo.png" /></button>
 			<div class="content">
 				<div class="divTipoReserva">
-					<h1 id="h1Equipamentos">Itens</h1>
-					${itens}
+					${ambs.length != 0 ? `<h1 id="h1Equipamentos">Ambientes</h1>` : ""}
+					${ambs}
+					${eqps.length != 0 ? `<h1 id="h1Equipamentos">Equipamentos</h1>` : ""}
+					${eqps}
 				</div>
 				${el.StatusReserva == 1 ? `<button id="btnCardReserva" itens="${el.Itens.replaceAll(" ", "")}" data="${el.DataSaidaPrevista}">Cancelar todas</button>` : ""}
 			</div>

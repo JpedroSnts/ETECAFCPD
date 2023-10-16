@@ -16,22 +16,22 @@ namespace CPD.Site.ViewModel
         public DateTime DataDevolucao { get; set; }
         public DateTime DataCancelamento { get; set; }
         public EStatusReserva StatusReserva { get; set; }
+        public ETipoItem TipoItem { get; set; }
 
         public ReservaGenerica(ReservaAmbiente reserva)
         {
             AtribuirValores(reserva.Ambiente.Sigla, reserva.Ambiente.Nome,
                             reserva.Usuario, reserva.DataSaidaPrevista, reserva.DataSaida,
-                            reserva.DataDevolucaoPrevista, reserva.DataDevolucao, reserva.DataCancelamento, reserva.StatusReserva);
+                            reserva.DataDevolucaoPrevista, reserva.DataDevolucao, reserva.DataCancelamento, reserva.StatusReserva, ETipoItem.Ambiente);
         }
         public ReservaGenerica(ReservaEquipamento reserva)
         {
             AtribuirValores(reserva.Equipamento.Sigla, reserva.Equipamento.Nome,
                             reserva.Usuario, reserva.DataSaidaPrevista, reserva.DataSaida,
-                            reserva.DataDevolucaoPrevista, reserva.DataDevolucao, reserva.DataCancelamento, reserva.StatusReserva);
+                            reserva.DataDevolucaoPrevista, reserva.DataDevolucao, reserva.DataCancelamento, reserva.StatusReserva, ETipoItem.Equipamento);
         }
 
-        private void AtribuirValores(string sigla, string nome, Usuario usuario, DateTime dataSaidaPrevista, DateTime dataSaida, DateTime dataDevolucaoPrevista, DateTime dataDevolucao, DateTime dataCancelamento, EStatusReserva statusReserva)
-        {
+        private void AtribuirValores(string sigla, string nome, Usuario usuario, DateTime dataSaidaPrevista, DateTime dataSaida, DateTime dataDevolucaoPrevista, DateTime dataDevolucao, DateTime dataCancelamento, EStatusReserva statusReserva, ETipoItem eTipoItem) {
             SiglaItem = sigla;
             NomeItem = nome;
             Usuario = usuario;
@@ -41,6 +41,7 @@ namespace CPD.Site.ViewModel
             DataDevolucao = dataDevolucao;
             DataCancelamento = dataCancelamento;
             StatusReserva = statusReserva;
+            TipoItem = eTipoItem;
         }
 
     }
