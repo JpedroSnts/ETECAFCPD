@@ -36,14 +36,15 @@ body {
 
 .cardFlutuante {
 	position: absolute;
-	top: 35%;
-	left: 25%;
-	width: 50vw;
-	height: 266px;
+	top: 33%;
+	left: 33%;
+	width: 33vw;
+	height: 36vh;
 	border-radius: 10px;
-	background-color: #fff;
-	padding: 20px 10px;
+	background-color: #FFF;
+	padding: 20px 20px 10px 10px;
 	z-index: 2;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
 #divUser {
@@ -109,8 +110,6 @@ body {
 	padding: 10px 20px;
 	border-radius: 24px;
 	cursor: pointer;
-	text-decoration: none;
-	color: #fff;
 }
 
 i.fa-solid.fa-plus {
@@ -135,37 +134,11 @@ i.fa-solid.fa-plus {
 	padding: 10px 20px;
 	border-radius: 24px;
 	cursor: pointer;
-	margin-top: 30px;
-	color: #fff;
+	margin: 30px 0px;
 	text-decoration: none;
+	color: white;
 }
 
-.collapsible {
-	background-color: #fff;
-	color: #000;
-	cursor: pointer;
-	padding: 10px;
-	width: min(1200px, 90%);
-	border: thin solid #114a55;
-	text-align: left;
-	outline: none;
-	font-size: 16px;
-	z-index: 1;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.collapsible img {
-	object-fit: contain;
-	width: 25px;
-}
-
-.active,
-.collapsible:hover {
-	background-color: #fff;
-}
 
 .content {
 	width: min(1200px, 90%);
@@ -188,13 +161,14 @@ i.fa-solid.fa-plus {
 	color: #114a55;
 }
 #h1Equipamentos {
-	margin-top: 40px;
+	margin-top: 30px;
 }
 .divTipoReserva div {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
+	margin-top: 15px;
 }
 .divTipoReserva div p {
 	margin: 0;
@@ -212,7 +186,38 @@ i.fa-solid.fa-plus {
 	color: #000;
 	margin-bottom: 20px;
 }
+#displayCardsReserva {
+	margin-top: 30px;
+	width: 80%;
+	display: flex;
+	justify-content: space-evenly;
+}
+.cardReserva {
+	border-radius: 20px;
+	box-shadow: 0px 1px 3px #565656;
+	padding: 10px 20px 0px 20px;
+	width: 40%;
+	position: relative;
+}
 
+.divReservas {
+	min-height: 300px;
+	display:flex;
+	justify-content:space-between;
+	flex-direction:column;
+}
+#iconLixeira {
+	object-fit: contain;
+	width: 20px;
+}
+
+.displayBtn {
+	display: flex;
+	justify-content: center;
+	position: relative;
+	bottom: 0;
+	width: 100%;
+}
 /* ---------------------------- MAIN ALTERAR SENHA  ---------------------------- */
 #mainAlterarSenha {
 	width: 370px;
@@ -453,15 +458,32 @@ button, input[type="button"], input[type="submit"] {
 		background-color: #fff;
 		color: #000;
 		margin-bottom: 20px;
+		width: 30%;
 	}
 }
 
 #reservas {
-	width: 100%;
 	text-align: center;
 	display: flex;
-	flex-direction: column;
 	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+}
+
+#displayCardsReserva {
+	margin-top: 30px;
+	width: 80%;
+	display: flex;
+	justify-content: space-evenly;
+}
+
+.cardReserva {
+	border-radius: 20px;
+	box-shadow: 0px 1px 3px #565656;
+	padding: 10px 20px 0px 20px;
+	width: 40%;
+	position: relative;
+	margin-top: 10px;
 }
 
 .centro {

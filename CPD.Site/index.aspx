@@ -19,6 +19,9 @@
 <body>
     <form id="form1" runat="server">
 		<uc:Header ID="PartialHeader" runat="server" />
+        
+            <!-- ----------------------- CARDS RESERVA ----------------------- -->
+
 		<main id="mainHome" style="display: none">
 			<div>
 				<img id="cardSemReserva" src="Estatico/imagens/semReserva.png" />
@@ -30,10 +33,11 @@
 		</main>
 		<main id="mainComReserva" style="display: none">
 			<p><strong>Suas reservas</strong></p>
+			<!------------------------ CARDS RESERVA ----------------------- -->
 
-			<!-- ----------------------- CARDS RESERVA ----------------------- -->
-			<div id="reservas"></div>
-
+			<div id="displayCardsReserva"> 
+				<div id="reservas"></div>
+			</div>
 			<!-- ----------------------- CARD NOVA RESERVA ----------------------- -->
 
 			<a href="/reserva.aspx" id="btnNovaReservaComReserva"><i class="fa-solid fa-plus"></i>Nova Reserva</a>

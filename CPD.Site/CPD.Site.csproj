@@ -126,6 +126,7 @@
     <Content Include="Estatico\js\reserva.js" />
     <Content Include="Global.asax" />
     <Content Include="gradeHorario.aspx" />
+    <Content Include="historico.aspx" />
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
     <Content Include="logout.aspx" />
@@ -199,6 +200,13 @@
     </Compile>
     <Compile Include="gradeHorario.aspx.designer.cs">
       <DependentUpon>gradeHorario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="historico.aspx.cs">
+      <DependentUpon>historico.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="historico.aspx.designer.cs">
+      <DependentUpon>historico.aspx</DependentUpon>
     </Compile>
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>

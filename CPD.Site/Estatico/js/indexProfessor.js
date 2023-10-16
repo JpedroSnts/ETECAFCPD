@@ -3,6 +3,7 @@ window.addEventListener("load", async () => {
 	const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 	const mainHome = document.querySelector("#mainHome");
 	const mainComReserva = document.querySelector("#mainComReserva");
+	console.log(mainHome, mainComReserva);
 	const $reservas = document.querySelector("#reservas");
 
 	function cancelarReserva(itens, rm, data) {
@@ -32,7 +33,6 @@ window.addEventListener("load", async () => {
 		fetch(`/api/reservasProfessor.aspx?rm=${rmUsuario}`).then((res) => {
 			return res.json();
 		}).then((reservas) => {
-			console.log(reservas);
 			let reservasAgrupadas = {};
 
 			reservas.forEach(reserva => {
@@ -50,6 +50,7 @@ window.addEventListener("load", async () => {
 
 			$reservas.innerHTML = "";
 			if (reservas != null && reservas.length != 0) {
+				console.log("123");
 				mainHome.style.display = "none";
 				mainComReserva.style.display = "flex";
 
@@ -68,11 +69,11 @@ window.addEventListener("load", async () => {
 								return;	
 							}
 							return `
-				<div style="margin-bottom: 5px;">
-					<p>${nomes[j]} (${el.Horario})</p>
-					${el.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${e}" data="${el.DataSaidaPrevista}" />` : ""}
-				</div>
-				`;
+						<div style="margin-bottom: 5px;">
+							<p>${nomes[j]} (${el.Horario})</p>
+							${el.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${e}" data="${el.DataSaidaPrevista}" />` : ""}
+						</div>
+						`;
 						})
 						.join(" ");
 					const eqps = codigos
@@ -81,30 +82,33 @@ window.addEventListener("load", async () => {
 								return
                             }
 							return `
-				<div style="margin-bottom: 5px;">
-					<p>${nomes[j]} (${el.Horario})</p>
-					${el.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${e}" data="${el.DataSaidaPrevista}" />` : ""}
-				</div>
-				`;
+						<div style="margin-bottom: 5px;">
+							<p>${nomes[j]} (${el.Horario})</p>
+							${el.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${e}" data="${el.DataSaidaPrevista}" />` : ""}
+						</div>
+						`;
 						})
 						.join(" ");
 					$reservas.innerHTML += `
-<div id='reservas'>
-			<button class="collapsible">${diaSemana} (${dd_mm}) <img src="Estatico/imagens/seta_baixo.png" /></button>
-			<div class="content">
-				<div class="divTipoReserva">
-					${ambs.length != 0 ? `<h1 id="h1Equipamentos">Ambientes</h1>` : ""}
-					${ambs}
-					${eqps.length != 0 ? `<h1 id="h1Equipamentos">Equipamentos</h1>` : ""}
-					${eqps}
-				</div>
-				${el.StatusReserva == 1 ? `<button id="btnCardReserva" itens="${el.Itens.replaceAll(" ", "")}" data="${el.DataSaidaPrevista}">Cancelar todas</button>` : ""}
-			</div>
-</div>
-			`;
+						<div class="cardReserva">
+							<h1>${diaSemana} (${dd_mm})</h1>
+							<div class="divReservas">
+								<div class="divTipoReserva">
+									${ambs.length != 0 ? `<h1 id="h1Equipamentos">Ambientes</h1>` : ""}
+									${ambs}
+									${eqps.length != 0 ? `<h1 id="h1Equipamentos">Equipamentos</h1>` : ""}
+									${eqps}
+								</div>
+								<div class="displayBtn">
+									${el.StatusReserva == 1 ? `<button id="btnCardReserva" itens="${el.Itens.replaceAll(" ", "")}" data="${el.DataSaidaPrevista}  ">Cancelar todas</button>` : ""}
+								</div>
+							</div>
+						</div>
+					`;
 				}
 				cardReserva();
 			} else {
+				console.log("123");
 				mainComReserva.style.display = "none";
 				mainHome.style.display = "flex";
 			}
@@ -119,6 +123,7 @@ window.addEventListener("load", async () => {
 					btnsCancelarReservas[i].parentElement.parentElement.remove();
 					const qtReservas = document.querySelector("#reservas").childElementCount;
 					if (qtReservas == 0) {
+						console.log("123");
 						mainHome.style.display = "flex";
 						mainComReserva.style.display = "none";
 					}
@@ -153,6 +158,7 @@ window.addEventListener("load", async () => {
 					}
 					const qtReservas = document.querySelector("#reservas").childElementCount;
 					if (qtReservas == 0) {
+						console.log("123");
 						mainHome.style.display = "flex";
 						mainComReserva.style.display = "none";
 					}
