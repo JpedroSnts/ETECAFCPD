@@ -23,19 +23,29 @@
 
         <main>
             <h1>Gerar Relatório</h1>
-            <div id="gerarRelatorio">
-                <asp:DropDownList runat="server" ID="ddlRelatorio">
-                    <asp:ListItem Text="Tipo Relatório"></asp:ListItem>
-                    <asp:ListItem Text="Ocorrências" Value="ocorrencias"></asp:ListItem>
-                    <asp:ListItem Text="Reservas canceladas" Value="reservasC"></asp:ListItem>
-                    <asp:ListItem Text="Reservas atrasadas" Value="reservasA"></asp:ListItem>
-                    <asp:ListItem Text="Reservas não realizadas" Value="reservasNA"></asp:ListItem>
-                </asp:DropDownList>
 
-                <asp:TextBox runat="server" ID="dataInicio" TextMode="Date"></asp:TextBox>
-                <asp:TextBox runat="server" ID="dataFinal" TextMode="Date"></asp:TextBox>
+            <div id="displayRelatorio">
 
-                <asp:Button ID="btnGerarRelatorio" runat="server" Text="Gerar Relatório" OnClick="btnGerarRelatorio_Click"/>
+                <div id="gerarRelatorio">
+                    <asp:DropDownList runat="server" ID="ddlRelatorio">
+                        <asp:ListItem Text="Tipo Relatório"></asp:ListItem>
+                        <asp:ListItem Text="Ocorrências" Value="ocorrencias"></asp:ListItem>
+                        <asp:ListItem Text="Reservas canceladas" Value="reservasC"></asp:ListItem>
+                        <asp:ListItem Text="Reservas atrasadas" Value="reservasA"></asp:ListItem>
+                        <asp:ListItem Text="Reservas não realizadas" Value="reservasNA"></asp:ListItem>
+                    </asp:DropDownList>
+
+                    <div id="inputsRelatorio">
+                        <asp:TextBox runat="server" ID="dataInicio" TextMode="SingleLine" placeholder="Data Inicial" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="dataFinal" TextMode="SingleLine" placeholder="Data Final" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date"></asp:TextBox>
+                    </div>
+
+                    <div id="alignBtn">
+                        <p>Relatório gerado em formato PDF</p>
+                        <asp:Button ID="btnGerarRelatorio" runat="server" Text="Gerar Relatório" OnClick="btnGerarRelatorio_Click"/>
+                    </div>
+                </div>
+
             </div>
         </main>
 
