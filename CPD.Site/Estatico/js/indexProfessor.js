@@ -32,12 +32,27 @@ window.addEventListener("load", async () => {
 		fetch(`/api/reservasProfessor.aspx?rm=${rmUsuario}`).then((res) => {
 			return res.json();
 		}).then((reservas) => {
+
+			let reservasAgrupadas = {};
+
+			reservas.forEach(reserva => {
+				const data = reserva["DataSaidaPrevista"].split("T")[0];
+
+				if (!reservasAgrupadas[data]) {
+					reservasAgrupadas[data] = [];
+				}
+
+				reservasAgrupadas[data].push(reserva);
+			});
+			reservasAgrupadas = Object.values(reservasAgrupadas);
+
+			console.log(reservasAgrupadas);
+
 			$reservas.innerHTML = "";
 			if (reservas != null && reservas.length != 0) {
 				mainHome.style.display = "none";
 				mainComReserva.style.display = "flex";
 
-				console.log(reservas);
 				for (let i = 0; i < reservas.length; i++) {
 					const el = reservas[i];
 					const dt = new Date(el.DataSaidaPrevista);
