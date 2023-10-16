@@ -1,90 +1,130 @@
 * { box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 body{ margin: 0%; }
 
-main {
-    margin: 30px 120px;
+h1 {
+    font-size: 16px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+p {
+    margin: 0px;
+}
+
+#inputs {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    margin-top: 30px;
     align-items: center;
 }
 
-h1 {
+input {
+    width: 25%;
+    border-radius: 5px;
+    border: 1px solid #114a55;
+    background: #fff;
+    color: #000;
     font-size: 14px;
+    padding: 6px 8px 3px 12px;
+    margin: auto;
 }
 
-#gerarRelatorio {
-    width: 100%;
+#txtInputData {
+    margin-right: 10px;
+    margin-left: 0px;
+    padding: 2px 0px 2px 12px;
+    height: 37px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    background: url("../imagens/Calendario.png") no-repeat;
+    background-position: calc(100% - 5px) center;
+    padding: 9px 8px 8px 12px;
+}
+
+.input-text-date {
+    background: url("../imagens/Calendario.png") no-repeat;
+    background-position: calc(100% - 5px) center;
+    padding: 9px 8px 8px 12px;
+}
+
+    .input-text-date:focus {
+        outline: none;
+        padding: 2px 0px 2px 12px;
+    }
+
+    .input-text-date::placeholder {
+        color: #000;
+    }
+
+#displayRelatorio {
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    margin-top: 30px;
 }
-
-select {
-    width: 36%;
-    height: 32px;
-    color: #bbb;
-    border-radius: 5px;
-    border: 1px solid #114A55;
-    padding: 0px 10px;
-    margin: 0px 5px;
-    font-size: 12px;
-}
-
-select.habilitado {
-    color: #000;
-}
-
-select option {
-    color: #000;
-    padding: 5px;
-}
-
-input[type="date"] {
-    width: 24%;
-    height: 32px;
-    color: #bbb;
-    border-radius: 5px;
-    border: 1px solid #114A55;
-    padding: 0px 10px;
-    margin: 0px 5px;
-    font-size: 12px;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator{
-    background: url("../imagens/calendario.png") no-repeat;
-    width: 24px;
-    height: 20px;
-    margin-right: -10px;
-    cursor: pointer;
-}
-
-input[type="date"].habilitado {
-    color: #000;
-}
-
-button {
-    width: 16%;
-    height: 32px;
-    font-size: 12px;
-    border: 0px;
-    border-radius: 16px;
-    color: #fff;
-    background-color: #114A55;
-    padding: 0px 10px;
-    margin: 0px 5px;
-    cursor: pointer;
-}
-
-button:active {
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 2);
-  }
 
 #ddlRelatorio {
-    color:black;
+    padding: 9px 8px 8px 12px;
+    border-radius: 5px;
+    border: 1px solid #114a55;
 }
 
-#dataInicio {
-    color: black;
+    #ddlRelatorio:focus {
+        outline: none;
+    }
+
+#gerarRelatorio {
+    width: 630px;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: thin solid #ebebeb;
+    border-radius: 20px;
 }
 
-#dataFinal {
-    color: black;
+#inputsRelatorio {
+    display: flex;
+    justify-content: space-between;
+    color: #000;
+}
+
+#dataInicio, #dataFinal {
+    padding: 2px 0px 2px 12px;
+    height: 37px;
+    width: 49%;
+    margin: 0;
+}
+
+#alignBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+    #alignBtn p {
+        color: #737373;
+        font-size: 14px;
+    }
+
+#btnGerarRelatorio {
+    width: 142px;
+    height: 35px;
+    border-radius: 20px;
+    padding: 5px 20px;
+    background-color: #114a55;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+}
+
+#btnGerarRelatorio:active {
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 2);
 }
