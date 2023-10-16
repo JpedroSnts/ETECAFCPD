@@ -33,15 +33,30 @@ namespace CPD.Site.ViewModel
 
             foreach (var x in itensGenericos)
             {
-                string sigla = ExtrairSigla(x.Sigla);
-                if (novaLista.ContainsKey(sigla))
+                if (x.Tipo == ETipoItem.Equipamento)
                 {
-                    var (nome, quantidade, Tipo) = novaLista[sigla];
-                    novaLista[sigla] = (nome, quantidade + 1, Tipo);
+                    string sigla = ExtrairSigla(x.Sigla);
+                    if (novaLista.ContainsKey(sigla))
+                    {
+                        var (nome, quantidade, Tipo) = novaLista[sigla];
+                        novaLista[sigla] = (nome, quantidade + 1, Tipo);
+                    }
+                    else
+                    {
+                        novaLista[sigla] = (ExtrairNome(x.Nome), 1, x.Tipo);
+                    }
                 }
                 else
                 {
-                    novaLista[sigla] = (ExtrairNome(x.Nome), 1, x.Tipo);
+                    if (novaLista.ContainsKey(x.Sigla))
+                    {
+                        var (nome, quantidade, Tipo) = novaLista[x.Sigla];
+                        novaLista[x.Sigla] = (nome, quantidade + 1, Tipo);
+                    }
+                    else
+                    {
+                        novaLista[x.Sigla] = (x.Nome, 1, x.Tipo);
+                    }
                 }
             }
 
