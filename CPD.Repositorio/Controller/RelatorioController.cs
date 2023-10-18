@@ -15,8 +15,6 @@ namespace CPD.Repositorio.Controller
     {
         public Relatorio relatorioOcorrencia(DateTime dataInicio, DateTime dataFinal)
         {
-            List<ReservaEquipamento> listRe = new List<ReservaEquipamento>();
-            List<OcorrenciaEquipamento> listOe = new List<OcorrenciaEquipamento>();
             List<ReservaAmbiente> listRa = new List<ReservaAmbiente>();
             List<OcorrenciaAmbiente> listOa = new List<OcorrenciaAmbiente>();
             List<Parametro> parametros = new List<Parametro>
@@ -24,7 +22,8 @@ namespace CPD.Repositorio.Controller
                 new Parametro("pDataInicio", dataInicio.ToString("yyyy-MM-dd")),
                 new Parametro("pDataFinal", dataFinal.ToString("yyyy-MM-dd"))
             };
-            MySqlDataReader reader = Executar("relatorioOcorrenciaAmbiente", parametros);
+
+            MySqlDataReader reader = Executar("relatorioOcorrencia", parametros);
 
             Relatorio relatorio = null;
             while (reader.Read())
@@ -43,7 +42,7 @@ namespace CPD.Repositorio.Controller
                 ReservaAmbiente ra = new ReservaAmbiente()
                 {
                     Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString(), Email = reader["nm_email"].ToString() },
-                    Ambiente = new Ambiente { Sigla = reader["sg_ambiente"].ToString() },
+                    Ambiente = new Ambiente { Sigla = reader["sg_ambiente"].ToString(), Nome = reader["nm_ambiente"].ToString() },
                     DataSaidaPrevista = Data.DateTimeParse(reader["dt_saida_prevista"].ToString()),
                     DataDevolucaoPrevista = Data.DateTimeParse(reader["dt_devolucao_prevista"].ToString()),
                     DataSaida = Data.DateTimeParse(reader["dt_saida"].ToString()),
@@ -55,34 +54,7 @@ namespace CPD.Repositorio.Controller
             if (reader.IsClosed) reader.Close();
             Desconectar();
 
-            reader = Executar("relatorioOcorrenciaEquipamento", parametros);
-
-            while (reader.Read())
-            {
-                OcorrenciaEquipamento oe = new OcorrenciaEquipamento()
-                {
-                    Data = Data.DateTimeParse(reader["dt_ocorrencia"].ToString()),
-                    Descricao = reader["ds_ocorrencia"].ToString(),
-                    TipoOcorrencia = new TipoOcorrenciaEquipamento()
-                    {
-                        Nome = reader["nm_tipo_ocorrencia"].ToString()
-                    }
-                };
-                listOe.Add(oe);
-
-                ReservaEquipamento re = new ReservaEquipamento()
-                {
-                    Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString(), Email = reader["nm_email"].ToString()},
-                    Equipamento = new Equipamento { Sigla = reader["sg_equipamento"].ToString() },
-                    DataSaidaPrevista = Data.DateTimeParse(reader["dt_saida_prevista"].ToString()),
-                    DataDevolucaoPrevista = Data.DateTimeParse(reader["dt_devolucao_prevista"].ToString()),
-                    DataSaida = Data.DateTimeParse(reader["dt_saida"].ToString()),
-                    DataDevolucao = Data.DateTimeParse(reader["dt_devolucao"].ToString()),
-                };
-                listRe.Add(re);
-            }
-
-            relatorio = new Relatorio(dataInicio, dataFinal, "Ocorrências", listRa, listOa, listRe, listOe);
+            relatorio = new Relatorio(dataInicio, dataFinal, "Ocorrências", listRa, listOa);
 
             if (reader.IsClosed) reader.Close();
             Desconectar();
@@ -93,21 +65,20 @@ namespace CPD.Repositorio.Controller
         public Relatorio relatorioReservasCanceladas(DateTime dataInicio, DateTime dataFinal)
         {
             Relatorio relatorio = null;
-            List<ReservaEquipamento> listRe = new List<ReservaEquipamento>();
             List<ReservaAmbiente> listRa = new List<ReservaAmbiente>();
             List<Parametro> parametros = new List<Parametro>
             {
                 new Parametro("pDataInicio", dataInicio.ToString("yyyy-MM-dd")),
                 new Parametro("pDataFinal", dataFinal.ToString("yyyy-MM-dd"))
             };
-            MySqlDataReader reader = Executar("relatorioReservasCanceladasAmbiente", parametros);
+            MySqlDataReader reader = Executar("relatorioReservasCanceladas", parametros);
 
             while (reader.Read())
             {
                 ReservaAmbiente ra = new ReservaAmbiente()
                 {
                     Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString(), Email = reader["nm_email"].ToString()},
-                    Ambiente = new Ambiente { Sigla = reader["sg_ambiente"].ToString() },
+                    Ambiente = new Ambiente { Sigla = reader["sg_ambiente"].ToString(), Nome = reader["nm_ambiente"].ToString() },
                     DataSaidaPrevista = Data.DateTimeParse(reader["dt_saida_prevista"].ToString()),
                     DataDevolucaoPrevista = Data.DateTimeParse(reader["dt_devolucao_prevista"].ToString()),
                     DataSaida = Data.DateTimeParse(reader["dt_saida"].ToString()),
@@ -116,24 +87,7 @@ namespace CPD.Repositorio.Controller
                 };
                 listRa.Add(ra);
             }
-
-            reader = Executar("relatorioReservasCanceladasEquipamento", parametros);
-
-            while (reader.Read())
-            {
-                ReservaEquipamento re = new ReservaEquipamento()
-                {
-                    Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString(), Email = reader["nm_email"].ToString() },
-                    Equipamento = new Equipamento { Sigla = reader["sg_equipamento"].ToString() },
-                    DataSaidaPrevista = Data.DateTimeParse(reader["dt_saida_prevista"].ToString()),
-                    DataDevolucaoPrevista = Data.DateTimeParse(reader["dt_devolucao_prevista"].ToString()),
-                    DataSaida = Data.DateTimeParse(reader["dt_saida"].ToString()),
-                    DataDevolucao = Data.DateTimeParse(reader["dt_devolucao"].ToString()),
-                    DataCancelamento = Data.DateTimeParse(reader["dt_cancelamento"].ToString()),
-                };
-                listRe.Add(re);
-            }
-            relatorio = new Relatorio(dataInicio, dataFinal, "Reservas Canceladas", listRa, listRe);
+            relatorio = new Relatorio(dataInicio, dataFinal, "Reservas Canceladas", listRa);
 
             return relatorio;
         }
@@ -141,21 +95,20 @@ namespace CPD.Repositorio.Controller
         public Relatorio relatorioReservasAtrasadas(DateTime dataInicio, DateTime dataFinal)
         {
             Relatorio relatorio = null;
-            List<ReservaEquipamento> listRe = new List<ReservaEquipamento>();
             List<ReservaAmbiente> listRa = new List<ReservaAmbiente>();
             List<Parametro> parametros = new List<Parametro>
             {
                 new Parametro("pDataInicio", dataInicio.ToString("yyyy-MM-dd")),
                 new Parametro("pDataFinal", dataFinal.ToString("yyyy-MM-dd"))
             };
-            MySqlDataReader reader = Executar("relatorioReservasAtrasadasAmbiente", parametros);
+            MySqlDataReader reader = Executar("relatorioReservasAtrasadas", parametros);
 
             while (reader.Read())
             {
                 ReservaAmbiente ra = new ReservaAmbiente()
                 {
                     Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString(), Email = reader["nm_email"].ToString() },
-                    Ambiente = new Ambiente { Sigla = reader["sg_ambiente"].ToString() },
+                    Ambiente = new Ambiente { Sigla = reader["sg_ambiente"].ToString(), Nome = reader["nm_ambiente"].ToString() },
                     DataSaidaPrevista = Data.DateTimeParse(reader["dt_saida_prevista"].ToString()),
                     DataDevolucaoPrevista = Data.DateTimeParse(reader["dt_devolucao_prevista"].ToString()),
                     DataSaida = Data.DateTimeParse(reader["dt_saida"].ToString()),
@@ -164,22 +117,7 @@ namespace CPD.Repositorio.Controller
                 listRa.Add(ra);
             }
 
-            reader = Executar("relatorioReservasAtrasadasEquipamento", parametros);
-
-            while (reader.Read())
-            {
-                ReservaEquipamento re = new ReservaEquipamento()
-                {
-                    Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString(), Email = reader["nm_email"].ToString() },
-                    Equipamento = new Equipamento { Sigla = reader["sg_equipamento"].ToString() },
-                    DataSaidaPrevista = Data.DateTimeParse(reader["dt_saida_prevista"].ToString()),
-                    DataDevolucaoPrevista = Data.DateTimeParse(reader["dt_devolucao_prevista"].ToString()),
-                    DataSaida = Data.DateTimeParse(reader["dt_saida"].ToString()),
-                    DataDevolucao = Data.DateTimeParse(reader["dt_devolucao"].ToString()),
-                };
-                listRe.Add(re);
-            }
-            relatorio = new Relatorio(dataInicio, dataFinal, "Reservas Atrasadas", listRa, listRe);
+            relatorio = new Relatorio(dataInicio, dataFinal, "Reservas Atrasadas", listRa);
 
             return relatorio;
         }
@@ -187,14 +125,13 @@ namespace CPD.Repositorio.Controller
         public Relatorio relatorioReservasNaoRealizadas(DateTime dataInicio, DateTime dataFinal)
         {
             Relatorio relatorio = null;
-            List<ReservaEquipamento> listRe = new List<ReservaEquipamento>();
             List<ReservaAmbiente> listRa = new List<ReservaAmbiente>();
             List<Parametro> parametros = new List<Parametro>
             {
                 new Parametro("pDataInicio", dataInicio.ToString("yyyy-MM-dd")),
                 new Parametro("pDataFinal", dataFinal.ToString("yyyy-MM-dd"))
             };
-            MySqlDataReader reader = Executar("relatorioReservasNaoRealizadasAmbiente", parametros);
+            MySqlDataReader reader = Executar("relatorioReservasNaoRealizadas", parametros);
 
             while (reader.Read())
             {
@@ -209,23 +146,7 @@ namespace CPD.Repositorio.Controller
                 };
                 listRa.Add(ra);
             }
-
-            reader = Executar("relatorioReservasNaoRealizadasEquipamento", parametros);
-
-            while (reader.Read())
-            {
-                ReservaEquipamento re = new ReservaEquipamento()
-                {
-                    Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString(), Email = reader["nm_email"].ToString() },
-                    Equipamento = new Equipamento { Sigla = reader["sg_equipamento"].ToString() },
-                    DataSaidaPrevista = Data.DateTimeParse(reader["dt_saida_prevista"].ToString()),
-                    DataDevolucaoPrevista = Data.DateTimeParse(reader["dt_devolucao_prevista"].ToString()),
-                    DataSaida = Data.DateTimeParse(reader["dt_saida"].ToString()),
-                    DataDevolucao = Data.DateTimeParse(reader["dt_devolucao"].ToString()),
-                };
-                listRe.Add(re);
-            }
-            relatorio = new Relatorio(dataInicio, dataFinal, "Reservas Não Realizadas", listRa, listRe);
+            relatorio = new Relatorio(dataInicio, dataFinal, "Reservas Não Realizadas", listRa);
 
             return relatorio;
         }

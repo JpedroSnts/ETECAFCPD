@@ -37,3 +37,8 @@ td, th {
 tr:nth-child(odd) {
     background-color: #00a4c510;
 }
+
+#cabecalhoRelatorio {
+    display: flex;
+    justify-content: space-between;
+}

@@ -42,7 +42,19 @@ namespace CPD.Site
 
                     relatorio = rC.relatorioOcorrencia(inicio, fim);
 
-                    
+                    for (int i = 0; i < relatorio.Ocorrencia.Count; i++)
+                    {
+                        litConteudoTabela.Text += $@"<tr>
+                                                        <td>{relatorio.Ocorrencia[i].Data}</td>
+                                                        <td>{relatorio.Reserva[i].Usuario.RM}</td>
+                                                        <td>{relatorio.Reserva[i].Usuario.Nome}</td>
+                                                        <td>{relatorio.Reserva[i].Usuario.Email}</td>
+                                                        <td>{relatorio.Reserva[i].Ambiente.Nome}</td>
+                                                        <td>{relatorio.Ocorrencia[i].TipoOcorrencia.Nome}</td>
+                                                    </tr>";
+                    }
+
+
                 }
                 if (tipoRelatorio == "reservasC")
                 {
@@ -58,10 +70,24 @@ namespace CPD.Site
                                             </tr>";
 
                     relatorio = rC.relatorioReservasCanceladas(inicio, fim);
-                    
+
+                    for (int i = 0; i < relatorio.Reserva.Count; i++)
+                    {
+                        litConteudoTabela.Text += $@"<tr>
+                                                        <td>{relatorio.Reserva[i].DataSaidaPrevista}</td>
+                                                        <td>{relatorio.Reserva[i].Usuario.RM}</td>
+                                                        <td>{relatorio.Reserva[i].Usuario.Nome}</td>
+                                                        <td>{relatorio.Reserva[i].Usuario.Email}</td>
+                                                        <td>{relatorio.Reserva[i].Ambiente.Nome}</td>
+                                                        <td>{relatorio.Reserva[i].DataCancelamento}</td>
+                                                    </tr>";
+                    }
+
                 }
                 if (tipoRelatorio == "reservasA")
                 {
+                    /* NAO FUNCIONA */
+
                     litTipoRelatorio.Text = char.ToUpper(tipoRelatorio[0]) + tipoRelatorio.Substring(1) + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
 
                     litTituloTabela.Text = $@"<tr>
@@ -76,8 +102,20 @@ namespace CPD.Site
 
                     relatorio = rC.relatorioReservasAtrasadas(inicio, fim);
 
+                    for (int i = 0; i < relatorio.Reserva.Count; i++)
+                    {
+                        litConteudoTabela.Text += $@"<tr>
+                                                        <td>{relatorio.Reserva[i].DataSaidaPrevista}</td>
+                                                        <td>{relatorio.Reserva[i].Usuario.RM}</td>
+                                                        <td>{relatorio.Reserva[i].Usuario.Nome}</td>
+                                                        <td>{relatorio.Reserva[i].Usuario.Email}</td>
+                                                        <td>{relatorio.Reserva[i].Ambiente.Nome}</td>
+                                                        <td>{relatorio.Ocorrencia[i].TipoOcorrencia.Nome}</td>
+                                                    </tr>";
+                    }
+
                 }
-                if (tipoRelatorio == "reservasNA")
+                if (tipoRelatorio == "reservasNR")
                 {
                     litTipoRelatorio.Text = char.ToUpper(tipoRelatorio[0]) + tipoRelatorio.Substring(1) + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
 
@@ -90,6 +128,17 @@ namespace CPD.Site
                                             </tr>";
 
                     relatorio = rC.relatorioReservasNaoRealizadas(inicio, fim);
+
+                    for (int i = 0; i < relatorio.Reserva.Count; i++)
+                    {
+                        litConteudoTabela.Text += $@"<tr>
+                                                        <td>{relatorio.Reserva[i].DataSaidaPrevista}</td>
+                                                        <td>{relatorio.Reserva[i].Usuario.RM}</td>
+                                                        <td>{relatorio.Reserva[i].Usuario.Nome}</td>
+                                                        <td>{relatorio.Reserva[i].Usuario.Email}</td>
+                                                        <td>{relatorio.Reserva[i].Ambiente.Nome}</td>
+                                                    </tr>";
+                    }
 
                 }
             }

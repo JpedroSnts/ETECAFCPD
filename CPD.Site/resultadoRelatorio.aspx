@@ -18,26 +18,20 @@
 <body>
     <form id="form1" runat="server">
         <main>
-            <h1>
-                <asp:Literal ID="litTipoRelatorio" runat="server"></asp:Literal>
-            </h1>
+            <div id="cabecalhoRelatorio">
+                <img src="Estatico/imagens/logoCPD.png"/>
+                <h1>
+                    <asp:Literal ID="litTipoRelatorio" runat="server"></asp:Literal>
+                </h1>
+                <img src="Estatico/imagens/logoETECAF.png"/>
+            </div>
+
             <table>
                 <thead>
                     <asp:Literal ID="litTituloTabela" runat="server"></asp:Literal>
-                   <%-- <th>DATA</th>
-                    <th>RM</th>
-                    <th>PROFESSOR</th>
-                    <th>E-MAIL</th>
-                    <th>ITEM</th>
-                    <th>TIPO OCORRÊNCIA</th>--%>
                 </thead>
                 <tbody>
                     <asp:Literal ID="litConteudoTabela" runat="server"></asp:Literal>
-                    <%--<td>11/09/2023</td>
-                    <td>36419</td>
-                    <td>Frederico Arco e Flexa Machado Justo</td>
-                    <td>frederico.machado@etec.sp.gov.br</td>
-                    <td>INFO LAB 05</td>--%>
                 </tbody>
             </table>
         </main>

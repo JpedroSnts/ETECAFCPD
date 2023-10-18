@@ -27,7 +27,7 @@ namespace CPD.Site
             if (ddlRelatorio.SelectedValue == "ocorrencias") tipo = "ocorrencias";
             if (ddlRelatorio.SelectedValue == "reservasC") tipo = "reservasC";
             if (ddlRelatorio.SelectedValue == "reservasA") tipo = "reservasA";
-            if (ddlRelatorio.SelectedValue == "reservasNA") tipo = "reservasNA";
+            if (ddlRelatorio.SelectedValue == "reservasNR") tipo = "reservasNR";
             if (tipo == "")
             {
                 //ERRO

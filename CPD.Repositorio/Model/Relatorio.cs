@@ -11,29 +11,24 @@ namespace CPD.Repositorio.Model
         public DateTime DataInicio { get; set; }   
         public DateTime DataFim { get; set; }
         public string TipoRelatorio { get; set; }
-        public List<ReservaAmbiente> ReservaAmbiente { get; set; }
-        public List<ReservaEquipamento> ReservaEquipamento { get; set; }
-        public List<OcorrenciaAmbiente> OcorrenciaAmbiente { get; set; }
-        public List<OcorrenciaEquipamento> OcorrenciaEquipamento { get; set; }
+        public List<ReservaAmbiente> Reserva { get; set; }
+        public List<OcorrenciaAmbiente> Ocorrencia { get; set; }
 
-        public Relatorio(DateTime dataInicio, DateTime dataFim, string tipoRelatorio, List<ReservaAmbiente> reservaAmbiente, List<OcorrenciaAmbiente> ocorrenciaAmbiente, List<ReservaEquipamento> reservaEquipamento, List<OcorrenciaEquipamento> ocorrenciaEquipamento)
+        public Relatorio(DateTime dataInicio, DateTime dataFim, string tipoRelatorio, List<ReservaAmbiente> reservaAmbiente, List<OcorrenciaAmbiente> ocorrenciaAmbiente)
         {
             DataInicio = dataInicio;
             DataFim = dataFim;
             TipoRelatorio = tipoRelatorio;
-            ReservaAmbiente = reservaAmbiente;
-            OcorrenciaAmbiente = ocorrenciaAmbiente;
-            ReservaEquipamento = reservaEquipamento;
-            OcorrenciaEquipamento = ocorrenciaEquipamento;
+            Reserva = reservaAmbiente;
+            Ocorrencia = ocorrenciaAmbiente;
         }
 
-        public Relatorio(DateTime dataInicio, DateTime dataFim, string tipoRelatorio, List<ReservaAmbiente> reservaAmbiente, List<ReservaEquipamento> reservaEquipamento)
+        public Relatorio(DateTime dataInicio, DateTime dataFim, string tipoRelatorio, List<ReservaAmbiente> reservaAmbiente)
         {
             DataInicio = dataInicio;
             DataFim = dataFim;
             TipoRelatorio = tipoRelatorio;
-            ReservaAmbiente = reservaAmbiente;
-            ReservaEquipamento = reservaEquipamento;
+            Reserva = reservaAmbiente;
         }
     }
 }
