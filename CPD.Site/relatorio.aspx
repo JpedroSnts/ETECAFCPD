@@ -52,5 +52,15 @@
         <script src="Estatico/js/menuSanduiche.js"></script>
         <script src="Estatico/js/relatorio.js"></script>
     </form>
+    <script>
+        const dataInicio = document.querySelector("#dataInicio");
+        const dataFinal = document.querySelector("#dataFinal");
+        if (dataInicio.value) {
+            dataInicio.type = "date";
+        }
+        if (dataFinal.value) {
+            dataFinal.type = "date";
+        }
+    </script>
 </body>
 </html>
