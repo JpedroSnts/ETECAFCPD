@@ -3,20 +3,19 @@
 	font-family: "Montserrat", sans-serif;
 }
 
-main {
-	width: min(90%, 1800px);
-	margin: auto;
-	margin-top: 30px;
-}
-
 body {
 	margin: 0%;
 }
 
-header {
-	width: 100%;
+h1 {
+	text-align: center;
+	font-size: 16px;
+}
+
+/*header {
+	width: 100%;*/
 	/* padding: 0 200px; */
-	background: #fff;
+	/*background: #fff;
 	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 	font-size: 16px;
 	font-style: normal;
@@ -45,30 +44,32 @@ header {
 	margin-top: 10px;
 	width: 80px;
 	height: 100px;
-}
+}*/
 
-h1 {
-	text-align: center;
-	font-size: 20px;
+main {
+	width: min(90%, 1800px);
+	margin: auto;
+	margin-top: 30px;
 }
 
 #InfoGrade {
 	display: flex;
 	justify-content: center;
+	margin: 30px 0px 30px 0px;
 }
 
 select {
-	width: 12%;
+	padding: 9px 8px 8px 12px;
 	border-radius: 5px;
 	border: 1px solid #114a55;
-	background: #fff;
-	font-size: 12px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-	padding: 4px 5px 1px 10px;
-	margin: 0px 3px;
+	width: 25%;
+	margin-right: 10px
 }
+
+select:focus { 
+	outline: none;
+}
+
 
 button, input[type="button"], input[type="submit"] {
 	border: thin solid #114a55;
@@ -79,7 +80,7 @@ button, input[type="button"], input[type="submit"] {
 	cursor: pointer;
 	display: block;
 	text-decoration: none;
-	font-size: 12px;
+	font-size: 14px;
 }
 
 .btnExcluirUsoAmbiente {
@@ -91,40 +92,8 @@ button, input[type="button"], input[type="submit"] {
 	cursor: pointer;
 	display: block;
 	text-decoration: none;
-	font-size: 12px;
-	width: 75%;
-}
-
-#btnAdcHorario {
-	border: thin solid #114a55;
-	color: #fff;
-	background-color: #114a55;
-	border-radius: 20px;
-	padding: 5px 20px;
-	cursor: pointer;
-	display: block;
-	text-decoration: none;
-	font-size: 12px;
-	margin-inline-start: auto;
-	margin-top: 10px;
-	width: 145px;
-	text-decoration: none;
-}
-
-tr {
-	height: 45px;
-	padding: 10px;
-}
-
-#txtFiltro {
-	height: 40px;
-}
-
-#imagem {
-	margin-bottom: 5px;
-	margin-top: 10px;
-	width: 50px;
-	height: 66px;
+	font-size: 14px;
+	width: 50%;
 }
 
 table {
@@ -132,19 +101,30 @@ table {
 	width: 100%;
 	text-align: center;
 	height: min-content;
-
 	border-radius: 5px;
 	overflow: hidden;
 	border: solid 1px #114a55;
+	font-size: 14px;
+}
+
+#tabelaHorarios {
+	margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+table thead {
+	background-color: #114a55;
+	color: #fff;
 }
 
 table tbody tr:nth-child(odd) {
 	background-color: #00a4c510;
 }
 
-table thead {
-	background-color: #114a55;
-	color: #fff;
+tr {
+	height: 45px;
 }
 
 #tabelaDisponivel table tr td {
@@ -156,9 +136,21 @@ table thead {
 	font-weight: bold;
 }
 
-#tabelaHorarios {
-	margin-top: 10px;
-	display: flex;
-	justify-content: center;
-	width: 100%;
+#btnAdcHorario {
+	width: 165px;
+	height: 35px;
+	border-radius: 20px;
+	padding: 8px 0px;
+	background-color: #114a55;
+	color: #fff;
+	font-size: 14px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	margin: 0;
+	text-decoration: none;
+	text-align: center;
+	display: block;
+	margin-inline-start: auto;
+	margin-top: 30px;
 }

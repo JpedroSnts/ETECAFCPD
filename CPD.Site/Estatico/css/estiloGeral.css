@@ -239,7 +239,7 @@ h1 {
 	color: #114a55;
 }
 .divLabels {
-	margin: 10px 0px 10px 0px;
+	margin: 30px 0px 10px 0px;
 	text-align: left;
 	width: 80%;
 }
@@ -277,15 +277,20 @@ button, input[type="button"], input[type="submit"] {
 	color: #fff;
 	background-color: #114a55;
 	border-radius: 20px;
-	padding: 5px 20px;
-	margin-top: 10px;
+	padding: 5px 0px;
+	margin-top: 20px;
 	cursor: pointer;
+	width: 50%
+}
+
+#btnRecuperar {
+	width: 80%;
 }
 
 #pVersao {
 	font-size: 12px;
 	font-weight: 600;
-	margin-top: 30px;
+	margin-top: 20px;
 }
 
 #mensagemVerificacao {

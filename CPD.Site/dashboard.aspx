@@ -48,7 +48,7 @@
                 </div>
 
                 <div id="tabelaDisponivel">
-                    <h1>Disponiveis</h1>
+                    <h1>Disponíveis</h1>
                     <table id="itens-livres">
                         <thead>
                             <tr>
