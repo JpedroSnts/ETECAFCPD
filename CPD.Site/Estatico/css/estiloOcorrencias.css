@@ -84,8 +84,8 @@ tr:nth-child(odd) {
     border: none;
     cursor: pointer;
     margin: 0;
-    position: absolute;
-    top: 10px;
+    position: sticky;
+    bottom: 10px;
     left: 10px;
 }
 
@@ -93,10 +93,5 @@ tr:nth-child(odd) {
     @page {
         margin-top: 0;
         margin-bottom: 0;
-    }
-
-    body {
-        padding-top: 72px;
-        padding-bottom: 72px;
     }
 } 

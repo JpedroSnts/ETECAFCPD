@@ -40,5 +40,20 @@
         </main>
     </form>
     <button id="btnImprimir">Imprimir</button>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const relatorio = urlParams.get("tipoRelatorio");
+        const inicio = urlParams.get("inicio");
+        const fim = urlParams.get("fim");
+        document.title = `Relatorio_${relatorio}_${inicio}_${fim}`;
+
+        const btnImprimir = document.querySelector("#btnImprimir");
+        btnImprimir.addEventListener("click", () => {
+            btnImprimir.style.display = 'none';
+            window.print();
+            btnImprimir.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
