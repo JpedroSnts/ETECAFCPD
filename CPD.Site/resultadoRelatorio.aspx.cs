@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using IronPdf;
 
 namespace CPD.Site
 {
@@ -27,9 +28,9 @@ namespace CPD.Site
                 Relatorio relatorio = null;
                 RelatorioController rC = new RelatorioController();
 
-                if (tipoRelatorio == "ocorrencias")
+                if (tipoRelatorio == "Ocorrencias")
                 {
-                    litTipoRelatorio.Text = char.ToUpper(tipoRelatorio[0]) + tipoRelatorio.Substring(1) + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
+                    litTipoRelatorio.Text = tipoRelatorio.ToString() + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
 
                     litTituloTabela.Text = $@"<tr>
                                                 <th>DATA</th>
@@ -54,11 +55,10 @@ namespace CPD.Site
                                                     </tr>";
                     }
 
-
                 }
-                if (tipoRelatorio == "reservasC")
+                if (tipoRelatorio == "Reservas Canceladas")
                 {
-                    litTipoRelatorio.Text = char.ToUpper(tipoRelatorio[0]) + tipoRelatorio.Substring(1) + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
+                    litTipoRelatorio.Text = tipoRelatorio.ToString() + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
 
                     litTituloTabela.Text = $@"<tr>
                                                 <th>DATA</th>
@@ -84,11 +84,11 @@ namespace CPD.Site
                     }
 
                 }
-                if (tipoRelatorio == "reservasA")
+                if (tipoRelatorio == "Reservas Atrasadas")
                 {
                     /* NAO FUNCIONA */
 
-                    litTipoRelatorio.Text = char.ToUpper(tipoRelatorio[0]) + tipoRelatorio.Substring(1) + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
+                    litTipoRelatorio.Text = tipoRelatorio.ToString() + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
 
                     litTituloTabela.Text = $@"<tr>
                                                 <th>DATA</th>
@@ -115,9 +115,9 @@ namespace CPD.Site
                     }
 
                 }
-                if (tipoRelatorio == "reservasNR")
+                if (tipoRelatorio == "Reservas Não Realizadas")
                 {
-                    litTipoRelatorio.Text = char.ToUpper(tipoRelatorio[0]) + tipoRelatorio.Substring(1) + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
+                    litTipoRelatorio.Text = tipoRelatorio.ToString() + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
 
                     litTituloTabela.Text = $@"<tr>
                                                 <th>DATA</th>

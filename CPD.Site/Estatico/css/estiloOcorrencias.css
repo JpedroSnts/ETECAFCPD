@@ -14,6 +14,12 @@ main {
     align-items: center;
 }
 
+.logos {
+    margin-bottom: 5px;
+    margin-top: 10px;
+    height: 70px;
+}
+
 h1 {
     font-size: 16px;
     margin-bottom: 30px;
@@ -39,6 +45,58 @@ tr:nth-child(odd) {
 }
 
 #cabecalhoRelatorio {
-    display: flex;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
     justify-content: space-between;
+    width: 100%;
+    align-items: center;
 }
+
+#cabecalhoRelatorio h1 {
+    text-align: center;
+}
+
+    #cabecalhoRelatorio div:nth-child(3) {
+        text-align: right;
+    }
+
+#folhaa4 {
+    width: 1000px;
+    height: 1300px;
+    margin: auto;
+    background: #fff;
+    padding: 40px;
+}
+
+#bodyRelatorio {
+    background: #444;
+}
+
+#btnImprimir {
+    width: 142px;
+    height: 35px;
+    border-radius: 20px;
+    padding: 5px 20px;
+    background-color: #114a55;
+    color: #fff;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    margin: 0;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+@media print {
+    @page {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+    body {
+        padding-top: 72px;
+        padding-bottom: 72px;
+    }
+} 

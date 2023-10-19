@@ -15,15 +15,18 @@
     <link rel="shortcut icon" href="imagens/QuadradoLogoCPD.png" type="image/x-icon"/>
     <title>CPD - Resultado Relatório</title>
 </head>
-<body>
+<body id="bodyRelatorio">
     <form id="form1" runat="server">
-        <main>
+        <main id="folhaa4">
             <div id="cabecalhoRelatorio">
-                <img src="Estatico/imagens/logoCPD.png"/>
+                <img src="Estatico/imagens/logoCPD.png" class="logos"/>
                 <h1>
                     <asp:Literal ID="litTipoRelatorio" runat="server"></asp:Literal>
                 </h1>
-                <img src="Estatico/imagens/logoETECAF.png"/>
+                <div>
+                    <img src="Estatico/imagens/logoCPS.png" class="logos"/>
+                    <img src="Estatico/imagens/logoSP.png" class="logos"/>
+                </div>
             </div>
 
             <table>
@@ -36,5 +39,6 @@
             </table>
         </main>
     </form>
+    <button id="btnImprimir">Imprimir</button>
 </body>
 </html>

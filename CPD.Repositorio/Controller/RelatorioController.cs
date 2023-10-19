@@ -138,7 +138,7 @@ namespace CPD.Repositorio.Controller
                 ReservaAmbiente ra = new ReservaAmbiente()
                 {
                     Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Nome = reader["nm_usuario"].ToString(), Email = reader["nm_email"].ToString() },
-                    Ambiente = new Ambiente { Sigla = reader["sg_ambiente"].ToString() },
+                    Ambiente = new Ambiente { Sigla = reader["sg_ambiente"].ToString(), Nome = reader["nm_ambiente"].ToString()},
                     DataSaidaPrevista = Data.DateTimeParse(reader["dt_saida_prevista"].ToString()),
                     DataDevolucaoPrevista = Data.DateTimeParse(reader["dt_devolucao_prevista"].ToString()),
                     DataSaida = Data.DateTimeParse(reader["dt_saida"].ToString()),

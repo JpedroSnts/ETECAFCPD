@@ -32,7 +32,7 @@
                         <asp:ListItem Text="Ocorrências" Value="ocorrencias"></asp:ListItem>
                         <asp:ListItem Text="Reservas canceladas" Value="reservasC"></asp:ListItem>
                         <asp:ListItem Text="Reservas atrasadas" Value="reservasA"></asp:ListItem>
-                        <asp:ListItem Text="Reservas não realizadas" Value="reservasNA"></asp:ListItem>
+                        <asp:ListItem Text="Reservas não realizadas" Value="reservasNR"></asp:ListItem>
                     </asp:DropDownList>
 
                     <div id="inputsRelatorio">

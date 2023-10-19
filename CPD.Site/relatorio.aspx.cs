@@ -24,10 +24,10 @@ namespace CPD.Site
         protected void btnGerarRelatorio_Click(object sender, EventArgs e)
         {
             string tipo = "";
-            if (ddlRelatorio.SelectedValue == "ocorrencias") tipo = "ocorrencias";
-            if (ddlRelatorio.SelectedValue == "reservasC") tipo = "reservasC";
-            if (ddlRelatorio.SelectedValue == "reservasA") tipo = "reservasA";
-            if (ddlRelatorio.SelectedValue == "reservasNR") tipo = "reservasNR";
+            if (ddlRelatorio.SelectedValue == "ocorrencias") tipo = "Ocorrencias";
+            if (ddlRelatorio.SelectedValue == "reservasC") tipo = "Reservas Canceladas";
+            if (ddlRelatorio.SelectedValue == "reservasA") tipo = "Reservas Atrasadas";
+            if (ddlRelatorio.SelectedValue == "reservasNR") tipo = "Reservas Não Realizadas";
             if (tipo == "")
             {
                 //ERRO
