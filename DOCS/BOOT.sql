@@ -877,7 +877,7 @@ BEGIN
 		JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente 
 		JOIN ocorrencia_ambiente oa ON ra.cd_reserva_ambiente = oa.cd_reserva_ambiente
 		JOIN tipo_ocorrencia_ambiente toa ON oa.cd_tipo_ocorrencia = toa.cd_tipo_ocorrencia
-		WHERE ra.dt_saida_prevista BETWEEN "2006-04-04" AND "2023-10-15"
+		WHERE ra.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal
 	UNION
 	SELECT
 		re.sg_equipamento, e.nm_equipamento, re.dt_saida, re.dt_devolucao, re.dt_saida_prevista, re.dt_devolucao_prevista,
@@ -889,7 +889,7 @@ BEGIN
 		JOIN equipamento e ON e.sg_equipamento = re.sg_equipamento 
 		JOIN ocorrencia_equipamento oe ON re.cd_reserva_equipamento = oe.cd_reserva_equipamento
 		JOIN tipo_ocorrencia_equipamento toe ON oe.cd_tipo_ocorrencia = toe.cd_tipo_ocorrencia
-		WHERE re.dt_saida_prevista BETWEEN "2006-04-04" AND "2023-10-15"
+		WHERE dt_saida_prevista BETWEEN pDataInicio AND pDataFinal
 	ORDER BY dt_saida_prevista;
 END$$
 
@@ -903,16 +903,16 @@ BEGIN
 		JOIN usuario u ON u.cd_rm = ra.cd_rm
 		JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente
 		where ra.dt_cancelamento is not null AND
-		(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista))
+		(dt_saida_prevista BETWEEN pDataInicio AND pDataFinal)
 	UNION
 		SELECT
 		re.sg_equipamento, e.nm_equipamento ,re.dt_saida, re.dt_devolucao, re.dt_saida_prevista, re.dt_devolucao_prevista, re.dt_cancelamento,
 		u.cd_rm, u.nm_usuario, u.nm_email
 		FROM reserva_equipamento re
 		JOIN usuario u ON u.cd_rm = re.cd_rm
-		JOIN equipamento e ON e.sg_ambiente = re.sg_equipamento
+		JOIN equipamento e ON e.sg_equipamento = re.sg_equipamento
 		where re.dt_cancelamento is not null AND
-		(pDataInicio >= DATE(ra.dt_saida_prevista) AND pDataFinal <= DATE(ra.dt_saida_prevista))
+		(dt_saida_prevista BETWEEN pDataInicio AND pDataFinal)
 	ORDER BY dt_saida_prevista;
 END$$
 
@@ -926,14 +926,14 @@ BEGIN
 	JOIN usuario u ON u.cd_rm = ra.cd_rm
 	JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente 
 	where ra.dt_saida_prevista < ra.dt_saida AND
-	(re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal)
+	(ra.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal)
 UNION
 	SELECT
 	re.sg_equipamento, e.nm_equipamento ,re.dt_saida, re.dt_devolucao, re.dt_saida_prevista, re.dt_devolucao_prevista,
 	u.cd_rm, u.nm_usuario, u.nm_email
 	FROM reserva_equipamento re
 	JOIN usuario u ON u.cd_rm = re.cd_rm
-	JOIN equipamento e ON e.sg_ambiente = re.sg_equipamento 
+	JOIN equipamento e ON e.sg_equipamento = re.sg_equipamento 
 	where dt_saida_prevista < dt_saida AND
 	(re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal)
 ORDER BY dt_saida_prevista;
@@ -949,14 +949,14 @@ BEGIN
 	JOIN usuario u ON u.cd_rm = ra.cd_rm
 	JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente 
 	where ra.dt_devolucao is null and ra.dt_saida is null and ra.dt_saida_prevista < now() AND
-	(re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal)
+	(ra.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal)
 UNION
 	SELECT
 	re.sg_equipamento, e.nm_equipamento ,re.dt_saida, re.dt_devolucao, re.dt_saida_prevista, re.dt_devolucao_prevista,
 	u.cd_rm, u.nm_usuario, u.nm_email
 	FROM reserva_equipamento re
 	JOIN usuario u ON u.cd_rm = re.cd_rm
-	JOIN equipamento e ON e.sg_ambiente = re.sg_equipamento 
+	JOIN equipamento e ON e.sg_equipamento = re.sg_equipamento 
 	where re.dt_devolucao is null and re.dt_saida is null and re.dt_saida_prevista < now() AND
 	(re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal)
 ORDER BY dt_saida_prevista;
