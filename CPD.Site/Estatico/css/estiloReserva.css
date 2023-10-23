@@ -273,10 +273,11 @@ p { margin: 0px 0px 0px 0px; }
 	#divUserLogoutDesktop { display: none; }
 
 	/* ---------------------------- MAIN ---------------------------- */
-	h1, p { font-size: 14px; }
+	h1, p, .pMensagemReserva { font-size: 14px; }
     input { font-size: 12px; padding: 6px 8px 3px 6px; }
-	#txtInputData { width: 42%; margin-right: 5px; padding-right: 3px; }
-	.inputsHorario { width: 24%; margin-left: 0px; margin-right: 5px; padding-right: 3px; }
+	#inputs { display: flex; flex-wrap: wrap; justify-content: space-between; }
+	#txtInputData { width: 100%; margin-bottom: 10px; margin-right: 0px; }
+	.inputsHorario { width: 43%; margin-left: 0px; margin-right: 5px; padding-right: 3px; }
 
 	#btnBuscarResponsivo {
 		display: initial;
@@ -294,7 +295,9 @@ p { margin: 0px 0px 0px 0px; }
     #reservar { width: 100%; }
 	#btnReservar { margin: 20px 0 0 0; width: 100%; }
 
-	pMensagemReserva { font-size: 14px; }
+	.reservar {
+		margin-top: 0px;
+	}
 }
 
 .select2-container--default .select2-selection--single {

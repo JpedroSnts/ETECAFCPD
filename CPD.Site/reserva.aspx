@@ -27,7 +27,7 @@
                 <asp:TextBox ID="txtHorarioInicio" runat="server" TextMode="SingleLine" placeholder="Início" onfocus="this.type='time'" onblur="if (!this.value) this.type='text'" class="inputsHorario input-text-time"></asp:TextBox>
                 <asp:TextBox ID="txtHorarioFim" runat="server" TextMode="SingleLine" placeholder="Fim" onfocus="this.type='time'" onblur="if (!this.value) this.type='text'" class="inputsHorario input-text-time"></asp:TextBox>
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
-                <img id="btnBuscarResponsivo" src="/Estatico/imagens/lupa.png">
+                <asp:ImageButton ID="btnBuscarResponsivo" runat="server" OnClick="btnBuscar_Click" ImageUrl="~/Estatico/imagens/lupa.png"/>
             </div>
 
             <p class="pMensagemReserva">Selecione a <strong>data</strong>, o <strong>horário de início</strong> e o <strong>horário de fim</strong> para fazer uma reserva!</p>
