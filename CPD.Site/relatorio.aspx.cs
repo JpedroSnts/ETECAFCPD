@@ -23,6 +23,15 @@ namespace CPD.Site
 
         protected void btnGerarRelatorio_Click(object sender, EventArgs e)
         {
+            if (ddlRelatorio.SelectedIndex == -1 || String.IsNullOrEmpty(txtDataInicio.Text) || String.IsNullOrEmpty(txtDataFinal.Text))
+            {
+                litErro.Text = $@"<div class='box1'>
+				    <p class='erro'>Preencha todos os campos</p>
+				    <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			    </div>";
+                return;
+            }
+
             string tipo = "";
             if (ddlRelatorio.SelectedValue == "ocorrencias") tipo = "Ocorrencias";
             if (ddlRelatorio.SelectedValue == "reservasC") tipo = "Reservas Canceladas";
@@ -34,7 +43,7 @@ namespace CPD.Site
                 return;
             }
             Page.ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", 
-                $"window.open('/resultadoRelatorio.aspx?inicio={dataInicio.Text}&fim={dataFinal.Text}&tipoRelatorio={tipo}','_newtab');", true
+                $"window.open('/resultadoRelatorio.aspx?inicio={txtDataInicio.Text}&fim={txtDataFinal.Text}&tipoRelatorio={tipo}','_newtab');", true
                 );
         }
     }
