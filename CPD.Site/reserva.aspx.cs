@@ -123,6 +123,13 @@ namespace CPD.Site
 
         protected void btnReservar_Click(object sender, EventArgs e)
         {
+            if (Logado.Admin(Session) && txtNmProf.Text == "")
+            {
+                litErro.Text = $@"<div class='box1'>
+				            <p class='erro'>Insira o Professor</p>
+				            <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			            </div>";
+            }
             try
             {
                 if (Logado.Admin(Session) && String.IsNullOrEmpty(txtNmProf.Text)) return;

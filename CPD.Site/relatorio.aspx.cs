@@ -32,6 +32,26 @@ namespace CPD.Site
                 return;
             }
 
+            DateTime inicio = DateTime.Parse($"{txtDataInicio.Text}");
+            DateTime fim = DateTime.Parse($"{txtDataFinal.Text}");
+            if (DateTime.Compare(inicio, fim) > 0)
+            {
+                litErro.Text = $@"<div class='box1'>
+				        <p class='erro'>Data inválida</p>
+				        <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			        </div>";
+                return;
+            };
+            if (DateTime.Compare(inicio, DateTime.Now) > 0)
+            {
+                litErro.Text = $@"<div class='box1'>
+				        <p class='erro'>Data inválida</p>
+				        <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			        </div>";
+                return;
+            };
+
+
             string tipo = "";
             if (ddlRelatorio.SelectedValue == "ocorrencias") tipo = "Ocorrencias";
             if (ddlRelatorio.SelectedValue == "reservasC") tipo = "Reservas Canceladas";
