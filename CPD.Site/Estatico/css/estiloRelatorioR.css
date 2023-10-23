@@ -50,6 +50,7 @@ tr:nth-child(odd) {
     justify-content: space-between;
     width: 100%;
     align-items: center;
+    margin-bottom: 20px;
 }
 
 #cabecalhoRelatorio h1 {
@@ -86,7 +87,8 @@ tr:nth-child(odd) {
     margin: 0;
     position: sticky;
     bottom: 10px;
-    left: 10px;
+    transform: translateX(-50%);
+    left: 50%;
 }
 
 @media print {
