@@ -357,7 +357,7 @@ END$$
 DROP PROCEDURE IF EXISTS cancelarReservaEquipamento$$
 CREATE PROCEDURE cancelarReservaEquipamento(pSiglaEquipamento VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
 BEGIN
-	UPDATE reserva_equipamento SET dt_cancelamento = now()
+	UPDATE reserva_equipamento SET dt_cancelamento = DATE_FORMAT(now(), "%Y-%m-%d %H:%m:00")
 	WHERE sg_equipamento = pSiglaEquipamento AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
 END$$
 
@@ -595,7 +595,7 @@ END$$
 DROP PROCEDURE IF EXISTS cancelarReservaAmbiente$$
 CREATE PROCEDURE cancelarReservaAmbiente(pSiglaAmbiente VARCHAR(20), pRM INT, pDTSaidaPrevista DATETIME)
 BEGIN
-	UPDATE reserva_ambiente SET dt_cancelamento = now()
+	UPDATE reserva_ambiente SET dt_cancelamento = DATE_FORMAT(now(), "%Y-%m-%d %H:%m:00")
 	WHERE sg_ambiente = pSiglaAmbiente AND cd_rm = pRM AND dt_saida_prevista = pDTSaidaPrevista;
 END$$
 

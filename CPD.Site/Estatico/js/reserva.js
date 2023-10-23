@@ -1,56 +1,185 @@
-window.addEventListener("load", () => {
-    const data7dias = new Date(new Date().setDate(new Date().getDate() + 7));
-    const txtInputData = document.querySelector("#txtInputData");
-    const txtHorarioInicio = document.querySelector("#txtHorarioInicio");
-    const txtHorarioFim = document.querySelector("#txtHorarioFim");
-    const btnReservar = document.querySelector("#btnReservar");
-    const mensagemReserva = document.querySelector(".pMensagemReserva");
-    txtInputData.max = data7dias.toISOString().split("T")[0];
+window.addEventListener("load", async () => {
+	const rmUsuario = document.querySelector("#rm_usuario").textContent;
+	const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+	const mainHome = document.querySelector("#mainHome");
+	const mainComReserva = document.querySelector("#mainComReserva");
+	const $reservas = document.querySelector("#reservas");
 
+	function cancelarReserva(itens, rm, data) {
+		fetch(`/api/reservasProfessor.aspx?rm=${rm}&data=${data}&itens=${itens}`).then();
+	}
 
-    const pnlAmbientes = document.querySelector("#pnlAmbientesItens");
-    const pnlEquipamentos = document.querySelector("#pnlEquipamentosItens");
-    if (pnlAmbientes) {
-        pnlEquipamentos.childNodes.forEach(e => {
-            if (e.tagName == "DIV") {
-                const qts = e.querySelector("input.numQtEquip");
-                qts.setAttribute("readonly", "readonly");
-                e.querySelector(".iconMais").addEventListener("click", e => {
-                    qts.setAttribute("value", Number(qts.value) == Number(qts.getAttribute("maxlength")) ? Number(qts.getAttribute("maxlength")) : Number(qts.value) + 1);
-                });
-                e.querySelector(".iconMenos").addEventListener("click", e => {
-                    qts.setAttribute("value", Number(qts.value) == 0 ? 0 : Number(qts.value) - 1);
-                });
-            }
-        });
+	function cardReserva() {
+		var coll = document.getElementsByClassName("collapsible");
+		var i;
 
-        if (txtInputData.value == "" || txtHorarioInicio.value == "" || txtHorarioFim.fim == "") {
-            btnReservar.setAttribute("disabled", "disabled");
-        } else {
-            mensagemReserva.remove();
-        }
+		for (i = 0; i < coll.length; i++) {
+			coll[i].addEventListener("click", function (e) {
+				e.preventDefault();
+				this.classList.toggle("active");
+				var content = this.nextElementSibling;
+				if (content.style.maxHeight) {
+					content.style.maxHeight = null;
+				} else {
+					content.style.maxHeight = content.scrollHeight + "px";
+				}
+			});
+		}
+	}
+	cardReserva();
 
-        function limparItensEBloquearBotao() {
-            btnReservar.setAttribute("disabled", "disabled");
-            pnlAmbientes.innerHTML = "";
-            pnlEquipamentos.innerHTML = "";
-        }
+	function buscarReservas() {
+		fetch(`/api/reservasProfessor.aspx?rm=${rmUsuario}`).then((res) => {
+			return res.json();
+		}).then((reservas) => {
+			let reservasAgrupadas = {};
 
-        txtInputData.addEventListener("keyup", limparItensEBloquearBotao);
-        txtHorarioInicio.addEventListener("keyup", limparItensEBloquearBotao);
-        txtHorarioFim.addEventListener("keyup", limparItensEBloquearBotao);
-        txtInputData.addEventListener("change", limparItensEBloquearBotao);
-        txtHorarioInicio.addEventListener("change", limparItensEBloquearBotao);
-        txtHorarioFim.addEventListener("change", limparItensEBloquearBotao);
+			reservas.forEach(reserva => {
+				const data = reserva["DataSaidaPrevista"].split("T")[0];
 
-    } 
-    txtHorarioInicio.addEventListener("change", (e) => {
-        let dt = new Date("2023-12-12 " +  e.target.value);
-        dt = new Date(dt.setMinutes(dt.getMinutes() + 50));
-        txtHorarioFim.value = dt.toLocaleTimeString("pt-BR").replace(":00", "");
-    });
+				if (!reservasAgrupadas[data]) {
+					reservasAgrupadas[data] = [];
+				}
 
-    if (txtInputData.value) {
-        txtInputData.type = "date";
-    }
+				reservasAgrupadas[data].push(reserva);
+			});
+			reservasAgrupadas = Object.values(reservasAgrupadas);
+
+			$reservas.innerHTML = "";
+			if (reservas != null && reservas.length != 0) {
+				mainHome.style.display = "none";
+				mainComReserva.style.display = "flex";
+
+				for (let i = 0; i < reservasAgrupadas.length; i++) {
+					const el = reservasAgrupadas[i];
+					let equipamentosReserva = ``;
+					let ambientesReserva = ``;
+					for (var j = 0; j < el.length; j++) {
+						const el2 = el[j];
+						let itens = el2.Itens.split(",");
+
+						for (var k = 0; k < itens.length; k++) {
+							const cd = itens[k];
+
+							if (el2.TiposItens[k] == 1) {
+								ambientesReserva += `
+									<div style="margin-bottom: 5px;">
+										<p>${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
+										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : ""}
+									</div>
+								`;
+							} else if (el2.TiposItens[k] == 2) {
+								equipamentosReserva += `
+									<div style="margin-bottom: 5px;">
+										<p>${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
+										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : ""}
+									</div>
+								`;
+							}
+						}
+					}
+					const dt = new Date(el[0].DataSaidaPrevista);
+					const diaSemana = diasSemana[dt.getDay()];
+					const dd = String(dt.getDate()).length == 2 ? dt.getDate() : "0" + dt.getDate();
+					const mm = String(dt.getMonth() + 1).length == 2 ? dt.getMonth() + 1 : "0" + (dt.getMonth() + 1);
+					const dd_mm = `${dd}/${mm}`;
+					$reservas.innerHTML += `
+						<div class="cardReserva">
+							<h1>${diaSemana} (${dd_mm})</h1>
+							<div class="divReservas">
+								<div class="divTipoReserva">
+									${ambientesReserva.length != 0 ? `<h2 id="h2Equipamentos">Ambientes</h2>` : ""}
+									${ambientesReserva}
+
+									${equipamentosReserva.length != 0 ? `<h2 id="h2Equipamentos">Equipamentos</h2>` : ""}
+									${equipamentosReserva}
+								</div>
+							</div>
+							<div class="displayBtn">
+								<button id="btnCardReserva">Cancelar todas</button>
+							</div>
+						</div>
+					`;
+				}
+
+				cardReserva();
+			} else {
+				mainComReserva.style.display = "none";
+				mainHome.style.display = "flex";
+			}
+			const btnsCancelarReservas = document.querySelectorAll("#btnCardReserva");
+			const lixeiras = document.querySelectorAll("#iconLixeira");
+			for (let i = 0; i < btnsCancelarReservas.length; i++) {
+				btnsCancelarReservas[i].addEventListener("click", async (e) => {
+					e.preventDefault();
+					const lixeirasApagar = e.target.parentElement.parentElement.querySelectorAll("#iconLixeira");
+					lixeirasApagar.forEach(async (el) => {
+						const itens = el.getAttribute("itens");
+						const data = el.getAttribute("data");
+						cancelarReserva(itens, rmUsuario, data);
+
+						let count = 0;
+						let els1 = el.parentElement.parentElement.childNodes;
+						for (var j = 0; j < els1.length; j++) {
+							if (els1[j].tagName == "DIV") {
+								count++;
+							}
+						}
+						el.parentElement.parentElement.parentElement.childNodes.forEach((btn) => {
+							if (btn.tagName == "BUTTON") {
+								let arr = btn.getAttribute("itens").split(",");
+								arr = arr.filter((x) => x != itens);
+								btn.setAttribute("itens", arr.join(",").replaceAll(" ", ""));
+							}
+						});
+						if (count == 1) {
+							el.parentElement.parentElement.parentElement.parentElement.remove();
+						} else {
+							el.parentElement.remove();
+						}
+						const qtReservas = document.querySelector("#reservas").childElementCount;
+						if (qtReservas == 0) {
+							mainHome.style.display = "flex";
+							mainComReserva.style.display = "none";
+						}
+					});
+				});
+			}
+			for (let i = 0; i < lixeiras.length; i++) {
+
+				lixeiras[i].addEventListener("click", async (e) => {
+					e.preventDefault();
+					const itens = e.target.getAttribute("itens");
+					const data = e.target.getAttribute("data");
+					cancelarReserva(itens, rmUsuario, data);
+
+					let count = 0;
+					let els1 = lixeiras[i].parentElement.parentElement.childNodes;
+					for (var j = 0; j < els1.length; j++) {
+						if (els1[j].tagName == "DIV") {
+							count++;
+						}
+					}
+					lixeiras[i].parentElement.parentElement.parentElement.childNodes.forEach((btn) => {
+						if (btn.tagName == "BUTTON") {
+							let arr = btn.getAttribute("itens").split(",");
+							arr = arr.filter((x) => x != itens);
+							btn.setAttribute("itens", arr.join(",").replaceAll(" ", ""));
+						}
+					});
+					if (count == 1) {
+						lixeiras[i].parentElement.parentElement.parentElement.parentElement.remove();
+					} else {
+						lixeiras[i].parentElement.remove();
+					}
+					const qtReservas = document.querySelector("#reservas").childElementCount;
+					if (qtReservas == 0) {
+						mainHome.style.display = "flex";
+						mainComReserva.style.display = "none";
+					}
+				});
+			}
+		});
+	}
+	buscarReservas();
 });
