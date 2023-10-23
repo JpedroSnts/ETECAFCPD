@@ -1,62 +1,5 @@
-* { box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
-body{ margin: 0%; }
-
-h1 {
-    font-size: 16px;
-    text-align: center;
-    margin-top: 30px;
-}
-
 p {
     margin: 0px;
-}
-
-.caixa-flutuante-erros {
-    position: absolute;
-    top: 10%;
-    right: 10px;
-}
-
-@media only screen and (max-width: 800px) {
-    .caixa-flutuante-erros {
-        position: absolute;
-        bottom: 10px;
-        top: auto;
-        width: 90%;
-        transform: translateX(50%);
-        right: 50%;
-    }
-}
-
-.box1 {
-    width: 100%;
-    display: flex;
-    margin: 0;
-    padding: 10px;
-    justify-content: space-between;
-    align-items: center;
-    flex-shrink: 0;
-    border-radius: 10px;
-    background: #fff;
-    border: thin solid #bbbbbbbf;
-    box-shadow: 1px 1px 5px #bbbbbbbf;
-}
-
-    .box1 p {
-        padding: 0;
-        margin: 0;
-        margin-right: 20px;
-        font-size: 14px;
-    }
-
-        .box1 p.erro {
-            color: #dc3545;
-            font-weight: 600;
-        }
-
-.close-box {
-    width: 15px;
-    cursor: pointer;
 }
 
 #inputs {
@@ -66,17 +9,6 @@ p {
     align-items: center;
 }
 
-input {
-    width: 25%;
-    border-radius: 5px;
-    border: 1px solid #114a55;
-    background: #fff;
-    color: #000;
-    font-size: 14px;
-    padding: 6px 8px 3px 12px;
-    margin: auto;
-}
-
 #txtInputData {
     margin-right: 10px;
     margin-left: 0px;
@@ -84,26 +16,6 @@ input {
     height: 37px;
 }
 
-input[type="date"]::-webkit-calendar-picker-indicator {
-    background: url("../imagens/Calendario.png") no-repeat;
-    background-position: calc(100% - 5px) center;
-    padding: 9px 8px 8px 12px;
-}
-
-.input-text-date {
-    background: url("../imagens/Calendario.png") no-repeat;
-    background-position: calc(100% - 5px) center;
-    padding: 9px 8px 8px 12px;
-}
-
-    .input-text-date:focus {
-        outline: none;
-        padding: 2px 0px 2px 12px;
-    }
-
-    .input-text-date::placeholder {
-        color: #000;
-    }
 
 #displayRelatorio {
     display: flex;
@@ -117,6 +29,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     padding: 9px 8px 8px 12px;
     border-radius: 5px;
     border: 1px solid #114a55;
+    width: 100%;
 }
 
     #ddlRelatorio:focus {

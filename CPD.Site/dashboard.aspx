@@ -4,16 +4,17 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="Estatico/css/dashboard.css" />
-        <link rel="stylesheet" href="Estatico/css/estiloHeader.css" />
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-		<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
-		<title>Dashboard</title>
-		<link rel="icon" href="Estatico/imagens/logoCPD.png" type="image/png" /></head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="Estatico/css/dashboard.css" />
+    <link rel="stylesheet" href="Estatico/css/estiloTodos.css" />
+    <link rel="stylesheet" href="Estatico/css/estiloHeader.css" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
+	<title>Dashboard</title>
+	<link rel="icon" href="Estatico/imagens/logoCPD.png" type="image/png" /></head>
 <body>
     <form id="form1" runat="server">
 		<uc:Header ID="PartialHeader" runat="server" />

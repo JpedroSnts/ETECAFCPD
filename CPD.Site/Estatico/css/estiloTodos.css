@@ -1,0 +1,247 @@
+* {
+	box-sizing: border-box;
+	font-family: "Montserrat", sans-serif;
+}
+body {
+	margin: 0%;
+}
+
+.escondido {
+	display: none;
+}
+
+h1 {
+	font-size: 20px;
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+main {
+	width: min(90%, 1800px);
+	margin: auto;
+	margin-top: 30px;
+}
+
+a {
+	text-decoration: none;
+}
+
+/* INPUTS */
+
+
+input,
+select {
+	border-radius: 5px;
+	border: 1px solid #114a55;
+	background: #fff;
+	color: #000;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	margin: auto;
+	padding: 10px;
+	height: 40px;
+}
+
+/*select {
+	padding: 9px 8px 8px 12px;
+	border-radius: 5px;
+	border: 1px solid #114a55;
+	width: 25%;
+	margin-right: 10px
+}*/
+
+	select:focus {
+		outline: none;
+	}
+
+input[type = "submit"] {
+	border: thin solid #4a99cd;
+	background-color: #4a99cd;
+	font-size: 20px;
+	padding: 10px 20px;
+	border-radius: 24px;
+	cursor: pointer;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+	background: url("../imagens/Calendario.png") no-repeat;
+	background-position: calc(100% - 5px) center;
+	padding: 9px 8px 8px 12px;
+}
+
+/*input {
+	width: 25%;
+	border-radius: 5px;
+	border: 1px solid #114a55;
+	background: #fff;
+	color: #000;
+	font-size: 14px;
+	padding: 6px 8px 3px 12px;
+	margin: auto;
+}*/
+
+	input:focus {
+		box-shadow: 0 0 0 0;
+		outline: 0;
+	}
+
+.input-text-date {
+	background: url("../imagens/Calendario.png") no-repeat;
+	background-position: calc(100% - 5px) center;
+	padding: 9px 8px 8px 12px;
+}
+
+	.input-text-date:focus {
+		outline: none;
+		padding: 2px 0px 2px 12px;
+	}
+
+	.input-text-date::placeholder {
+		color: #000;
+	}
+
+
+button, input[type="button"], input[type="submit"] {
+ 	border-radius: 20px;
+	padding: 5px 20px;
+	background-color: #114a55;
+	color: #fff;
+	font-size: 14px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	margin: 0px;
+}
+/* TABELAS */
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	height: min-content;
+	border-radius: 5px;
+	overflow: hidden;
+	border: solid 1px #114a55;
+	font-size: 14px;
+}
+
+td, th {
+	text-align: center;
+	padding: 10px;
+}
+
+tr:nth-child(odd) {
+	background-color: #00a4c510;
+}
+
+
+	table tbody tr:nth-child(odd) {
+		background-color: #00a4c510;
+	}
+
+	table thead {
+		background-color: #114a55;
+		color: #fff;
+	}
+
+tr {
+	height: 45px;
+	padding: 10px;
+}
+
+/* CAIXA DE ERRO */
+
+.caixa-flutuante-erros {
+	position: absolute;
+	top: 10%;
+	right: 10px;
+}
+
+.box1 {
+	width: 100%;
+	display: flex;
+	margin: 0;
+	padding: 10px;
+	justify-content: space-between;
+	align-items: center;
+	flex-shrink: 0;
+	border-radius: 10px;
+	background: #fff;
+	border: thin solid #bbbbbbbf;
+	box-shadow: 1px 1px 5px #bbbbbbbf;
+}
+
+	.box1 p {
+		padding: 0;
+		margin: 0;
+		margin-right: 20px;
+		font-size: 14px;
+	}
+
+		.box1 p.erro {
+			color: #dc3545;
+			font-weight: 600;
+		}
+
+.close-box {
+	width: 15px;
+	cursor: pointer;
+}
+@media only screen and (max-width: 800px) {
+
+	h1 {
+		font-size: 14px;
+		font-weight: 600;
+	}
+	label {
+		font-size: 12px;
+	}
+
+	.display {
+		display: flex;
+		align-items: center;
+		margin: 0px;
+		border-bottom: thin solid #565656;
+		border-bottom-color: #565656;
+	}
+
+	input {
+		font-size: 12px;
+		border: none;
+		margin: 12px 0px 0px 5px;
+		width: 100%;
+	}
+
+	input:focus {
+		box-shadow: 0 0 0 0;
+		outline: 0;
+	}
+
+	button {
+		border: thin solid #114a55;
+		color: #fff;
+		background-color: #114a55;
+		border-radius: 20px;
+		padding: 5px 20px;
+		margin-top: 10px;
+	}
+
+
+	#btnCardReserva {
+		border: thin solid #114A55;
+		border-radius: 20px;
+		background-color: #fff;
+		color: #000;
+		margin-bottom: 20px;
+	}
+
+	.caixa-flutuante-erros {
+		position: absolute;
+		bottom: 10px;
+		top: auto;
+		width: 90%;
+		transform: translateX(50%);
+		right: 50%;
+	}
+}

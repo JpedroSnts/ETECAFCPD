@@ -1,24 +1,10 @@
-* {
-	box-sizing: border-box;
-	font-family: "Montserrat", sans-serif;
-	font-size: 14px;
-}
-
-body {
-	margin: 0%;
-}
-
-h1 {
-	font-size: 20px;
-}
-
-tr {
-	height: 45px;
-	padding: 10px;
-}
-
 #txtFiltro {
 	height: 40px;
+	width: 80%;
+}
+
+#ddlStatus {
+	width: 20%;
 }
 
 #imagem {
@@ -28,54 +14,15 @@ tr {
 	height: 66px;
 }
 
-main {
-	width: min(90%, 1800px);
-	margin: auto;
-	margin-top: 30px;
-}
-
 .iconInput {
 	width: 15px;
 	margin: 5px 0px 0px 0px;
-}
-
-input {
-	border: none;
-	margin: 12px 0px 0px 5px;
-	width: 100%;
-}
-input:focus {
-	box-shadow: 0 0 0 0;
-	outline: 0;
 }
 
 #inputsBusca {
 	display: flex;
 	gap: 10px;
 	margin-bottom: 10px;
-}
-
-input,
-select {
-	border-radius: 5px;
-	border: 1px solid #114a55;
-	background: #fff;
-	color: #000;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-	margin: auto;
-	padding: 10px;
-}
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-	color: rgba(0, 0, 0, 0);
-	opacity: 1;
-	display: block;
-	background: url("../imagens/Calendario.png") no-repeat;
-	width: 20px;
-	height: 20px;
-	border-width: thin;
 }
 
 .dropbtn {
@@ -127,26 +74,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	justify-content: space-between;
 }
 
-table {
-	border-collapse: collapse;
-	width: 100%;
-	text-align: center;
-	height: min-content;
-	
-	border-radius: 5px;
-	overflow: hidden;
-	border: solid 1px #114a55;
-}
-
-table tbody tr:nth-child(odd) {
-	background-color: #00a4c510 ;
-}
-
-table thead {
-	background-color: #114a55;
-	color: #fff;
-}
-
 #tabelaDisponivel table tr td {
 	text-align: left;
 	padding: 0px 10px;
@@ -187,17 +114,6 @@ table thead {
 .status-reservado {
 	color: #ef9b0f;
 	font-weight: bold;
-}
-
-button, .btn {
-	border: thin solid #114a55;
-	color: #fff;
-	background-color: #114a55;
-	border-radius: 20px;
-	padding: 5px 20px;
-	cursor: pointer;
-	display: block;
-	text-decoration: none;
 }
 
 .btnAcaoReserva {

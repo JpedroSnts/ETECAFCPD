@@ -94,9 +94,9 @@ window.addEventListener("load", async () => {
 							<h1>${diaSemana} (${dd_mm})</h1>
 							<div class="divReservas">
 								<div class="divTipoReserva">
-									${ambs.length != 0 ? `<h1 id="h1Equipamentos">Ambientes</h1>` : ""}
+									${ambs.length != 0 ? `<h2 id="h2Equipamentos">Ambientes</h2>` : ""}
 									${ambs}
-									${eqps.length != 0 ? `<h1 id="h1Equipamentos">Equipamentos</h1>` : ""}
+									${eqps.length != 0 ? `<h2 id="h2Equipamentos">Equipamentos</h2>` : ""}
 									${eqps}
 								</div>
 							</div>

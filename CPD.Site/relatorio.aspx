@@ -8,6 +8,7 @@
     <meta charset="UTF-8" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Estatico/css/estiloRelatorioFunc.css" />
+    <link rel="stylesheet" href="Estatico/css/estiloTodos.css" />
     <link rel="stylesheet" href="Estatico/css/estiloHeader.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

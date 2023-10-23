@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Estatico/css/estiloGradeHorarios.css" />
+    <link rel="stylesheet" href="Estatico/css/estiloTodos.css" />
     <link rel="stylesheet" href="Estatico/css/estiloHeader.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
@@ -48,7 +49,7 @@
                             <th class="th-data">Dia da Semana</th>
                             <th class="th-horario">Horário</th>
                             <th class="th-ambiente">Ambiente</th>
-                            <th class="th-acao"> </th>
+                            <th class="th-acao">Ação</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -1,43 +1,3 @@
-* { box-sizing: border-box; font-family:'Montserrat', sans-serif; }
-body { margin: 0%; }
-
-/* ---------------------------- HEADER ---------------------------- */
-header {
-    width: 100%;
-    padding: 0 20px;
-    background: #FFF;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-#logoCPD {
-    margin-bottom: 5px;
-    margin-top: 10px;
-    width: 50px;
-    height: 66px;
-    cursor: pointer;
-}
-
-#opMenu { display: contents; }
-#displayOpMenu { width: 50%; display: flex; justify-content: space-evenly; }
-#displayOpMenu a { text-decoration: none; color: #000; }
-
-/*  -  ÍCONES  - */
-#iconMenuSanduiche { display: none; }
-#userProfDesktop { width: 50px; margin-right: 10px; border-radius: 25px; }
-
-/* - INFO USER DESKTOP - */
-#divUserLogoutDesktop { display: flex; align-items: center; }
-#divUserLogoutDesktop a { margin-top: 4px; }
-#iconLogout { height: 40px; margin-left: 30px; }
-
-#displayDivUserDesktop { display: flex; align-items: center; }
-#displayInfoUserDesktop { display: flex; flex-direction: column; }
-#displayInfoUserDesktop p { margin: 0; }
-
 /*  -  MENU ESCONDIDO  - */
 .bloqueio {
     width: 100%;
@@ -88,16 +48,6 @@ header {
 
 /* ---------------------------- MAIN ---------------------------- */
 
-main {
-	width: min(1200px, 90%);
-	margin: auto;
-}
-
-h1 {
-	font-size: 16px;
-	text-align: center;
-}
-
 #inputs {
 	display: flex;
 	justify-content: center;
@@ -106,44 +56,12 @@ h1 {
 }
 
 
-input {
-	width: 25%;
-	border-radius: 5px;
-	border: 1px solid #114a55;
-	background: #fff;
-	color: #000;
-	font-size: 14px;
-	padding: 6px 8px 3px 12px;
-	margin: auto;
-}
-
 #txtInputData {
 	margin-right: 10px;
 	margin-left: 0px;
 	padding: 2px 0px 2px 12px;
 	height: 37px;
 }
-
-input[type="date"]::-webkit-calendar-picker-indicator {
-	background: url("../imagens/Calendario.png") no-repeat;
-	background-position: calc(100% - 5px) center;
-	padding: 9px 8px 8px 12px;
-}
-
-.input-text-date {
-	background: url("../imagens/Calendario.png") no-repeat;
-	background-position: calc(100% - 5px) center;
-	padding: 9px 8px 8px 12px;
-}
-
-	.input-text-date:focus {
-		outline: none;
-		padding: 2px 0px 2px 12px;
-	}
-
-	.input-text-date::placeholder {
-		color: #000;
-	}
 
 .inputsHorario {
 	width: 14%;
@@ -153,50 +71,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	height: 37px;
 }
 
-input[type="time"]::-webkit-calendar-picker-indicator {
-	background: url("../imagens/Clock.png") no-repeat;
-	background-position: calc(100% - 5px) center;
-	padding: 9px 8px 8px 12px;
-}
-
-.input-text-time {
-	background: url("../imagens/Clock.png") no-repeat;
-	background-position: calc(100% - 5px) center;
-	padding: 9px 0px 8px 12px;
-}
-
-	.input-text-time:focus {
-		outline: none;
-		padding: 2px 0px 0px 12px;
-	}
-
-	.input-text-time::placeholder {
-		color: #000;
-	}
-
-button {
-	border: thin solid #114A55;
-	color: #fff;
-	background-color: #114A55;
-	border-radius: 20px;
-	padding: 5px 20px;
-	margin-top: 10px;
-	cursor: pointer;
-}
-
-button, input[type="button"], input[type="submit"] {
-	width: 100px;
-	height: 35px;
-	border-radius: 20px;
-	padding: 5px 20px;
-	background-color: #114a55;
-	color: #fff;
-	font-size: 14px;
-	outline: none;
-	border: none;
-	cursor: pointer;
-	margin: 0px;
-}
 
 #btnBuscarResponsivo {
 	display: none;
@@ -322,54 +196,4 @@ p { margin: 0px 0px 0px 0px; }
 button:disabled, input[type="button"]:disabled, input[type="submit"]:disabled {
 	background-color: #888;
 	cursor: not-allowed;
-}
-
-/* CAIXA DE ERRO */
-
-.caixa-flutuante-erros {
-	position: absolute;
-	top: 10%;
-	right: 10px;
-}
-
-@media only screen and (max-width: 800px) {
-	.caixa-flutuante-erros {
-		position: absolute;
-		bottom: 10px;
-		top: auto;
-		width: 90%;
-		transform: translateX(50%);
-		right: 50%;
-	}
-}
-
-.box1 {
-	width: 100%;
-	display: flex;
-	margin: 0;
-	padding: 10px;
-	justify-content: space-between;
-	align-items: center;
-	flex-shrink: 0;
-	border-radius: 10px;
-	background: #fff;
-	border: thin solid #bbbbbbbf;
-	box-shadow: 1px 1px 5px #bbbbbbbf;
-}
-
-	.box1 p {
-		padding: 0;
-		margin: 0;
-		margin-right: 20px;
-		font-size: 14px;
-	}
-
-		.box1 p.erro {
-			color: #dc3545;
-			font-weight: 600;
-		}
-
-.close-box {
-	width: 15px;
-	cursor: pointer;
 }

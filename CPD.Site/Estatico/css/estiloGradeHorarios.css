@@ -1,86 +1,7 @@
-* {
-	box-sizing: border-box;
-	font-family: "Montserrat", sans-serif;
-}
-
-body {
-	margin: 0%;
-}
-
-h1 {
-	text-align: center;
-	font-size: 16px;
-}
-
-/*header {
-	width: 100%;*/
-	/* padding: 0 200px; */
-	/*background: #fff;
-	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-	font-size: 16px;
-	font-style: normal;
-	line-height: normal;
-}
-
-#headerConteu {
-	display: flex;
-	width: 62%;
-	align-items: center;
-	justify-content: space-around;
-	margin: auto;
-}
-
-#opMenu {
-	display: contents;
-}
-
-#iconeMenu {
-	width: 40px;
-	height: 40px;
-}
-
-#imagem {
-	margin-bottom: 5px;
-	margin-top: 10px;
-	width: 80px;
-	height: 100px;
-}*/
-
-main {
-	width: min(90%, 1800px);
-	margin: auto;
-	margin-top: 30px;
-}
-
 #InfoGrade {
 	display: flex;
 	justify-content: center;
 	margin: 30px 0px 30px 0px;
-}
-
-select {
-	padding: 9px 8px 8px 12px;
-	border-radius: 5px;
-	border: 1px solid #114a55;
-	width: 25%;
-	margin-right: 10px
-}
-
-select:focus { 
-	outline: none;
-}
-
-
-button, input[type="button"], input[type="submit"] {
-	border: thin solid #114a55;
-	color: #fff;
-	background-color: #114a55;
-	border-radius: 20px;
-	padding: 5px 20px;
-	cursor: pointer;
-	display: block;
-	text-decoration: none;
-	font-size: 14px;
 }
 
 .btnExcluirUsoAmbiente {
@@ -94,17 +15,11 @@ button, input[type="button"], input[type="submit"] {
 	text-decoration: none;
 	font-size: 14px;
 	width: 50%;
+	margin: auto;
 }
 
-table {
-	border-collapse: collapse;
-	width: 100%;
-	text-align: center;
-	height: min-content;
-	border-radius: 5px;
-	overflow: hidden;
-	border: solid 1px #114a55;
-	font-size: 14px;
+select {
+	width: 29%;
 }
 
 #tabelaHorarios {
@@ -112,19 +27,6 @@ table {
 	display: flex;
 	justify-content: center;
 	width: 100%;
-}
-
-table thead {
-	background-color: #114a55;
-	color: #fff;
-}
-
-table tbody tr:nth-child(odd) {
-	background-color: #00a4c510;
-}
-
-tr {
-	height: 45px;
 }
 
 #tabelaDisponivel table tr td {

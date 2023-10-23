@@ -1,11 +1,3 @@
-* {
-	box-sizing: border-box;
-	font-family: "Montserrat", sans-serif;
-}
-body {
-	margin: 0%;
-}
-
 /*  -  MENU E CARD ESCONDIDO  - */
 .bloqueio {
 	width: 100%;
@@ -130,6 +122,10 @@ i.fa-solid.fa-plus {
 	margin-top: 30px;
 }
 
+label {
+	font-size: 14px;
+}
+
 #btnNovaReservaComReserva {
 	border: thin solid #4a99cd;
 	background-color: #4a99cd;
@@ -160,11 +156,12 @@ i.fa-solid.fa-plus {
 	text-align: left;
 	margin-bottom: 20px;
 }
-.divTipoReserva h1 {
-	color: #114a55;
-}
-#h1Equipamentos {
+
+#h2Equipamentos {
 	margin-top: 30px;
+	text-align: left;
+	color: #114a55;
+	font-size: 18px;
 }
 .divTipoReserva div {
 	display: flex;
@@ -243,13 +240,8 @@ i.fa-solid.fa-plus {
 	justify-content: center;
 }
 
-h1 {
-	font-size: 16px;
-	font-weight: 600;
-	color: #114a55;
-}
 .divLabels {
-	margin: 30px 0px 10px 0px;
+	margin: 20px 0px 10px 0px;
 	text-align: left;
 	width: 80%;
 }
@@ -467,54 +459,4 @@ button, input[type="button"], input[type="submit"] {
 	font-weight: 600;
 	text-decoration: none;
 	font-size: 14px;
-}
-
-/* CAIXA DE ERRO */
-
-.caixa-flutuante-erros {
-	position: absolute;
-	top: 10%;
-	right: 10px;
-}
-
-@media only screen and (max-width: 800px) {
-	.caixa-flutuante-erros {
-		position: absolute;
-		bottom: 10px;
-		top: auto;
-		width: 90%;
-		transform: translateX(50%);
-		right: 50%;
-	}
-}
-
-.box1 {
-	width: 100%;
-	display: flex;
-	margin: 0;
-	padding: 10px;
-	justify-content: space-between;
-	align-items: center;
-	flex-shrink: 0;
-	border-radius: 10px;
-	background: #fff;
-	border: thin solid #bbbbbbbf;
-	box-shadow: 1px 1px 5px #bbbbbbbf;
-}
-
-	.box1 p {
-		padding: 0;
-		margin: 0;
-		margin-right: 20px;
-		font-size: 14px;
-	}
-
-		.box1 p.erro {
-			color: #dc3545;
-			font-weight: 600;
-		}
-
-.close-box {
-	width: 15px;
-	cursor: pointer;
 }
