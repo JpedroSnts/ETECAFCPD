@@ -808,41 +808,41 @@ END$$
 /* ------------------------------ OCORRENCIA AMBIENTE ------------------------------ */
 
 DROP FUNCTION IF EXISTS ocorrenciaAmbienteJaExiste$$
-CREATE FUNCTION ocorrenciaAmbienteJaExiste(pDataOcorrencia DATETIME, pSiglaAmbiente VARCHAR(20), pRm INT, pDataSaidaPrevista DATETIME) RETURNS BOOL
+CREATE FUNCTION ocorrenciaAmbienteJaExiste(pDataOcorrencia DATETIME, pReservaAmbiente INT) RETURNS BOOL
 BEGIN
-	DECLARE vRm INT DEFAULT 0;
-	SELECT cd_rm INTO vRm FROM ocorrencia_ambiente
-    WHERE dt_ocorrencia = pDataOcorrencia AND sg_ambiente = pSiglaAmbiente AND cd_rm = pRm AND dt_saida_prevista = pDataSaidaPrevista;
-    RETURN vRm <> 0;
+	DECLARE vReserva INT DEFAULT 0;
+	SELECT cd_reserva_ambiente INTO vReserva FROM ocorrencia_ambiente
+    WHERE dt_ocorrencia = pDataOcorrencia AND cd_reserva_ambiente = pReservaAmbiente;
+    RETURN vReserva <> 0;
 END$$
 
 DROP PROCEDURE IF EXISTS registrarOcorrenciaAmbiente$$
-CREATE PROCEDURE registrarOcorrenciaAmbiente(pDataOcorrencia DATETIME, pSiglaAmbiente VARCHAR(20), pRm INT, pDataSaidaPrevista DATETIME, pTipoOcorrencia INT, pDescricao TEXT)
+CREATE PROCEDURE registrarOcorrenciaAmbiente(pDataOcorrencia DATETIME, pReservaAmbiente INT, pTipoOcorrencia INT, pDescricao TEXT)
 BEGIN
-	IF ocorrenciaAmbienteJaExiste(pDataOcorrencia, pSiglaAmbiente, pRm, pDataSaidaPrevista) THEN
+	IF ocorrenciaAmbienteJaExiste(pDataOcorrencia,  pReservaAmbiente) THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ocorrencia para esta reserva já registrada';
     END IF;
-	INSERT INTO ocorrencia_ambiente VALUES (pDataOcorrencia , pSiglaAmbiente , pRm, pDataSaidaPrevista, pTipoOcorrencia, pDescricao);
+	INSERT INTO ocorrencia_ambiente VALUES (pDataOcorrencia , pReservaAmbiente, pTipoOcorrencia, pDescricao);
 END$$
 
 /* ------------------------------ OCORRENCIA EQUIPAMENTO ------------------------------ */
 
 DROP FUNCTION IF EXISTS ocorrenciaEquipamentoJaExiste$$
-CREATE FUNCTION ocorrenciaEquipamentoJaExiste(pDataOcorrencia DATETIME, pSiglaEquipamento VARCHAR(20), pRm INT, pDataSaidaPrevista DATETIME) RETURNS BOOL
+CREATE FUNCTION ocorrenciaEquipamentoJaExiste(pDataOcorrencia DATETIME, pReservaEquipamento INT) RETURNS BOOL
 BEGIN
-	DECLARE vRm INT DEFAULT 0;
-	SELECT cd_rm INTO vRm FROM ocorrencia_equipamento
-    WHERE dt_ocorrencia = pDataOcorrencia AND sg_equipamento = pSiglaEquipamento AND cd_rm = pRm AND dt_saida_prevista = pDataSaidaPrevista;
-    RETURN vRm <> 0;
+	DECLARE vReserva INT DEFAULT 0;
+	SELECT cd_reserva_equipamento INTO vReserva FROM ocorrencia_equipamento
+    WHERE dt_ocorrencia = pDataOcorrencia AND cd_reserva_equipamento = pReservaEquipamento;
+    RETURN vReserva <> 0;
 END$$
 
 DROP PROCEDURE IF EXISTS registrarOcorrenciaEquipamento$$
-CREATE PROCEDURE registrarOcorrenciaEquipamento(pDataOcorrencia DATETIME, pSiglaEquipamento VARCHAR(20), pRm INT, pDataSaidaPrevista DATETIME, pTipoOcorrencia INT, pDescricao TEXT)
+CREATE PROCEDURE registrarOcorrenciaEquipamento(pDataOcorrencia DATETIME, pReservaEquipamento INT, pTipoOcorrencia INT, pDescricao TEXT)
 BEGIN
-	IF ocorrenciaEquipamentoJaExiste(pDataOcorrencia, pSiglaEquipamento, pRm, pDataSaidaPrevista) THEN
+	IF ocorrenciaEquipamentoJaExiste(pDataOcorrencia, pReservaEquipamento) THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ocorrencia para esta reserva já registrada';
     END IF;
-	INSERT INTO ocorrencia_equipamento VALUES (pDataOcorrencia , pSiglaEquipamento , pRm, pDataSaidaPrevista, pTipoOcorrencia, pDescricao);
+	INSERT INTO ocorrencia_equipamento VALUES (pDataOcorrencia , pReservaEquipamento, pTipoOcorrencia, pDescricao);
 END$$
 
 /* ------------------------------ NOTIFICACAO ------------------------------ */
@@ -961,6 +961,7 @@ UNION
 	(re.dt_saida_prevista BETWEEN pDataInicio AND pDataFinal)
 ORDER BY dt_saida_prevista;
 END$$
+
 -- TOKEN
 
 DROP PROCEDURE IF EXISTS buscarToken$$
