@@ -22,6 +22,41 @@
     padding: 20px 10px;
 }
 
+#txtHorarioInicio, #txtHorarioFim {
+	border-radius: 5px;
+	border: 1px solid #114a55;
+	color: #000;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	margin: auto;
+	padding: 10px;
+	height: 40px;
+	width: 20%;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+	background: url("../imagens/Clock.png") no-repeat;
+	background-position: calc(100% - 5px) center;
+	padding: 9px 8px 8px 12px;
+}
+
+.input-text-time {
+	background: url("../imagens/Clock.png") no-repeat;
+	background-position: calc(100% - 5px) center;
+	padding: 9px 0px 8px 12px;
+}
+
+	.input-text-time:focus {
+		outline: none;
+		padding: 2px 0px 0px 12px;
+	}
+
+	.input-text-time::placeholder {
+		color: #000;
+	}
+
+
 #divUser { text-align: center; }
 #userProf { width: 60px; height: 60px; margin-bottom: 10px; }
 #divUser div p { font-size: 12px; margin: 0; font-weight: 600; }

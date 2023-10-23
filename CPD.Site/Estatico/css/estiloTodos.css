@@ -30,7 +30,8 @@ a {
 
 
 input,
-select {
+select
+{
 	border-radius: 5px;
 	border: 1px solid #114a55;
 	background: #fff;
@@ -69,6 +70,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	background-position: calc(100% - 5px) center;
 	padding: 9px 8px 8px 12px;
 }
+
 
 /*input {
 	width: 25%;
