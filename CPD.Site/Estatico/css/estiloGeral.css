@@ -186,25 +186,32 @@ i.fa-solid.fa-plus {
 	color: #000;
 	margin-bottom: 20px;
 }
+
 #displayCardsReserva {
 	margin-top: 30px;
-	width: 80%;
 	display: flex;
+	width: min(1200px, 90%);
 	justify-content: space-evenly;
 }
+
+#reservas {
+	display: grid;
+	justify-content: space-between;
+	width: 100%;
+	grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+	gap: 20px;
+}
+
 .cardReserva {
 	border-radius: 20px;
 	box-shadow: 0px 1px 3px #565656;
 	padding: 10px 20px 0px 20px;
-	width: 40%;
+	width: 100%;
 	position: relative;
 }
 
 .divReservas {
-	min-height: 300px;
-	display:flex;
-	justify-content:space-between;
-	flex-direction:column;
+	min-height: 385px;
 }
 #iconLixeira {
 	object-fit: contain;
@@ -392,103 +399,52 @@ button, input[type="button"], input[type="submit"] {
 	}
 
 	/* ---------------------------- HOME COM RESERVA ---------------------------- */
-	.collapsible {
-		background-color: #fff;
-		color: #000;
-		cursor: pointer;
-		padding: 10px;
-		width: 90%;
-		border: thin solid #114a55;
-		text-align: left;
-		outline: none;
-		font-size: 14px;
-		z-index: 1;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
-		align-items: center;
-	}
-
-	.collapsible img {
-		object-fit: contain;
-		width: 15px;
-	}
-
-	.active,
-	.collapsible:hover {
-		background-color: #fff;
-	}
-
-	.content {
-		width: 90%;
-		padding: 0px 12px;
-		max-height: 0;
-		overflow: hidden;
-		transition: max-height 0.2s ease-out;
-		background-color: #fff;
-		border: thin solid #114a55;
-		position: relative;
-		bottom: 25px;
-		border-radius: 10px;
-	}
-
 	.divTipoReserva {
 		text-align: left;
 		margin-bottom: 20px;
 	}
-	.divTipoReserva h1 {
-		color: #114a55;
-	}
+
+		.divTipoReserva h1 {
+			color: #114A55;
+		}
+
 	#h1Equipamentos {
 		margin-top: 40px;
 	}
+
 	.divTipoReserva div {
 		display: flex;
 		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
 	}
-	.divTipoReserva div p {
-		margin: 0;
-		font-size: 14px;
+
+		.divTipoReserva div p {
+			margin: 0;
+			font-size: 14px;
+		}
+
+	#displayCardsReserva {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
 	}
-	.divTipoReserva div img {
-		object-fit: contain;
-		width: 20px;
+
+	.cardReserva {
+		width: 100%;
+	}
+
+	.divReservas {
+		min-height: 0px;
 	}
 
 	#btnCardReserva {
-		border: thin solid #114a55;
+		border: thin solid #114A55;
 		border-radius: 20px;
 		background-color: #fff;
 		color: #000;
 		margin-bottom: 20px;
-		width: 30%;
 	}
-}
-
-#reservas {
-	text-align: center;
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
-}
-
-#displayCardsReserva {
-	margin-top: 30px;
-	width: 80%;
-	display: flex;
-	justify-content: space-evenly;
-}
-
-.cardReserva {
-	border-radius: 20px;
-	box-shadow: 0px 1px 3px #565656;
-	padding: 10px 20px 0px 20px;
-	width: 40%;
-	position: relative;
-	margin-top: 10px;
 }
 
 .centro {

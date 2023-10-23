@@ -99,9 +99,9 @@ window.addEventListener("load", async () => {
 									${eqps.length != 0 ? `<h1 id="h1Equipamentos">Equipamentos</h1>` : ""}
 									${eqps}
 								</div>
-								<div class="displayBtn">
-									${el.StatusReserva == 1 ? `<button id="btnCardReserva" itens="${el.Itens.replaceAll(" ", "")}" data="${el.DataSaidaPrevista}  ">Cancelar todas</button>` : ""}
-								</div>
+							</div>
+							<div class="displayBtn">
+								${el.StatusReserva == 1 ? `<button id="btnCardReserva" itens="${el.Itens.replaceAll(" ", "")}" data="${el.DataSaidaPrevista}  ">Cancelar todas</button>` : ""}
 							</div>
 						</div>
 					`;
