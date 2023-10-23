@@ -1,5 +1,6 @@
 ﻿using CPD.Repositorio.Controller;
 using CPD.Repositorio.Model;
+using CPD.Site.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,12 @@ namespace CPD.Site
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (!Logado.Admin(Session))
-            //{
-            //    string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/index.aspx";
-            //    Response.Redirect(ultimaPagina);
-            //}
+            if (!Logado.Admin(Session))
+            {
+                string ultimaPagina = Request.UrlReferrer != null ? Request.UrlReferrer.ToString() : "~/index.aspx";
+                Response.Redirect(ultimaPagina);
+            }
+
             if (!String.IsNullOrEmpty(Request["inicio"]) && !String.IsNullOrEmpty(Request["fim"]) && !String.IsNullOrEmpty(Request["tipoRelatorio"]))
             {
                 DateTime inicio = DateTime.Parse(Request["inicio"]);
@@ -45,7 +47,7 @@ namespace CPD.Site
                     for (int i = 0; i < relatorio.Ocorrencia.Count; i++)
                     {
                         litConteudoTabela.Text += $@"<tr>
-                                                        <td>{relatorio.Ocorrencia[i].Data}</td>
+                                                        <td>{relatorio.Ocorrencia[i].Data:dd/MM/yyyy}</td>
                                                         <td>{relatorio.Reserva[i].Usuario.RM}</td>
                                                         <td>{relatorio.Reserva[i].Usuario.Nome}</td>
                                                         <td>{relatorio.Reserva[i].Usuario.Email}</td>
@@ -73,7 +75,7 @@ namespace CPD.Site
                     for (int i = 0; i < relatorio.Reserva.Count; i++)
                     {
                         litConteudoTabela.Text += $@"<tr>
-                                                        <td>{relatorio.Reserva[i].DataSaidaPrevista}</td>
+                                                        <td>{relatorio.Reserva[i].DataSaidaPrevista:dd/MM/yyyy}</td>
                                                         <td>{relatorio.Reserva[i].Usuario.RM}</td>
                                                         <td>{relatorio.Reserva[i].Usuario.Nome}</td>
                                                         <td>{relatorio.Reserva[i].Usuario.Email}</td>
@@ -104,12 +106,13 @@ namespace CPD.Site
                     for (int i = 0; i < relatorio.Reserva.Count; i++)
                     {
                         litConteudoTabela.Text += $@"<tr>
-                                                        <td>{relatorio.Reserva[i].DataSaidaPrevista}</td>
+                                                        <td>{relatorio.Reserva[i].DataSaidaPrevista:dd/MM/yyyy}</td>
+                                                        <td>{relatorio.Reserva[i].DataSaidaPrevista:HH:mm}</td>
+                                                        <td>{relatorio.Reserva[i].DataSaida:HH:mm}</td>
                                                         <td>{relatorio.Reserva[i].Usuario.RM}</td>
                                                         <td>{relatorio.Reserva[i].Usuario.Nome}</td>
                                                         <td>{relatorio.Reserva[i].Usuario.Email}</td>
                                                         <td>{relatorio.Reserva[i].Ambiente.Nome}</td>
-                                                        <td>{relatorio.Ocorrencia[i].TipoOcorrencia.Nome}</td>
                                                     </tr>";
                     }
 
@@ -131,7 +134,7 @@ namespace CPD.Site
                     for (int i = 0; i < relatorio.Reserva.Count; i++)
                     {
                         litConteudoTabela.Text += $@"<tr>
-                                                        <td>{relatorio.Reserva[i].DataSaidaPrevista}</td>
+                                                        <td>{relatorio.Reserva[i].DataSaidaPrevista:dd/MM/yyyy}</td>
                                                         <td>{relatorio.Reserva[i].Usuario.RM}</td>
                                                         <td>{relatorio.Reserva[i].Usuario.Nome}</td>
                                                         <td>{relatorio.Reserva[i].Usuario.Email}</td>

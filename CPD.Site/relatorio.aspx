@@ -22,6 +22,7 @@
         <uc:Header ID="PartialHeader" runat="server" />
 
         <main>
+            <div class="caixa-flutuante-erros"><asp:Literal ID="litErro" runat="server"></asp:Literal></div>
             <h1>Gerar Relatório</h1>
 
             <div id="displayRelatorio">
@@ -36,8 +37,8 @@
                     </asp:DropDownList>
 
                     <div id="inputsRelatorio">
-                        <asp:TextBox runat="server" ID="dataInicio" TextMode="SingleLine" placeholder="Data Inicial" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date"></asp:TextBox>
-                        <asp:TextBox runat="server" ID="dataFinal" TextMode="SingleLine" placeholder="Data Final" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtDataInicio" TextMode="SingleLine" placeholder="Data Inicial" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date"></asp:TextBox>
+                        <asp:TextBox runat="server" ID="txtDataFinal" TextMode="SingleLine" placeholder="Data Final" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date"></asp:TextBox>
                     </div>
 
                     <div id="alignBtn">
@@ -55,11 +56,11 @@
     <script>
         const dataInicio = document.querySelector("#dataInicio");
         const dataFinal = document.querySelector("#dataFinal");
-        if (dataInicio.value) {
-            dataInicio.type = "date";
+        if (txtDataInicio.value) {
+            txtDataInicio.type = "date";
         }
-        if (dataFinal.value) {
-            dataFinal.type = "date";
+        if (txtDataFinal.value) {
+            txtDataFinal.type = "date";
         }
     </script>
 </body>

@@ -33,6 +33,15 @@ namespace CPD.Site
         protected global::CPD.Site.Partial.Header PartialHeader;
 
         /// <summary>
+        /// Controle litErro.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litErro;
+
+        /// <summary>
         /// Controle ddlRelatorio.
         /// </summary>
         /// <remarks>
@@ -42,22 +51,22 @@ namespace CPD.Site
         protected global::System.Web.UI.WebControls.DropDownList ddlRelatorio;
 
         /// <summary>
-        /// Controle dataInicio.
+        /// Controle txtDataInicio.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dataInicio;
+        protected global::System.Web.UI.WebControls.TextBox txtDataInicio;
 
         /// <summary>
-        /// Controle dataFinal.
+        /// Controle txtDataFinal.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox dataFinal;
+        protected global::System.Web.UI.WebControls.TextBox txtDataFinal;
 
         /// <summary>
         /// Controle btnGerarRelatorio.

@@ -88,7 +88,7 @@
     <Content Include="Estatico\css\estiloGeral.css" />
     <Content Include="Estatico\css\estiloGradeHorarios.css" />
     <Content Include="Estatico\css\estiloHeader.css" />
-    <Content Include="Estatico\css\estiloOcorrencias.css" />
+    <Content Include="Estatico\css\estiloRelatorioR.css" />
     <Content Include="Estatico\css\estiloRelatorioFunc.css" />
     <Content Include="Estatico\css\estiloLogin.css" />
     <Content Include="Estatico\css\estiloReserva.css" />
