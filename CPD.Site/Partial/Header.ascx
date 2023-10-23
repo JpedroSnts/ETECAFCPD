@@ -69,7 +69,7 @@
 
 <asp:Panel runat="server" ID="pnlHeaderProf">
     <header id="headerProf">
-		<a href="index.html"><img id="logoCPD" src="Estatico/imagens/logoCPD.png" /></a>
+		<a href="index.aspx"><img id="logoCPD" src="Estatico/imagens/logoCPD.png" /></a>
 		<div id="opMenu">
 			<div id="displayOpMenu">
 				<a href="/index.aspx">Suas Reservas</a>
@@ -81,7 +81,6 @@
 		<div id="divUserLogoutDesktop">
 			<div id="divUserDesktop">
 				<div id="displayDivUserDesktop">
-					<%--<img id="userProfDesktop" src="Estatico/imagens/userProf.png" />--%>
 					<p><asp:Literal ID="litImagemDesktop" runat="server"></asp:Literal></p>
 					<div id="displayInfoUserDesktop">
 						<p><asp:Literal ID="litNomeDesktop" runat="server"></asp:Literal></p>

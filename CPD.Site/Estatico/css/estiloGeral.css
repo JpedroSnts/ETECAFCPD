@@ -103,6 +103,9 @@ body {
 	justify-content: center;
 }
 
+#mainHome div { margin-bottom: 20px; }
+#mainHome div a { text-decoration: none; color: #fff; }
+
 #btnNovaReserva {
 	border: thin solid #4a99cd;
 	background-color: #4a99cd;
@@ -390,6 +393,10 @@ button, input[type="button"], input[type="submit"] {
 		border-radius: 20px;
 		padding: 5px 20px;
 		margin-top: 10px;
+	}
+
+	#btnRecuperar {
+		width: 85%;
 	}
 
 	#pVersao {

@@ -291,9 +291,9 @@ p { margin: 0px 0px 0px 0px; }
 
 	#btnBuscar { display: none; }
 	#tipoReserva { display: flex; flex-direction: column; gap: 10px; }
-	#pnlEquipamentos, #pnlAmbientes { width: 100%; }
+	#pnlEquipamentos, #pnlAmbientes { width: 100%; font-size: 14px; }
     #reservar { width: 100%; }
-	#btnReservar { margin: 20px 0 0 0; width: 100%; }
+	#btnReservar { margin: 20px 0 0 0; width: 100%; margin-bottom: 20px; }
 
 	.reservar {
 		margin-top: 0px;
