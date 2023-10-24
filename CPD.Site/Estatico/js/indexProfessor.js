@@ -3,7 +3,6 @@ window.addEventListener("load", async () => {
 	const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
 	const mainHome = document.querySelector("#mainHome");
 	const mainComReserva = document.querySelector("#mainComReserva");
-	console.log(mainHome, mainComReserva);
 	const $reservas = document.querySelector("#reservas");
 
 	function cancelarReserva(itens, rm, data) {
@@ -46,69 +45,64 @@ window.addEventListener("load", async () => {
 			});
 			reservasAgrupadas = Object.values(reservasAgrupadas);
 
-			console.log(reservasAgrupadas);
-
 			$reservas.innerHTML = "";
 			if (reservas != null && reservas.length != 0) {
-				console.log("123");
 				mainHome.style.display = "none";
 				mainComReserva.style.display = "flex";
 
-				for (let i = 0; i < reservas.length; i++) {
-					const el = reservas[i];
-					const dt = new Date(el.DataSaidaPrevista);
+				for (let i = 0; i < reservasAgrupadas.length; i++) {
+					const el = reservasAgrupadas[i];
+					let equipamentosReserva = ``;
+					let ambientesReserva = ``;
+					for (var j = 0; j < el.length; j++) {
+						const el2 = el[j];
+						let itens = el2.Itens.split(",");
+
+						for (var k = 0; k < itens.length; k++) {
+							const cd = itens[k];
+
+							if (el2.TiposItens[k] == 1) {
+								ambientesReserva += `
+									<div style="margin-bottom: 5px;">
+										<p>${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
+										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : ""}
+									</div>
+								`;
+							} else if (el2.TiposItens[k] == 2) {
+								equipamentosReserva += `
+									<div style="margin-bottom: 5px;">
+										<p>${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
+										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : ""}
+									</div>
+								`;
+							}
+						}
+					}
+					const dt = new Date(el[0].DataSaidaPrevista);
 					const diaSemana = diasSemana[dt.getDay()];
 					const dd = String(dt.getDate()).length == 2 ? dt.getDate() : "0" + dt.getDate();
 					const mm = String(dt.getMonth() + 1).length == 2 ? dt.getMonth() + 1 : "0" + (dt.getMonth() + 1);
 					const dd_mm = `${dd}/${mm}`;
-					const codigos = el.Itens.split(", ").map(e => e);
-					const nomes = el.ItensNome.split(", ").map(e => e);
-					const ambs = codigos
-						.map((e, j) => {
-							if (el.TiposItens[j] == 2) {
-								return;	
-							}
-							return `
-						<div style="margin-bottom: 5px;">
-							<p>${nomes[j]} (${el.Horario})</p>
-							${el.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${e}" data="${el.DataSaidaPrevista}" />` : ""}
-						</div>
-						`;
-						})
-						.join(" ");
-					const eqps = codigos
-						.map((e, j) => {
-							if (el.TiposItens[j] == 1) {
-								return
-                            }
-							return `
-						<div style="margin-bottom: 5px;">
-							<p>${nomes[j]} (${el.Horario})</p>
-							${el.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${e}" data="${el.DataSaidaPrevista}" />` : ""}
-						</div>
-						`;
-						})
-						.join(" ");
 					$reservas.innerHTML += `
 						<div class="cardReserva">
 							<h1>${diaSemana} (${dd_mm})</h1>
 							<div class="divReservas">
 								<div class="divTipoReserva">
-									${ambs.length != 0 ? `<h2 id="h2Equipamentos">Ambientes</h2>` : ""}
-									${ambs}
-									${eqps.length != 0 ? `<h2 id="h2Equipamentos">Equipamentos</h2>` : ""}
-									${eqps}
+									${ambientesReserva.length != 0 ? `<h2 id="h2Equipamentos">Ambientes</h2>` : ""}
+									${ambientesReserva}
+									${equipamentosReserva.length != 0 ? `<h2 id="h2Equipamentos">Equipamentos</h2>` : ""}
+									${equipamentosReserva}
 								</div>
 							</div>
 							<div class="displayBtn">
-								${el.StatusReserva == 1 ? `<button id="btnCardReserva" itens="${el.Itens.replaceAll(" ", "")}" data="${el.DataSaidaPrevista}  ">Cancelar todas</button>` : ""}
+								<button id="btnCardReserva">Cancelar todas</button>
 							</div>
 						</div>
 					`;
 				}
+
 				cardReserva();
 			} else {
-				console.log("123");
 				mainComReserva.style.display = "none";
 				mainHome.style.display = "flex";
 			}
@@ -117,16 +111,37 @@ window.addEventListener("load", async () => {
 			for (let i = 0; i < btnsCancelarReservas.length; i++) {
 				btnsCancelarReservas[i].addEventListener("click", async (e) => {
 					e.preventDefault();
-					const itens = e.target.getAttribute("itens");
-					const data = e.target.getAttribute("data");
-					cancelarReserva(itens, rmUsuario, data);
-					btnsCancelarReservas[i].parentElement.parentElement.remove();
-					const qtReservas = document.querySelector("#reservas").childElementCount;
-					if (qtReservas == 0) {
-						console.log("123");
-						mainHome.style.display = "flex";
-						mainComReserva.style.display = "none";
-					}
+					const lixeirasApagar = e.target.parentElement.parentElement.querySelectorAll("#iconLixeira");
+					lixeirasApagar.forEach(async (el) => {
+						const itens = el.getAttribute("itens");
+						const data = el.getAttribute("data");
+						cancelarReserva(itens, rmUsuario, data);
+
+						let count = 0;
+						let els1 = el.parentElement.parentElement.childNodes;
+						for (var j = 0; j < els1.length; j++) {
+							if (els1[j].tagName == "DIV") {
+								count++;
+							}
+						}
+						el.parentElement.parentElement.parentElement.childNodes.forEach((btn) => {
+							if (btn.tagName == "BUTTON") {
+								let arr = btn.getAttribute("itens").split(",");
+								arr = arr.filter((x) => x != itens);
+								btn.setAttribute("itens", arr.join(",").replaceAll(" ", ""));
+							}
+						});
+						if (count == 1) {
+							el.parentElement.parentElement.parentElement.parentElement.remove();
+						} else {
+							el.parentElement.remove();
+						}
+						const qtReservas = document.querySelector("#reservas").childElementCount;
+						if (qtReservas == 0) {
+							mainHome.style.display = "flex";
+							mainComReserva.style.display = "none";
+						}
+					});
 				});
 			}
 			for (let i = 0; i < lixeiras.length; i++) {
@@ -158,7 +173,6 @@ window.addEventListener("load", async () => {
 					}
 					const qtReservas = document.querySelector("#reservas").childElementCount;
 					if (qtReservas == 0) {
-						console.log("123");
 						mainHome.style.display = "flex";
 						mainComReserva.style.display = "none";
 					}
