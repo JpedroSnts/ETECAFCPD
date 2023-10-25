@@ -56,6 +56,10 @@ namespace CPD.Site
 			    </div>";
                 return;
             }
+            else
+            {
+                litErro.Text = "";
+            }
             try
             {
                 TokenController tokenController = new TokenController();

@@ -35,6 +35,10 @@ namespace CPD.Site
 			</div>";
                 return;
             }
+            else
+            {
+                litErro.Text = "";
+            }
             try
             {
                 UsuarioController usuarioController = new UsuarioController();

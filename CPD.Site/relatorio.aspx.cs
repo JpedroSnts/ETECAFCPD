@@ -31,6 +31,10 @@ namespace CPD.Site
 			    </div>";
                 return;
             }
+            else
+            {
+                litErro.Text = "";
+            }
 
             DateTime inicio = DateTime.Parse($"{txtDataInicio.Text}");
             DateTime fim = DateTime.Parse($"{txtDataFinal.Text}");
@@ -41,7 +45,11 @@ namespace CPD.Site
 				        <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
 			        </div>";
                 return;
-            };
+            }
+            else
+            {
+                litErro.Text = "";
+            }
             if (DateTime.Compare(inicio, DateTime.Now) > 0)
             {
                 litErro.Text = $@"<div class='box1'>
@@ -49,7 +57,11 @@ namespace CPD.Site
 				        <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
 			        </div>";
                 return;
-            };
+            }
+            else
+            {
+                litErro.Text = "";
+            }
 
 
             string tipo = "";

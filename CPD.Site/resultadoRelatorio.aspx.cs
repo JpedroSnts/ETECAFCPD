@@ -87,8 +87,6 @@ namespace CPD.Site
                 }
                 if (tipoRelatorio == "Reservas Atrasadas")
                 {
-                    /* NAO FUNCIONA */
-
                     litTipoRelatorio.Text = tipoRelatorio.ToString() + " de " + inicio.ToString("dd/MM/yyyy") + " a " + fim.ToString("dd/MM/yyyy");
 
                     litTituloTabela.Text = $@"<tr>
