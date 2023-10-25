@@ -28,10 +28,8 @@ a {
 
 /* INPUTS */
 
-
 input,
-select
-{
+select{
 	border-radius: 5px;
 	border: 1px solid #114a55;
 	background: #fff;
@@ -42,6 +40,19 @@ select
 	margin: auto;
 	padding: 10px;
 	height: 40px;
+}
+
+.btn {
+	border-radius: 20px;
+	padding: 5px 5px;
+	background-color: #114a55;
+	color: #fff;
+	font-size: 14px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	margin: 0px;
+	width: 100%;
 }
 
 /*select {
@@ -210,7 +221,6 @@ tr {
 
 	input {
 		font-size: 12px;
-		border: none;
 		margin: 12px 0px 0px 5px;
 		width: 100%;
 	}

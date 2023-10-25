@@ -6,9 +6,9 @@
 <head runat="server">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="Estatico/css/estiloReserva.css" />
     <link rel="stylesheet" href="Estatico/css/estiloTodos.css" />
     <link rel="stylesheet" href="Estatico/css/estiloHeader.css" />
+    <link rel="stylesheet" href="Estatico/css/estiloReserva.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
@@ -29,7 +29,7 @@
                 <asp:TextBox ID="txtHorarioFim" runat="server" TextMode="SingleLine" placeholder="Fim" onfocus="this.type='time'" onblur="if (!this.value) this.type='text'" class="inputsHorario input-text-time"></asp:TextBox>
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
                 <asp:ImageButton ID="btnBuscarResponsivo" runat="server" OnClick="btnBuscar_Click" ImageUrl="~/Estatico/imagens/lupa.png"/>
-            </div>
+             </div>
 
             <p class="pMensagemReserva">Selecione a <strong>data</strong>, o <strong>horário de início</strong> e o <strong>horário de fim</strong> para fazer uma reserva!</p>
 

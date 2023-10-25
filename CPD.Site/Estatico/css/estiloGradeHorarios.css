@@ -1,7 +1,6 @@
 #InfoGrade {
 	display: flex;
-	justify-content: center;
-	margin: 30px 0px 30px 0px;
+	justify-content: space-between;
 }
 
 .btnExcluirUsoAmbiente {
@@ -20,6 +19,14 @@
 
 select {
 	width: 29%;
+}
+
+select, input {
+	margin: 0px !important;
+}
+
+#btnFiltrar {
+	width: 9%;
 }
 
 #tabelaHorarios {

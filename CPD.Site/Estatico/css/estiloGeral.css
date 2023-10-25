@@ -31,7 +31,6 @@
 	top: 33%;
 	left: 33%;
 	width: 33vw;
-	height: 36vh;
 	border-radius: 10px;
 	background-color: #FFF;
 	padding: 20px 20px 10px 10px;
@@ -42,17 +41,20 @@
 #divUser {
 	text-align: center;
 }
+
 #userProf {
 	width: 60px;
 	height: 60px;
 	margin-bottom: 10px;
 	border-radius: 1000px;
 }
+
 #divUser div p {
 	font-size: 12px;
 	margin: 0;
 	font-weight: 600;
 }
+
 #divItemsMenu {
 	border-top: 2px solid #114a55;
 	padding: 5px 0px;
@@ -63,7 +65,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	margin: 5px;
+	margin: 5px 0px;
+	width: 100%;
 }
 
 .itemsMenu a {
