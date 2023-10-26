@@ -164,7 +164,7 @@ label {
 	margin-top: 30px;
 	text-align: left;
 	color: #114a55;
-	font-size: 18px;
+	font-size: 16px;
 }
 .divTipoReserva div {
 	display: flex;
@@ -191,7 +191,6 @@ label {
 }
 
 #displayCardsReserva {
-	margin-top: 30px;
 	display: flex;
 	width: min(1200px, 90%);
 	justify-content: space-evenly;
@@ -212,6 +211,10 @@ label {
 	width: 100%;
 	position: relative;
 }
+
+	.cardReserva h1 {
+		color: #114a55;
+	}
 
 .divReservas {
 	min-height: 385px;
@@ -241,13 +244,17 @@ label {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	font-family: "Montserrat", sans-serif;
 }
+
+#mainAlterarSenha h1 { font-size: 16px; color: #114a55; margin-bottom: 10px; }
 
 .divLabels {
 	margin: 20px 0px 10px 0px;
 	text-align: left;
 	width: 80%;
 }
+
 label {
 	font-size: 14px;
 }
@@ -262,14 +269,15 @@ label {
 
 .iconInput {
 	width: 15px;
-	margin: 5px 0px -5px 0px;
+	margin: 0px 0px -5px 0px;
 }
 
 input {
 	font-size: 14px;
 	border: none;
-	margin: 12px 0px 0px 5px;
+	margin: 12px 0px 0px 10px;
 	width: 100%;
+	padding-bottom: 5px;
 }
 
 input:focus {
@@ -289,7 +297,7 @@ button, input[type="button"], input[type="submit"] {
 }
 
 #btnRecuperar {
-	width: 80%;
+	width: 60%;
 }
 
 #pVersao {
@@ -334,52 +342,31 @@ button, input[type="button"], input[type="submit"] {
 		text-align: center;
 		margin: auto;
 		margin-top: 30px;
-	}
-
-	h1 {
-		font-size: 14px;
-		font-weight: 600;
-		color: #114a55;
-	}
-	.divLabels {
-		margin: 10px 0px 10px 0px;
-		text-align: left;
-		width: 180px;
-	}
-	label {
 		font-size: 12px;
 	}
 
-	.display {
-		display: flex;
-		align-items: center;
-		margin: 0px;
-		border-bottom: thin solid #565656;
-		border-bottom-color: #565656;
+		#mainAlterarSenha h1 {
+			font-size: 14px;
+			color: #114a55;
+		}
+
+	#iconInput {
+		margin: 9px 0px 0px 0px;
 	}
 
 	label {
 		font-size: 12px;
-	}
-	.iconInput {
-		width: 15px;
-		margin: 5px 0px -5px 0px;
 	}
 
 	input {
 		font-size: 12px;
-		border: none;
-		margin: 12px 0px 0px 5px;
-		width: 100%;
+		margin: 18px 0px 0px 5px;
 	}
 
-	input:focus {
-		box-shadow: 0 0 0 0;
-		outline: 0;
-	}
-	#mainAlterarSenha p {
-		font-size: 12px;
-	}
+		input:focus {
+			box-shadow: 0 0 0 0;
+			outline: 0;
+		}
 
 	button {
 		border: thin solid #114a55;
@@ -390,14 +377,21 @@ button, input[type="button"], input[type="submit"] {
 		margin-top: 10px;
 	}
 
+	#btnAlterarSenha { font-size: 12px; }
+
 	#btnRecuperar {
-		width: 85%;
+		width: 70%;
+		margin-top: 15px;
+	}
+
+	#mainAlterarSenha p a {
+		font-size: 12px;
 	}
 
 	#pVersao {
 		font-size: 10px;
 		font-weight: 600;
-		margin-top: 30px;
+		margin-top: 20px;
 	}
 
 	/* ---------------------------- HOME COM RESERVA ---------------------------- */
@@ -426,11 +420,15 @@ button, input[type="button"], input[type="submit"] {
 			font-size: 14px;
 		}
 
+	#h2Equipamentos { font-size: 14px; }
+
 	#displayCardsReserva {
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
 	}
+
+	#reservas { display: flex; flex-direction: column; }
 
 	.cardReserva {
 		width: 100%;
@@ -446,6 +444,7 @@ button, input[type="button"], input[type="submit"] {
 		background-color: #fff;
 		color: #000;
 		margin-bottom: 20px;
+		width: 70%;
 	}
 }
 
@@ -453,6 +452,16 @@ button, input[type="button"], input[type="submit"] {
 	width: 100vw;
 	height: 100vh;
 	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#bodyEsqueciSenha {
+	margin: 0%;
+	display: flex;
+	width: 100vw;
+	height: 100vh;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 }

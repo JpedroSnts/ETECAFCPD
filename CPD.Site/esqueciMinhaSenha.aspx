@@ -14,7 +14,7 @@
     <title>Esqueci minha senha</title>
     <link rel="icon" href="Estatico/imagens/logoCPD.png" type="image/png" />
 </head>
-<body class="centro">
+<body id="bodyEsqueciSenha">
     <form id="form1" runat="server">
         <div class="caixa-flutuante-erros"><asp:Literal ID="litErro" runat="server"></asp:Literal></div>
         <asp:Panel ID="pnlAlterarSenha" runat="server">

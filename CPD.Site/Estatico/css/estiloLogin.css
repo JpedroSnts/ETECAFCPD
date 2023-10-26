@@ -60,14 +60,15 @@ label {
 
 .iconInput {
     width: 15px;
-    margin: 5px 0px -5px 0px;
+    margin: 0px 0px -5px 0px;
 }
 
 input {
     font-size: 14px;
     border: none;
-    margin: 12px 0px 0px 5px;
+    margin: 12px 0px 0px 10px;
     width: 100%;
+    padding-bottom: 5px;
 }
 
     input:focus {
@@ -203,7 +204,7 @@ button, input[type="button"], input[type="submit"] {
         background-color: #114A55;
         border-radius: 20px;
         padding: 5px 20px;
-        margin-top: 15px;
+        margin-top: 20px;
     }
 
     #pVersao {

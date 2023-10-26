@@ -22,41 +22,6 @@
     padding: 20px 10px;
 }
 
-#txtHorarioInicio, #txtHorarioFim {
-	border-radius: 5px;
-	border: 1px solid #114a55;
-	color: #000;
-	font-style: normal;
-	font-weight: 400;
-	line-height: normal;
-	margin: auto;
-	padding: 10px;
-	height: 40px;
-	width: 30%;
-}
-
-input[type="time"]::-webkit-calendar-picker-indicator {
-	background: url("../imagens/Clock.png") no-repeat;
-	background-position: calc(100% - 5px) center;
-	padding: 9px 8px 8px 12px;
-}
-
-.input-text-time {
-	background: url("../imagens/Clock.png") no-repeat;
-	background-position: calc(100% - 5px) center;
-	padding: 9px 0px 8px 12px;
-}
-
-	.input-text-time:focus {
-		outline: none;
-		padding: 2px 0px 0px 12px;
-	}
-
-	.input-text-time::placeholder {
-		color: #000;
-	}
-
-
 #divUser { text-align: center; }
 #userProf { width: 60px; height: 60px; margin-bottom: 10px; }
 #divUser div p { font-size: 12px; margin: 0; font-weight: 600; }
@@ -85,24 +50,102 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 
 #inputs {
 	display: flex;
-	justify-content: space-between;
-	align-items: center;
+	justify-content: center;
+	align-items: center
 }
 
+input {
+	width: 25%;
+	border-radius: 5px;
+	border: 1px solid #114a55;
+	background: #fff;
+	color: #000;
+	font-size: 14px;
+	padding: 6px 8px 3px 12px;
+	margin: auto;
+}
+
+/* ----------- INPUT DATA ----------- */
 #txtInputData {
 	margin-right: 10px;
 	margin-left: 0px;
 	padding: 2px 0px 2px 12px;
 	height: 37px;
-	width: 30%;
 }
 
+input[type="date"]::-webkit-calendar-picker-indicator {
+	background: url("../imagens/Calendario.png") no-repeat;
+	background-position: calc(100% - 5px) center;
+	padding: 9px 8px 8px 12px;
+}
+
+.input-text-date {
+	background: url("../imagens/Calendario.png") no-repeat;
+	background-position: calc(100% - 5px) center;
+	padding: 9px 8px 8px 12px;
+}
+
+	.input-text-date:focus {
+		outline: none;
+		padding: 2px 0px 2px 12px;
+	}
+
+	.input-text-date::placeholder {
+		color: #000;
+	}
+
+/* ----------- INPUTS HORARIO ----------- */
 .inputsHorario {
 	width: 14%;
 	margin-left: 0px;
 	margin-right: 10px;
 	padding: 2px 10px 2px 12px;
 	height: 37px;
+}
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+	background: url("../imagens/Clock.png") no-repeat;
+	background-position: calc(100% - 5px) center;
+	padding: 9px 8px 8px 12px;
+}
+
+.input-text-time {
+	background: url("../imagens/Clock.png") no-repeat;
+	background-position: calc(100% - 5px) center;
+	padding: 9px 0px 8px 12px;
+}
+
+	.input-text-time:focus {
+		outline: none;
+		padding: 2px 0px 0px 12px;
+	}
+
+	.input-text-time::placeholder {
+		color: #000;
+	}
+
+button {
+	border: thin solid #114A55;
+	color: #fff;
+	background-color: #114A55;
+	border-radius: 20px;
+	padding: 5px 20px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+button, input[type="button"], input[type="submit"] {
+	width: 100px;
+	height: 35px;
+	border-radius: 20px;
+	padding: 5px 20px;
+	background-color: #114a55;
+	color: #fff;
+	font-size: 14px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	margin: 0px;
 }
 
 
@@ -127,7 +170,7 @@ input[type="time"]::-webkit-calendar-picker-indicator {
 	display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 50%;
+    width: 40%;
     border: thin solid #bbbbbbbf;
     border-radius: 10px;
 	box-shadow: 1px 1px 5px #bbbbbbbf;
@@ -166,7 +209,12 @@ p { margin: 0px 0px 0px 0px; }
 		margin: 0;
 	}
 
-.reservar { width: 30%; display: flex; justify-content: space-between; margin-top: 20px; align-items: center; float: right; }
+.reservar {
+	width: 91%;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 20px;
+}
 
 @media only screen and (max-width: 800px) 
 {
@@ -175,10 +223,6 @@ p { margin: 0px 0px 0px 0px; }
 		display: initial;
 		width: 30px;
 		height: 30px;
-	}
-
-	#txtHorarioInicio, #txtHorarioFim {
-		width: 44%;
 	}
 
 	#opMenu { display: none; }
@@ -190,6 +234,9 @@ p { margin: 0px 0px 0px 0px; }
 	#inputs { display: flex; flex-wrap: wrap; justify-content: space-between; }
 	#txtInputData { width: 100%; margin-bottom: 10px; margin-right: 0px; }
 	.inputsHorario { width: 43%; margin-left: 0px; margin-right: 5px; padding-right: 3px; }
+	#txtHorarioInicio, #txtHorarioFim {
+		width: 42%;
+	}
 
 	#btnBuscarResponsivo {
 		display: initial;
@@ -208,11 +255,11 @@ p { margin: 0px 0px 0px 0px; }
 	#btnReservar { width: 100%; margin: 20px 0px; padding: 5px 0px}
 
 	.reservar {
-		margin-top: 0px;
+		margin: auto;
 	}
 }
 
-@media only screen and (max-width: 365px) {
+/*@media only screen and (max-width: 365px) {
 	#txtHorarioInicio, #txtHorarioFim {
 		width: 49%;
 		margin-bottom:10px;
@@ -221,7 +268,7 @@ p { margin: 0px 0px 0px 0px; }
 	#btnBuscarResponsivo {
 		margin: auto;
 	}
-}
+}*/
 
 	.select2-container--default .select2-selection--single {
 		border: 1px solid #114a55 !important;
