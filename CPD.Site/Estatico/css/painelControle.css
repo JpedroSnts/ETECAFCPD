@@ -13,7 +13,7 @@
 #inputsBusca {
 	display: flex;
 	gap: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 .dropbtn {
@@ -120,10 +120,25 @@ input, select {
 	width: 100%;
 }
 
+#tblReservas { margin-bottom: 30px; }
+
 #txtData {
 	width: 30%;
 }
 
+#txtFiltro {
+	height: 40px;
+	width: 50%;
+	padding-left: 10px;
+}
+
+#txtData {
+	padding: 2px 0px 2px 12px;
+	height: 40px;
+}
+
 #ddlStatus{
 	width: 30%;
+	height: 40px;
+	padding-left: 5px;
 }

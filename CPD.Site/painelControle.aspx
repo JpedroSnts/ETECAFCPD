@@ -20,12 +20,12 @@
     <form id="form1" runat="server">
 		<uc:Header ID="PartialHeader" runat="server" />
         <main>
+            <h1>Painel de Controle</h1>
             <div id="tabelaReserva">
                 <div>
-                    <h1>Painel de Controle</h1>
                     <div id="inputsBusca">
                         <input type="text" id="txtFiltro" placeholder="Professor/Equipamento/Ambiente" />
-                        <input type="date" id="txtData"/>
+                        <input type="text" id="txtData" placeholder="Data" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date"/>
                         <select id="ddlStatus" placeholder="Status">
                             <option value="">Status</option>
                         </select>

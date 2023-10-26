@@ -1,10 +1,13 @@
 #txtFiltro {
 	height: 40px;
 	width: 80%;
+	padding-left: 10px;
 }
 
 #ddlStatus {
 	width: 20%;
+	height: 40px;
+	padding-left: 5px;
 }
 
 #imagem {
@@ -22,7 +25,7 @@
 #inputsBusca {
 	display: flex;
 	gap: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 .dropbtn {
@@ -73,6 +76,8 @@
 	display: flex;
 	justify-content: space-between;
 }
+
+#tabelaDisponivel h1 { margin-bottom: 20px; }
 
 #tabelaDisponivel table tr td {
 	text-align: left;
@@ -140,6 +145,8 @@
 	align-items: center;
 	justify-content: space-between;
 }
+
+#tituloTabela h1 { margin-bottom: 20px; }
 
 #iconeReload {
 	width: 30px;
