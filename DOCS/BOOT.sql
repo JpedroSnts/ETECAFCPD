@@ -825,6 +825,12 @@ BEGIN
 	INSERT INTO ocorrencia_ambiente VALUES (pDataOcorrencia , pReservaAmbiente, pTipoOcorrencia, pDescricao);
 END$$
 
+DROP PROCEDURE IF EXISTS listarTipoOcorrenciaAmbiente$$
+CREATE PROCEDURE listarTipoOcorrenciaAmbiente()
+BEGIN
+	SELECT * FROM tipo_ocorrencia_ambiente;
+END$$
+
 /* ------------------------------ OCORRENCIA EQUIPAMENTO ------------------------------ */
 
 DROP FUNCTION IF EXISTS ocorrenciaEquipamentoJaExiste$$
@@ -843,6 +849,12 @@ BEGIN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ocorrencia para esta reserva já registrada';
     END IF;
 	INSERT INTO ocorrencia_equipamento VALUES (pDataOcorrencia , pReservaEquipamento, pTipoOcorrencia, pDescricao);
+END$$
+
+DROP PROCEDURE IF EXISTS listarTipoOcorrenciaEquipamento$$
+CREATE PROCEDURE listarTipoOcorrenciaEquipamento()
+BEGIN
+	SELECT * FROM tipo_ocorrencia_equipamento;
 END$$
 
 /* ------------------------------ NOTIFICACAO ------------------------------ */

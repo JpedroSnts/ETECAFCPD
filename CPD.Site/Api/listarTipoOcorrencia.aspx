@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="listarTipoOcorrencia.aspx.cs" Inherits="CPD.Site.Api.listarTipoOcorrencia" %>
