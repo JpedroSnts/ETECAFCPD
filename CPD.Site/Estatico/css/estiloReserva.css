@@ -283,9 +283,3 @@ p { margin: 0px 0px 0px 0px; }
 	.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
 		background-color: #114a55 !important;
 	}
-
-
-	button:disabled, input[type="button"]:disabled, input[type="submit"]:disabled {
-		background-color: #888;
-		cursor: not-allowed;
-	}

@@ -124,6 +124,12 @@ button, input[type="button"], input[type="submit"] {
 	cursor: pointer;
 	margin: 0px;
 }
+
+	button:disabled, input[type="button"]:disabled, input[type="submit"]:disabled {
+		background-color: #888;
+		cursor: not-allowed;
+	}
+
 /* TABELAS */
 
 table {
