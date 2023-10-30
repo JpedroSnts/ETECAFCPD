@@ -74,13 +74,13 @@ input {
 }
 
 input[type="date"]::-webkit-calendar-picker-indicator {
-	background: url("../imagens/Calendario.png") no-repeat;
+	background: url("../imagens/calendario.svg") no-repeat;
 	background-position: calc(100% - 5px) center;
 	padding: 9px 8px 8px 12px;
 }
 
 .input-text-date {
-	background: url("../imagens/Calendario.png") no-repeat;
+	background: url("../imagens/calendario.svg") no-repeat;
 	background-position: calc(100% - 5px) center;
 	padding: 9px 8px 8px 12px;
 }
@@ -104,13 +104,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 input[type="time"]::-webkit-calendar-picker-indicator {
-	background: url("../imagens/Clock.png") no-repeat;
+	background: url("../imagens/clock.svg") no-repeat;
 	background-position: calc(100% - 5px) center;
 	padding: 9px 8px 8px 12px;
 }
 
 .input-text-time {
-	background: url("../imagens/Clock.png") no-repeat;
+	background: url("../imagens/clock.svg") no-repeat;
 	background-position: calc(100% - 5px) center;
 	padding: 9px 0px 8px 12px;
 }
