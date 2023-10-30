@@ -205,6 +205,137 @@ tr {
 	width: 15px;
 	cursor: pointer;
 }
+
+/* MODAL OCORRENCIAS */
+
+input[name="equipamentos"], input[name="ambientes"] {
+	width: auto;
+}
+
+#displayOcorrencia {
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #00000060;
+	overflow: auto;
+	padding-bottom: 60px;
+}
+
+#gerarOcorrencia h2 {
+	font-size: 18px;
+	text-align: center;
+	margin: 0;
+}
+
+#gerarOcorrencia h4 {
+	margin: 0;
+	margin-top: 10px;
+}
+
+#gerarOcorrencia details summary {
+	margin: 0;
+	margin-top: 10px;
+	font-size: 16px;
+	font-weight: 700;
+	cursor: pointer;
+	user-select: none;
+}
+
+#gerarOcorrencia {
+	width: 560px;
+	padding: 15px 20px;
+	margin: auto;
+	margin-top: 60px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border: thin solid #ebebeb;
+	border-radius: 20px;
+	background-color: #fff;
+}
+
+.gerarOcorrencia-head {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+	.gerarOcorrencia-head h2 {
+		width: 100%;
+		text-align: center;
+		padding-left: 15px;
+	}
+
+#btnFecharJanelaOcorrencia {
+	width: 15px;
+	cursor: pointer;
+}
+
+#ddlEquip {
+	padding: 9px 8px 8px 12px;
+	border-radius: 5px;
+	border: 1px solid #114a55;
+}
+
+	#ddlEquip:focus {
+		outline: none;
+	}
+
+.ddlOcorrencia {
+	padding: 9px 8px 8px 12px;
+	border-radius: 5px;
+	border: 1px solid #114a55;
+	width: 100%;
+}
+
+	.ddlOcorrencia:focus {
+		outline: none;
+	}
+
+.caixaDescricao {
+	width: 519px;
+	height: 99px;
+	border-radius: 5px;
+	border: 1px solid #114a55;
+	background: #fff;
+	color: #000;
+	font-size: 14px;
+	padding: 6px 8px 3px 12px;
+	margin: auto;
+	resize: vertical;
+}
+
+#btnGerarOcorrencia {
+	margin: auto;
+}
+
+#alignBtn {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-top: 15px;
+}
+
+	#alignBtn p {
+		color: #737373;
+		font-size: 14px;
+	}
+
+.ckbs-group {
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	margin-top: 10px;
+}
+
+.itens select {
+	margin: 10px 0;
+}
+
+
 @media only screen and (max-width: 800px) {
 
 	h1 {

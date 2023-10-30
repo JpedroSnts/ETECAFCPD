@@ -40,10 +40,28 @@
                             <th class="th-professor">Professor</th>
                             <th class="th-status">Status</th>
                             <th class="th-acao">Ação</th>
+                            <th class="th-acao">Ocorrência</th>
                         </tr>
                     </thead>
                     <tbody id="tbodyReservas"></tbody>
                 </table>
+            </div>
+            <div id="displayOcorrencia" class="escondido">
+                <div id="gerarOcorrencia" class="escondido">
+	                <div class="gerarOcorrencia-head">
+		                <h2>Gerar Ocorrência</h2>
+		                <img id="btnFecharJanelaOcorrencia" src="/Estatico/imagens/close.svg" alt="ícone para fechar a janela" />
+	                </div>
+	                <div class="gerarOcorrencia-body">
+		                <h4>ÍTENS</h4>
+		                <div class="ckbs-group"></div>
+		                <div id="itensOcorrencia"></div>
+
+		                <div id="alignBtn">
+			                <button id="btnGerarOcorrencia" disabled>Gerar Ocorrência</button>
+		                </div>
+	                </div>
+                </div>
             </div>
         </main>
         <script src="Estatico/js/menuSanduiche.js"></script>

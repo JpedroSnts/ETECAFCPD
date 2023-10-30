@@ -335,7 +335,7 @@ window.addEventListener("load", () => {
                 const itens = el.getAttribute("itens");
                 const data = el.getAttribute("dt_saida");
 
-                if (checkbox.checked) {
+                if (checkbox && checkbox.checked) {
                     const rm = checkbox.getAttribute("rm");
                     const data = checkbox.getAttribute("dataSaida");
                     const itens = checkbox.getAttribute("codigos").split(",");
