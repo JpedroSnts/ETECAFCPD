@@ -77,6 +77,7 @@
     <Content Include="Api\buscarProfessor.aspx" />
     <Content Include="Api\dashboard.aspx" />
     <Content Include="Api\excluirGradeHorario.aspx" />
+    <Content Include="Api\gerarOcorrencia.aspx" />
     <Content Include="Api\listarTipoOcorrencia.aspx" />
     <Content Include="Api\reservasProfessor.aspx" />
     <Content Include="dashboard.aspx" />
@@ -167,6 +168,13 @@
     </Compile>
     <Compile Include="Api\excluirGradeHorario.aspx.designer.cs">
       <DependentUpon>excluirGradeHorario.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Api\gerarOcorrencia.aspx.cs">
+      <DependentUpon>gerarOcorrencia.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Api\gerarOcorrencia.aspx.designer.cs">
+      <DependentUpon>gerarOcorrencia.aspx</DependentUpon>
     </Compile>
     <Compile Include="Api\listarTipoOcorrencia.aspx.cs">
       <DependentUpon>listarTipoOcorrencia.aspx</DependentUpon>

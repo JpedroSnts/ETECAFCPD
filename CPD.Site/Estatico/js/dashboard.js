@@ -48,9 +48,9 @@ window.addEventListener("load", () => {
             }
 			</td>
             <td>
-            ${status.botao == ""
-            ? "" :
-            `<input type="checkbox" codigos="${reserva.Itens.replaceAll(" ", "")}" dataSaida="${reserva.DataSaidaPrevista}" rm="${reserva.RM}" tiposItens="${reserva.TiposItens.join(",")}" />`}
+            ${status.botao != "" && (status.codigo == 7 || status.codigo == 3 || status.codigo == 2)
+            ? `<input type="checkbox" codigos="${reserva.Itens.replaceAll(" ", "")}" dataSaida="${reserva.DataSaidaPrevista}" rm="${reserva.RM}" tiposItens="${reserva.TiposItens.join(",")}" />`
+            : ""}
             </td>
 		</tr>`;
     }
@@ -87,7 +87,7 @@ window.addEventListener("load", () => {
 
     function listarReservas() {
         const dt = new Date();
-        const yyyy_mm_dd = `${dt.getFullYear()}-${dt.getUTCMonth() + 1}-${dt.getUTCDate()}`;
+        const yyyy_mm_dd = `${dt.getFullYear()}-${dt.getMonth() + 1}-${dt.getDate()}`;
         if ((FILTRO == null || FILTRO.trim() == "") && (STATUS == null || STATUS == "")) {
             fetchListar(`/Api/dashboard.aspx?data=${yyyy_mm_dd}`);
             return;
@@ -143,12 +143,61 @@ window.addEventListener("load", () => {
     }, 1000 * 15);
 
     // MODAL OCORRENCIA
+    let STATUS_BTN = "";
+    let RM_BTN = "";
+    let ITENS_BTN = "";
+    let DATA_BTN = "";
 
     const btnGerarOcorrencia = document.querySelector("#btnGerarOcorrencia");
     let tipoOcorrenciaAmbiente = ``;
     let tipoOcorrenciaEquipamento = ``;
     const itensOcorrencia = document.querySelector("#itensOcorrencia");
     let inputTextValues = {};
+
+    btnGerarOcorrencia.addEventListener("click", (e) => {
+        const rm = e.target.getAttribute("rm");
+        const data = e.target.getAttribute("data");
+        const itens = Object.keys(inputTextValues);
+        const textareas = [];
+        const tipos_ocorrencias = [];
+        const tipos_itens = [];
+        itens.forEach((i) => {
+            textareas.push(inputTextValues[i].textarea);
+            tipos_ocorrencias.push(inputTextValues[i].ddl);
+            tipos_itens.push(inputTextValues[i].tipo);
+        });
+
+        fetch(`/Api/gerarOcorrencia.aspx`, {
+            method: "POST",
+            body: JSON.stringify({
+                rm, data, itens: Object.values(inputTextValues), cd_itens: Object.keys(inputTextValues)
+            })
+        }).then(() => {
+            if (RM_BTN != "" && STATUS_BTN != "" && ITENS_BTN != "" && DATA_BTN != "") {
+                fetch(`/Api/dashboard.aspx?rm=${RM_BTN}&dt_saida=${DATA_BTN}&itens=${ITENS_BTN}&status=${STATUS_BTN}`)
+                    .then(() => {
+                        listarReservas();
+                    });
+
+                regarregarTabela = setInterval(() => {
+                    listarReservas();
+                    fetchListarItens();
+                }, 1000 * 15);
+
+                const displayOcorrencia = document.querySelector("#displayOcorrencia");
+                const gerarOcorrencia = document.querySelector("#gerarOcorrencia");
+
+                displayOcorrencia.classList.add("escondido");
+                gerarOcorrencia.classList.add("escondido");
+
+                document.querySelector(".ckbs-group").innerHTML = "";
+                itensOcorrencia.innerHTML = "";
+                inputTextValues = {};
+                btnGerarOcorrencia.setAttribute("disabled", "");
+                document.querySelector("body").style.overflow = "hidden";
+            }
+        });
+    });
 
     function bloquearBotaoGerarOcorrencia() {
         const arrayCkbs = [];
@@ -182,6 +231,9 @@ window.addEventListener("load", () => {
         btnGerarOcorrencia.setAttribute("disabled", "");
         document.querySelector("body").style.overflow = "hidden";
 
+        btnGerarOcorrencia.setAttribute("rm", rm);
+        btnGerarOcorrencia.setAttribute("data", data);
+
         if (tipoOcorrenciaAmbiente == "" || tipoOcorrenciaEquipamento == "") {
             fetch("/Api/listarTipoOcorrencia.aspx")
                 .then(res => res.json())
@@ -195,7 +247,7 @@ window.addEventListener("load", () => {
                         tipoOcorrenciaEquipamento += `<option value="${t.Codigo}">${t.Nome}</option>`
                     });
                 });
-        } 
+        }
 
         const btnFecharJanelaOcorrencia = document.querySelector("#btnFecharJanelaOcorrencia");
         const displayOcorrencia = document.querySelector("#displayOcorrencia");
@@ -256,7 +308,7 @@ window.addEventListener("load", () => {
                     details.forEach(d => {
                         const ddl = d.querySelector("select");
                         const txt = d.querySelector("textarea");
-                        inputTextValues[d.id] = inputTextValues[d.id] || { textarea: "", ddl: "" };
+                        inputTextValues[d.id] = inputTextValues[d.id] || { textarea: "", ddl: "", tipo: ddl.getAttribute("tipo") == "AMBIENTE" ? 1 : 2 };
                         txt.addEventListener("input", e => {
                             inputTextValues[d.id].textarea = e.target.value;
                             bloquearBotaoGerarOcorrencia();
@@ -278,18 +330,23 @@ window.addEventListener("load", () => {
         btnAcaoReserva.forEach((el) => {
             const checkbox = el.parentNode.parentNode.querySelector("input[type='checkbox']");
             el.addEventListener("click", () => {
+                const rm = el.getAttribute("rm");
+                const status = el.getAttribute("status");
+                const itens = el.getAttribute("itens");
+                const data = el.getAttribute("dt_saida");
+
                 if (checkbox.checked) {
                     const rm = checkbox.getAttribute("rm");
                     const data = checkbox.getAttribute("dataSaida");
                     const itens = checkbox.getAttribute("codigos").split(",");
                     const tipos = checkbox.getAttribute("tipositens").split(",").map((i) => i == "1" ? "ambientes" : "equipamentos");
 
+                    STATUS_BTN = status;
+                    RM_BTN = rm;
+                    ITENS_BTN = itens;
+                    DATA_BTN = data;
                     abrirFormOcorrencia(rm, data, itens, tipos);
                 } else {
-                    const rm = el.getAttribute("rm");
-                    const status = el.getAttribute("status");
-                    const itens = el.getAttribute("itens");
-                    const data = el.getAttribute("dt_saida");
                     fetch(`/Api/dashboard.aspx?rm=${rm}&dt_saida=${data}&itens=${itens}&status=${status}`)
                         .then(() => {
                             listarReservas();

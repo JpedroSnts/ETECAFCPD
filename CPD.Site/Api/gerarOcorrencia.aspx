@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="gerarOcorrencia.aspx.cs" Inherits="CPD.Site.Api.gerarOcorrencia" %>

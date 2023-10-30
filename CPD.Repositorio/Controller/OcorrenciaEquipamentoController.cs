@@ -15,7 +15,6 @@ namespace CPD.Repositorio.Controller
         {
             List<Parametro> parametros = new List<Parametro>
             {
-                new Parametro("pDataOcorrencia", ocorrenciaEquipamento.Data.ToString("yyyy-MM-dd HH-mm-ss")),
                 new Parametro("pSiglaEquipamento", ocorrenciaEquipamento.Equipamento.Sigla),
                 new Parametro("pRm", ocorrenciaEquipamento.Usuario.RM.ToString()),
                 new Parametro("pDataSaidaPrevista", ocorrenciaEquipamento.ReservaEquipamento.DataSaidaPrevista.ToString("yyyy-MM-dd HH-mm-ss")),

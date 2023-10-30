@@ -807,22 +807,20 @@ BEGIN
 END$$
 /* ------------------------------ OCORRENCIA AMBIENTE ------------------------------ */
 
-DROP FUNCTION IF EXISTS ocorrenciaAmbienteJaExiste$$
-CREATE FUNCTION ocorrenciaAmbienteJaExiste(pDataOcorrencia DATETIME, pReservaAmbiente INT) RETURNS BOOL
-BEGIN
-	DECLARE vReserva INT DEFAULT 0;
-	SELECT cd_reserva_ambiente INTO vReserva FROM ocorrencia_ambiente
-    WHERE dt_ocorrencia = pDataOcorrencia AND cd_reserva_ambiente = pReservaAmbiente;
-    RETURN vReserva <> 0;
-END$$
-
 DROP PROCEDURE IF EXISTS registrarOcorrenciaAmbiente$$
-CREATE PROCEDURE registrarOcorrenciaAmbiente(pDataOcorrencia DATETIME, pReservaAmbiente INT, pTipoOcorrencia INT, pDescricao TEXT)
+CREATE PROCEDURE registrarOcorrenciaAmbiente(pSiglaAmbiente VARCHAR(20), pRm INT, pDataSaidaPrevista DATETIME, pTipoOcorrencia INT, pDescricao TEXT)
 BEGIN
-	IF ocorrenciaAmbienteJaExiste(pDataOcorrencia,  pReservaAmbiente) THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ocorrencia para esta reserva já registrada';
+	DECLARE vCodigoReserva INT DEFAULT 0;
+	SELECT cd_reserva_ambiente INTO vCodigoReserva FROM reserva_ambiente 
+	WHERE cd_rm = pRm AND dt_saida_prevista = pDataSaidaPrevista AND sg_ambiente = pSiglaAmbiente 
+	ORDER BY cd_reserva_ambiente DESC LIMIT 1;
+
+	IF (vCodigoReserva = 0) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Reserva não existe';
     END IF;
-	INSERT INTO ocorrencia_ambiente VALUES (pDataOcorrencia , pReservaAmbiente, pTipoOcorrencia, pDescricao);
+
+	INSERT INTO ocorrencia_ambiente 
+	VALUES (NOW(), vCodigoReserva, pTipoOcorrencia, pDescricao);
 END$$
 
 DROP PROCEDURE IF EXISTS listarTipoOcorrenciaAmbiente$$
@@ -833,22 +831,20 @@ END$$
 
 /* ------------------------------ OCORRENCIA EQUIPAMENTO ------------------------------ */
 
-DROP FUNCTION IF EXISTS ocorrenciaEquipamentoJaExiste$$
-CREATE FUNCTION ocorrenciaEquipamentoJaExiste(pDataOcorrencia DATETIME, pReservaEquipamento INT) RETURNS BOOL
-BEGIN
-	DECLARE vReserva INT DEFAULT 0;
-	SELECT cd_reserva_equipamento INTO vReserva FROM ocorrencia_equipamento
-    WHERE dt_ocorrencia = pDataOcorrencia AND cd_reserva_equipamento = pReservaEquipamento;
-    RETURN vReserva <> 0;
-END$$
-
 DROP PROCEDURE IF EXISTS registrarOcorrenciaEquipamento$$
-CREATE PROCEDURE registrarOcorrenciaEquipamento(pDataOcorrencia DATETIME, pReservaEquipamento INT, pTipoOcorrencia INT, pDescricao TEXT)
+CREATE PROCEDURE registrarOcorrenciaEquipamento(pSiglaEquipamento VARCHAR(20), pRm INT, pDataSaidaPrevista DATETIME, pTipoOcorrencia INT, pDescricao TEXT)
 BEGIN
-	IF ocorrenciaEquipamentoJaExiste(pDataOcorrencia, pReservaEquipamento) THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ocorrencia para esta reserva já registrada';
+	DECLARE vCodigoReserva INT DEFAULT 0;
+	SELECT cd_reserva_equipamento INTO vCodigoReserva FROM reserva_equipamento 
+	WHERE cd_rm = pRm AND dt_saida_prevista = pDataSaidaPrevista AND sg_equipamento = pSiglaEquipamento 
+	ORDER BY cd_reserva_equipamento DESC LIMIT 1;
+
+	IF (vCodigoReserva = 0) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Reserva não existe';
     END IF;
-	INSERT INTO ocorrencia_equipamento VALUES (pDataOcorrencia , pReservaEquipamento, pTipoOcorrencia, pDescricao);
+
+	INSERT INTO ocorrencia_equipamento 
+	VALUES (NOW(), vCodigoReserva, pTipoOcorrencia, pDescricao);
 END$$
 
 DROP PROCEDURE IF EXISTS listarTipoOcorrenciaEquipamento$$
@@ -1191,3 +1187,29 @@ call reservarAmbiente('MINIAUDIT03', 36401, now(), DATE_ADD(DATE_ADD(now(), INTE
 call reservarAmbiente('MINIAUDIT05', 36402, now(), DATE_ADD(DATE_ADD(now(), INTERVAL 1 HOUR), INTERVAL 25 MINUTE));
 call reservarAmbiente('MINIAUDIT01', 36404, now(), DATE_ADD(DATE_ADD(now(), INTERVAL 3 HOUR), INTERVAL 30 MINUTE));
 call reservarAmbiente('MINIAUDIT06', 36403, now(), DATE_ADD(DATE_ADD(now(), INTERVAL 2 HOUR), INTERVAL 45 MINUTE));
+
+
+call reservarAmbiente('INFOLAB05', 36403, DATE_ADD(now(), INTERVAL 28 MINUTE), DATE_ADD(DATE_ADD(now(), INTERVAL 1 HOUR), INTERVAL 32 MINUTE));
+call reservarEquipamento('CONTROLE02', 36403, DATE_ADD(now(), INTERVAL 28 MINUTE), DATE_ADD(DATE_ADD(now(), INTERVAL 1 HOUR), INTERVAL 32 MINUTE));
+call reservarEquipamento('NOTE01', 36403, DATE_ADD(now(), INTERVAL 28 MINUTE), DATE_ADD(DATE_ADD(now(), INTERVAL 1 HOUR), INTERVAL 32 MINUTE));
+
+call reservarEquipamento('CONTROLE01', 36412, DATE_ADD(now(), INTERVAL 92 MINUTE), DATE_ADD(DATE_ADD(now(), INTERVAL 2 HOUR), INTERVAL 42 MINUTE));
+call reservarEquipamento('DS02', 36412, DATE_ADD(now(), INTERVAL 92 MINUTE), DATE_ADD(DATE_ADD(now(), INTERVAL 2 HOUR), INTERVAL 42 MINUTE));
+call reservarAmbiente('INFOLAB07', 36412, DATE_ADD(now(), INTERVAL 92 MINUTE), DATE_ADD(DATE_ADD(now(), INTERVAL 2 HOUR), INTERVAL 42 MINUTE));
+
+-- 
+
+call reservarAmbiente('AUDIT', 36421, DATE_ADD(DATE_ADD(now(), INTERVAL 24 MINUTE), INTERVAL 1 DAY), DATE_ADD(DATE_ADD(DATE_ADD(now(), INTERVAL 2 HOUR), INTERVAL 26 MINUTE), INTERVAL 1 DAY));
+call reservarEquipamento('DS01', 36421, DATE_ADD(DATE_ADD(now(), INTERVAL 24 MINUTE), INTERVAL 1 DAY), DATE_ADD(DATE_ADD(DATE_ADD(now(), INTERVAL 2 HOUR), INTERVAL 26 MINUTE), INTERVAL 1 DAY));
+call reservarEquipamento('NOTE04', 36421, DATE_ADD(DATE_ADD(now(), INTERVAL 24 MINUTE), INTERVAL 1 DAY), DATE_ADD(DATE_ADD(DATE_ADD(now(), INTERVAL 2 HOUR), INTERVAL 26 MINUTE), INTERVAL 1 DAY));
+
+call reservarAmbiente('INFOLAB05', 36427, DATE_ADD(DATE_ADD(now(), INTERVAL 56 MINUTE), INTERVAL 1 DAY), DATE_ADD(DATE_ADD(DATE_ADD(now(), INTERVAL 2 HOUR), INTERVAL 17 MINUTE), INTERVAL 1 DAY));
+call reservarEquipamento('CONTROLE02', 36427, DATE_ADD(DATE_ADD(now(), INTERVAL 56 MINUTE), INTERVAL 1 DAY), DATE_ADD(DATE_ADD(DATE_ADD(now(), INTERVAL 2 HOUR), INTERVAL 17 MINUTE), INTERVAL 1 DAY));
+call reservarEquipamento('NOTE01', 36427, DATE_ADD(DATE_ADD(now(), INTERVAL 56 MINUTE), INTERVAL 1 DAY), DATE_ADD(DATE_ADD(DATE_ADD(now(), INTERVAL 2 HOUR), INTERVAL 17 MINUTE), INTERVAL 1 DAY));
+
+call reservarEquipamento('CONTROLE04', 36429, DATE_ADD(now(), INTERVAL 1 DAY), DATE_ADD(DATE_ADD(DATE_ADD(now(), INTERVAL 3 HOUR), INTERVAL 35 MINUTE), INTERVAL 1 DAY));
+call reservarAmbiente('MINIAUDIT04', 36429, DATE_ADD(now(), INTERVAL 1 DAY), DATE_ADD(DATE_ADD(DATE_ADD(now(), INTERVAL 3 HOUR), INTERVAL 35 MINUTE), INTERVAL 1 DAY));
+
+call reservarEquipamento('CONTROLE01', 36404, DATE_ADD(DATE_ADD(now(), INTERVAL 42 MINUTE), INTERVAL 1 DAY), DATE_ADD(DATE_ADD(DATE_ADD(now(), INTERVAL 3 HOUR), INTERVAL 34 MINUTE), INTERVAL 1 DAY));
+call reservarEquipamento('DS02', 36404, DATE_ADD(DATE_ADD(now(), INTERVAL 42 MINUTE), INTERVAL 1 DAY), DATE_ADD(DATE_ADD(DATE_ADD(now(), INTERVAL 3 HOUR), INTERVAL 34 MINUTE), INTERVAL 1 DAY));
+call reservarAmbiente('INFOLAB07', 36404, DATE_ADD(DATE_ADD(now(), INTERVAL 42 MINUTE), INTERVAL 1 DAY), DATE_ADD(DATE_ADD(DATE_ADD(now(), INTERVAL 3 HOUR), INTERVAL 34 MINUTE), INTERVAL 1 DAY));
