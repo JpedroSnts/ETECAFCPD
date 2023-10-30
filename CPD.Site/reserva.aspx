@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link rel="icon" href="Estatico/imagens/logoCPD.png" type="image/png" />
+    <link rel="icon" href="Estatico/imagens/QuadradoLogoCPD.png" type="image/png" />
     <title>CPD - Reserva</title>
 </head>
 <body>
