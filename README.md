@@ -2,7 +2,7 @@
 
 ### O que é o ETECAF CPD?
 
-> O ETECAF CPD é um sistema de gerenciamento de equipamentos e ambientes, feito com o objetivo de agilizar o processo que anteriormente era feito manualmente e com papéis, este projeto foi feito para a conclusção do curso de Desenvolvimento de Sistemas na ETEC aristóteles ferreira.
+> O ETECAF CPD é um sistema de gerenciamento de equipamentos e ambientes, feito com o objetivo de agilizar o processo que anteriormente era feito manualmente e com papéis, este projeto foi feito para a conclusão do curso de Desenvolvimento de Sistemas na ETEC aristóteles ferreira.
 
 ### Integrantes
 
@@ -43,10 +43,10 @@ git clone https://github.com/JpedroSnts/ETECAFCPD.git
 
 ## Site versão mobile (Usuário)
 <div>
-  <img src="https://www.dropbox.com/scl/fi/d51abw7cf41g5l5rwjx9m/login-mobile.png?rlkey=hr8szmjwj0p0gl9ans4dpbxqd&dl=0&raw=1" alt="Imagem da página de login mobile" style="width: 23%;" />
-  <img src="https://www.dropbox.com/scl/fi/3qfj0ayj5efy5z9dt7jdg/suas-reservas-mobile.png?rlkey=ec6ra23et8zqtwp8nvppey6hi&dl=0&raw=1" alt="Imagem da página de suas reservas mobile" style="width: 23%;" />
-  <img src="https://www.dropbox.com/scl/fi/iwcmtk578o7uxt68ibiel/reserva-mobile.png?rlkey=n6m0s2anle3s2psj0r8tw5jd2&dl=0&raw=1" alt="Imagem da página de reserva mobile" style="width: 23%;" />
-  <img src="https://www.dropbox.com/scl/fi/juerzprtby76f2qg43yh7/alterar-senha-mobile.png?rlkey=jqvhp5kj1nk0fxvxpri0nf860&dl=0&raw=1" alt="Imagem da página de ateração de senha mobile" style="width: 23%;" />
+  <img src="https://www.dropbox.com/scl/fi/d51abw7cf41g5l5rwjx9m/login-mobile.png?rlkey=hr8szmjwj0p0gl9ans4dpbxqd&dl=0&raw=1" alt="Imagem da página de login mobile" style="width: 24%;" />
+  <img src="https://www.dropbox.com/scl/fi/3qfj0ayj5efy5z9dt7jdg/suas-reservas-mobile.png?rlkey=ec6ra23et8zqtwp8nvppey6hi&dl=0&raw=1" alt="Imagem da página de suas reservas mobile" style="width: 24%;" />
+  <img src="https://www.dropbox.com/scl/fi/iwcmtk578o7uxt68ibiel/reserva-mobile.png?rlkey=n6m0s2anle3s2psj0r8tw5jd2&dl=0&raw=1" alt="Imagem da página de reserva mobile" style="width: 24%;" />
+  <img src="https://www.dropbox.com/scl/fi/juerzprtby76f2qg43yh7/alterar-senha-mobile.png?rlkey=jqvhp5kj1nk0fxvxpri0nf860&dl=0&raw=1" alt="Imagem da página de ateração de senha mobile" style="width: 24%;" />
 </div>
 
 <br/>
