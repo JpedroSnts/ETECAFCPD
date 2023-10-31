@@ -85,6 +85,7 @@
 				<a href="/index.aspx">Suas Reservas</a>
 				<a href="/reserva.aspx">Nova Reserva</a>
 				<a href="/alterarSenha.aspx">Alterar Senha</a>
+				<a href="/historico.aspx">Histórico</a>
 			</div>
 		</div>
 		<img id="iconMenuSanduiche" src="/Estatico/imagens/menu.svg" />

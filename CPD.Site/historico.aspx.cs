@@ -1,4 +1,7 @@
 ﻿using System;
+using CPD.Repositorio.Controller;
+using CPD.Repositorio.Model;
+using CPD.Site.Util;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +14,27 @@ namespace CPD.Site
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string rm = Session["rm_usuario"].ToString();
+            HistoricoController historicoController = new HistoricoController();
+            historicoController.listarRA(rm).ForEach((ra) =>
+            {
 
+                litHorarios.Text += $@"<tr>
+                                            <td>{ra.DataSaida.ToString().Substring(0, 10)}</td>
+                                            <td>{ra.DataSaida.ToString().Substring(10, 9)}</td>
+                                            <td>{ra.DataDevolucao.ToString().Substring(10, 9)}
+                                            <td>{ra.Ambiente.Sigla}</td>
+                                        </tr>";
+            });
+            historicoController.listarRE(rm).ForEach((re) =>
+            {
+                litHorarios.Text += $@"<tr>
+                                            <td>{re.DataSaida.ToString().Substring(0, 10)}</td>
+                                            <td>{re.DataSaida.ToString().Substring(10, 9)}</td>
+                                            <td>{re.DataDevolucao.ToString().Substring(10, 9)}
+                                            <td>{re.Equipamento.Sigla}</td>
+                                        </tr>";
+            });
         }
     }
 }

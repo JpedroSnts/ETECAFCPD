@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="historico.aspx.cs" Inherits="CPD.Site.Histórico" %>
+<%@ Register Src="~/Partial/Header.ascx" TagPrefix="uc" TagName="Header" %>
 
 <!DOCTYPE html>
 
@@ -9,7 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Estatico/css/estiloTodos.css" />
-    <link rel="stylesheet" href="css/estiloGeral.css">
+    <link rel="stylesheet" href="Estatico/css/estiloHeader.css" />
+    <link rel="stylesheet" href="Estatico/css/estiloGeral.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
@@ -21,82 +23,30 @@
         <uc:Header ID="PartialHeader" runat="server" />
         <main id="mainComReserva">
 
-            <p><strong>Suas reservas</strong></p>
+            <p><strong>Seu Histórico</strong></p>
         
-            <!-- ----------------------- CARDS RESERVA ----------------------- -->
-
-            <div id="displayCardsReserva"> 
-
-                <div class="cardReserva">
-                    <h1>SEGUNDA-FEIRA (02/10)</h1>
-
-                    <div class="divReservas">
-                        <div class="divTipoReserva">
-                            <h1 id="h1Equipamentos">Equipamentos</h1>
-                            <div>
-                                <p>Tripé RingLight (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.svg">
-                            </div>
-                            <div>
-                                <p>Cabo HDMI (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.svg">
-                            </div>
-                            <div>
-                                <p>Cabo HDMI (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.svg">
-                            </div>
-                            <div>
-                                <p>Cabo HDMI (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.svg">
-                            </div>
-                            <div>
-                                <p>Cabo HDMI (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.svg">
-                            </div>
-                        </div>
-                        <div class="divTipoReserva">
-                            <h1>Ambientes</h1>
-                            <div>
-                                <p>INFO 1 (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.svg">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="displayBtn">
-                        <button id="btnCardReserva">Cancelar todas</button>
-                    </div>
+            <div id="tabelaHistorico" style="width: 100%">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="th-data">Data</th>
+                                <th class="th-data">Horário Início</th>
+                                <th class="th-data">Horário Fim</th>
+                                <th class="th-horario">Item</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <asp:Literal ID="litHorarios" runat="server"></asp:Literal>
+                            <%--<tr>
+                                <td>Segunda</td>
+                                <td>10:09 - 15:09</td>
+                                <td>Lab02</td>
+                            </tr>--%>
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="cardReserva">
-                    <h1>TERÇA-FEIRA (03/10)</h1>
-
-                    <div class="divReservas">
-                        <div class="divTipoReserva">
-                            <h1 id="h1Equipamentos">Equipamentos</h1>
-                            <div>
-                                <p>Extensão (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.svg">
-                            </div>
-                        </div>
-                        <div class="divTipoReserva">
-                            <h1>Ambientes</h1>
-                            <div>
-                                <p>Sala Maker (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.svg">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="displayBtn">
-                        <button id="btnCardReserva">Cancelar todas</button>
-                    </div>
-                </div>
-
-            </div>
-            <!-- ----------------------- CARD NOVA RESERVA ----------------------- -->
-
-            <a href="reserva.html"><button id="btnNovaReservaComReserva"><i class="fa-solid fa-plus"></i>Nova Reserva</button></a>
+           
 
         </main>
 
@@ -134,38 +84,6 @@
         </div>
 
         <!-- ----------------------- CARD LIXEIRA ----------------------- -->
-
-        <div id="divCardCancelar" class="cardFlutuante escondido">
-            <form id="cardCancelar">
-                <p>Você está cancelando a reserva do <strong>Tripé RingLight</strong> nos seguintes horários:</p>
-                <p class="pHorarios">00:00 - 00:00</p>
-                <p>Deseja cancelar sua reserva?</p>
-                <div>
-                    <button id="btnNao">Não</button>
-                    <button id="btnSim">Sim</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- ----------------------- CARD CANCELAR TODAS ----------------------- -->
-
-        <div id="divCardCancelarTodas" class="cardFlutuanteTodas escondido">
-            <form id="cardCancelar">
-                <p>Deseja cancelar todas as reservas de <strong>Ambientes</strong> da Dia da Semana (00/00)?</p>
-                <div>
-                    <button id="btnNao">Não</button>
-                    <button id="btnSim">Sim</button>
-                </div>
-            </form>
-        </div>
-
-        <!-- ----------------------- CARD RESERVA CANCELADA ----------------------- -->
-
-        <div id="divCardAvisoCancelar" class="cardAviso escondido">
-            <form id="cardAviso">
-                <p>Reserva(s) Cancelada(s) <img src="imagens/check.png"></p>
-            </form>
-        </div>
     </form>
 </body>
 </html>
