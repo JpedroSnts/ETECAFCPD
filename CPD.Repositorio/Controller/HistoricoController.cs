@@ -26,6 +26,7 @@ namespace CPD.Repositorio.Controller
                     reservaAmbiente.Ambiente = new Ambiente { Sigla = reader.GetString("sg_ambiente") };
                     reservaAmbiente.DataSaida = DateTime.Parse(reader.GetString("dt_saida"));
                     reservaAmbiente.DataDevolucao = DateTime.Parse(reader.GetString("dt_devolucao"));
+                    reservaAmbiente.DataDevolucaoPrevista = DateTime.Parse(reader.GetString("dt_devolucao_prevista"));
                 }
                 lista.Add(reservaAmbiente);
             }
@@ -47,6 +48,7 @@ namespace CPD.Repositorio.Controller
                     reservaEquipamento.Equipamento = new Equipamento { Sigla = reader.GetString("sg_equipamento") };
                     reservaEquipamento.DataSaida = DateTime.Parse(reader.GetString("dt_saida"));
                     reservaEquipamento.DataDevolucao = DateTime.Parse(reader.GetString("dt_devolucao"));
+                    reservaEquipamento.DataDevolucaoPrevista = DateTime.Parse(reader.GetString("dt_devolucao_prevista"));
                 }
                 lista.Add(reservaEquipamento);
             }

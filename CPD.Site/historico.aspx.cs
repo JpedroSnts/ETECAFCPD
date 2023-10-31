@@ -18,23 +18,53 @@ namespace CPD.Site
             HistoricoController historicoController = new HistoricoController();
             historicoController.listarRA(rm).ForEach((ra) =>
             {
+                if (ra.DataDevolucao > ra.DataDevolucaoPrevista)
+                {
 
-                litHorarios.Text += $@"<tr>
+                    litHorarios.Text += $@" <tr>
                                             <td>{ra.DataSaida.ToString().Substring(0, 10)}</td>
                                             <td>{ra.DataSaida.ToString().Substring(10, 9)}</td>
                                             <td>{ra.DataDevolucao.ToString().Substring(10, 9)}
                                             <td>{ra.Ambiente.Sigla}</td>
+                                            <td style='color: #ff0000'>Atrasada</td>
                                         </tr>";
+                }
+                else
+                {
+                    litHorarios.Text += $@" <tr>
+                                            <td>{ra.DataSaida.ToString().Substring(0, 10)}</td>
+                                            <td>{ra.DataSaida.ToString().Substring(10, 9)}</td>
+                                            <td>{ra.DataDevolucao.ToString().Substring(10, 9)}
+                                            <td>{ra.Ambiente.Sigla}</td>
+                                            <td style='color: #00a100'>Concluida sem atraso</td>
+                                        </tr>";
+                }
+
             });
             historicoController.listarRE(rm).ForEach((re) =>
             {
-                litHorarios.Text += $@"<tr>
+                if (re.DataDevolucao > re.DataDevolucaoPrevista)
+                {
+                    litHorarios.Text += $@"<tr>
                                             <td>{re.DataSaida.ToString().Substring(0, 10)}</td>
                                             <td>{re.DataSaida.ToString().Substring(10, 9)}</td>
                                             <td>{re.DataDevolucao.ToString().Substring(10, 9)}
                                             <td>{re.Equipamento.Sigla}</td>
+                                            <td style='color: #ff0000'>Atrasada</td>
                                         </tr>";
-            });
+                }
+                else
+                {
+                    litHorarios.Text += $@"<tr>
+                                            <td>{re.DataSaida.ToString().Substring(0, 10)}</td>
+                                            <td>{re.DataSaida.ToString().Substring(10, 9)}</td>
+                                            <td>{re.DataDevolucao.ToString().Substring(10, 9)}
+                                            <td>{re.Equipamento.Sigla}</td>
+                                            <td style='color: #00a100'>Concluida sem atraso</td>
+                                        </tr>";
+                }
+            
+            }); 
         }
     }
 }

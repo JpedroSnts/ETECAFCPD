@@ -1015,12 +1015,12 @@ END$$
 DROP PROCEDURE IF EXISTS historicoProfessorAmbiente$$
 CREATE PROCEDURE historicoProfessorAmbiente(pRm INT)
 begin
-	select cd_reserva_ambiente, sg_ambiente, dt_saida, dt_devolucao from reserva_ambiente where cd_rm = pRm AND dt_saida IS NOT NULL AND dt_devolucao IS NOT NULL order by dt_saida;
+	select cd_reserva_ambiente, sg_ambiente, dt_saida, dt_devolucao, dt_devolucao_prevista from reserva_ambiente where cd_rm = pRm AND dt_saida IS NOT NULL AND dt_devolucao IS NOT NULL order by dt_saida;
 end$$
 DROP PROCEDURE IF EXISTS historicoProfessorEquipamento$$
 CREATE PROCEDURE historicoProfessorEquipamento(pRm INT)
 begin
-	select cd_reserva_equipamento, sg_equipamento, dt_saida, dt_devolucao from reserva_equipamento where cd_rm = pRm AND dt_saida IS NOT NULL AND dt_devolucao IS NOT NULL order by dt_saida;
+	select cd_reserva_equipamento, sg_equipamento, dt_saida, dt_devolucao, dt_devolucao_prevista from reserva_equipamento where cd_rm = pRm AND dt_saida IS NOT NULL AND dt_devolucao IS NOT NULL order by dt_saida;
 end$$
 
 DELIMITER ;

@@ -33,6 +33,7 @@
                                 <th class="th-data">Horário Início</th>
                                 <th class="th-data">Horário Fim</th>
                                 <th class="th-horario">Item</th>
+                                <th class="th-data">Status de entrega</th>
                             </tr>
                         </thead>
                         <tbody>
