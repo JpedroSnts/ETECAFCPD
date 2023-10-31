@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\professor.aspx" />
     <Content Include="alterarSenha.aspx" />
     <Content Include="Api\buscarProfessor.aspx" />
     <Content Include="Api\dashboard.aspx" />
@@ -82,6 +83,7 @@
     <Content Include="Api\reservasProfessor.aspx" />
     <Content Include="dashboard.aspx" />
     <Content Include="esqueciMinhaSenha.aspx" />
+    <Content Include="Estatico\css\estiloGerenciamentoTabelas.css" />
     <Content Include="Estatico\css\estiloTodos.css" />
     <Content Include="Estatico\imagens\usuarios\36400.png" />
     <Content Include="Estatico\imagens\usuarios\36401.png" />
@@ -141,6 +143,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\professor.aspx.cs">
+      <DependentUpon>professor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\professor.aspx.designer.cs">
+      <DependentUpon>professor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="alterarSenha.aspx.cs">
       <DependentUpon>alterarSenha.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

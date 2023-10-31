@@ -21,9 +21,9 @@ namespace CPD.Site.Partial
                 pnlHeaderFunc.Visible = false;
             }
 
-            litImagemDesktopFunc.Text = $"<img id=\"userProfDesktop\" src=\"Estatico/imagens/usuarios/{Session["foto_usuario"]}\" />";
-            litImagem.Text = $"<img id=\"userProf\" src=\"Estatico/imagens/usuarios/{Session["foto_usuario"]}\" />";
-            litImagemDesktop.Text = $"<img id=\"userProfDesktop\" src=\"Estatico/imagens/usuarios/{Session["foto_usuario"]}\" />";
+            litImagemDesktopFunc.Text = $"<img id=\"userProfDesktop\" src=\"/Estatico/imagens/usuarios/{Session["foto_usuario"]}\" />";
+            litImagem.Text = $"<img id=\"userProf\" src=\"/Estatico/imagens/usuarios/{Session["foto_usuario"]}\" />";
+            litImagemDesktop.Text = $"<img id=\"userProfDesktop\" src=\"/Estatico/imagens/usuarios/{Session["foto_usuario"]}\" />";
             litNome.Text = Session["nome_usuario"].ToString();
             litNomeDesktop.Text = Session["nome_usuario"].ToString();
             litRm.Text = Session["rm_usuario"].ToString();
@@ -31,7 +31,7 @@ namespace CPD.Site.Partial
             litNomefunc.Text = Session["nome_usuario"].ToString();
             litRmDesktop.Text = Session["rm_usuario"].ToString();
             litRmfunc2.Text = Session["rm_usuario"].ToString();
-            litImgFunc.Text = $"<img id=\"userProfDesktop\" src=\"Estatico/imagens/usuarios/{Session["foto_usuario"]}\" />";
+            litImgFunc.Text = $"<img id=\"userProfDesktop\" src=\"/Estatico/imagens/usuarios/{Session["foto_usuario"]}\" />";
         }
     }
 }

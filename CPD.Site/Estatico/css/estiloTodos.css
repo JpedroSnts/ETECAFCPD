@@ -336,6 +336,25 @@ input[name="equipamentos"], input[name="ambientes"] {
 }
 
 
+.select2-container--default .select2-selection--single {
+	border: 1px solid #114a55 !important;
+	height: 0px;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+	border: 1px solid #114a55 !important;
+	outline: none;
+}
+
+.select2-container--open .select2-dropdown--below {
+	border: solid 1px #114a55 !important;
+	border-top: none !important;
+}
+
+.select2-container--default .select2-results__option--highlighted.select2-results__option--selectable {
+	background-color: #114a55 !important;
+}
+
 @media only screen and (max-width: 800px) {
 
 	h1 {

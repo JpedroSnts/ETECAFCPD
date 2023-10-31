@@ -101,6 +101,50 @@ header {
     z-index: 2;
 }
 
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+    .dropdown span {
+        border: none;
+        cursor: pointer;
+    }
+
+button:hover {
+    background-color: #cbcbcb;
+}
+
+.dropdown-options {
+    display: none;
+    position: absolute;
+    overflow: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    border: solid 1px #cbcbcb;
+    border-top: none;
+    border-start-end-radius: 0px;
+    border-start-start-radius: 0px;
+}
+
+.dropdown:hover .dropdown-options {
+    display: block;
+    width: 160px;
+}
+
+.dropdown-options a {
+    display: block;
+    color: #000000;
+    padding: 5px;
+    text-decoration: none;
+    padding: 10px;
+}
+
+    .dropdown-options a:hover {
+        color: #0a0a23;
+        background-color: #ddd;
+    }
+
 @media only screen and (max-width: 800px) {
     #iconMenuSanduiche, #iconMenuSanduicheFunc {
         display: initial;
@@ -167,3 +211,4 @@ header {
                 color: #000;
             }
 }
+
