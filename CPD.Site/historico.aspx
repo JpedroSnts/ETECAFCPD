@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
     <title>Home</title>
-    <link rel="icon" href="imagens/logoCPD.png" type="image/png">
+    <link rel="icon" href="imagens/QuadradoLogoCPD.png" type="image/png">
 </head>
 <body>
     <form id="form1" runat="server">
@@ -35,30 +35,30 @@
                             <h1 id="h1Equipamentos">Equipamentos</h1>
                             <div>
                                 <p>Tripé RingLight (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.png">
+                                <img id="iconLixeira" src="imagens/lixeira.svg">
                             </div>
                             <div>
                                 <p>Cabo HDMI (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.png">
+                                <img id="iconLixeira" src="imagens/lixeira.svg">
                             </div>
                             <div>
                                 <p>Cabo HDMI (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.png">
+                                <img id="iconLixeira" src="imagens/lixeira.svg">
                             </div>
                             <div>
                                 <p>Cabo HDMI (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.png">
+                                <img id="iconLixeira" src="imagens/lixeira.svg">
                             </div>
                             <div>
                                 <p>Cabo HDMI (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.png">
+                                <img id="iconLixeira" src="imagens/lixeira.svg">
                             </div>
                         </div>
                         <div class="divTipoReserva">
                             <h1>Ambientes</h1>
                             <div>
                                 <p>INFO 1 (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.png">
+                                <img id="iconLixeira" src="imagens/lixeira.svg">
                             </div>
                         </div>
                     </div>
@@ -76,14 +76,14 @@
                             <h1 id="h1Equipamentos">Equipamentos</h1>
                             <div>
                                 <p>Extensão (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.png">
+                                <img id="iconLixeira" src="imagens/lixeira.svg">
                             </div>
                         </div>
                         <div class="divTipoReserva">
                             <h1>Ambientes</h1>
                             <div>
                                 <p>Sala Maker (00:00 - 00:00)</p>
-                                <img id="iconLixeira" src="imagens/lixeira.png">
+                                <img id="iconLixeira" src="imagens/lixeira.svg">
                             </div>
                         </div>
                     </div>

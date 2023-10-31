@@ -65,14 +65,14 @@ window.addEventListener("load", async () => {
 								ambientesReserva += `
 									<div style="margin-bottom: 5px;">
 										<p>${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
-										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : ""}
+										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : ""}
 									</div>
 								`;
 							} else if (el2.TiposItens[k] == 2) {
 								equipamentosReserva += `
 									<div style="margin-bottom: 5px;">
 										<p>${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
-										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.png" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : ""}
+										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : ""}
 									</div>
 								`;
 							}

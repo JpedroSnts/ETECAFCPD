@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
     <title>Esqueci minha senha</title>
-    <link rel="icon" href="Estatico/imagens/logoCPD.png" type="image/png" />
+    <link rel="icon" href="Estatico/imagens/QuadradoLogoCPD.png" type="image/png" />
 </head>
 <body id="bodyEsqueciSenha">
     <form id="form1" runat="server">
