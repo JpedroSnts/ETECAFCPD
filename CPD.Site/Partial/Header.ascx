@@ -23,7 +23,7 @@
                 <a href="/alterarSenha.aspx">Alterar Senha</a>
             </div>
         </div>
-        <img id="iconMenuSanduicheFunc" src="/Estatico/imagens/menuSanduiche.png">
+        <img id="iconMenuSanduicheFunc" src="/Estatico/imagens/menuSanduiche.svg">
         <div id="divUserLogoutDesktop">
             <div id="divUserDesktop">
                 <div id="displayDivUserDesktop">
@@ -88,7 +88,7 @@
 				<a href="/historico.aspx">Histórico</a>
 			</div>
 		</div>
-		<img id="iconMenuSanduiche" src="/Estatico/imagens/menu.svg" />
+		<img id="iconMenuSanduiche" src="/Estatico/imagens/menuSanduiche.svg" />
 		<div id="divUserLogoutDesktop">
 			<div id="divUserDesktop">
 				<div id="displayDivUserDesktop">

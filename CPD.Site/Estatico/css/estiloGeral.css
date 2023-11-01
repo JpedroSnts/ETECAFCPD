@@ -219,7 +219,7 @@ label {
 .divReservas {
 	min-height: 385px;
 }
-#iconLixeira {
+#iconLixeira, #iconRelogio {
 	object-fit: contain;
 	width: 24px;
 }

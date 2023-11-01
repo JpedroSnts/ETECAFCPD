@@ -88,6 +88,8 @@
     <Content Include="Estatico\imagens\calendario.svg" />
     <Content Include="Estatico\imagens\clock.svg" />
     <Content Include="Estatico\imagens\lixeira.svg" />
+    <Content Include="Estatico\imagens\lupa.svg" />
+    <Content Include="Estatico\imagens\menuSanduiche.svg" />
     <Content Include="Estatico\imagens\QuadradoLogoCPD.png" />
     <Content Include="Estatico\imagens\usuarios\36400.png" />
     <Content Include="Estatico\imagens\usuarios\36401.png" />
@@ -108,13 +110,10 @@
     <Content Include="Estatico\imagens\deslogar.svg" />
     <Content Include="Estatico\imagens\logoCPD.png" />
     <Content Include="Estatico\imagens\logoETECAF.png" />
-    <Content Include="Estatico\imagens\lupa.png" />
     <Content Include="Estatico\imagens\mais.png" />
     <Content Include="Estatico\imagens\mais.svg" />
     <Content Include="Estatico\imagens\menos.png" />
     <Content Include="Estatico\imagens\menos.svg" />
-    <Content Include="Estatico\imagens\menu.svg" />
-    <Content Include="Estatico\imagens\menuSanduiche.png" />
     <Content Include="Estatico\imagens\novaReserva.png" />
     <Content Include="Estatico\imagens\refresh.svg" />
     <Content Include="Estatico\imagens\sair.png" />

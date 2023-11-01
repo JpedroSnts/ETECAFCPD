@@ -223,8 +223,7 @@ p { margin: 0px 0px 0px 0px; }
 	/* ---------------------------- HEADER ---------------------------- */
 	#iconMenuSanduiche {
 		display: initial;
-		width: 30px;
-		height: 30px;
+		width: 40px;
 	}
 
 	#opMenu { display: none; }
@@ -242,12 +241,9 @@ p { margin: 0px 0px 0px 0px; }
 
 	#btnBuscarResponsivo {
 		display: initial;
-		width: 35px;
-		height: 35px;
-		border-radius: 20px;
-		padding: 5px;
-		background-color: #114a55;
-		color: #fff;
+		width: 40px;
+		border: none;
+		padding: 0px;
 	}
 
 	#btnBuscar { display: none; }
