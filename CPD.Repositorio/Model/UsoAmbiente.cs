@@ -8,5 +8,7 @@ namespace CPD.Repositorio.Model
         public DateTime Termino { get; set; }
         public DiaSemana DiaSemana { get; set; }
         public Ambiente Ambiente { get; set; }
+
     }
+
 }

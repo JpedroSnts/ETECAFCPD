@@ -11,7 +11,7 @@ namespace CPD.Site
 {
 
 
-    public partial class gradeHorario
+    public partial class novoHorario
     {
 
         /// <summary>
@@ -33,13 +33,13 @@ namespace CPD.Site
         protected global::CPD.Site.Partial.Header PartialHeader;
 
         /// <summary>
-        /// Controle ddlPeriodos.
+        /// Controle litErro.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlPeriodos;
+        protected global::System.Web.UI.WebControls.Literal litErro;
 
         /// <summary>
         /// Controle ddlAmbiente.
@@ -60,30 +60,30 @@ namespace CPD.Site
         protected global::System.Web.UI.WebControls.DropDownList ddlDiaSemana;
 
         /// <summary>
-        /// Controle btnFiltrar.
+        /// Controle txtHorarioInicio.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnFiltrar;
+        protected global::System.Web.UI.WebControls.TextBox txtHorarioInicio;
 
         /// <summary>
-        /// Controle litHorarios.
+        /// Controle txtHorarioFim.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litHorarios;
+        protected global::System.Web.UI.WebControls.TextBox txtHorarioFim;
 
         /// <summary>
-        /// Controle btnAdcHorario.
+        /// Controle btnAdicionar.
         /// </summary>
         /// <remarks>
         /// Campo gerado automaticamente.
         /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAdcHorario;
+        protected global::System.Web.UI.WebControls.Button btnAdicionar;
     }
 }

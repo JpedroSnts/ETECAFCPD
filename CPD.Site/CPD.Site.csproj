@@ -135,6 +135,7 @@
     <Content Include="index.aspx" />
     <Content Include="login.aspx" />
     <Content Include="logout.aspx" />
+    <Content Include="novoHorario.aspx" />
     <Content Include="painelControle.aspx" />
     <Content Include="Partial\Header.ascx" />
     <Content Include="relatorio.aspx" />
@@ -254,6 +255,13 @@
     </Compile>
     <Compile Include="logout.aspx.designer.cs">
       <DependentUpon>logout.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="novoHorario.aspx.cs">
+      <DependentUpon>novoHorario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="novoHorario.aspx.designer.cs">
+      <DependentUpon>novoHorario.aspx</DependentUpon>
     </Compile>
     <Compile Include="painelControle.aspx.cs">
       <DependentUpon>painelControle.aspx</DependentUpon>
