@@ -33,6 +33,24 @@ namespace CPD.Site
         protected global::CPD.Site.Partial.Header PartialHeader;
 
         /// <summary>
+        /// Controle litImgEdit.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litImgEdit;
+
+        /// <summary>
+        /// Controle btnEditarFoto.
+        /// </summary>
+        /// <remarks>
+        /// Campo gerado automaticamente.
+        /// Para modificar, mova a declaração de campo do arquivo de designer a um arquivo code-behind.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ImageButton btnEditarFoto;
+
+        /// <summary>
         /// Controle litErro.
         /// </summary>
         /// <remarks>

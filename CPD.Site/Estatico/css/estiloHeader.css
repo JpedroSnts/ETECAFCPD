@@ -148,7 +148,7 @@ button:hover {
 @media only screen and (max-width: 800px) {
     #iconMenuSanduiche, #iconMenuSanduicheFunc {
         display: initial;
-        width: 40px;
+        width: 35px;
     }
 
     #opMenu {

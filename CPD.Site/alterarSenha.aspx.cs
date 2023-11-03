@@ -4,6 +4,7 @@ using CPD.Repositorio.Model;
 using CPD.Site.Util;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -20,6 +21,7 @@ namespace CPD.Site
                 Response.Redirect("~/login.aspx");
             }
             litImagem.Text = $"<img id=\"userProf\" src=\"Estatico/imagens/{Session["foto_usuario"]}\" />";
+            litImgEdit.Text = $"<img id=\"imgEditar\" src=\"Estatico/imagens/usuarios/{Session["foto_usuario"]}\" />";
             litNome.Text = Session["nome_usuario"].ToString();
             litRm.Text = Session["rm_usuario"].ToString();
         }
@@ -56,6 +58,11 @@ namespace CPD.Site
 				    <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
 			    </div>";
             }
+        }
+
+        protected void btnEditarFoto_Click(object sender, ImageClickEventArgs e)
+        {
+           
         }
     }
 }

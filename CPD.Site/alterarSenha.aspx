@@ -19,39 +19,51 @@
 <body>
     <form id="form1" runat="server">
         <uc:Header ID="PartialHeader" runat="server" />
-        <main id="mainAlterarSenha">
-            <div class="caixa-flutuante-erros"><asp:Literal ID="litErro" runat="server"></asp:Literal></div>
-            <h1>Alterar Senha</h1>
-            <div class="divLabels">
-                <label for="atualSenhaUsuario">Senha Atual</label><br />
-                <div class="display">
-                    <img class="iconInput" src="Estatico/imagens/user.png" />
-                    <asp:TextBox ID="txtSenhaAtual" placeholder="Insira sua senha atual" runat="server" TextMode="Password"></asp:TextBox>
-                    <br />
-                    <br />
-                </div>
+
+        <div id="displayPerfil">
+
+            <div id="editarImg">
+                <asp:Literal ID="litImgEdit" runat="server"></asp:Literal>
+                <%--<img id="iconEditar" src="Estatico/imagens/alterarSenha.svg">--%>
+                <asp:ImageButton ID="btnEditarFoto" runat="server" OnClick="btnEditarFoto_Click" ImageUrl="Estatico/imagens/alterarSenha.svg" />
             </div>
-            <div class="divLabels">
-                <label for="novaSenhaUsuario">Nova Senha</label><br />
-                <div class="display">
-                    <img class="iconInput" src="Estatico/imagens/senha.png" />
-                    <asp:TextBox ID="txtNovaSenha" placeholder="Insira sua nova senha" runat="server" TextMode="Password"></asp:TextBox>
-                    <br />
-                    <br />
+
+            <main id="mainAlterarSenha">
+                <div class="caixa-flutuante-erros"><asp:Literal ID="litErro" runat="server"></asp:Literal></div>
+                <h1>Alterar Senha</h1>
+                <div class="labelAtual">
+                    <label for="atualSenhaUsuario">Senha Atual</label><br />
+                    <div class="display">
+                        <img class="iconInput" src="Estatico/imagens/user.png" />
+                        <asp:TextBox ID="txtSenhaAtual" placeholder="Insira sua senha atual" runat="server" TextMode="Password"></asp:TextBox>
+                        <br />
+                        <br />
+                    </div>
                 </div>
-            </div>
-            <div class="divLabels">
-                <label for="confirmarNovaSenhaUsuario">Confirmar Nova Senha</label><br />
-                <div class="display">
-                    <img class="iconInput" src="Estatico/imagens/senha.png" />
-                    <asp:TextBox ID="txtConfirmarSenha" placeholder="Confirme sua nova senha" runat="server" TextMode="Password"></asp:TextBox>
-                    <br />
-                    <br />
+                <div class="labelsNovaSenha">
+                    <div class="divLabels">
+                        <label for="novaSenhaUsuario">Nova Senha</label><br />
+                        <div class="display">
+                            <img class="iconInput" src="Estatico/imagens/senha.png" />
+                            <asp:TextBox ID="txtNovaSenha" placeholder="Insira sua nova senha" runat="server" TextMode="Password"></asp:TextBox>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
+                    <div class="divLabels">
+                        <label for="confirmarNovaSenhaUsuario">Confirmar Nova Senha</label><br />
+                        <div class="display">
+                            <img class="iconInput" src="Estatico/imagens/senha.png" />
+                            <asp:TextBox ID="txtConfirmarSenha" placeholder="Confirme sua nova senha" runat="server" TextMode="Password"></asp:TextBox>
+                            <br />
+                            <br />
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <asp:Button ID="btnAlterarSenha" runat="server" Text="Alterar Senha" OnClick="btnAlterarSenha_Click" />
-            <p id="pVersao">Versão 1.0 - 2023</p>
-        </main>
+                <asp:Button ID="btnAlterarSenha" runat="server" Text="Alterar Senha" OnClick="btnAlterarSenha_Click" />
+                <p id="pVersao">Versão 1.0 - 2023</p>
+            </main>
+        </div>
 
         <div id="bloqueio" class="bloqueio escondido"></div>
         <div id="resultado" class="cardSucesso escondido"></div>
