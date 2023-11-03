@@ -19,6 +19,48 @@
 	margin: auto;
 }
 
+#divNovoHorario {
+	width: 630px;
+	padding: 15px 20px;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+	border: thin solid #ebebeb;
+	border-radius: 20px;
+	margin:auto;
+}
+
+div.divLabels {
+	margin-top: 10px;
+	text-align: left;
+	display: flex;
+	justify-content:space-between;
+}
+
+.itemDisplay {
+	width: 49%;
+}
+
+#ddlDiaSemana, #ddlAmbiente, #txtHorarioInicio, #txtHorarioFim {
+	width: 100%;
+	padding: 5px;
+}
+
+#divBtn {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+}
+
+label {
+	margin-bottom: 10px;
+}
+
+#btnAdicionar {
+	margin-top: 20px !important;
+	width: 150px;
+}
+
 #InfoGrade select {
 	width: 30%;
 	height: 40px;

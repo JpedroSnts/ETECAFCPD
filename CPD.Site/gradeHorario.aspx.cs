@@ -56,5 +56,10 @@ namespace CPD.Site
                                     </tr>";
             });;
         }
+
+        protected void btnAdcHorario_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/novoHorario.aspx");
+        }
     }
 }

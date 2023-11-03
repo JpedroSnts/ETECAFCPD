@@ -54,15 +54,10 @@
                     </thead>
                     <tbody>
                         <asp:Literal ID="litHorarios" runat="server"></asp:Literal>
-                        <%--<tr>
-                            <td>Segunda</td>
-                            <td>10:09 - 15:09</td>
-                            <td>Lab02</td>
-                        </tr>--%>
                     </tbody>
                 </table>
             </div>
-            <a href="#" id="btnAdcHorario">Adicionar horário</a>
+            <asp:Button ID="btnAdcHorario" runat="server" Text="Adicionar horário" OnClick="btnAdcHorario_Click" />
         </main>
         <script src="Estatico/js/menuSanduiche.js"></script>
         <script src="Estatico/js/gradeHorario.js"></script>
