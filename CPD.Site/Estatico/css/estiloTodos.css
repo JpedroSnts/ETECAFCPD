@@ -11,7 +11,7 @@ body {
 }
 
 h1 {
-	font-size: 16px;
+	font-size: 18px;
 	text-align: center;
 	margin-bottom: 30px;
 }
@@ -29,7 +29,7 @@ a {
 /* INPUTS */
 
 input,
-select{
+select {
 	border-radius: 5px;
 	border: 1px solid #114a55;
 	background: #fff;
@@ -38,6 +38,7 @@ select{
 	font-weight: 400;
 	line-height: normal;
 	margin: auto;
+	height: 40px;
 }
 
 .btn {
@@ -79,19 +80,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	background-position: calc(100% - 5px) center;
 	padding: 9px 8px 8px 12px;
 }
-
-
-/*input {
-	width: 25%;
-	border-radius: 5px;
-	border: 1px solid #114a55;
-	background: #fff;
-	color: #000;
-	font-size: 14px;
-	padding: 6px 8px 3px 12px;
-	margin: auto;
-}*/
-
 	input:focus {
 		box-shadow: 0 0 0 0;
 		outline: 0;
@@ -109,6 +97,28 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 	}
 
 	.input-text-date::placeholder {
+		color: #000;
+	}
+
+
+input[type="time"]::-webkit-calendar-picker-indicator {
+	background: url("../imagens/clock.svg") no-repeat;
+	background-position: calc(100% - 5px) center;
+	padding: 9px 8px 8px 12px;
+}
+
+.input-text-time {
+	background: url("../imagens/clock.svg") no-repeat;
+	background-position: calc(100% - 5px) center;
+	padding: 9px 0px 8px 12px;
+}
+
+	.input-text-time:focus {
+		outline: none;
+		padding: 2px 0px 2px 12px;
+	}
+
+	.input-text-time::placeholder {
 		color: #000;
 	}
 

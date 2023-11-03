@@ -11,7 +11,7 @@
                 <a href="/relatorio.aspx">Relatórios</a>
                 <a href="/gradeHorario.aspx">Grade de horários</a>
 				<div class="dropdown">
-				  <span>Gerenciar Tabelas</span>
+				  <span>Gerenciamento</span>
 				  <div class="dropdown-options">
 					<a href="/admin/professor.aspx">Professor</a>
 					<a href="#">Ambiente</a>
