@@ -1,0 +1,16 @@
+﻿@media only screen and (max-width: 800px) {
+    td, th {
+        padding: 1px;
+    }
+    #tabelaHistorico{
+        width: 107% !important;
+    }
+    table{
+        width: 95%;
+        margin: auto;
+    }
+    .caixaFlutuante {
+        height: auto;
+        padding: 20px 10px 5px 10px;
+    }
+}

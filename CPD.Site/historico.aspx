@@ -6,17 +6,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="Estatico/css/estiloTodos.css" />
     <link rel="stylesheet" href="Estatico/css/estiloHeader.css" />
-    <link rel="stylesheet" href="Estatico/css/estiloGeral.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="Estatico/css/estiloGeral.css" />
+    <link rel="stylesheet" href="Estatico/css/estiloHistorico.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
     <title>Home</title>
-    <link rel="icon" href="imagens/QuadradoLogoCPD.png" type="image/png">
+    <link rel="icon" href="imagens/QuadradoLogoCPD.png" type="image/png" />
 </head>
 <body>
     <form id="form1" runat="server">

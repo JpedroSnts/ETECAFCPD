@@ -84,6 +84,7 @@
     <Content Include="dashboard.aspx" />
     <Content Include="esqueciMinhaSenha.aspx" />
     <Content Include="Estatico\css\estiloGerenciamentoTabelas.css" />
+    <Content Include="Estatico\css\estiloHistorico.css" />
     <Content Include="Estatico\css\estiloTodos.css" />
     <Content Include="Estatico\imagens\alterarSenha.svg" />
     <Content Include="Estatico\imagens\calendario.svg" />
