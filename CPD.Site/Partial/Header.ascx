@@ -128,6 +128,10 @@
 					</a>
 				</div>
 				<div class="itemsMenuProf">
+					<a href="/historico.aspx"><p>Histórico</p><img class="iconsMenu" src="/Estatico/imagens/clock.svg" />
+					</a>
+				</div>
+				<div class="itemsMenuProf">
 					<a href="/logout.aspx"><p>Sair</p><img class="iconsMenu" src="/Estatico/imagens/sair.png" />
 					</a>
 				</div>

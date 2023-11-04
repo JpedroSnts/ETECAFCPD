@@ -84,7 +84,7 @@
             </form>
         </div>
 
-        <!-- ----------------------- CARD LIXEIRA ----------------------- -->
+        <script src="Estatico/js/menuSanduiche.js"></script>
     </form>
 </body>
 </html>
