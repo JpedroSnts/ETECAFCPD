@@ -207,6 +207,7 @@ p { margin: 0px 0px 0px 0px; }
 		vertical-align: middle;
 		width: 13px;
 		margin: 0;
+		height: 16px;
 	}
 
 .reservar {
@@ -216,6 +217,95 @@ p { margin: 0px 0px 0px 0px; }
 	justify-content: flex-end;
 	gap: 10px;
 	align-items: center;
+}
+
+/* CAIXA CONFIRMAÇÃO */
+
+#divModalItensReserva {
+	text-align: center;
+}
+
+	#divModalItensReserva p strong {
+		color: #114A55;
+	}
+
+.pHorarios {
+	color: #114A55;
+}
+
+#modalItensReserva div {
+	margin-top: 10px;
+}
+
+#btnCancelar {
+	width: auto;
+	color: #000;
+	background-color: #f1f1f1;
+	font-size: 16px;
+	padding: 10px 40px;
+	border: thin solid #f1f1f1;
+	margin-bottom: 10px;
+}
+
+#btnConcluir {
+	width: auto;
+	color: #fff;
+	background-color: #114A55;
+	font-size: 16px;
+	padding: 10px 40px;
+	margin-bottom: 10px;
+}
+
+#divModalItensReservaTodas {
+	text-align: center;
+}
+
+	#divModalItensReservaTodas p strong {
+		color: #114A55;
+	}
+
+#cardCentro {
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.cardFlutuante {
+	position: absolute;
+	width: min(900px, 70vw);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 10px;
+	background-color: #FFF;
+	padding: 20px 20px 10px 10px;
+	z-index: 2;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.cardFlutuanteTodas {
+	position: absolute;
+	top: 36%;
+	left: 33%;
+	width: 33vw;
+	height: 20vh;
+	border-radius: 10px;
+	background-color: #FFF;
+	padding: 20px 10px;
+	z-index: 2;
+	box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+#modalItensReserva {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 100%;
 }
 
 @media only screen and (max-width: 800px) 

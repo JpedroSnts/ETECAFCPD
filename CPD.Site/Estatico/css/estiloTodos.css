@@ -1,4 +1,4 @@
-* {
+﻿* {
 	box-sizing: border-box;
 	font-family: "Montserrat", sans-serif;
 }
@@ -7,7 +7,7 @@ body {
 }
 
 .escondido {
-	display: none;
+	display: none !important;
 }
 
 h1 {
@@ -413,10 +413,11 @@ input[name="equipamentos"], input[name="ambientes"] {
 	}
 
 	.caixa-flutuante-erros {
-		position: absolute;
+		position: fixed;
 		bottom: 10px;
-		top: auto;
 		width: 90%;
+		top: 10px;
+		height: 0px;
 		transform: translateX(50%);
 		right: 50%;
 	}

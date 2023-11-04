@@ -1,4 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="reserva.aspx.cs" Inherits="CPD.Site.reserva" EnableEventValidation="false" %>
+
 <%@ Register Src="~/Partial/Header.ascx" TagPrefix="uc" TagName="Header" %>
 <!DOCTYPE html>
 
@@ -28,12 +29,12 @@
                 <asp:TextBox ID="txtHorarioInicio" runat="server" TextMode="SingleLine" placeholder="Início" onfocus="this.type='time'" onblur="if (!this.value) this.type='text'" class="inputsHorario input-text-time"></asp:TextBox>
                 <asp:TextBox ID="txtHorarioFim" runat="server" TextMode="SingleLine" placeholder="Fim" onfocus="this.type='time'" onblur="if (!this.value) this.type='text'" class="inputsHorario input-text-time"></asp:TextBox>
                 <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
-                <asp:ImageButton ID="btnBuscarResponsivo" runat="server" OnClick="btnBuscar_Click" ImageUrl="~/Estatico/imagens/lupa.svg"/>
-             </div>
+                <asp:ImageButton ID="btnBuscarResponsivo" runat="server" OnClick="btnBuscar_Click" ImageUrl="~/Estatico/imagens/lupa.svg" />
+            </div>
 
             <p class="pMensagemReserva">Selecione a <strong>data</strong>, o <strong>horário de início</strong> e o <strong>horário de fim</strong> para fazer uma reserva!</p>
 
-            <asp:Panel ID="pnlBodyReservar" runat="server">   
+            <asp:Panel ID="pnlBodyReservar" runat="server">
                 <div id="tipoReserva">
                     <div id="pnlEquipamentos">
                         <h1>Equipamentos</h1>
@@ -49,14 +50,29 @@
                 </div>
                 <div class="reservar">
                     <div>
-                    <asp:Literal ID="litDdlNmProf" runat="server">
+                        <asp:Literal ID="litDdlNmProf" runat="server">
                         <select id="ddlNmProf">
                         </select>
-                    </asp:Literal>
+                        </asp:Literal>
                     </div>
-                    <asp:Button ID="btnReservar" runat="server" Text="Reservar" OnClick="btnReservar_Click"/>
+                    <button id="btnReservar">Reservar</button>
                 </div>
-            </asp:Panel> 
+            </asp:Panel>
+
+            <div class="bloqueio escondido" id="escondido"></div>
+            <div id="cardCentro" class="escondido">
+                <div id="divModalItensReserva" class="cardFlutuante escondido">
+                    <div id="modalItensReserva">
+                        <p>Reserva de <strong>
+                            <span id="lblItensReserva"></span></strong> para o dia:</p>
+                        <p class="pHorarios"><span id="lblDiaEHora"></span></p>
+                        <div>
+                            <button id="btnCancelar">Cancelar</button>
+                            <asp:Button ID="btnConcluir" runat="server" Text="Concluir" OnClick="btnReservar_Click" />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
@@ -73,19 +89,6 @@
                     }
                 }
             }
-            $("#ddlNmProf").select2({
-                ajax: {
-                    url: "/api/buscarProfessor.aspx",
-                    dataType: "json"
-                },
-                placeholder: "Nome ou RM do professor",
-                width: "250px",
-                language: "pt-BR",
-                minimumInputLength: 2
-            });
-            $("#ddlNmProf").on('select2:select', function (e) {
-                $("#txtNmProf").attr("value", e.target.value);
-            });
         </script>
     </form>
 </body>
