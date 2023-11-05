@@ -87,9 +87,9 @@ namespace CPD.Repositorio.Controller
             List<Parametro> parametros = new List<Parametro>
             {
                 new Parametro("pSiglaAmbiente", usoAmbiente.Ambiente.Sigla),
-                new Parametro("pDiaSemana", usoAmbiente.DiaSemana.Codigo.ToString()),
                 new Parametro("pHorarioInicio", usoAmbiente.Inicio.ToString("HH:mm:ss")),
                 new Parametro("pHorarioFim", usoAmbiente.Termino.ToString("HH:mm:ss")),
+                new Parametro("pDiaSemana", usoAmbiente.DiaSemana.Codigo.ToString()),
             };
             Executar("adicionarUsoAmbiente", parametros);
             Desconectar();

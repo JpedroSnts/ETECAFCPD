@@ -57,7 +57,9 @@
                     </tbody>
                 </table>
             </div>
-            <asp:Button ID="btnAdcHorario" runat="server" Text="Adicionar horário" OnClick="btnAdcHorario_Click" />
+            <div id="divBtn">
+                <asp:Button ID="btnAdcHorario" runat="server" Text="Adicionar horário" OnClick="btnAdcHorario_Click" />
+            </div>
         </main>
         <script src="Estatico/js/menuSanduiche.js"></script>
         <script src="Estatico/js/gradeHorario.js"></script>

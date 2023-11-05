@@ -782,7 +782,7 @@ BEGIN
 	IF usoAmbienteJaExiste(pHorarioInicio, pHorarioFim, pDiaSemana) THEN
 		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Uso ambiente já cadastrado';
     END IF;
-	INSERT INTO uso_ambiente VALUES (pHorarioInicio, pHorarioFim, pDiaSemana, pSiglaAmbiente);
+	INSERT INTO uso_ambiente VALUES (pSiglaAmbiente, pDiaSemana, pHorarioInicio, pHorarioFim);
 END$$
 
 DROP PROCEDURE IF EXISTS removerUsoAmbiente$$

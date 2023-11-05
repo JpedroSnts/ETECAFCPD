@@ -70,7 +70,7 @@ namespace CPD.Site
             Ambiente ambiente = new Ambiente()
             {
                 Sigla = ddlAmbiente.SelectedValue,
-                Nome = ddlDiaSemana.Text
+                Nome = ddlAmbiente.Text
             };
             UsoAmbiente uso = new UsoAmbiente()
             {
