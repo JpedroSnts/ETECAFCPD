@@ -63,6 +63,12 @@ label {
     margin: 0px 0px -5px 0px;
 }
 
+.iconRm {
+    width: 18px;
+    margin-right: -3px;
+    padding-top: 3px;
+}
+
 input {
     font-size: 14px;
     border: none;
@@ -169,6 +175,12 @@ button, input[type="button"], input[type="submit"] {
     .iconInput {
         width: 15px;
         margin: 5px 0px -5px 0px;
+    }
+
+    .iconRm {
+        width: 17px;
+        margin-right: -3px;
+        padding-top: 0px;
     }
 
     input {

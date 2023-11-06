@@ -24,7 +24,7 @@
         <uc:Header ID="PartialHeader" runat="server" />
         <main id="mainComReserva">
 
-            <p><strong>Seu Histórico</strong></p>
+            <h1>Seu Histórcio</h1>
         
             <div id="tabelaHistorico" style="width: 100%">
                     <table>
