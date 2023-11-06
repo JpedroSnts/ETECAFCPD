@@ -49,7 +49,7 @@
                  <div class="divLabels">
                      <label for="txtEmail">E-mail</label><br />
                      <div class="display">
-                         <img class="iconInput" src="Estatico/imagens/user.png" />
+                         <img class="iconInput" src="Estatico/imagens/usuario.svg" />
                          <asp:TextBox ID="txtEmail" placeholder="Insira seu e-mail" runat="server" TextMode="Email"></asp:TextBox>
                          <br />
                          <br />

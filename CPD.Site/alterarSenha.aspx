@@ -34,7 +34,7 @@
                 <div class="labelAtual">
                     <label for="atualSenhaUsuario">Senha Atual</label><br />
                     <div class="display">
-                        <img class="iconInput" src="Estatico/imagens/user.png" />
+                        <img class="iconInput" src="Estatico/imagens/usuario.svg" />
                         <asp:TextBox ID="txtSenhaAtual" placeholder="Insira sua senha atual" runat="server" TextMode="Password"></asp:TextBox>
                         <br />
                         <br />
