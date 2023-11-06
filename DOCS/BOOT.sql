@@ -1023,6 +1023,46 @@ begin
 	select cd_reserva_equipamento, sg_equipamento, dt_saida, dt_devolucao, dt_devolucao_prevista from reserva_equipamento where cd_rm = pRm AND dt_saida IS NOT NULL AND dt_devolucao IS NOT NULL order by dt_saida;
 end$$
 
+/* AMBIENTE */
+
+DROP FUNCTION IF EXISTS ambienteJaExiste$$
+CREATE FUNCTION ambienteJaExiste(pSiglaAmbiente VARCHAR(20), pNomeAmbiente VARCHAR(20)) returns bool
+BEGIN
+	DECLARE vSigla VARCHAR(20) DEFAULT "";
+	SELECT sg_ambiente INTO vSigla FROM ambiente 
+    WHERE sg_ambiente = pSiglaAmbiente OR nm_ambiente = pNomeAmbiente;
+    RETURN vSigla <> "";
+END$$
+
+DROP PROCEDURE IF EXISTS adicionarAmbiente$$
+CREATE PROCEDURE adicionarAmbiente(pSiglaAmbiente VARCHAR(20), pNomeAmbiente VARCHAR(20))
+BEGIN
+	IF ambienteJaExiste(pSiglaAmbiente, pNomeAmbiente) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Ambiente já cadastrado';
+    END IF;
+	INSERT INTO ambiente VALUES (pSiglaAmbiente, pNomeAmbiente);
+END$$
+
+/* EQUIPAMENTO */
+
+DROP FUNCTION IF EXISTS equipamentoJaExiste$$
+CREATE FUNCTION equipamentoJaExiste(pSiglaEquipamento VARCHAR(20), pNomeEquipamento VARCHAR(20)) returns bool
+BEGIN
+	DECLARE vSigla VARCHAR(20) DEFAULT "";
+	SELECT sg_equipamento INTO vSigla FROM equipamento 
+    WHERE sg_equipamento = pSiglaEquipamento OR nm_equipamento = pNomeEquipamento;
+    RETURN vSigla <> "";
+END$$
+
+DROP PROCEDURE IF EXISTS adicionarEquipamento$$
+CREATE PROCEDURE adicionarEquipamento(pSiglaEquipamento VARCHAR(20), pNomeEquipamento VARCHAR(20))
+BEGIN
+	IF equipamentoJaExiste(pSiglaEquipamento, pNomeEquipamento) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Equipamento já cadastrado';
+    END IF;
+	INSERT INTO equipamento VALUES (pSiglaEquipamento, pNomeEquipamento, false);
+END$$
+
 DELIMITER ;
 
 
