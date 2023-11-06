@@ -101,5 +101,16 @@ namespace CPD.Repositorio.Controller
             Desconectar();
             return usuario;
         }
+
+        public void AlterarImagemProfessor(int rm, string imagem)
+        {
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pRM", rm.ToString()),
+                new Parametro("pImagem", imagem)
+            };
+            Executar("alterarImagemProfessor", parametros);
+            Desconectar();
+        }
     }
 }

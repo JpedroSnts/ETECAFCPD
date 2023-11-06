@@ -23,9 +23,14 @@
         <div id="displayPerfil">
 
             <div id="editarImg">
-                <asp:Literal ID="litImgEdit" runat="server"></asp:Literal>
-                <%--<img id="iconEditar" src="Estatico/imagens/alterarSenha.svg">--%>
-                <asp:ImageButton ID="btnEditarFoto" runat="server" OnClick="btnEditarFoto_Click" ImageUrl="Estatico/imagens/alterarSenha.svg" />
+                <div style="padding-right: 10px;">
+                    <asp:Literal ID="litImgEdit" runat="server"></asp:Literal>
+                    <label for="txtImagemEditarFoto"><img id="btnEditarFoto" src="/Estatico/imagens/alterarSenha.svg" /></label>
+                    <asp:FileUpload ID="txtImagemEditarFoto" runat="server" style="display: none;" />
+                </div>
+                <div>
+                    <asp:Button ID="btnSalvarImagem" runat="server" Text="Salvar Imagem" OnClick="btnSalvarImagem_Click"/>
+                </div>
             </div>
 
             <main id="mainAlterarSenha">
@@ -73,7 +78,6 @@
             <div id="menuSanduiche">
                 <div id="divUser">
                     <asp:Literal ID="litImagem" runat="server"></asp:Literal>
-                    <%--<img id="userProf" src="../Estatico/imagens/userProf.png" />--%>
                     <div>
                         <p>
                             <asp:Literal ID="litNome" runat="server"></asp:Literal>
@@ -112,7 +116,19 @@
             </div>
         </div>
         <script src="Estatico/js/menuSanduiche.js"></script>
-        <script src="Estatico/js/menuSanduiche.js"></script>
+        <script>
+            const btnSalvarImagem = document.querySelector("#btnSalvarImagem");
+            btnSalvarImagem.setAttribute("disabled", "disabled");
+            document.querySelector("#txtImagemEditarFoto").addEventListener("change", (e) => {
+                if (e.target.files[0]) {
+                    const img = document.querySelector("#imgEditar");
+                    const file = event.target.files[0];
+                    let url = window.URL.createObjectURL(file);
+                    img.src = url;
+                    btnSalvarImagem.removeAttribute("disabled");
+                }
+            });
+        </script>
     </form>
 </body>
 </html>

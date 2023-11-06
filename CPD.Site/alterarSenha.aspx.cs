@@ -60,9 +60,66 @@ namespace CPD.Site
             }
         }
 
-        protected void btnEditarFoto_Click(object sender, ImageClickEventArgs e)
+        protected void btnSalvarImagem_Click(object sender, EventArgs e)
         {
-           
+            if (txtImagemEditarFoto.PostedFile != null && txtImagemEditarFoto.FileContent.Length != 0)
+            {
+                string nmImagem = EnviarImagem();
+
+                UsuarioController usuarioController = new UsuarioController();
+                Usuario usuario = new Usuario()
+                {
+                    ReferenciaImagem = nmImagem,
+                };
+                try
+                {
+                    usuarioController.AlterarImagemProfessor(int.Parse(Session["rm_usuario"].ToString()), nmImagem);
+                    Session["foto_usuario"] = nmImagem;
+                    Response.Redirect("/alterarSenha.aspx");
+                }
+                catch (Exception ex)
+                {
+                    litErro.Text = $@"<div class='box1'>
+				        <p class='erro'>{ex.Message}</p>
+				        <img src='/Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			        </div>";
+                }
+            }
+        }
+
+        private string EnviarImagem()
+        {
+            string NomeOriginalArq = Path.GetFileName(txtImagemEditarFoto.PostedFile.FileName);
+            string NomeArq = Session["rm_usuario"] + "." + NomeOriginalArq.Split('.')[NomeOriginalArq.Split('.').Length - 1];
+            
+            string TipoArq = txtImagemEditarFoto.PostedFile.ContentType;
+            if (TipoArq != "image/jpeg" && TipoArq != "image/png" && TipoArq != "image/jpg")
+            {
+                litErro.Text = $@"<div class='box1'>
+				    <p class='erro'>Formato de arquivo não permitido!</p>
+				    <img src='/Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			    </div>";
+                return null;
+            }
+            int TamanhoArq = txtImagemEditarFoto.PostedFile.ContentLength;
+
+            if (TamanhoArq <= 0)
+            {
+                litErro.Text = $@"<div class='box1'>
+				    <p class='erro'>A tentativa de upLoad do arquivo {NomeOriginalArq} falhou!</p>
+				    <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			    </div>";
+                return null;
+            }
+            else
+            {
+                txtImagemEditarFoto.PostedFile.SaveAs(Request.PhysicalApplicationPath + @"\Estatico\imagens\usuarios\" + NomeArq);
+                litErro.Text = $@"<div class='box1'>
+				    <p>Imagem Cadastrada</p>
+				    <img src='/Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			    </div>";
+                return NomeArq;
+            }
         }
     }
 }
