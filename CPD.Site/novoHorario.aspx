@@ -52,14 +52,16 @@
                 </div>
                 <div class="divLabels">
                     <div class="itemDisplay">
-                        <label for="txtNome">Horarios</label><br />
+                        <label for="txtNome">Horários</label><br />
                         <div class="display">
-                        <asp:TextBox ID="txtHorarioInicio" runat="server" TextMode="SingleLine" placeholder="Início" onfocus="this.type='time'" onblur="if (!this.value) this.type='text'" class="inputsHorario input-text-time"></asp:TextBox>
+                            <asp:TextBox ID="txtHorarioInicio" runat="server" TextMode="SingleLine" placeholder="Início" onfocus="this.type='time'" onblur="if (!this.value) this.type='text'" class="inputsHorario input-text-time"></asp:TextBox>
                         </div>
                     </div>
                     <div class="itemDisplay">
                         <br />
-                        <asp:TextBox ID="txtHorarioFim" runat="server" TextMode="SingleLine" placeholder="Fim" onfocus="this.type='time'" onblur="if (!this.value) this.type='text'" class="inputsHorario input-text-time"></asp:TextBox>
+                        <div class="display">
+                            <asp:TextBox ID="txtHorarioFim" runat="server" TextMode="SingleLine" placeholder="Fim" onfocus="this.type='time'" onblur="if (!this.value) this.type='text'" class="inputsHorario input-text-time"></asp:TextBox>
+                        </div>
                     </div>
                 </div>
                 <div id="divBtn">

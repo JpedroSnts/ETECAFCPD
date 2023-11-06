@@ -227,7 +227,7 @@ label {
 
 #iconRelogio {
 	object-fit: contain;
-	width: 20px;
+	width: 24px;
 }
 
 .displayBtn {
@@ -600,7 +600,7 @@ button, input[type="button"], input[type="submit"] {
 	}
 
 	#iconRelogio {
-		width: 18px;
+		width: 22px;
 	}
 }
 
