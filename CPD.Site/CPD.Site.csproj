@@ -90,6 +90,7 @@
     <Content Include="Estatico\imagens\alterarSenha.svg" />
     <Content Include="Estatico\imagens\calendario.svg" />
     <Content Include="Estatico\imagens\clock.svg" />
+    <Content Include="Estatico\imagens\clockSemContorno.svg" />
     <Content Include="Estatico\imagens\lixeira.svg" />
     <Content Include="Estatico\imagens\lupa.svg" />
     <Content Include="Estatico\imagens\menuSanduiche.svg" />

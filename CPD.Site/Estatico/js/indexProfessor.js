@@ -64,15 +64,15 @@ window.addEventListener("load", async () => {
 							if (el2.TiposItens[k] == 1) {
 								ambientesReserva += `
 									<div style="margin-bottom: 5px;">
-										<p${el2.StatusReserva == 1 ? "" : ` style="background-color: #114a55BF; border-radius: 5px; padding: 8px; margin-right: 10px; color: white"`} >${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
-										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : `<img id="iconRelogio" src="Estatico/imagens/clock.svg">`}
+										<p>${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
+										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : `<img id="iconRelogio" src="Estatico/imagens/clockSemContorno.svg">`}
 									</div>
 								`;
 							} else if (el2.TiposItens[k] == 2) {
 								equipamentosReserva += `
 									<div style="margin-bottom: 5px;">
-										<p${el2.StatusReserva == 1 ? "" : ` style="background-color: #114a55BF; border-radius: 5px; padding: 8px; margin-right: 10px; color: white"`} >${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
-										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : `<img id="iconRelogio" src="Estatico/imagens/clock.svg">`}
+										<p>${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
+										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : `<img id="iconRelogio" src="Estatico/imagens/clockSemContorno.svg">`}
 									</div>
 								`;
 							}
