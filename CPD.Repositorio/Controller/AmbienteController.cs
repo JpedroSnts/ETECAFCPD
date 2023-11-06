@@ -84,5 +84,26 @@ namespace CPD.Repositorio.Controller
 
             return list;
         }
+
+        public bool AdicionarAmbiente(string sigla, string nome )
+        {
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pSiglaAmbiente", sigla),
+                new Parametro("pNomeAmbiente", nome)
+            };
+
+            try
+            {
+                MySqlDataReader reader = Executar("adicionarAmbiente", parametros);
+            }
+            catch
+            {
+                return false;
+            }
+
+            Desconectar();
+            return true;
+        }
     }
 }

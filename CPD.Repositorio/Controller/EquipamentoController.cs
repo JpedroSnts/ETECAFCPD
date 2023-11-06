@@ -69,5 +69,26 @@ namespace CPD.Repositorio.Controller
 
             return e;
         }
+
+        public bool AdicionarEquipamento(string sigla, string nome)
+        {
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pSiglaEquipamento", sigla),
+                new Parametro("pNomeEquipamento", nome)
+            };
+
+            try
+            {
+                MySqlDataReader reader = Executar("adicionarEquipamento", parametros);
+            }
+            catch
+            {
+                return false;
+            }
+
+            Desconectar();
+            return true;
+        }
     }
 }

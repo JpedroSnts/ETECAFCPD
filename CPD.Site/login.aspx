@@ -24,7 +24,7 @@
             <div>
                 <label for="txtEmail">Usuário</label><br />
                 <div class="display">
-                    <img class="iconInput" src="../Estatico/imagens/usuario.svg" /><asp:TextBox ID="txtRm" type="number" runat="server" placeholder="Insira seu RM"></asp:TextBox>
+                    <img class="iconInput iconRm" src="../Estatico/imagens/usuario.svg" /><asp:TextBox ID="txtRm" type="number" runat="server" placeholder="Insira seu RM"></asp:TextBox>
                     <br />
                     <br />
                 </div>

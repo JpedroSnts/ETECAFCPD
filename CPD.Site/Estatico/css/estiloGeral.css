@@ -19,10 +19,9 @@
 	top: 65px;
 	right: 15px;
 	width: 165px;
-	height: 266px;
 	border-radius: 10px;
-	background-color: #fff;
-	padding: 20px 10px;
+	background-color: #FFF;
+	padding: 20px 10px 5px 10px;
 	z-index: 2;
 }
 
@@ -219,9 +218,16 @@ label {
 .divReservas {
 	min-height: 385px;
 }
-#iconLixeira, #iconRelogio {
+
+#iconLixeira {
 	object-fit: contain;
 	width: 24px;
+	cursor: pointer;
+}
+
+#iconRelogio {
+	object-fit: contain;
+	width: 20px;
 }
 
 .displayBtn {
@@ -232,6 +238,26 @@ label {
 	width: 100%;
 }
 /* ---------------------------- MAIN ALTERAR SENHA  ---------------------------- */
+#mainEsqueciSenha {
+	width: 400px;
+	padding: 30px;
+	box-shadow: 0px 1px 3px #565656;
+	border-radius: 30px;
+	margin: 0px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-family: "Montserrat", sans-serif;
+}
+
+	#mainEsqueciSenha h1 {
+		font-size: 16px;
+		color: #114a55;
+		margin-bottom: 10px;
+	}
+
 #mainAlterarSenha {
 	width: 550px;
 	padding: 30px;
@@ -243,6 +269,7 @@ label {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	font-family: "Montserrat", sans-serif;
 }
 
 #mainAlterarSenha h1 { font-size: 16px; color: #114a55; margin-bottom: 10px; }
@@ -289,6 +316,12 @@ label {
 }
 
 .divLabels {
+	text-align: left;
+	width: 80%;
+	margin: 20px 0px 10px 0px;
+}
+
+.divLabelsSenha {
 	margin: 10px 0px 10px 0px;
 	text-align: left;
 	width: 45%;
@@ -308,7 +341,13 @@ label {
 
 .iconInput {
 	width: 15px;
-	margin: 0px 0px -5px 0px;
+	margin: 7px 0px -5px 0px;
+}
+
+.iconRm {
+	width: 17px;
+	margin-right: -3px;
+	padding-top: 0px;
 }
 
 input {
@@ -316,7 +355,6 @@ input {
 	border: none;
 	margin: 12px 0px 0px 10px;
 	width: 100%;
-	padding-bottom: 5px;
 }
 
 input:focus {
@@ -336,7 +374,7 @@ button, input[type="button"], input[type="submit"] {
 }
 
 #btnRecuperar {
-	width: 60%;
+	width: 70%;
 }
 
 #pVersao {
@@ -390,6 +428,23 @@ button, input[type="button"], input[type="submit"] {
 			color: #114a55;
 		}
 
+	#mainEsqueciSenha {
+		width: 280px;
+		padding: 30px 25px;
+		box-shadow: 0px 1px 3px #565656;
+		border-radius: 30px;
+		text-align: center;
+		margin: auto;
+		margin-top: 30px;
+		margin-bottom: 30px;
+		font-size: 12px;
+	}
+
+		#mainEsqueciSenha h1 {
+			font-size: 14px;
+			color: #114a55;
+		}
+
 	#displayPerfil {
 		flex-direction: column;
 	}
@@ -426,13 +481,21 @@ button, input[type="button"], input[type="submit"] {
 		flex-direction: column;
 	}
 
-	.divLabels {
+	.divLabelsSenha {
 		width: 100%;
 	}
 
-	#iconInput {
+	.iconInput {
 		margin: 9px 0px 0px 0px;
 	}
+
+	.iconRm {
+		width: 16px;
+		margin-right: -3px;
+		padding-top: 4px;
+	}
+
+
 
 	label {
 		font-size: 12px;
@@ -465,6 +528,10 @@ button, input[type="button"], input[type="submit"] {
 	}
 
 	#mainAlterarSenha p a {
+		font-size: 12px;
+	}
+
+	#mainEsqueciSenha p a {
 		font-size: 12px;
 	}
 
@@ -525,6 +592,15 @@ button, input[type="button"], input[type="submit"] {
 		color: #000;
 		margin-bottom: 20px;
 		width: 70%;
+	}
+
+	#iconLixeira {
+		width: 22px;
+		cursor: none;
+	}
+
+	#iconRelogio {
+		width: 18px;
 	}
 }
 

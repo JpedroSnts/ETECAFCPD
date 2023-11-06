@@ -12,14 +12,13 @@
 .escondido { display: none; }
 
 .caixaFlutuante {
-    position: absolute;
-    top: 65px;
-    right: 15px;
-    width: 165px;
-    height: 266px;
-    border-radius: 10px;
-    background-color: #FFF;
-    padding: 20px 10px;
+	position: absolute;
+	top: 65px;
+	right: 15px;
+	width: 165px;
+	border-radius: 10px;
+	background-color: #FFF;
+	padding: 20px 10px 5px 10px;
 }
 
 #divUser { text-align: center; }
@@ -134,6 +133,11 @@ button {
 	cursor: pointer;
 }
 
+	button:hover {
+		color: #fff;
+		background-color: #114A55;
+	}
+
 button, input[type="button"], input[type="submit"] {
 	width: 100px;
 	height: 39px;
@@ -223,6 +227,7 @@ p { margin: 0px 0px 0px 0px; }
 
 #divModalItensReserva {
 	text-align: center;
+	width: 35%;
 }
 
 	#divModalItensReserva p strong {
@@ -231,6 +236,7 @@ p { margin: 0px 0px 0px 0px; }
 
 .pHorarios {
 	color: #114A55;
+	padding: 25px 0px;
 }
 
 #modalItensReserva div {
@@ -313,7 +319,7 @@ p { margin: 0px 0px 0px 0px; }
 	/* ---------------------------- HEADER ---------------------------- */
 	#iconMenuSanduiche {
 		display: initial;
-		width: 40px;
+		width: 35px;
 	}
 
 	#opMenu { display: none; }
@@ -331,7 +337,7 @@ p { margin: 0px 0px 0px 0px; }
 
 	#btnBuscarResponsivo {
 		display: initial;
-		width: 40px;
+		width: 35px;
 		border: none;
 		padding: 0px;
 	}
@@ -348,6 +354,21 @@ p { margin: 0px 0px 0px 0px; }
 
 	.reservar {
 		margin: auto;
+	}
+
+	#divModalItensReserva {
+		width: 90%;
+	}
+
+	.pHorarios {
+		color: #114A55;
+		padding: 20px 0px;
+	}
+
+	#btnCancelar, #btnConcluir {
+		width: 40%;
+		padding: 10px 10px;
+		font-size: 14px;
 	}
 }
 

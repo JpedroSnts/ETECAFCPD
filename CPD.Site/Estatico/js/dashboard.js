@@ -49,7 +49,7 @@ window.addEventListener("load", () => {
 			</td>
             <td>
             ${status.botao != "" && (status.codigo == 7 || status.codigo == 3 || status.codigo == 2)
-            ? `<input type="checkbox" codigos="${reserva.Itens.replaceAll(" ", "")}" dataSaida="${reserva.DataSaidaPrevista}" rm="${reserva.RM}" tiposItens="${reserva.TiposItens.join(",")}" />`
+            ? `<input type="checkbox" class="ckbOcorrencia" codigos="${reserva.Itens.replaceAll(" ", "")}" dataSaida="${reserva.DataSaidaPrevista}" rm="${reserva.RM}" tiposItens="${reserva.TiposItens.join(",")}" />`
             : ""}
             </td>
 		</tr>`;
