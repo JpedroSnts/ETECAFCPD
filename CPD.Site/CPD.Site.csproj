@@ -94,6 +94,7 @@
     <Content Include="Estatico\imagens\lupa.svg" />
     <Content Include="Estatico\imagens\menuSanduiche.svg" />
     <Content Include="Estatico\imagens\QuadradoLogoCPD.png" />
+    <Content Include="Estatico\imagens\usuario.svg" />
     <Content Include="Estatico\imagens\usuarios\36400.png" />
     <Content Include="Estatico\imagens\usuarios\36401.png" />
     <Content Include="Estatico\imagens\close.svg" />
@@ -125,7 +126,7 @@
     <Content Include="Estatico\imagens\seta_baixo.png" />
     <Content Include="Estatico\imagens\suasReservas.png" />
     <Content Include="Estatico\imagens\user.png" />
-    <Content Include="Estatico\imagens\usuario.svg" />
+    <Content Include="Estatico\imagens\nome.svg" />
     <Content Include="Estatico\js\dashboard.js" />
     <Content Include="Estatico\js\gradeHorario.js" />
     <Content Include="Estatico\js\indexProfessor.js" />
