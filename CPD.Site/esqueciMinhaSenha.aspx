@@ -44,12 +44,12 @@
             </main>
         </asp:Panel>
         <asp:Panel ID="pnlRm" runat="server">
-             <main id="mainAlterarSenha">
+             <main id="mainEsqueciSenha">
                  <h1>Esqueci minha senha</h1>
                  <div class="divLabels">
                      <label for="txtEmail">E-mail</label><br />
                      <div class="display">
-                         <img class="iconInput" src="Estatico/imagens/usuario.svg" />
+                         <img class="iconInput" src="Estatico/imagens/carta.png" />
                          <asp:TextBox ID="txtEmail" placeholder="Insira seu e-mail" runat="server" TextMode="Email"></asp:TextBox>
                          <br />
                          <br />

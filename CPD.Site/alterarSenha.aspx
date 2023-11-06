@@ -39,14 +39,14 @@
                 <div class="labelAtual">
                     <label for="atualSenhaUsuario">Senha Atual</label><br />
                     <div class="display">
-                        <img class="iconInput" src="Estatico/imagens/usuario.svg" />
+                        <img class="iconInput iconRm" src="Estatico/imagens/usuario.svg" />
                         <asp:TextBox ID="txtSenhaAtual" placeholder="Insira sua senha atual" runat="server" TextMode="Password"></asp:TextBox>
                         <br />
                         <br />
                     </div>
                 </div>
                 <div class="labelsNovaSenha">
-                    <div class="divLabels">
+                    <div class="divLabelsSenha">
                         <label for="novaSenhaUsuario">Nova Senha</label><br />
                         <div class="display">
                             <img class="iconInput" src="Estatico/imagens/senha.png" />
@@ -55,7 +55,7 @@
                             <br />
                         </div>
                     </div>
-                    <div class="divLabels">
+                    <div class="divLabelsSenha">
                         <label for="confirmarNovaSenhaUsuario">Confirmar Nova Senha</label><br />
                         <div class="display">
                             <img class="iconInput" src="Estatico/imagens/senha.png" />
