@@ -14,6 +14,10 @@ namespace CPD.Site
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!Logado.Usuario(Session))
+            {
+                Response.Redirect("~/login.aspx");
+            }
             string rm = Session["rm_usuario"].ToString();
             HistoricoController historicoController = new HistoricoController();
             historicoController.listarRA(rm).ForEach((ra) =>
