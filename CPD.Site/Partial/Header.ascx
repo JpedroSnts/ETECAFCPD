@@ -15,7 +15,7 @@
 				  <div class="dropdown-options">
 					<a href="/admin/professor.aspx">Professor</a>
 					<a href="/admin/ambiente.aspx">Ambiente</a>
-					<a href="#">Equipamento</a>
+					<a href="/admin/equipamento.aspx">Equipamento</a>
 					<a href="#">Tipo Ocorrência Ambiente</a>
 					<a href="#">Tipo Ocorrência Equipamento</a>
 				  </div>

@@ -73,6 +73,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Admin\equipamento.aspx" />
     <Content Include="Admin\ambiente.aspx" />
     <Content Include="Admin\professor.aspx" />
     <Content Include="alterarSenha.aspx" />
@@ -150,6 +151,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Admin\equipamento.aspx.cs">
+      <DependentUpon>equipamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\equipamento.aspx.designer.cs">
+      <DependentUpon>equipamento.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Admin\ambiente.aspx.cs">
       <DependentUpon>ambiente.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
