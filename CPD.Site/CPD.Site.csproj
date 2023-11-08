@@ -136,6 +136,7 @@
     <Content Include="Estatico\js\menuSanduiche.js" />
     <Content Include="Estatico\js\painelControle.js" />
     <Content Include="Estatico\js\reserva.js" />
+    <Content Include="Estatico\imagens\trianguloExclamacao.svg" />
     <Content Include="Global.asax" />
     <Content Include="gradeHorario.aspx" />
     <Content Include="historico.aspx" />
