@@ -23,7 +23,7 @@
                 <div class="divLabels">
                     <label for="novaSenhaUsuario">Nova Senha</label><br />
                     <div class="display">
-                        <img class="iconInput" src="Estatico/imagens/senha.png" />
+                        <img class="iconInput" src="Estatico/imagens/senha.svg" />
                         <asp:TextBox ID="txtNovaSenha" placeholder="Insira sua nova senha" runat="server" TextMode="Password"></asp:TextBox>
                         <br />
                         <br />
@@ -32,7 +32,7 @@
                 <div class="divLabels">
                     <label for="confirmarNovaSenhaUsuario">Confirmar Nova Senha</label><br />
                     <div class="display">
-                        <img class="iconInput" src="Estatico/imagens/senha.png" />
+                        <img class="iconInput" src="Estatico/imagens/senha.svg" />
                         <asp:TextBox ID="txtConfirmarSenha" placeholder="Confirme sua nova senha" runat="server" TextMode="Password"></asp:TextBox>
                         <br />
                         <br />
@@ -49,7 +49,7 @@
                  <div class="divLabels">
                      <label for="txtEmail">E-mail</label><br />
                      <div class="display">
-                         <img class="iconInput" src="Estatico/imagens/carta.png" />
+                         <img class="iconInput" src="Estatico/imagens/carta.svg" />
                          <asp:TextBox ID="txtEmail" placeholder="Insira seu e-mail" runat="server" TextMode="Email"></asp:TextBox>
                          <br />
                          <br />

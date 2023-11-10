@@ -49,19 +49,19 @@
             <div id="divItemsMenu">
                 <div class="itemsMenu">
                     <a href="/painelControle.aspx"><p>Painel de Controle</p></a>
-                    <img class="iconsMenu" src="/Estatico/imagens/suasReservas.png">
+                    <img class="iconsMenu" src="/Estatico/imagens/suasReservas.svg">
                 </div>
                 <div class="itemsMenu">
                     <a href="/reserva.aspx"><p>Reservar</p></a>
-                    <img class="iconsMenu" src="/Estatico/imagens/novaReserva.png">
+                    <img class="iconsMenu" src="/Estatico/imagens/novaReserva.svg">
                 </div>
                 <div class="itemsMenu">
                     <a href="/relatorio.aspx"><p>Relatórios</p></a>
-                    <img class="iconsMenu" src="/Estatico/imagens/novaReserva.png">
+                    <img class="iconsMenu" src="/Estatico/imagens/novaReserva.svg">
                 </div>
                 <div class="itemsMenu">
                     <a href="/gradeHorario.aspx"><p>Grade de horários</p></a>
-                    <img class="iconsMenu" src="/Estatico/imagens/novaReserva.png">
+                    <img class="iconsMenu" src="/Estatico/imagens/novaReserva.svg">
                 </div>
                 <div class="itemsMenu">
                     <a href="/alterarSenha.aspx"><p>Alterar Senha</p></a>
@@ -69,7 +69,7 @@
                 </div>
                 <div class="itemsMenu">
                     <a href="/logout.aspx"><p>Sair</p></a>
-                    <img class="iconsMenu" src="/Estatico/imagens/sair.png">
+                    <img class="iconsMenu" src="/Estatico/imagens/sair.svg">
                 </div>
             </div>
         </div>
@@ -116,11 +116,11 @@
 			</div>
 			<div id="divItemsMenu">
 				<div class="itemsMenuProf">
-					<a href="/index.aspx"><p>Suas Reservas</p><img class="iconsMenu" src="/Estatico/imagens/suasReservas.png" />
+					<a href="/index.aspx"><p>Suas Reservas</p><img class="iconsMenu" src="/Estatico/imagens/suasReservas.svg" />
 					</a>
 				</div>
 				<div class="itemsMenuProf">
-					<a href="/reserva.aspx"><p>Nova Reserva</p><img class="iconsMenu" src="/Estatico/imagens/novaReserva.png" />
+					<a href="/reserva.aspx"><p>Nova Reserva</p><img class="iconsMenu" src="/Estatico/imagens/novaReserva.svg" />
 					</a>
 				</div>
 				<div class="itemsMenuProf">
@@ -132,7 +132,7 @@
 					</a>
 				</div>
 				<div class="itemsMenuProf">
-					<a href="/logout.aspx"><p>Sair</p><img class="iconsMenu" src="/Estatico/imagens/sair.png" />
+					<a href="/logout.aspx"><p>Sair</p><img class="iconsMenu" src="/Estatico/imagens/sair.svg" />
 					</a>
 				</div>
 			</div>

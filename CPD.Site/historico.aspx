@@ -71,11 +71,11 @@
                     </div>
                     <div class="itemsMenu">
                         <a href="reserva.html"><p>Nova Reserva</p></a>
-                        <img class="iconsMenu" src="imagens/novaReserva.png">
+                        <img class="iconsMenu" src="imagens/novaReserva.svg">
                     </div>
                     <div class="itemsMenu">
                         <a href="alterarSenha.html"><p>Alterar Senha</p></a>
-                        <img class="iconsMenu" src="imagens/alterarSenha.png">
+                        <img class="iconsMenu" src="imagens/alterarSenha.svg">
                     </div>
                     <div class="itemsMenu">
                         <a href="login.html"><p>Sair</p></a>

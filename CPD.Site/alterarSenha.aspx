@@ -39,7 +39,7 @@
                 <div class="labelAtual">
                     <label for="atualSenhaUsuario">Senha Atual</label><br />
                     <div class="display">
-                        <img class="iconInput iconRm" src="Estatico/imagens/usuario.svg" />
+                        <img class="iconInput iconRm" src="Estatico/imagens/rm.svg" />
                         <asp:TextBox ID="txtSenhaAtual" placeholder="Insira sua senha atual" runat="server" TextMode="Password"></asp:TextBox>
                         <br />
                         <br />
@@ -49,7 +49,7 @@
                     <div class="divLabelsSenha">
                         <label for="novaSenhaUsuario">Nova Senha</label><br />
                         <div class="display">
-                            <img class="iconInput" src="Estatico/imagens/senha.png" />
+                            <img class="iconInput" src="Estatico/imagens/senha.svg" />
                             <asp:TextBox ID="txtNovaSenha" placeholder="Insira sua nova senha" runat="server" TextMode="Password"></asp:TextBox>
                             <br />
                             <br />
@@ -58,7 +58,7 @@
                     <div class="divLabelsSenha">
                         <label for="confirmarNovaSenhaUsuario">Confirmar Nova Senha</label><br />
                         <div class="display">
-                            <img class="iconInput" src="Estatico/imagens/senha.png" />
+                            <img class="iconInput" src="Estatico/imagens/senha.svg" />
                             <asp:TextBox ID="txtConfirmarSenha" placeholder="Confirme sua nova senha" runat="server" TextMode="Password"></asp:TextBox>
                             <br />
                             <br />
@@ -92,25 +92,25 @@
                         <a href="index.html">
                             <p>Suas Reservas</p>
                         </a>
-                        <img class="iconsMenu" src="Estatico/imagens/suasReservas.png" />
+                        <img class="iconsMenu" src="Estatico/imagens/suasReservas.svg" />
                     </div>
                     <div class="itemsMenu">
                         <a href="reserva.html">
                             <p>Nova Reserva</p>
                         </a>
-                        <img class="iconsMenu" src="Estatico/imagens/novaReserva.png" />
+                        <img class="iconsMenu" src="Estatico/imagens/novaReserva.svg" />
                     </div>
                     <div class="itemsMenu">
                         <a href="/alterarSenha.aspx">
                             <p>Alterar Senha</p>
                         </a>
-                        <img class="iconsMenu" src="Estatico/imagens/alterarSenha.png" />
+                        <img class="iconsMenu" src="Estatico/imagens/alterarSenha.svg" />
                     </div>
                     <div class="itemsMenu">
                         <a href="/logout.aspx">
                             <p>Sair</p>
                         </a>
-                        <img class="iconsMenu" src="Estatico/imagens/sair.png" />
+                        <img class="iconsMenu" src="Estatico/imagens/sair.svg" />
                     </div>
                 </div>
             </div>
