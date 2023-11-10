@@ -143,6 +143,32 @@ input, select {
 	padding-left: 5px;
 }
 
+#iconeReload {
+	width: 30px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+
+.reloadAnimacao {
+	animation: spin 2s linear infinite;
+}
+
+#tdReload {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 .ckbOcorrencia {
 	height: auto;
 }

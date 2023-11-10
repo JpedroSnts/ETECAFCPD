@@ -59,7 +59,7 @@
 
     function fetchListar(url) {
         tblReservas.classList.remove("escondido");
-        tbodyReservas.innerHTML = "<tr><td colspan='7'>Carregando...</td></tr>";
+        tbodyReservas.innerHTML = "<tr><td colspan='7'><div id='tdReload'><img class='reloadAnimacao' id='iconeReload' src='/Estatico/imagens/refresh.svg'>Carregando...</div></td></tr>";
         fetch(`${url}`)
             .then(res => res.json())
             .then(reservas => {

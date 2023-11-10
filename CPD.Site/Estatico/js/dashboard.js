@@ -56,7 +56,7 @@ window.addEventListener("load", () => {
     }
 
     function fetchListar(url) {
-        tbodyReservas.innerHTML = "<tr><td colspan='7'>Carregando...</td></tr>";
+        tbodyReservas.innerHTML = "<tr><td colspan='7'><div id='tdReload'><img class='reloadAnimacao' id='iconeReload' src='/Estatico/imagens/refresh.svg'>Carregando...</div></td></tr>";
         fetch(`${url}`)
             .then(res => res.json())
             .then(reservas => {
@@ -69,7 +69,7 @@ window.addEventListener("load", () => {
     }
 
     function fetchListarItens() {
-        tbodyItensLivres.innerHTML = "<tr><td colspan='2'>Carregando...</td></tr>";
+        tbodyItensLivres.innerHTML = "<tr><td colspan='2'><div id='tdReload'><img class='reloadAnimacao' id='iconeReload' src='/Estatico/imagens/refresh.svg'>Carregando...</div></td></tr>";
         fetch(`/Api/dashboard.aspx?itens-livres=_`)
             .then(res => res.json())
             .then(itens => {

@@ -20,6 +20,13 @@
 <body>
     <form id="form1" runat="server">
 		<uc:Header ID="PartialHeader" runat="server" />
+
+		<main id="mainReload">
+			<div id="tdReload">
+				<img class="reloadAnimacao" id="iconeReload" src="/Estatico/imagens/refresh.svg">
+				Carregando...
+			</div>
+		</main>
         
             <!-- ----------------------- CARDS RESERVA ----------------------- -->
 

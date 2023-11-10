@@ -1,6 +1,7 @@
 window.addEventListener("load", async () => {
 	const rmUsuario = document.querySelector("#rm_usuario").textContent;
 	const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
+	const mainReload = document.querySelector("#mainReload");
 	const mainHome = document.querySelector("#mainHome");
 	const mainComReserva = document.querySelector("#mainComReserva");
 	const $reservas = document.querySelector("#reservas");
@@ -47,6 +48,7 @@ window.addEventListener("load", async () => {
 
 			$reservas.innerHTML = "";
 			if (reservas != null && reservas.length != 0) {
+				mainReload.style.display = "none";
 				mainHome.style.display = "none";
 				mainComReserva.style.display = "flex";
 
@@ -103,6 +105,7 @@ window.addEventListener("load", async () => {
 
 				cardReserva();
 			} else {
+				mainReload.style.display = "none";
 				mainComReserva.style.display = "none";
 				mainHome.style.display = "flex";
 			}
@@ -138,6 +141,7 @@ window.addEventListener("load", async () => {
 						}
 						const qtReservas = document.querySelector("#reservas").childElementCount;
 						if (qtReservas == 0) {
+							mainReload.style.display = "none";
 							mainHome.style.display = "flex";
 							mainComReserva.style.display = "none";
 						}
@@ -173,6 +177,7 @@ window.addEventListener("load", async () => {
 					}
 					const qtReservas = document.querySelector("#reservas").childElementCount;
 					if (qtReservas == 0) {
+						mainReload.style.display = "none";
 						mainHome.style.display = "flex";
 						mainComReserva.style.display = "none";
 					}

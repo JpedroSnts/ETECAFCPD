@@ -87,6 +87,32 @@
 
 /* ---------------------------- MAIN HOME ---------------------------- */
 
+#iconeReload {
+	width: 30px;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(-360deg);
+	}
+}
+
+.reloadAnimacao {
+	animation: spin 2s linear infinite;
+}
+
+#tdReload {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 #mainHome {
 	text-align: center;
 	display: flex;
@@ -409,6 +435,14 @@ button, input[type="button"], input[type="submit"] {
 	}
 
 @media only screen and (max-width: 800px) {
+
+	#tdReload {
+		font-size: 14px;
+	}
+
+	#iconeReload {
+		width: 20px;
+	}
 
 	/* ---------------------------- ALTERAR SENHA ---------------------------- */
 	#mainAlterarSenha {
