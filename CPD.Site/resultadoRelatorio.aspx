@@ -20,13 +20,17 @@
     <form id="form1" runat="server">
         <main id="folhaa4">
             <div id="cabecalhoRelatorio">
-                <img src="Estatico/imagens/logoCPD.png" class="logos"/>
+                <div>
+                    <img src="Estatico/imagens/logoCPD.png" class="logos"/>
+                    <img src="Estatico/imagens/logoETECAF.png" class="logoE"/>
+                </div>
                 <h1>
                     <asp:Literal ID="litTipoRelatorio" runat="server"></asp:Literal>
                 </h1>
                 <div>
                     <img src="Estatico/imagens/logoCPS.png" class="logos"/>
                     <img src="Estatico/imagens/logoSP.png" class="logos"/>
+                    
                 </div>
             </div>
 
