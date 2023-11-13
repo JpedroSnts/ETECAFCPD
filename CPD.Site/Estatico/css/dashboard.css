@@ -112,12 +112,12 @@
 }
 
 .status-concluida {
-	color: #00a100;
+	/*color: #00a100;*/
 	font-weight: bold;
 }
 
 .status-reservado {
-	color: #ef9b0f;
+	color: green;
 	font-weight: bold;
 }
 
