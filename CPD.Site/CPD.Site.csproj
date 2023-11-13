@@ -105,6 +105,7 @@
     <Content Include="Estatico\imagens\sair.svg" />
     <Content Include="Estatico\imagens\senha.svg" />
     <Content Include="Estatico\imagens\suasReservas.svg" />
+    <Content Include="Estatico\imagens\trianguloExclamacaoSemContorno.svg" />
     <Content Include="Estatico\imagens\usuario.svg" />
     <Content Include="Estatico\imagens\rm.svg" />
     <Content Include="Estatico\imagens\usuarios\36400.png" />
