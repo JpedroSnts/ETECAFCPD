@@ -16,8 +16,8 @@
 					<a href="/admin/professor.aspx">Professor</a>
 					<a href="/admin/ambiente.aspx">Ambiente</a>
 					<a href="/admin/equipamento.aspx">Equipamento</a>
-					<a href="#">Tipo Ocorrência Ambiente</a>
-					<a href="#">Tipo Ocorrência Equipamento</a>
+					<a href="/admin/ocorrenciaAmbiente.aspx">Tipo Ocorrência Ambiente</a>
+					<a href="/admin/ocorrenciaEquipamento.aspx"">Tipo Ocorrência Equipamento</a>
 				  </div>
 				</div>
                 <a href="/alterarSenha.aspx">Alterar Senha</a>

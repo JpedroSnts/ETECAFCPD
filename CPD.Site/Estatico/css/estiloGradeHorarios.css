@@ -19,6 +19,12 @@
 	margin: auto;
 }
 
+#iconLixeira {
+	object-fit: contain;
+	width: 30px;
+	cursor: pointer;
+}
+
 #divNovoHorario {
 	width: 630px;
 	padding: 15px 20px;

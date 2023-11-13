@@ -46,6 +46,7 @@
 			<div id="displayCardsReserva"> 
 				<div id="reservas"></div>
 			</div>
+
 			<!-- ----------------------- CARD NOVA RESERVA ----------------------- -->
 
 			<a href="/reserva.aspx" id="btnNovaReservaComReserva"><i class="fa-solid fa-plus"></i>Nova Reserva</a>

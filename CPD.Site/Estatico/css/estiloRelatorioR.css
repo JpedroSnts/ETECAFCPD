@@ -10,6 +10,12 @@ main {
     margin-top: 10px;
     height: 70px;
 }
+.logoE {
+    margin-bottom: 5px;
+    margin-top: 10px;
+    height: 70px;
+    margin-left: 42px;
+}
 
 #cabecalhoRelatorio {
     display: grid;

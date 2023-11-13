@@ -75,6 +75,8 @@
   <ItemGroup>
     <Content Include="Admin\equipamento.aspx" />
     <Content Include="Admin\ambiente.aspx" />
+    <Content Include="Admin\ocorrenciaAmbiente.aspx" />
+    <Content Include="Admin\ocorrenciaEquipamento.aspx" />
     <Content Include="Admin\professor.aspx" />
     <Content Include="alterarSenha.aspx" />
     <Content Include="Api\buscarProfessor.aspx" />
@@ -162,6 +164,20 @@
     </Compile>
     <Compile Include="Admin\ambiente.aspx.designer.cs">
       <DependentUpon>ambiente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ocorrenciaAmbiente.aspx.cs">
+      <DependentUpon>ocorrenciaAmbiente.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ocorrenciaAmbiente.aspx.designer.cs">
+      <DependentUpon>ocorrenciaAmbiente.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\ocorrenciaEquipamento.aspx.cs">
+      <DependentUpon>ocorrenciaEquipamento.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin\ocorrenciaEquipamento.aspx.designer.cs">
+      <DependentUpon>ocorrenciaEquipamento.aspx</DependentUpon>
     </Compile>
     <Compile Include="Admin\professor.aspx.cs">
       <DependentUpon>professor.aspx</DependentUpon>
