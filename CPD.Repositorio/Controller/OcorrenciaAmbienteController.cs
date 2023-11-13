@@ -1,5 +1,6 @@
 ﻿using CPD.Repositorio.Banco;
 using CPD.Repositorio.Model;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 
@@ -19,6 +20,27 @@ namespace CPD.Repositorio.Controller
             };
             Executar("registrarOcorrenciaAmbiente", parametros);
             Desconectar();
+        }
+
+        public bool AdicionarOcorrencia(string codigo, string nome)
+        {
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pCodigo", codigo),
+                new Parametro("pNome", nome)
+            };
+
+            try
+            {
+                MySqlDataReader reader = Executar("adicionarOcorrenciaAmbiente", parametros);
+            }
+            catch
+            {
+                return false;
+            }
+
+            Desconectar();
+            return true;
         }
     }
 }

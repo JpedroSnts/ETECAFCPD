@@ -1063,6 +1063,44 @@ BEGIN
 	INSERT INTO equipamento VALUES (pSiglaEquipamento, pNomeEquipamento, false);
 END$$
 
+/* TIPOS OCORRENCIAS */
+
+DROP FUNCTION IF EXISTS tipoOcorrenciaEquipamentoJaExiste$$
+CREATE FUNCTION tipoOcorrenciaEquipamentoJaExiste(pCodigo int, pNome VARCHAR(45)) returns bool
+BEGIN
+	DECLARE vNome VARCHAR(45) DEFAULT "";
+	SELECT nm_tipo_ocorrencia INTO vNome FROM tipo_ocorrencia_equipamento 
+    WHERE cd_tipo_ocorrencia = pCodigo OR nm_tipo_ocorrencia = pNome;
+    RETURN vNome <> "";
+END$$
+
+DROP PROCEDURE IF EXISTS adicionarOcorrenciaEquipamento$$
+CREATE PROCEDURE adicionarOcorrenciaEquipamento(pCodigo int, pNome VARCHAR(45))
+BEGIN
+	IF tipoOcorrenciaEquipamentoJaExiste(pCodigo, pNome) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Tipo Ocorrencia já cadastrada';
+    END IF;
+	INSERT INTO tipo_ocorrencia_equipamento VALUES (pCodigo, pNome);
+END$$
+
+DROP FUNCTION IF EXISTS tipoOcorrenciaAmbienteJaExiste$$
+CREATE FUNCTION tipoOcorrenciaAmbienteJaExiste(pCodigo int, pNome VARCHAR(45)) returns bool
+BEGIN
+	DECLARE vNome VARCHAR(45) DEFAULT "";
+	SELECT nm_tipo_ocorrencia INTO vNome FROM tipo_ocorrencia_ambiente 
+    WHERE cd_tipo_ocorrencia = pCodigo OR nm_tipo_ocorrencia = pNome;
+    RETURN vNome <> "";
+END$$
+
+DROP PROCEDURE IF EXISTS adicionarOcorrenciaAmbiente$$
+CREATE PROCEDURE adicionarOcorrenciaAmbiente(pCodigo int, pNome VARCHAR(45))
+BEGIN
+	IF tipoOcorrenciaAmbienteJaExiste(pCodigo, pNome) THEN
+		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Tipo Ocorrencia já cadastrada';
+    END IF;
+	INSERT INTO tipo_ocorrencia_ambiente VALUES (pCodigo, pNome);
+END$$
+
 DELIMITER ;
 
 

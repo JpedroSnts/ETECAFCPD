@@ -207,16 +207,16 @@ window.addEventListener("load", () => {
         });
 
         const chaves = Object.keys(inputTextValues);
-        let caixaVazia = true;
+        let ddlVazia = true;
         chaves.forEach(c => {
-            if (inputTextValues[c].textarea == "" || inputTextValues[c].ddl == "") {
-                caixaVazia = true;
+            if (inputTextValues[c].ddl == "") {
+                ddlVazia = true;
             } else {
-                caixaVazia = false;
+                ddlVazia = false;
             }
             return;
         });
-        if (arrayCkbs.includes(true) && !caixaVazia) {
+        if (arrayCkbs.includes(true) && ddlVazia == false) {
             btnGerarOcorrencia.removeAttribute("disabled");
         } else {
             btnGerarOcorrencia.setAttribute("disabled", "");
