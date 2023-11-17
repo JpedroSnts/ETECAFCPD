@@ -130,11 +130,16 @@ window.addEventListener("load", () => {
         }
 
         let amb_reservar = "";
+        let amb_qt_reservar = "";
         if (AMB_SELECIONADO != "") {
             amb_reservar = "," + AMB_SELECIONADO;
+            if (Object.keys(EQP_SELECIONADOS).length == 0) {
+                amb_reservar = AMB_SELECIONADO;
+            }
+            amb_qt_reservar = amb_reservar != "" ? (Object.keys(EQP_SELECIONADOS).length == 0 ? "1" : ",1") : "";
         }
 
-        fetch(`/api/listarItensLivres.aspx?inicio=${inicio}&fim=${fim}&itens=${Object.keys(EQP_SELECIONADOS)}${amb_reservar}&quantidades=${Object.values(EQP_SELECIONADOS)}${amb_reservar != "" ? ",1" : ""}`)
+        fetch(`/api/listarItensLivres.aspx?inicio=${inicio}&fim=${fim}&itens=${Object.keys(EQP_SELECIONADOS)}${amb_reservar}&quantidades=${Object.values(EQP_SELECIONADOS)}${amb_qt_reservar}`)
             .then((res) => res.json())
             .then((itens) => {
                 const qt = itens.length;
