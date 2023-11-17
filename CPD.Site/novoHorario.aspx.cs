@@ -93,7 +93,7 @@ namespace CPD.Site
                         string textoEmail = $@"
                             <p>Lamentamos informar que sua reserva para o ambiente <strong>{i.Ambiente.Nome}</strong> foi cancelada devido ao uso para aulas dos cursos técnicos.</p>
                             <p>Pedimos desculpas pelo transtorno causado e estamos à disposição para quaisquer esclarecimentos necessários.</p>
-                            <p>Realize outra reserva clicando <a href='http://localhost:54802/reserva.aspx'>aqui</a>.</p>
+                            <p>Realize outra reserva clicando <a href='{APPCONFIG.BASE_URL}/reserva.aspx'>aqui</a>.</p>
                         ";
                         Email.Enviar(i.Usuario.Email, "Cancelamento automático de reserva CPD", textoEmail);
                     }

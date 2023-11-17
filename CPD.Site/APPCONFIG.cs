@@ -13,5 +13,6 @@ namespace CPD.Site
         public const string SMTP_HOST = "smtp-mail.outlook.com";
         public const int SMTP_PORT = 587;
         public const bool SMTP_SSL = true;
+        public const string BASE_URL = "http://localhost:54802";
     }
 }

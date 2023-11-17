@@ -2,7 +2,7 @@
 
 ### O que é o ETECAF CPD?
 
-> O ETECAF CPD é um sistema de gerenciamento de equipamentos e ambientes, feito com o objetivo de agilizar o processo que anteriormente era feito manualmente e com papéis, este projeto foi feito para a conclusão do curso de Desenvolvimento de Sistemas na ETEC aristóteles ferreira.
+> O ETECAF CPD é um sistema de gerenciamento de equipamentos e ambientes, feito com o objetivo de agilizar o processo que anteriormente era feito manualmente e com papéis. Este projeto foi feito para a conclusão do curso de Desenvolvimento de Sistemas na ETEC aristóteles ferreira.
 
 ### Integrantes
 
@@ -10,7 +10,7 @@
 > -   Caio Greiffo Sampaio
 > -   Gabriel Apolinário de Jesus
 > -   João Pedro de Siqueira Santos
-> -   Maria Clara Santana Viana
+> -   Maria Clara Santana Vianna
 > -   Miguel Brunocilla Santos
 
 ### Use na sua máquina
@@ -42,6 +42,7 @@ git clone https://github.com/JpedroSnts/ETECAFCPD.git
 <br/>
 
 ## Site versão mobile (Usuário)
+
 <div>
   <img src="https://www.dropbox.com/scl/fi/d51abw7cf41g5l5rwjx9m/login-mobile.png?rlkey=hr8szmjwj0p0gl9ans4dpbxqd&dl=0&raw=1" alt="Imagem da página de login mobile" style="width: 24%;" />
   <img src="https://www.dropbox.com/scl/fi/3qfj0ayj5efy5z9dt7jdg/suas-reservas-mobile.png?rlkey=ec6ra23et8zqtwp8nvppey6hi&dl=0&raw=1" alt="Imagem da página de suas reservas mobile" style="width: 24%;" />
@@ -52,6 +53,7 @@ git clone https://github.com/JpedroSnts/ETECAFCPD.git
 <br/>
 
 ## Site versão desktop (Administrador)
+
 <div>
   <img src="https://www.dropbox.com/scl/fi/gycxyebzgf5l55ut3g1fk/dashboard.png?rlkey=gezngfvgb5dw6etezsupds9zk&dl=0&raw=1" alt="Imagem da página dashboard" style="width: 49%;" />
   <img src="https://www.dropbox.com/scl/fi/tpm0pzznd659k5ujwu2vl/reserva.png?rlkey=lan0q9qyuglmvsiyaldud9iic&dl=0&raw=1" alt="Imagem da página de reservas" style="width: 49%;" />

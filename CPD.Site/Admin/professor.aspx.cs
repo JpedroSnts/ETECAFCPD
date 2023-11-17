@@ -57,7 +57,7 @@ namespace CPD.Site.Admin
                 txtEmail.Text = "";
                 txtRm.Text = "";
                 txtNome.Text = "";
-                string html = $"<p>Olá {usuario.Nome.Split(' ')[0]}, sua nova senha no sistema do CPD é: <b>{usuario.Senha}</b></p>";
+                string html = $"<p>Olá {usuario.Nome.Split(' ')[0]}, sua nova senha no sistema do CPD é: <b>{usuario.Senha}</b></p> <p>Faça uma reserva agora mesmo clicando <a href='{APPCONFIG.BASE_URL}/login.aspx'>aqui</a>!</p>";
                 Email.Enviar(usuario.Email, "Senha ETECAF CPD", html);
                 litErro.Text = $@"<div class='box1'>
 				    <p>Usuário cadastrado</p>

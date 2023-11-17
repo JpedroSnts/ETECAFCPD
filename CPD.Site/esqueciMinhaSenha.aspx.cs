@@ -84,7 +84,7 @@ namespace CPD.Site
                     TokenController tokenController = new TokenController();
                     Token tokenEmail = tokenController.GerarToken(txtEmail.Text);
                     string textoEmail = $@"
-                    <p>Altere sua senha clicando <strong><a href='http://localhost:54802/esqueciMinhaSenha.aspx?token={tokenEmail.Codigo}'>aqui</a></strong></p>
+                    <p>Altere sua senha clicando <strong><a href='{APPCONFIG.BASE_URL}/esqueciMinhaSenha.aspx?token={tokenEmail.Codigo}'>aqui</a></strong></p>
                     <small>este link é valido por 5 minutos</small>
                 ";
                     Email.Enviar(tokenEmail.Email, "Recuperação de senha CPD", textoEmail);
