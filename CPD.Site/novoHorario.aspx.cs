@@ -1,4 +1,5 @@
-﻿using CPD.Repositorio.Controller;
+﻿using CPD.Repositorio.Banco;
+using CPD.Repositorio.Controller;
 using CPD.Repositorio.Model;
 using CPD.Site.Util;
 using System;
@@ -80,8 +81,35 @@ namespace CPD.Site
                 Termino = DateTime.Parse(fim.ToString("HH:mm:ss"))
             };
             UsoAmbienteController usoC = new UsoAmbienteController();
-            usoC.Adicionar(uso);
-            Response.Redirect("~/gradeHorario.aspx");
+            ReservaAmbienteController rC = new ReservaAmbienteController();
+            try
+            {
+                List<ReservaAmbiente> reservados = rC.ListarReservaAmbientesSiglaDiaSemanaHora(ambiente.Sigla, dia.Codigo, inicio, fim);
+                reservados.ForEach((i) =>
+                {
+                    if (i.StatusReserva == EStatusReserva.Reservado)
+                    {
+                        rC.CancelarReserva(i);
+                        string textoEmail = $@"
+                            <p>Lamentamos informar que sua reserva para o ambiente <strong>{i.Ambiente.Nome}</strong> foi cancelada devido ao uso para aulas dos cursos técnicos.</p>
+                            <p>Pedimos desculpas pelo transtorno causado e estamos à disposição para quaisquer esclarecimentos necessários.</p>
+                            <p>Realize outra reserva clicando <a href='http://localhost:54802/reserva.aspx'>aqui</a>.</p>
+                        ";
+                        Email.Enviar(i.Usuario.Email, "Cancelamento automático de reserva CPD", textoEmail);
+                    }
+                });
+
+                usoC.Adicionar(uso);
+                Response.Redirect("~/gradeHorario.aspx");
+            }
+            catch (SPException ex)
+            {
+                litErro.Text = $@"<div class='box1'>
+				        <p class='erro'>{ex.Message}</p>
+				        <img src='Estatico/imagens/close.svg' class='close-box' onclick='this.parentNode.remove()' />
+			        </div>";
+                return;
+            }
         }
     }
 }

@@ -126,5 +126,36 @@ namespace CPD.Repositorio.Controller
 
             return list;
         }
+
+        public List<ReservaAmbiente> ListarReservaAmbientesSiglaDiaSemanaHora(string sigla, int diaSemana, DateTime inicio, DateTime fim)
+        {
+            List<ReservaAmbiente> list = new List<ReservaAmbiente>();
+            List<Parametro> parametros = new List<Parametro>
+            {
+                new Parametro("pSigla", sigla),
+                new Parametro("pDiaSemana", diaSemana.ToString()),
+                new Parametro("pInicio", inicio.ToString("HH:mm:ss")),
+                new Parametro("pFim", fim.ToString("HH:mm:ss"))
+            };
+            MySqlDataReader reader = Executar("listarReservaAmbientesSiglaDiaSemanaHora", parametros);
+
+            while (reader.Read())
+            {
+                ReservaAmbiente da = new ReservaAmbiente()
+                {
+                    Usuario = new Usuario { RM = reader.GetInt32("cd_rm"), Email = reader["nm_email"].ToString() },
+                    Ambiente = new Ambiente { Sigla = reader["sg_ambiente"].ToString(), Nome = reader["nm_ambiente"].ToString() },
+                    DataSaidaPrevista = Data.DateTimeParse(reader["dt_saida_prevista"].ToString()),
+                    StatusReserva = (EStatusReserva)reader.GetInt16("cd_status")
+                };
+
+                list.Add(da);
+            }
+
+            if (reader.IsClosed) reader.Close();
+            Desconectar();
+
+            return list;
+        }
     }
 }

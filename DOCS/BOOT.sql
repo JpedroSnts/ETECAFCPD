@@ -765,6 +765,23 @@ BEGIN
 	SELECT * FROM ambiente;
 END$$
 
+DROP PROCEDURE IF EXISTS listarReservaAmbientesSiglaDiaSemanaHora$$
+CREATE PROCEDURE listarReservaAmbientesSiglaDiaSemanaHora(pSigla VARCHAR(20), pDiaSemana INT, pInicio TIME, pFim TIME)
+BEGIN
+	SELECT ra.dt_saida_prevista, a.sg_ambiente, a.nm_ambiente, u.cd_rm, u.nm_email, verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
+	FROM reserva_ambiente ra
+	JOIN usuario u ON u.cd_rm = ra.cd_rm
+	JOIN ambiente a ON a.sg_ambiente = ra.sg_ambiente
+	WHERE WEEKDAY(ra.dt_saida_prevista) + 1 = pDiaSemana 
+	AND ra.sg_ambiente = pSigla 
+	AND ( ((TIME(pInicio) BETWEEN TIME(ra.dt_saida_prevista) AND TIME(ra.dt_devolucao_prevista))
+			OR (TIME(pFim) BETWEEN TIME(ra.dt_saida_prevista) AND TIME(ra.dt_devolucao_prevista))) 
+			OR TIME(pInicio) <= TIME(ra.dt_devolucao_prevista) AND TIME(pFim) >= TIME(ra.dt_saida_prevista)
+		)
+	AND ra.dt_saida_prevista > CURDATE()
+	AND ra.dt_cancelamento IS NULL;
+END$$
+
 /* ------------------------------ USO AMBIENTE ------------------------------ */
 
 DROP FUNCTION IF EXISTS usoAmbienteJaExiste$$
