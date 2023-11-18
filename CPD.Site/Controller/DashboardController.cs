@@ -56,6 +56,7 @@ namespace CPD.Site.Controller
                     var reserva = new ReservaEquipamento() { Equipamento = new Equipamento { Sigla = siglas[i] }, DataSaidaPrevista = data, Usuario = new Usuario() { RM = rm } };
                     var reservaController = new ReservaEquipamentoController();
                     if (enumStatus == EStatusReserva.AguardandoRetirada) reservaController.AtualizarSaida(reserva);
+                    if (enumStatus == EStatusReserva.Reservado && DateTime.Compare(DateTime.Now.AddMinutes(10), reserva.DataSaidaPrevista) >= 0) reservaController.AtualizarSaida(reserva);
                     if (enumStatus == EStatusReserva.EmAndamento || enumStatus == EStatusReserva.EntregaAtrasada) reservaController.AtualizarDevolucao(reserva);
                     if (enumStatus == EStatusReserva.NaoRetirado) reservaController.CancelarReserva(reserva);
                 }
