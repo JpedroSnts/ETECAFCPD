@@ -216,7 +216,7 @@ window.addEventListener("load", () => {
             }
             return;
         });
-        if (arrayCkbs.includes(true) && ddlVazia == false) {
+        if (arrayCkbs.includes(true) && !ddlVazia) {
             btnGerarOcorrencia.removeAttribute("disabled");
         } else {
             btnGerarOcorrencia.setAttribute("disabled", "");
