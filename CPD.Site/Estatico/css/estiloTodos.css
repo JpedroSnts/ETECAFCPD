@@ -222,6 +222,7 @@ tr {
 
 input[name="equipamentos"], input[name="ambientes"] {
 	width: auto;
+	height: auto;
 }
 
 #displayOcorrencia {
