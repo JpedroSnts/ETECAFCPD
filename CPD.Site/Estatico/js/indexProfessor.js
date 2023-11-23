@@ -118,7 +118,29 @@ window.addEventListener("load", async () => {
 					lixeirasApagar.forEach(async (el) => {
 						const itens = el.getAttribute("itens");
 						const data = el.getAttribute("data");
-						cancelarReserva(itens, rmUsuario, data);
+						if (new Date(data).getDay() != new Date().getDay()) {
+							cancelarReserva(itens, rmUsuario, data);
+						}
+						else {
+							if (new Date(data).getHours() - new Date().getHours() == 1) {
+								if (new Date(data).getMinutes() > new Date().getMinutes()) {
+									cancelarReserva(itens, rmUsuario, data);
+								}
+								else {
+									return;
+								}
+
+							}
+							else {
+								if (new Date(data).getHours() - new Date().getHours() > 1) {
+									cancelarReserva(itens, rmUsuario, data);
+								}
+								else {
+									return;
+								}
+
+							}
+						}
 
 						let count = 0;
 						let els1 = el.parentElement.parentElement.childNodes;
@@ -154,7 +176,29 @@ window.addEventListener("load", async () => {
 					e.preventDefault();
 					const itens = e.target.getAttribute("itens");
 					const data = e.target.getAttribute("data");
-					cancelarReserva(itens, rmUsuario, data);
+					if (new Date(data).getDay() != new Date().getDay()) {
+						cancelarReserva(itens, rmUsuario, data);
+					}
+					else {
+						if (new Date(data).getHours() - new Date().getHours() == 1) {
+							if (new Date(data).getMinutes() > new Date().getMinutes()) {
+								cancelarReserva(itens, rmUsuario, data);
+							}
+							else {
+								return;
+							}
+
+						}
+						else {
+							if (new Date(data).getHours() - new Date().getHours() > 1) {
+								cancelarReserva(itens, rmUsuario, data);
+							}
+							else {
+								return;
+							}
+
+						}
+					}
 
 					let count = 0;
 					let els1 = lixeiras[i].parentElement.parentElement.childNodes;
