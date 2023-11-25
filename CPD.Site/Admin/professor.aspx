@@ -24,6 +24,7 @@
             <div class="divLabels">
                 <label for="txtRm">RM</label><br />
                 <div class="display">
+                    <img class="iconInput iconRm" src="../Estatico/imagens/rm.svg" />
                     <asp:TextBox ID="txtRm" placeholder="Insira o RM" runat="server" TextMode="Number"></asp:TextBox>
                     <br />
                     <br />
@@ -32,6 +33,7 @@
             <div class="divLabels">
                 <label for="txtEmail">E-mail</label><br />
                 <div class="display">
+                    <img class="iconInput iconCarta" src="../Estatico/imagens/carta.svg" />
                     <asp:TextBox ID="txtEmail" placeholder="Insira o e-mail" runat="server" TextMode="Email"></asp:TextBox>
                     <br />
                     <br />
