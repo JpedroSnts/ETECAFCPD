@@ -166,7 +166,7 @@ DELIMITER $$
 
 /* ------------------------------ USUARIO ------------------------------ */
 
-DROP FUNCTION IF EXISTS verificaSeUsuarioExiste$$ /* funciona */
+DROP FUNCTION IF EXISTS verificaSeUsuarioExiste$$
 CREATE FUNCTION verificaSeUsuarioExiste(pRM INT) RETURNS BOOL
 BEGIN
 	DECLARE vRM INT DEFAULT 0;
@@ -174,7 +174,7 @@ BEGIN
 	RETURN vRM <> 0;
 END$$
 
-DROP PROCEDURE IF EXISTS adicionarUsuario$$  /* funciona */
+DROP PROCEDURE IF EXISTS adicionarUsuario$$
 CREATE PROCEDURE adicionarUsuario(pRM INT,  pNome VARCHAR(255), pEmail VARCHAR(255), pSenha VARCHAR(255), pImg VARCHAR(255), pTipoUsuario INT)
 BEGIN
 
@@ -251,6 +251,15 @@ CREATE PROCEDURE buscarUsuarioPorRM(pRM INT)
 BEGIN
 	
     SELECT nm_usuario, nm_email FROM usuario 
+    WHERE cd_rm = pRM;
+    
+END$$
+
+DROP PROCEDURE IF EXISTS alterarImagemProfessor$$
+CREATE PROCEDURE alterarImagemProfessor(pRM INT, pImagem VARCHAR(255))
+BEGIN
+	
+    UPDATE usuario SET nm_referencia_imagem = pImagem
     WHERE cd_rm = pRM;
     
 END$$
