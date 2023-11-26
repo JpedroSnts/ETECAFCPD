@@ -52,7 +52,7 @@ namespace CPD.Site
                                         <td>{ua.DiaSemana.Nome}</td>
                                         <td>{ua.Inicio:HH:mm} - {ua.Termino:HH:mm}</td>
                                         <td>{ua.Ambiente.Nome}</td>
-                                        <td><div class='btnExcluirUsoAmbiente' dia='{ua.DiaSemana.Codigo}' inicio='{ua.Inicio:HH:mm}' fim='{ua.Termino:HH:mm}'>Excluir</div></td>
+                                        <td><div dia='{ua.DiaSemana.Codigo}' inicio='{ua.Inicio:HH:mm}' fim='{ua.Termino:HH:mm}'><img id='iconLixeira' src='Estatico/imagens/lixeira.svg' /></div></td>
                                     </tr>";
             });;
         }
