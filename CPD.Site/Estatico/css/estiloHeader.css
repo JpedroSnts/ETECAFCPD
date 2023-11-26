@@ -117,10 +117,6 @@ header {
         cursor: pointer;
     }
 
-button:hover {
-    background-color: #cbcbcb;
-}
-
 .dropdown-options {
     display: none;
     position: absolute;

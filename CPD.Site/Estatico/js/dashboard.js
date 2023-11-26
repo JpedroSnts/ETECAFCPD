@@ -43,8 +43,8 @@ window.addEventListener("load", () => {
 			<td class="${status.css}">${status.nome}</td>
 			<td>
 				${status.botao == ""
-                ? ""
-                : `<div class="btn btnAcaoReserva" rm="${reserva.RM}" dt_saida="${reserva.DataSaidaPrevista}" itens="${reserva.Itens.replaceAll(" ", "")}" status="${status.codigo}">${status.botao}</div>`
+            ? ""
+            : `<button class="btn btnAcaoReserva" rm="${reserva.RM}" dt_saida="${reserva.DataSaidaPrevista}" itens="${reserva.Itens.replaceAll(" ", "")}" status="${status.codigo}">${status.botao} ${status.codigo == 1 ? `<span class="timer-btn"></span>` : ""}</button>`
             }
 			</td>
             <td>
@@ -53,6 +53,50 @@ window.addEventListener("load", () => {
             : ""}
             </td>
 		</tr>`;
+    }
+
+    function timer(el) {
+        const btn = el.parentElement;
+        let end = new Date(new Date(el.parentElement.getAttribute("dt_saida")) - 1000 * 60 * 10);
+
+        if (new Date().getTime() < end.getTime()) {
+            btn.setAttribute("disabled", "");
+        }
+
+        let _second = 1000;
+        let _minute = _second * 60;
+        let _hour = _minute * 60;
+        let _day = _hour * 24;
+        let timer;
+
+        let strTimer = "";
+
+        function showRemaining() {
+            let now = new Date();
+            let distance = end - now;
+            if (distance < 0) {
+
+                clearInterval(timer);
+                btn.removeAttribute("disabled");
+
+                return false;
+            }
+            let days = Math.floor(distance / _day);
+            let hours = Math.floor((distance % _day) / _hour);
+            let minutes = Math.floor((distance % _hour) / _minute);
+            let seconds = Math.floor((distance % _minute) / _second);
+
+            strTimer = "(" + minutes + 'm';
+            strTimer += seconds + "s)";
+            if (days == 0 && hours == 0) {
+                el.textContent = strTimer;
+                return true;
+            }
+        }
+        if (showRemaining()) {
+            el.textContent = strTimer;
+        }
+        timer = setInterval(showRemaining, 1000);
     }
 
     function fetchListar(url) {
@@ -64,6 +108,9 @@ window.addEventListener("load", () => {
                 for (let i = 0; i < reservas.length; i++) {
                     tbodyReservas.innerHTML += trTabela(reservas[i]);
                 }
+                document.querySelectorAll(".timer-btn").forEach(el => {
+                    timer(el);
+                });
                 addEventoBotaoReserva();
             });
     }
