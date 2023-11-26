@@ -12,16 +12,16 @@ namespace CPD.Site.Controller
 {
     public class HomeController
     {
-        public List<ReservaGenerica> ListarReservas(int rm)
+        public List<ReservaGenerica> ListarReservas(int rm, bool todas)
         {
             var list = new List<ReservaGenerica>();
             var raController = new ReservaAmbienteController();
             var reController = new ReservaEquipamentoController();
-            foreach (var ra in raController.ListarReservasAmbientesProfessor(rm))
+            foreach (var ra in raController.ListarReservasAmbientesProfessor(rm, todas))
             {
                 list.Add(new ReservaGenerica(ra));
             }
-            foreach (var re in reController.ListarReservasEquipamentosProfessor(rm))
+            foreach (var re in reController.ListarReservasEquipamentosProfessor(rm, todas))
             {
                 list.Add(new ReservaGenerica(re));
             }

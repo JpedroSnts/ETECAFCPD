@@ -100,7 +100,6 @@
     <Compile Include="Banco\Parametro.cs" />
     <Compile Include="Controller\AmbienteController.cs" />
     <Compile Include="Controller\EquipamentoController.cs" />
-    <Compile Include="Controller\HistoricoController.cs" />
     <Compile Include="Controller\NotificacaoController.cs" />
     <Compile Include="Controller\OcorrenciaAmbienteController.cs" />
     <Compile Include="Controller\OcorrenciaEquipamentoController.cs" />

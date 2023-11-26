@@ -94,12 +94,13 @@ namespace CPD.Repositorio.Controller
             return list;
         }
 
-        public List<ReservaEquipamento> ListarReservasEquipamentosProfessor(int rm)
+        public List<ReservaEquipamento> ListarReservasEquipamentosProfessor(int rm, bool todas)
         {
             List<ReservaEquipamento> list = new List<ReservaEquipamento>();
             List<Parametro> parametros = new List<Parametro>
             {
                 new Parametro("pRm", rm.ToString()),
+                new Parametro("pTodas", todas ? "1" : "0"),
             };
             MySqlDataReader reader = Executar("listarReservasEquipamentosProfessor", parametros);
 

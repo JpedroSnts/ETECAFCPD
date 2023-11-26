@@ -132,6 +132,7 @@
     <Content Include="Estatico\imagens\nome.svg" />
     <Content Include="Estatico\js\dashboard.js" />
     <Content Include="Estatico\js\gradeHorario.js" />
+    <Content Include="Estatico\js\historico.js" />
     <Content Include="Estatico\js\indexProfessor.js" />
     <Content Include="Estatico\js\menuSanduiche.js" />
     <Content Include="Estatico\js\painelControle.js" />

@@ -386,44 +386,8 @@ BEGIN
     JOIN usuario u ON re.cd_rm = u.cd_rm
     WHERE 
         ((pCodigoStatus = 0 OR pCodigoStatus IS NULL) OR
-			(pCodigoStatus = 1 AND 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() < dt_saida_prevista) OR
-            (pCodigoStatus = 2 AND 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NOT NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista) OR
-            (pCodigoStatus = 3 AND 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NOT NULL
-				AND NOW() > dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista) OR
-            (pCodigoStatus = 4 AND 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista) OR
-            (pCodigoStatus = 5 AND 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() > dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista) OR
-            (pCodigoStatus = 6 AND 
-				dt_cancelamento IS NOT NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL) OR
-            (pCodigoStatus = 7 AND 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NOT NULL
-				AND dt_saida IS NOT NULL ))
+				verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) = pCodigoStatus
+		)
         AND (pFiltro IS NULL OR
             u.cd_rm LIKE CONCAT(pFiltro, '%') OR u.nm_usuario LIKE CONCAT(pFiltro, '%') OR
             e.sg_equipamento LIKE CONCAT(pFiltro, '%') OR e.nm_equipamento LIKE CONCAT(pFiltro, '%'))
@@ -433,26 +397,47 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS listarReservasEquipamentosProfessor$$
-CREATE PROCEDURE listarReservasEquipamentosProfessor(pRm INT)
+CREATE PROCEDURE listarReservasEquipamentosProfessor(pRm INT, pTodas BOOL)
 BEGIN 
-	SELECT 
-        e.sg_equipamento,
-		e.nm_equipamento,
-        u.cd_rm,
-        u.nm_usuario,
-        re.dt_saida_prevista,
-        re.dt_devolucao_prevista,
-        re.dt_saida,
-        re.dt_devolucao,
-        re.dt_cancelamento,
-		verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
-	FROM reserva_equipamento re
-    JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
-    JOIN usuario u ON re.cd_rm = u.cd_rm
-    WHERE 
-        u.cd_rm = pRm AND DATE(re.dt_saida_prevista) >= curdate()
-        AND re.dt_cancelamento IS NULL
-    ORDER BY re.dt_saida_prevista ASC;
+	IF (pTodas) THEN
+		SELECT 
+			e.sg_equipamento,
+			e.nm_equipamento,
+			u.cd_rm,
+			u.nm_usuario,
+			re.dt_saida_prevista,
+			re.dt_devolucao_prevista,
+			re.dt_saida,
+			re.dt_devolucao,
+			re.dt_cancelamento,
+			verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
+		FROM reserva_equipamento re
+		JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
+		JOIN usuario u ON re.cd_rm = u.cd_rm
+		WHERE 
+			u.cd_rm = pRm AND
+			verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) IN (3,5,6,7)
+		ORDER BY re.dt_saida_prevista ASC;
+	ELSE
+		SELECT 
+			e.sg_equipamento,
+			e.nm_equipamento,
+			u.cd_rm,
+			u.nm_usuario,
+			re.dt_saida_prevista,
+			re.dt_devolucao_prevista,
+			re.dt_saida,
+			re.dt_devolucao,
+			re.dt_cancelamento,
+			verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
+		FROM reserva_equipamento re
+		JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
+		JOIN usuario u ON re.cd_rm = u.cd_rm
+		WHERE 
+			u.cd_rm = pRm AND DATE(re.dt_saida_prevista) >= curdate()
+			AND re.dt_cancelamento IS NULL
+		ORDER BY re.dt_saida_prevista ASC;
+	END IF;
 END$$
 
 DROP PROCEDURE IF EXISTS listarEquipamentosDisponiveis$$
@@ -670,44 +655,8 @@ BEGIN
     JOIN usuario u ON ra.cd_rm = u.cd_rm
     WHERE 
         ((pCodigoStatus = 0 OR pCodigoStatus IS NULL) OR
-			(pCodigoStatus = 1 AND 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() < dt_saida_prevista) OR
-            (pCodigoStatus = 2 AND 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NOT NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista) OR
-            (pCodigoStatus = 3 AND 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NOT NULL
-				AND NOW() > dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista) OR
-            (pCodigoStatus = 4 AND 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() < dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista) OR
-            (pCodigoStatus = 5 AND 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL
-				AND NOW() > dt_devolucao_prevista
-				AND NOW() > dt_saida_prevista) OR
-            (pCodigoStatus = 6 AND 
-				dt_cancelamento IS NOT NULL
-				AND dt_devolucao IS NULL
-				AND dt_saida IS NULL) OR
-            (pCodigoStatus = 7 AND 
-				dt_cancelamento IS NULL
-				AND dt_devolucao IS NOT NULL
-				AND dt_saida IS NOT NULL ))
+				verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) = pCodigoStatus
+		)
         AND (pFiltro IS NULL OR
             u.cd_rm LIKE CONCAT(pFiltro, '%') OR u.nm_usuario LIKE CONCAT(pFiltro, '%') OR
             a.sg_ambiente LIKE CONCAT(pFiltro, '%') OR a.nm_ambiente LIKE CONCAT(pFiltro, '%'))
@@ -716,26 +665,47 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS listarReservasAmbientesProfessor$$
-CREATE PROCEDURE listarReservasAmbientesProfessor(pRm INT)
+CREATE PROCEDURE listarReservasAmbientesProfessor(pRm INT, pTodas BOOL)
 BEGIN 
-	SELECT 
-        a.sg_ambiente,
-		a.nm_ambiente,
-        u.cd_rm,
-        u.nm_usuario,
-        ra.dt_saida_prevista,
-        ra.dt_devolucao_prevista,
-        ra.dt_saida,
-        ra.dt_devolucao,
-        ra.dt_cancelamento,
-		verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
-	FROM reserva_ambiente ra
-    JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
-    JOIN usuario u ON ra.cd_rm = u.cd_rm
-    WHERE 
-        u.cd_rm = pRm AND DATE(ra.dt_saida_prevista) >= curdate()
-        AND ra.dt_cancelamento IS NULL
-    ORDER BY ra.dt_saida_prevista ASC;
+	IF (pTodas) THEN
+		SELECT 
+			a.sg_ambiente,
+			a.nm_ambiente,
+			u.cd_rm,
+			u.nm_usuario,
+			ra.dt_saida_prevista,
+			ra.dt_devolucao_prevista,
+			ra.dt_saida,
+			ra.dt_devolucao,
+			ra.dt_cancelamento,
+			verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
+		FROM reserva_ambiente ra
+		JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
+		JOIN usuario u ON ra.cd_rm = u.cd_rm
+		WHERE 
+			u.cd_rm = pRm AND
+			verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) IN (3,5,6,7)
+		ORDER BY ra.dt_saida_prevista ASC;
+	ELSE
+		SELECT 
+			a.sg_ambiente,
+			a.nm_ambiente,
+			u.cd_rm,
+			u.nm_usuario,
+			ra.dt_saida_prevista,
+			ra.dt_devolucao_prevista,
+			ra.dt_saida,
+			ra.dt_devolucao,
+			ra.dt_cancelamento,
+			verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
+		FROM reserva_ambiente ra
+		JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
+		JOIN usuario u ON ra.cd_rm = u.cd_rm
+		WHERE 
+			u.cd_rm = pRm AND DATE(ra.dt_saida_prevista) >= curdate()
+			AND ra.dt_cancelamento IS NULL
+		ORDER BY ra.dt_saida_prevista ASC;
+	END IF;
 END$$
 
 DROP PROCEDURE IF EXISTS listarAmbientesDisponiveis$$
