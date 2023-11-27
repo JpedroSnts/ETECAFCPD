@@ -381,6 +381,7 @@ input[name="equipamentos"], input[name="ambientes"] {
 		font-size: 14px;
 		font-weight: 600;
 	}
+
 	label {
 		font-size: 12px;
 	}
@@ -399,10 +400,10 @@ input[name="equipamentos"], input[name="ambientes"] {
 		width: 100%;
 	}
 
-	input:focus {
-		box-shadow: 0 0 0 0;
-		outline: 0;
-	}
+		input:focus {
+			box-shadow: 0 0 0 0;
+			outline: 0;
+		}
 
 	button {
 		border: thin solid #114a55;
@@ -423,12 +424,8 @@ input[name="equipamentos"], input[name="ambientes"] {
 	}
 
 	.caixa-flutuante-erros {
-		position: fixed;
-		bottom: 10px;
+		position: absolute;
 		width: 90%;
-		top: 10px;
-		height: 0px;
-		transform: translateX(50%);
-		right: 50%;
+		transform: translateX(50%) translateY(50%);
 	}
 }
