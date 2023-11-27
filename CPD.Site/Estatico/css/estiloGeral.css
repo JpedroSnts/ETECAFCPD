@@ -437,7 +437,7 @@ button, input[type="button"], input[type="submit"] {
 
 /* ---------------------------- HISTORICO ---------------------------- */
 
-input {
+/*input {
 	width: 25%;
 	border-radius: 5px;
 	border: 1px solid #114a55;
@@ -446,7 +446,7 @@ input {
 	font-size: 14px;
 	padding: 6px 8px 3px 12px;
 	margin: auto;
-}
+}*/
 
 #txtInputData {
 	margin-right: 10px;
@@ -477,22 +477,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 		color: #000;
 	}
 
-button {
-	border: thin solid #114A55;
-	color: #fff;
-	background-color: #114A55;
-	border-radius: 20px;
-	padding: 5px 20px;
-	margin-top: 10px;
-	cursor: pointer;
-}
-
-	button:hover {
-		color: #fff;
-		background-color: #114A55;
-	}
-
-button, input[type="button"], input[type="submit"] {
+#btnBuscarHistorico {
 	width: 100px;
 	height: 39px;
 	border-radius: 20px;
@@ -506,6 +491,10 @@ button, input[type="button"], input[type="submit"] {
 	margin: 0px;
 }
 
+#btnBuscarHistorico:hover {
+	color: #fff;
+	background-color: #114A55;
+}
 
 #btnBuscarHistoricoResponsivo {
 	display: none;
@@ -729,11 +718,11 @@ button, input[type="button"], input[type="submit"] {
 		width: 22px;
 	}
 
-	input {
+	/*input {
 		font-size: 12px;
 		padding: 6px 8px 3px 6px;
 		margin: 0px;
-	}
+	}*/
 
 	#txtInputData {
 		width: 85%;
