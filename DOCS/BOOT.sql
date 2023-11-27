@@ -406,27 +406,59 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS listarReservasEquipamentosProfessor$$
-CREATE PROCEDURE listarReservasEquipamentosProfessor(pRm INT, pTodas BOOL)
+CREATE PROCEDURE listarReservasEquipamentosProfessor(pRm INT, pTodas BOOL, pInicio DATE, pFim DATE)
 BEGIN 
+
+	DECLARE vFim DATE;
+	
 	IF (pTodas) THEN
-		SELECT 
-			e.sg_equipamento,
-			e.nm_equipamento,
-			u.cd_rm,
-			u.nm_usuario,
-			re.dt_saida_prevista,
-			re.dt_devolucao_prevista,
-			re.dt_saida,
-			re.dt_devolucao,
-			re.dt_cancelamento,
-			verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
-		FROM reserva_equipamento re
-		JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
-		JOIN usuario u ON re.cd_rm = u.cd_rm
-		WHERE 
-			u.cd_rm = pRm AND
-			verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) IN (3,5,6,7)
-		ORDER BY re.dt_saida_prevista ASC;
+		IF (pInicio IS NOT NULL) THEN
+			
+			IF (pFim IS NULL) THEN
+				SELECT DATE(dt_saida_prevista) INTO vFim FROM reserva_equipamento WHERE cd_rm = pRm ORDER BY dt_saida_prevista DESC LIMIT 1;
+			ELSE
+				SET vFim = pFim;
+			END IF;
+
+			SELECT 
+				e.sg_equipamento,
+				e.nm_equipamento,
+				u.cd_rm,
+				u.nm_usuario,
+				re.dt_saida_prevista,
+				re.dt_devolucao_prevista,
+				re.dt_saida,
+				re.dt_devolucao,
+				re.dt_cancelamento,
+				verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
+			FROM reserva_equipamento re
+			JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
+			JOIN usuario u ON re.cd_rm = u.cd_rm
+			WHERE 
+				u.cd_rm = pRm AND
+				(DATE(dt_saida_prevista) BETWEEN pInicio AND vFim) AND
+				verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) IN (3,5,6,7)
+			ORDER BY re.dt_saida_prevista ASC;
+		ELSE 
+			SELECT 
+				e.sg_equipamento,
+				e.nm_equipamento,
+				u.cd_rm,
+				u.nm_usuario,
+				re.dt_saida_prevista,
+				re.dt_devolucao_prevista,
+				re.dt_saida,
+				re.dt_devolucao,
+				re.dt_cancelamento,
+				verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
+			FROM reserva_equipamento re
+			JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
+			JOIN usuario u ON re.cd_rm = u.cd_rm
+			WHERE 
+				u.cd_rm = pRm AND
+				verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) IN (3,5,6,7)
+			ORDER BY re.dt_saida_prevista ASC;
+		END IF;
 	ELSE
 		SELECT 
 			e.sg_equipamento,
@@ -674,27 +706,58 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS listarReservasAmbientesProfessor$$
-CREATE PROCEDURE listarReservasAmbientesProfessor(pRm INT, pTodas BOOL)
+CREATE PROCEDURE listarReservasAmbientesProfessor(pRm INT, pTodas BOOL, pInicio DATE, pFim DATE)
 BEGIN 
+	DECLARE vFim DATE;
+	
 	IF (pTodas) THEN
-		SELECT 
-			a.sg_ambiente,
-			a.nm_ambiente,
-			u.cd_rm,
-			u.nm_usuario,
-			ra.dt_saida_prevista,
-			ra.dt_devolucao_prevista,
-			ra.dt_saida,
-			ra.dt_devolucao,
-			ra.dt_cancelamento,
-			verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
-		FROM reserva_ambiente ra
-		JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
-		JOIN usuario u ON ra.cd_rm = u.cd_rm
-		WHERE 
-			u.cd_rm = pRm AND
-			verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) IN (3,5,6,7)
-		ORDER BY ra.dt_saida_prevista ASC;
+		IF (pInicio IS NOT NULL) THEN
+			
+			IF (pFim IS NULL) THEN
+				SELECT DATE(dt_saida_prevista) INTO vFim FROM reserva_ambiente WHERE cd_rm = pRm ORDER BY dt_saida_prevista DESC LIMIT 1;
+			ELSE
+				SET vFim = pFim;
+			END IF;
+
+			SELECT 
+				a.sg_ambiente,
+				a.nm_ambiente,
+				u.cd_rm,
+				u.nm_usuario,
+				ra.dt_saida_prevista,
+				ra.dt_devolucao_prevista,
+				ra.dt_saida,
+				ra.dt_devolucao,
+				ra.dt_cancelamento,
+				verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
+			FROM reserva_ambiente ra
+			JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
+			JOIN usuario u ON ra.cd_rm = u.cd_rm
+			WHERE 
+				u.cd_rm = pRm AND
+				(DATE(dt_saida_prevista) BETWEEN pInicio AND vFim) AND
+				verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) IN (3,5,6,7)
+			ORDER BY ra.dt_saida_prevista ASC;
+		ELSE
+			SELECT 
+				a.sg_ambiente,
+				a.nm_ambiente,
+				u.cd_rm,
+				u.nm_usuario,
+				ra.dt_saida_prevista,
+				ra.dt_devolucao_prevista,
+				ra.dt_saida,
+				ra.dt_devolucao,
+				ra.dt_cancelamento,
+				verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) as cd_status
+			FROM reserva_ambiente ra
+			JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
+			JOIN usuario u ON ra.cd_rm = u.cd_rm
+			WHERE 
+				u.cd_rm = pRm AND
+				verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) IN (3,5,6,7)
+			ORDER BY ra.dt_saida_prevista ASC;
+		END IF;
 	ELSE
 		SELECT 
 			a.sg_ambiente,

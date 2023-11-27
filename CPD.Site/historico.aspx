@@ -22,33 +22,15 @@
     <form id="form1" runat="server">
         <uc:Header ID="PartialHeader" runat="server" />
 
-        <main id="mainReload">
-            <div id="tdReload">
-                <img class="reloadAnimacao" id="iconeReload" src="/Estatico/imagens/refresh.svg" />
-                Carregando...
-            </div>
-        </main>
-
-        <!-- ----------------------- CARDS RESERVA ----------------------- -->
-
-        <main id="mainHome" style="display: none">
-            <div>
-                <img id="cardSemReserva" src="Estatico/imagens/semReserva.png" />
-                <p><strong>Você não possui reservas!</strong></p>
-            </div>
-            <div>
-                <a href="/reserva.aspx" id="btnNovaReserva"><i class="fa-solid fa-plus"></i>Nova Reserva</a>
-            </div>
-        </main>
         <main id="mainComReserva" style="display: none">
             <h1>Histórico</h1>
             <!------------------------ CARDS RESERVA ----------------------- -->
 
             <div id="inputsRelatorio">
-                <asp:TextBox runat="server" ID="txtDataInicio" TextMode="SingleLine" placeholder="Data Inicial" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date"></asp:TextBox>
-                <asp:TextBox runat="server" ID="txtDataFinal" TextMode="SingleLine" placeholder="Data Final" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date"></asp:TextBox>
-                <asp:Button ID="btnBuscarHistorico" runat="server" Text="Buscar"  />
-                <asp:ImageButton ID="btnBuscarHistoricoResponsivo" runat="server" ImageUrl="~/Estatico/imagens/lupa.svg" />
+                <input name="txtDataInicio" type="text" id="txtDataInicio" placeholder="Data Inicial" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date" />
+                <input name="txtDataFinal" type="text" id="txtDataFinal" placeholder="Data Final" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date" />
+                <input type="submit" name="btnBuscarHistorico" value="Buscar" id="btnBuscarHistorico" />
+                <input type="image" name="btnBuscarHistoricoResponsivo" id="btnBuscarHistoricoResponsivo" src="Estatico/imagens/lupa.svg" />
             </div>
 
             <div id="displayCardsReserva">
@@ -57,6 +39,13 @@
 
             <!-- ----------------------- CARD NOVA RESERVA ----------------------- -->
 
+        </main>
+
+        <main id="mainReload">
+            <div id="tdReload">
+                <img class="reloadAnimacao" id="iconeReload" src="/Estatico/imagens/refresh.svg" />
+                Carregando...
+            </div>
         </main>
 
         <script src="/Estatico/js/historico.js"></script>

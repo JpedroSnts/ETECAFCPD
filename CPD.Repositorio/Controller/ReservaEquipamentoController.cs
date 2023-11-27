@@ -94,13 +94,15 @@ namespace CPD.Repositorio.Controller
             return list;
         }
 
-        public List<ReservaEquipamento> ListarReservasEquipamentosProfessor(int rm, bool todas)
+        public List<ReservaEquipamento> ListarReservasEquipamentosProfessor(int rm, bool todas, DateTime inicio, DateTime fim)
         {
             List<ReservaEquipamento> list = new List<ReservaEquipamento>();
             List<Parametro> parametros = new List<Parametro>
             {
                 new Parametro("pRm", rm.ToString()),
                 new Parametro("pTodas", todas ? "1" : "0"),
+                new Parametro("pInicio", inicio == DateTime.MinValue ? null : inicio.ToString("yyyy-MM-dd")),
+                new Parametro("pFim", fim == DateTime.MinValue ? null : fim.ToString("yyyy-MM-dd")),
             };
             MySqlDataReader reader = Executar("listarReservasEquipamentosProfessor", parametros);
 

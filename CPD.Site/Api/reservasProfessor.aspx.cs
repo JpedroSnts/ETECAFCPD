@@ -1,4 +1,5 @@
 ﻿using CPD.Repositorio.Model;
+using CPD.Repositorio.Util;
 using CPD.Site.Controller;
 using CPD.Site.Util;
 using CPD.Site.ViewModel;
@@ -29,6 +30,8 @@ namespace CPD.Site.Api
                     var homeController = new HomeController();
                     var rm = int.Parse(Request["rm"]);
                     var todas = String.IsNullOrEmpty(Request["todas"]) ? false : bool.Parse(Request["todas"]);
+                    var inicio = Data.DateTimeParse(Request["inicio"]);
+                    var fim = Data.DateTimeParse(Request["fim"]);
                     if (!String.IsNullOrEmpty(Request["itens"]) && !String.IsNullOrEmpty(Request["data"]))
                     {
                         var itens = Request["itens"];
@@ -38,7 +41,7 @@ namespace CPD.Site.Api
                     }
                     Response.ContentType = "application/json";
                     Response.StatusCode = 200;
-                    Response.Write(JsonConvert.SerializeObject(ReservaDTO.OrdenarReservas(homeController.ListarReservas(rm, todas))));
+                    Response.Write(JsonConvert.SerializeObject(ReservaDTO.OrdenarReservas(homeController.ListarReservas(rm, todas, inicio, fim))));
                     return;
                 }
                 Response.StatusCode = 401;

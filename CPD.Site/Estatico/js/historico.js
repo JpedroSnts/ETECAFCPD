@@ -2,7 +2,6 @@
     const rmUsuario = document.querySelector("#rm_usuario").textContent;
     const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
     const mainReload = document.querySelector("#mainReload");
-    const mainHome = document.querySelector("#mainHome");
     const mainComReserva = document.querySelector("#mainComReserva");
     const $reservas = document.querySelector("#reservas");
 
@@ -35,8 +34,31 @@
     }
     cardReserva();
 
-    function buscarReservas() {
-        fetch(`/api/reservasProfessor.aspx?rm=${rmUsuario}&todas=true`).then((res) => {
+    const txtDataInicio = document.querySelector("#txtDataInicio");
+    const txtDataFinal = document.querySelector("#txtDataFinal");
+    const btnBuscarHistorico = document.querySelector("#btnBuscarHistorico");
+    const btnBuscarHistoricoResponsivo = document.querySelector("#btnBuscarHistoricoResponsivo");
+
+    function eventoBuscar(e) {
+        e.preventDefault();
+        if (txtDataInicio.value != "" && txtDataFinal.value != "") {
+            buscarReservas(txtDataInicio.value, txtDataFinal.value);
+            return;
+        }
+        if (txtDataInicio.value != "") {
+            buscarReservas(txtDataInicio.value, null);
+        }
+    }
+
+    btnBuscarHistorico.addEventListener("click", eventoBuscar);
+    btnBuscarHistoricoResponsivo.addEventListener("click", eventoBuscar);
+
+    function buscarReservas(inicio, fim) {
+        mainReload.style.display = "block";
+        let url = `/api/reservasProfessor.aspx?rm=${rmUsuario}&todas=true`;
+        if (inicio) url = `/api/reservasProfessor.aspx?rm=${rmUsuario}&todas=true&inicio=${inicio}`;
+        if (inicio && fim) url = `/api/reservasProfessor.aspx?rm=${rmUsuario}&todas=true&inicio=${inicio}&fim=${fim}`;
+        fetch(url).then((res) => {
             return res.json();
         }).then((reservas) => {
             let reservasAgrupadas = {};
@@ -55,7 +77,6 @@
             $reservas.innerHTML = "";
             if (reservas != null && reservas.length != 0) {
                 mainReload.style.display = "none";
-                mainHome.style.display = "none";
                 mainComReserva.style.display = "flex";
 
                 for (let i = 0; i < reservasAgrupadas.length; i++) {
@@ -90,10 +111,11 @@
                     const diaSemana = diasSemana[dt.getDay()];
                     const dd = String(dt.getDate()).length == 2 ? dt.getDate() : "0" + dt.getDate();
                     const mm = String(dt.getMonth() + 1).length == 2 ? dt.getMonth() + 1 : "0" + (dt.getMonth() + 1);
-                    const dd_mm = `${dd}/${mm}`;
+                    const yyyy = dt.getFullYear();
+                    const dd_mm_yyyy = `${dd}/${mm}/${yyyy}`;
                     $reservas.innerHTML += `
 						<div class="cardReserva">
-							<h1>${diaSemana} (${dd_mm})</h1>
+							<h1>${diaSemana} (${dd_mm_yyyy})</h1>
 							<div class="divReservas">
 								<div class="divTipoReserva">
 									${ambientesReserva != `` ? `<h2 id="h2Equipamentos">Ambientes</h2>` : ""}
@@ -109,8 +131,6 @@
                 cardReserva();
             } else {
                 mainReload.style.display = "none";
-                mainComReserva.style.display = "none";
-                mainHome.style.display = "flex";
             }
         });
     }
