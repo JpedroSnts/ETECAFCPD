@@ -84,8 +84,8 @@
 			<div id="displayOpMenu">
 				<a href="/index.aspx">Suas Reservas</a>
 				<a href="/reserva.aspx">Nova Reserva</a>
-				<a href="/alterarSenha.aspx">Editar Perfil</a>
 				<a href="/historico.aspx">Histórico</a>
+				<a href="/alterarSenha.aspx">Editar Perfil</a>
 			</div>
 		</div>
 		<img id="iconMenuSanduiche" src="/Estatico/imagens/menuSanduiche.svg" />
@@ -124,11 +124,11 @@
 					</a>
 				</div>
 				<div class="itemsMenuProf">
-					<a href="/alterarSenha.aspx"><p>Editar Perfil</p><img class="iconsMenu" src="/Estatico/imagens/alterarSenha.svg" />
+					<a href="/historico.aspx"><p>Histórico</p><img class="iconsMenu" src="/Estatico/imagens/clock.svg" />
 					</a>
 				</div>
 				<div class="itemsMenuProf">
-					<a href="/historico.aspx"><p>Histórico</p><img class="iconsMenu" src="/Estatico/imagens/clock.svg" />
+					<a href="/alterarSenha.aspx"><p>Editar Perfil</p><img class="iconsMenu" src="/Estatico/imagens/alterarSenha.svg" />
 					</a>
 				</div>
 				<div class="itemsMenuProf">
