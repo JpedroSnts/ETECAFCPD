@@ -199,6 +199,7 @@ tr {
 	background: #fff;
 	border: thin solid #bbbbbbbf;
 	box-shadow: 1px 1px 5px #bbbbbbbf;
+	margin-top: 40px;
 }
 
 	.box1 p {
@@ -245,6 +246,7 @@ input[name="equipamentos"], input[name="ambientes"] {
 #gerarOcorrencia h4 {
 	margin: 0;
 	margin-top: 10px;
+	color: #114a55;
 }
 
 #gerarOcorrencia details summary {
@@ -254,6 +256,7 @@ input[name="equipamentos"], input[name="ambientes"] {
 	font-weight: 700;
 	cursor: pointer;
 	user-select: none;
+	color: #114a55;
 }
 
 #gerarOcorrencia {
@@ -319,6 +322,10 @@ input[name="equipamentos"], input[name="ambientes"] {
 	padding: 6px 8px 3px 12px;
 	margin: auto;
 	resize: vertical;
+}
+
+.caixaDescricao:focus {
+	outline: none;
 }
 
 #btnGerarOcorrencia {

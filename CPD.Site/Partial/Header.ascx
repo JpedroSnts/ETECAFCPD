@@ -20,7 +20,7 @@
 					<a href="/admin/ocorrenciaEquipamento.aspx"">Tipo Ocorrência Equipamento</a>
 				  </div>
 				</div>
-                <a href="/alterarSenha.aspx">Alterar Senha</a>
+                <a href="/alterarSenha.aspx">Editar Perfil</a>
             </div>
         </div>
         <img id="iconMenuSanduicheFunc" src="/Estatico/imagens/menuSanduiche.svg">
@@ -64,7 +64,7 @@
                     <img class="iconsMenu" src="/Estatico/imagens/novaReserva.svg">
                 </div>
                 <div class="itemsMenu">
-                    <a href="/alterarSenha.aspx"><p>Alterar Senha</p></a>
+                    <a href="/alterarSenha.aspx"><p>Editar Perfil</p></a>
                     <img class="iconsMenu" src="/Estatico/imagens/alterarSenha.svg">
                 </div>
                 <div class="itemsMenu">
