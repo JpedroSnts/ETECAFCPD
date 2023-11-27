@@ -43,7 +43,7 @@
                     </div>
 
                     <div id="alignBtn">
-                        <p>Relatório gerado em formato PDF</p>
+                        <p></p>
                         <asp:Button ID="btnGerarRelatorio" runat="server" Text="Gerar Relatório" OnClick="btnGerarRelatorio_Click"/>
                     </div>
                 </div>
