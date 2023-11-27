@@ -6,6 +6,16 @@ window.addEventListener("load", async () => {
 	const mainComReserva = document.querySelector("#mainComReserva");
 	const $reservas = document.querySelector("#reservas");
 
+	const status = {
+		"1": { nome: "Reservado", icone: "concluida.svg" },
+		"2": { nome: "Em andamento", icone: "clock.svg" },
+		"3": { nome: "Entrega Atrasada", icone: "atrasada.svg" },
+		"4": { nome: "Aguardando Retirada", icone: "clock.svg" },
+		"5": { nome: "Não Retirados", icone: "naoRetirada.svg" },
+		"6": { nome: "Canceladas", icone: "cancelada.svg" },
+		"7": { nome: "Concluida", icone: "concluida.svg" }
+	};
+
 	function cancelarReserva(itens, rm, data) {
 		fetch(`/api/reservasProfessor.aspx?rm=${rm}&data=${data}&itens=${itens}`).then();
 	}
@@ -67,14 +77,14 @@ window.addEventListener("load", async () => {
 								ambientesReserva += `
 									<div style="margin-bottom: 5px;">
 										<p>${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
-										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : el2.StatusReserva == 4 ? `<img id="iconRelogio" src="Estatico/imagens/trianguloExclamacaoSemContorno.svg">` : `<img id="iconRelogio" src="Estatico/imagens/clockSemContorno.svg">`}
+										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : `<img id="iconRelogio" src="Estatico/imagens/${status[el2.StatusReserva].icone}" alt="ícone ${status[el2.StatusReserva].nome}" title="${status[el2.StatusReserva].nome}"/>`}
 									</div>
 								`;
 							} else if (el2.TiposItens[k] == 2) {
 								equipamentosReserva += `
 									<div style="margin-bottom: 5px;">
 										<p>${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
-										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : `<img id="iconRelogio" src="Estatico/imagens/clockSemContorno.svg">`}
+										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : `<img id="iconRelogio" src="Estatico/imagens/${status[el2.StatusReserva].icone}" alt="ícone ${status[el2.StatusReserva].nome}" title="${status[el2.StatusReserva].nome}"/>`}
 									</div>
 								`;
 							}
