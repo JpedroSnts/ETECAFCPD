@@ -718,11 +718,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 		width: 22px;
 	}
 
-	/*input {
+	input {
 		font-size: 12px;
-		padding: 6px 8px 3px 6px;
+		padding: 16px 0px 3px 10px;
 		margin: 0px;
-	}*/
+	}
 
 	#txtInputData {
 		width: 85%;

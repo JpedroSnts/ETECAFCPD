@@ -27,7 +27,7 @@
             <div class="divLabels">
                 <label for="txtCodigo">Código</label><br />
                 <div class="display">
-                    <img class="iconInput iconCodigio" src="../Estatico/imagens/codigo.svg" />
+                    <img class="iconInput iconCodigo" src="../Estatico/imagens/codigo.svg" />
                     <asp:TextBox ID="txtCodigo" placeholder="Insira o Código" runat="server" TextMode="SingleLine"></asp:TextBox>
                     <br />
                     <br />
