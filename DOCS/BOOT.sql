@@ -1116,6 +1116,7 @@ INSERT INTO usuario VALUES (36421, 'Carlos Eduardo Pietro Costa', 'carlos.costa0
 INSERT INTO usuario VALUES (36429, 'Márcia Heloise Teixeira', 'marcia.teixeira03@etec.sp.gov.br', md5('123'), 'default.png', 2);
 INSERT INTO usuario VALUES (36300, 'Isabela Marli Helena Moraes', 'isabela.moraes@etec.sp.gov.br', md5('123'), 'default.png', 3);
 INSERT INTO usuario VALUES (36412, 'João Pedro Santos', 'siqueirasantos100@gmail.com', md5('123'), 'default.png', 2);
+INSERT INTO usuario VALUES (36422, 'Aquires da Costa Silva', 'aquiressilva2019@gmail.com', md5('123'), 'default.png', 2);
 /*SELECT * FROM usuario;*/
 
 INSERT INTO notificacao VALUES(1, '1 Notebook está disponivel para reserva', '2023-08-01 08:50:00', 'Equipamento Disponível');
@@ -1218,6 +1219,12 @@ INSERT INTO reserva_equipamento VALUES (6, 'HDMI05', 36402, '2023-06-06 13:30:01
 INSERT INTO reserva_equipamento VALUES (7, 'NOTE05', 36401, DATE_ADD(ADDTIME(NOW(), "03:00:00"), INTERVAL 2 DAY), DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 2 DAY), null, null, null);
 INSERT INTO reserva_equipamento VALUES (8, 'HDMI03', 36401, DATE_ADD(ADDTIME(NOW(), "02:00:00"), INTERVAL 4 DAY), DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 4 DAY), null, null, null);
 INSERT INTO reserva_equipamento VALUES (9, 'CONTROLE12', 36401, DATE_ADD(ADDTIME(NOW(), "06:00:00"), INTERVAL 6 DAY), DATE_ADD(ADDTIME(NOW(), "08:00:00"), INTERVAL 6 DAY), null, null, DATE_ADD(NOW(), INTERVAL 1 DAY));
+INSERT INTO reserva_equipamento VALUES (10, 'CXSOM01', 36402, '2023-11-06 08:00:00', '2023-11-06 09:42:00', '2023-11-06 08:01:00', '2023-11-06 09:43:00', null);
+INSERT INTO reserva_equipamento VALUES (11, 'EXTS01', 36401, '2023-11-07 13:30:00', '2023-11-07 14:22:00', '2023-11-07 13:31:00', '2023-11-07 14:23:00', null);
+INSERT INTO reserva_equipamento VALUES (12, 'DS01', 36403, '2023-11-08 10:00:00', '2023-11-08 10:52:00', '2023-11-08 10:01:00', '2023-11-08 10:53:00', null);
+INSERT INTO reserva_equipamento VALUES (13, 'NOTE08', 36403, '2023-11-08 08:01:00', '2023-11-08 09:42:00', '2023-11-08 08:01:30', '2023-11-08 09:53:00', null);
+INSERT INTO reserva_equipamento VALUES (14, 'NOTE09', 36402, '2023-11-08 13:30:00', '2023-11-08 14:22:00', null , null , '2023-11-08 10:00:40');
+INSERT INTO reserva_equipamento VALUES (15, 'NOTE10', 36401, '2023-11-08 16:20:00', '2023-11-08 17:12:00', null , null, '2023-11-08 12:25:32');
 /*SELECT * FROM reserva_equipamento;*/
 
 INSERT INTO tipo_ocorrencia_equipamento VALUES (1, 'Notebook com defeito fisico leve');
@@ -1306,6 +1313,18 @@ INSERT INTO reserva_ambiente VALUES (10, 'INFOLAB07', 36402, '2023-06-07 16:00:0
 INSERT INTO reserva_ambiente VALUES (11, 'INFOLAB01', 36401, DATE_ADD(ADDTIME(NOW(), "02:00:00"), INTERVAL 3 DAY), DATE_ADD(ADDTIME(NOW(), "04:00:00"), INTERVAL 3 DAY), null, null, null);
 INSERT INTO reserva_ambiente VALUES (12, 'INFOLAB05', 36401, DATE_ADD(ADDTIME(NOW(), "05:00:00"), INTERVAL 5 DAY), DATE_ADD(ADDTIME(NOW(), "08:00:00"), INTERVAL 5 DAY), null, null, null);
 INSERT INTO reserva_ambiente VALUES (13, 'INFOLAB07', 36401, DATE_ADD(ADDTIME(NOW(), "07:00:00"), INTERVAL 7 DAY), DATE_ADD(ADDTIME(NOW(), "09:00:00"), INTERVAL 7 DAY), null, null, DATE_ADD(NOW(), INTERVAL 1 DAY));
+INSERT INTO reserva_ambiente VALUES (14, 'INFOLAB02', 36402, '2023-11-01 08:50:00', '2023-11-01 09:40:00', '2023-11-01 08:49:23', '2023-11-01 09:41:43', null);
+INSERT INTO reserva_ambiente VALUES (15, 'INFOLAB03', 36401, '2023-11-01 08:00:00', '2023-11-01 09:40:00', '2023-11-01 08:01:23', '2023-11-01 09:43:23', null);
+INSERT INTO reserva_ambiente VALUES (16, 'INFOLAB05', 36403, '2023-11-01 10:00:00', '2023-11-01 10:52:00', null , null , '2023-11-01 08:21:34');
+INSERT INTO reserva_ambiente VALUES (17, 'INFOLAB01', 36404, '2023-11-03 15:13:00', '2023-11-03 16:02:00', null , null , '2023-11-03 10:21:34');
+INSERT INTO reserva_ambiente VALUES (18, 'INFOLAB07', 36401, '2023-11-03 11:40:00', '2023-11-03 12:34:00', null , null , '2023-11-03 09:43:34');
+INSERT INTO reserva_ambiente VALUES (19, 'INFOLAB03', 36404, '2023-11-08 17:10:00', '2023-11-08 18:04:00', '2023-11-08 17:15:53', '2023-11-08 18:10:23', null);
+INSERT INTO reserva_ambiente VALUES (20, 'INFOLAB07', 36401, '2023-11-09 08:52:00', '2023-11-09 09:43:00', '2023-11-09 08:53:23', '2023-11-09 09:44:00', null);
+INSERT INTO reserva_ambiente VALUES (21, 'INFOLAB01', 36402, '2023-11-14 08:00:00', '2023-11-14 09:41:00', '2023-11-14 08:03:23', '2023-11-14 09:46:00', null);
+INSERT INTO reserva_ambiente VALUES (22, 'INFOLAB01', 36404, '2023-11-21 08:52:00', '2023-11-21 09:43:00', '2023-11-21 08:53:20', '2023-11-21 09:45:00', null);
+INSERT INTO reserva_ambiente VALUES (23, 'INFOLAB01', 36402, '2023-11-24 10:00:00', '2023-11-24 10:51:00', null , null , '2023-11-24 08:01:00');
+INSERT INTO reserva_ambiente VALUES (24, 'INFOLAB07', 36403, '2023-11-24 13:30:00', '2023-11-24 14:21:00', null , null , '2023-11-24 12:00:00');
+INSERT INTO reserva_ambiente VALUES (25, 'INFOLAB04', 36401, '2023-11-27 08:00:00', '2023-11-27 09:43:00', '2023-11-27 08:03:20', '2023-11-27 09:45:00', null);
 /*SELECT * FROM reserva_ambiente;*/
 
 INSERT INTO ocorrencia_ambiente VALUES ('2023-06-12 08:55:00', 1, 2, 'O professor João, novamente, ao entrar no laboratório notou que o laboratório tinha 4 computadores ligados'); 
