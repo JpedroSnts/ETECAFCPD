@@ -304,6 +304,13 @@
         const btnAcaoReserva = document.querySelectorAll(".btn.btnAcaoReserva");
         btnAcaoReserva.forEach((el) => {
             const checkbox = el.parentNode.parentNode.querySelector("input[type='checkbox']");
+            checkbox?.addEventListener("change", (e) => {
+                document.querySelectorAll(".ckbOcorrencia").forEach((x) => {
+                    if (x.parentElement.parentElement != checkbox.parentElement.parentElement) {
+                        x.checked = false;
+                    }
+                });
+            });
             el.addEventListener("click", () => {
                 const rm = el.getAttribute("rm");
                 const status = el.getAttribute("status");
