@@ -25,6 +25,7 @@
             <div class="divLabels">
                 <label for="txtSigla">Sigla</label><br />
                 <div class="display">
+                    <img class="iconInput iconSigla" src="../Estatico/imagens/sigla.svg" />
                     <asp:TextBox ID="txtSigla" placeholder="Insira a sigla" runat="server" TextMode="SingleLine"></asp:TextBox>
                     <br />
                     <br />
@@ -33,6 +34,7 @@
             <div class="divLabels">
                 <label for="txtNome">Nome</label><br />
                 <div class="display">
+                    <img class="iconInput iconNome" src="../Estatico/imagens/nomeItem.svg" />
                     <asp:TextBox ID="txtNome" placeholder="Insira o nome" runat="server" TextMode="SingleLine"></asp:TextBox>
                     <br />
                     <br />

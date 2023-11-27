@@ -42,6 +42,7 @@
             <div class="divLabels">
                 <label for="txtNome">Nome</label><br />
                 <div class="display">
+                     <img class="iconInput iconNome" src="../Estatico/imagens/nomeItem.svg" />
                     <asp:TextBox ID="txtNome" placeholder="Insira o nome" runat="server" TextMode="SingleLine"></asp:TextBox>
                     <br />
                     <br />

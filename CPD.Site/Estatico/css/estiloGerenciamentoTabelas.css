@@ -52,6 +52,21 @@ label {
     padding-top: 0px;
 }
 
+.iconNome {
+    width: 23px;
+    margin-right: -7px;
+    padding-top: 0px;
+}
+
+.iconSigla {
+    margin: 6px -6px 0px 0px;
+}
+
+.iconCodigo {
+    width: 20px;
+    margin-right: -5px;
+}
+
 input {
     font-size: 14px;
     border: none;
