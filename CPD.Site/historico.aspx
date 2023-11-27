@@ -41,8 +41,15 @@
             </div>
         </main>
         <main id="mainComReserva" style="display: none">
-            <h1>Seu Histórico</h1>
+            <h1>Histórico</h1>
             <!------------------------ CARDS RESERVA ----------------------- -->
+
+            <div id="inputsRelatorio">
+                <asp:TextBox runat="server" ID="txtDataInicio" TextMode="SingleLine" placeholder="Data Inicial" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date"></asp:TextBox>
+                <asp:TextBox runat="server" ID="txtDataFinal" TextMode="SingleLine" placeholder="Data Final" onfocus="this.type='date'" onblur="if (!this.value) this.type='text'" class="input-text-date"></asp:TextBox>
+                <asp:Button ID="btnBuscarHistorico" runat="server" Text="Buscar"  />
+                <asp:ImageButton ID="btnBuscarHistoricoResponsivo" runat="server" ImageUrl="~/Estatico/imagens/lupa.svg" />
+            </div>
 
             <div id="displayCardsReserva">
                 <div id="reservas"></div>

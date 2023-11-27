@@ -435,6 +435,97 @@ button, input[type="button"], input[type="submit"] {
 		margin: 2px 0px 0px 20px;
 	}
 
+/* ---------------------------- HISTORICO ---------------------------- */
+
+input {
+	width: 25%;
+	border-radius: 5px;
+	border: 1px solid #114a55;
+	background: #fff;
+	color: #000;
+	font-size: 14px;
+	padding: 6px 8px 3px 12px;
+	margin: auto;
+}
+
+#txtInputData {
+	margin-right: 10px;
+	margin-left: 0px;
+	padding: 2px 0px 2px 12px;
+	height: 40px;
+	width: 100%;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+	background: url("../imagens/calendario.svg") no-repeat;
+	background-position: calc(100% - 5px) center;
+	padding: 9px 8px 8px 12px;
+}
+
+.input-text-date {
+	background: url("../imagens/calendario.svg") no-repeat;
+	background-position: calc(100% - 5px) center;
+	padding: 9px 8px 8px 12px;
+}
+
+	.input-text-date:focus {
+		outline: none;
+		padding: 2px 0px 2px 12px;
+	}
+
+	.input-text-date::placeholder {
+		color: #000;
+	}
+
+button {
+	border: thin solid #114A55;
+	color: #fff;
+	background-color: #114A55;
+	border-radius: 20px;
+	padding: 5px 20px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+	button:hover {
+		color: #fff;
+		background-color: #114A55;
+	}
+
+button, input[type="button"], input[type="submit"] {
+	width: 100px;
+	height: 39px;
+	border-radius: 20px;
+	padding: 5px 20px;
+	background-color: #114a55;
+	color: #fff;
+	font-size: 14px;
+	outline: none;
+	border: none;
+	cursor: pointer;
+	margin: 0px;
+}
+
+
+#btnBuscarHistoricoResponsivo {
+	display: none;
+}
+
+#inputsRelatorio {
+	display: flex;
+	justify-content: space-between;
+	color: #000;
+	width: 1185px;
+	margin-bottom: 30px;
+}
+
+#txtDataInicio, #txtDataFinal {
+	padding: 2px 0px 2px 12px;
+	height: 40px;
+	width: 45%;
+	margin: 0;
+}
+
 @media only screen and (max-width: 800px) {
 
 	#tdReload {
@@ -636,6 +727,44 @@ button, input[type="button"], input[type="submit"] {
 
 	#iconRelogio {
 		width: 22px;
+	}
+
+	input {
+		font-size: 12px;
+		padding: 6px 8px 3px 6px;
+		margin: 0px;
+	}
+
+	#txtInputData {
+		width: 85%;
+		margin-right: 0px;
+	}
+
+	#btnBuscarHistoricoResponsivo {
+		display: initial;
+		width: 35px;
+		border: none;
+		padding: 0px;
+		margin-top: 0px;
+	}
+
+	#btnBuscarHistorico {
+		display: none;
+	}
+
+	#inputsRelatorio {
+		display: flex;
+		justify-content: space-between;
+		color: #000;
+		width: 90%;
+		margin-bottom: 30px;
+	}
+
+	#txtDataInicio, #txtDataFinal {
+		padding: 2px 0px 2px 12px;
+		height: 40px;
+		width: 42%;
+		margin: 0;
 	}
 }
 
