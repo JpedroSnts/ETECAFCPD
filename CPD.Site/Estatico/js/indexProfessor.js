@@ -8,9 +8,9 @@ window.addEventListener("load", async () => {
 
 	const status = {
 		"1": { nome: "Reservado", icone: "concluida.svg" },
-		"2": { nome: "Em andamento", icone: "clock.svg" },
+		"2": { nome: "Em andamento", icone: "clockSemContorno.svg" },
 		"3": { nome: "Entrega Atrasada", icone: "atrasada.svg" },
-		"4": { nome: "Aguardando Retirada", icone: "clock.svg" },
+		"4": { nome: "Aguardando Retirada", icone: "clockSemContorno.svg" },
 		"5": { nome: "Não Retirados", icone: "naoRetirada.svg" },
 		"6": { nome: "Canceladas", icone: "cancelada.svg" },
 		"7": { nome: "Concluida", icone: "concluida.svg" }

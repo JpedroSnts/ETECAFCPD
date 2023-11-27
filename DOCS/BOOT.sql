@@ -475,8 +475,8 @@ BEGIN
 		JOIN equipamento e ON re.sg_equipamento = e.sg_equipamento
 		JOIN usuario u ON re.cd_rm = u.cd_rm
 		WHERE 
-			u.cd_rm = pRm AND DATE(re.dt_saida_prevista) >= curdate()
-			AND re.dt_cancelamento IS NULL
+			u.cd_rm = pRm AND DATE(re.dt_saida_prevista) >= curdate() AND
+			verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) IN (1,2,3,4,5)
 		ORDER BY re.dt_saida_prevista ASC;
 	END IF;
 END$$
@@ -774,8 +774,8 @@ BEGIN
 		JOIN ambiente a ON ra.sg_ambiente = a.sg_ambiente
 		JOIN usuario u ON ra.cd_rm = u.cd_rm
 		WHERE 
-			u.cd_rm = pRm AND DATE(ra.dt_saida_prevista) >= curdate()
-			AND ra.dt_cancelamento IS NULL
+			u.cd_rm = pRm AND DATE(ra.dt_saida_prevista) >= curdate() AND
+			verificarStatusReserva(dt_saida_prevista, dt_devolucao_prevista, dt_saida, dt_devolucao, dt_cancelamento) IN (1,2,3,4,5)
 		ORDER BY ra.dt_saida_prevista ASC;
 	END IF;
 END$$
