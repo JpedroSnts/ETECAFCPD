@@ -14,7 +14,7 @@
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
-		<title>Dashboard</title>
+		<title>Painel de Controle</title>
 		<link rel="icon" href="Estatico/imagens/QuadradoLogoCPD.png" type="image/png" /></head>
 <body>
     <form id="form1" runat="server">
