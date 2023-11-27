@@ -117,7 +117,7 @@ CREATE TABLE uso_ambiente
 	cd_dia_semana INT,
 	hr_inicio_uso TIME,
 	hr_termino_uso TIME,
-	CONSTRAINT pk_disponibilidade_ambiente PRIMARY KEY (hr_termino_uso, hr_inicio_uso, cd_dia_semana),
+	CONSTRAINT pk_disponibilidade_ambiente PRIMARY KEY (hr_termino_uso, hr_inicio_uso, cd_dia_semana, sg_ambiente),
 	CONSTRAINT fk_disponibilidade_ambiente_dia_semana FOREIGN KEY (cd_dia_semana)
 		REFERENCES dia_semana (cd_dia_semana),
 	CONSTRAINT fk_disponibilidade_ambiente_ambiente FOREIGN KEY (sg_ambiente)
@@ -1271,12 +1271,26 @@ INSERT INTO tipo_ocorrencia_ambiente VALUES (8, 'Mini Auditório com cadeiras de
 INSERT INTO tipo_ocorrencia_ambiente VALUES (9, 'Mini Auditório com ventilador ligado');
 /*SELECT * FROM tipo_ocorrencia_ambiente;*/
 
-INSERT INTO uso_ambiente VALUES ('INFOLAB05', 2, '13:30:00', '14:20:00');
 INSERT INTO uso_ambiente VALUES ('INFOLAB01', 1, '13:30:00', '15:10:00');
-INSERT INTO uso_ambiente VALUES ('INFOLAB07', 3, '16:00:00', '17:10:00');
-INSERT INTO uso_ambiente VALUES ('INFOLAB05', 2, '10:00:00', '11:40:00');
 INSERT INTO uso_ambiente VALUES ('INFOLAB01', 1, '08:00:00', '10:00:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB02', 1, '10:00:00', '12:30:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB03', 1, '08:00:00', '11:40:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB05', 2, '13:30:00', '14:20:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB05', 2, '10:00:00', '11:40:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB04', 2, '13:30:00', '14:20:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB06', 2, '08:50:00', '10:50:00');
 INSERT INTO uso_ambiente VALUES ('INFOLAB07', 3, '17:10:00', '18:00:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB07', 3, '16:00:00', '17:10:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB01', 3, '13:30:00', '15:30:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB04', 3, '17:10:00', '18:00:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB03', 4, '10:00:00', '11:40:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB04', 4, '16:00:00', '17:10:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB06', 4, '08:00:00', '12:30:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB02', 4, '16:00:00', '17:10:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB05', 5, '13:30:00', '14:20:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB05', 5, '10:00:00', '11:40:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB04', 5, '13:30:00', '14:20:00');
+INSERT INTO uso_ambiente VALUES ('INFOLAB06', 5, '08:50:00', '10:50:00');
 /*SELECT * FROM disponibilidade_ambiente;*/
 
 INSERT INTO reserva_ambiente VALUES (1, 'INFOLAB01', 36401, '2023-06-12 13:30:00', '2023-06-12 14:20:00', null, null, '2023-06-12 13:26:35');
