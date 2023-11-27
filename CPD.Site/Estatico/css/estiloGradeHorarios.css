@@ -147,10 +147,9 @@ select, input {
 	outline: none;
 	border: none;
 	cursor: pointer;
-	margin: 0;
 	text-decoration: none;
 	text-align: center;
 	display: block;
 	margin-inline-start: auto;
-	margin-top: 30px;
+	margin-bottom: 30px !important;
 }
