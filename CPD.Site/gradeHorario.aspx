@@ -15,7 +15,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="Estatico/imagens/QuadradoLogoCPD.png" type="image/png" />
-    <title>CPD - Grade de horário</title>
+    <title>Grade de Horário</title>
 </head>
 <body>
     <form id="form1" runat="server">
