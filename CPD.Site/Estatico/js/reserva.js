@@ -151,7 +151,8 @@ window.addEventListener("load", () => {
                     }
                 }
             });
-        const dd_mm = new Date(data).toLocaleDateString("pt-BR").substring(0, 5);
+        const newDt = new Date(data);
+        const dd_mm = new Date(newDt.setDate(new Date(data).getDate() + 1)).toLocaleDateString("pt-BR").substring(0, 5);
         lblDiaEHora.textContent = `${dd_mm} (${document.querySelector("#txtHorarioInicio").value} - ${document.querySelector("#txtHorarioFim").value})`;
 
         telaBloqueio.classList.remove("escondido");
