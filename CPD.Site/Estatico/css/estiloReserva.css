@@ -383,11 +383,8 @@ p { margin: 0px 0px 0px 0px; }
 @media only screen and (max-width: 800px) {
 	.caixa-flutuante-erros {
 		position: absolute;
-		bottom: 10px;
-		top: auto;
 		width: 90%;
 		transform: translateX(50%);
-		right: 50%;
 	}
 }
 

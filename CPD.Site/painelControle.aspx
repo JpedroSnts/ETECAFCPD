@@ -53,7 +53,7 @@
 		                <img id="btnFecharJanelaOcorrencia" src="/Estatico/imagens/close.svg" alt="ícone para fechar a janela" />
 	                </div>
 	                <div class="gerarOcorrencia-body">
-		                <h4>ÍTENS</h4>
+		                <h4>ITENS</h4>
 		                <div class="ckbs-group"></div>
 		                <div id="itensOcorrencia"></div>
 
