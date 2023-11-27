@@ -9,11 +9,11 @@
     const status = {
         "1": { nome: "Reservado", icone: "reserva_reservado.svg" },
         "2": { nome: "Em andamento", icone: "reserva_em_andamento.svg" },
-        "3": { nome: "Entrega Atrasada", icone: "trianguloExclamacao.svg" },
+        "3": { nome: "Entrega Atrasada", icone: "atrasada.svg" },
         "4": { nome: "Aguardando Retirada", icone: "reserva_aguardando_retirada.svg" },
-        "5": { nome: "Não Retirados", icone: "reserva_nao_retirado.svg" },
-        "6": { nome: "Canceladas", icone: "reserva_cancelada.svg" },
-        "7": { nome: "Concluida", icone: "reserva_concluido.svg" }
+        "5": { nome: "Não Retirados", icone: "naoRetirada.svg" },
+        "6": { nome: "Canceladas", icone: "cancelada.svg" },
+        "7": { nome: "Concluida", icone: "concluida.svg" }
     };
 
     function cardReserva() {

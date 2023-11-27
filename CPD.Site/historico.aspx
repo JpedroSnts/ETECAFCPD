@@ -50,7 +50,6 @@
 
             <!-- ----------------------- CARD NOVA RESERVA ----------------------- -->
 
-            <a href="/reserva.aspx" id="btnNovaReservaComReserva"><i class="fa-solid fa-plus"></i>Nova Reserva</a>
         </main>
 
         <script src="/Estatico/js/historico.js"></script>
