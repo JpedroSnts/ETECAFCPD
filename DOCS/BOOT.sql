@@ -1179,7 +1179,7 @@ INSERT INTO usuario VALUES (36421, 'Carlos Eduardo Pietro Costa', 'carlos.costa0
 INSERT INTO usuario VALUES (36429, 'Márcia Heloise Teixeira', 'marcia.teixeira03@etec.sp.gov.br', md5('123'), 'default.png', 2);
 INSERT INTO usuario VALUES (36300, 'Isabela Marli Helena Moraes', 'isabela.moraes@etec.sp.gov.br', md5('123'), 'default.png', 3);
 INSERT INTO usuario VALUES (36412, 'João Pedro Santos', 'siqueirasantos100@gmail.com', md5('123'), 'default.png', 2);
-INSERT INTO usuario VALUES (36422, 'Aquires da Costa Silva', 'aquiressilva2019@gmail.com', md5('123'), 'default.png', 2);
+INSERT INTO usuario VALUES (36424, 'Luiza Nascimento Medeiros', 'luiza.medeiros@gmail.com', md5('123'), '36424.jpg', 2);
 /*SELECT * FROM usuario;*/
 
 INSERT INTO notificacao VALUES(1, '1 Notebook está disponivel para reserva', '2023-08-01 08:50:00', 'Equipamento Disponível');
