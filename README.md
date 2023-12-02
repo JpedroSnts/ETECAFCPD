@@ -44,10 +44,10 @@ git clone https://github.com/JpedroSnts/ETECAFCPD.git
 ## Site versão mobile (Usuário)
 
 <div>
-  <img src="https://www.dropbox.com/scl/fi/d51abw7cf41g5l5rwjx9m/login-mobile.png?rlkey=hr8szmjwj0p0gl9ans4dpbxqd&dl=0&raw=1" alt="Imagem da página de login mobile" style="width: 24%;" />
-  <img src="https://www.dropbox.com/scl/fi/3qfj0ayj5efy5z9dt7jdg/suas-reservas-mobile.png?rlkey=ec6ra23et8zqtwp8nvppey6hi&dl=0&raw=1" alt="Imagem da página de suas reservas mobile" style="width: 24%;" />
-  <img src="https://www.dropbox.com/scl/fi/iwcmtk578o7uxt68ibiel/reserva-mobile.png?rlkey=n6m0s2anle3s2psj0r8tw5jd2&dl=0&raw=1" alt="Imagem da página de reserva mobile" style="width: 24%;" />
-  <img src="https://www.dropbox.com/scl/fi/juerzprtby76f2qg43yh7/alterar-senha-mobile.png?rlkey=jqvhp5kj1nk0fxvxpri0nf860&dl=0&raw=1" alt="Imagem da página de ateração de senha mobile" style="width: 24%;" />
+  <img src="https://www.dropbox.com/scl/fi/s0ktlmlncu4mvxl325rp0/login-mobile.png?rlkey=02vanz2qtx2dzcd7utwwqs250&dl=0&raw=1" alt="Imagem da página de login mobile" style="width: 24%;" />
+  <img src="https://www.dropbox.com/scl/fi/we96k7wuantp79ohlr6l2/suas-reservas-mobile.png?rlkey=hsh798mm884gnovstzwbuqbaf&dl=0&raw=1" alt="Imagem da página de suas reservas mobile" style="width: 24%;" />
+  <img src="https://www.dropbox.com/scl/fi/hkbzuv7qgn3gstaptjlli/reserva-mobile.png?rlkey=zoml7o8qyuw2acbn3xumicd6l&dl=0&raw=1" alt="Imagem da página de reserva mobile" style="width: 24%;" />
+  <img src="https://www.dropbox.com/scl/fi/063ahw984f9nxpb1gln0z/alterar-senha-mobile.png?rlkey=o9ntvovykmmbdp7cgb9advqm4&dl=0&raw=1" alt="Imagem da página de ateração de senha mobile" style="width: 24%;" />
 </div>
 
 <br/>
@@ -55,10 +55,10 @@ git clone https://github.com/JpedroSnts/ETECAFCPD.git
 ## Site versão desktop (Administrador)
 
 <div>
-  <img src="https://www.dropbox.com/scl/fi/gycxyebzgf5l55ut3g1fk/dashboard.png?rlkey=gezngfvgb5dw6etezsupds9zk&dl=0&raw=1" alt="Imagem da página dashboard" style="width: 49%;" />
-  <img src="https://www.dropbox.com/scl/fi/tpm0pzznd659k5ujwu2vl/reserva.png?rlkey=lan0q9qyuglmvsiyaldud9iic&dl=0&raw=1" alt="Imagem da página de reservas" style="width: 49%;" />
-  <img src="https://www.dropbox.com/scl/fi/uwvxv8aycsvj3qd21u87y/painel-reservas.png?rlkey=oi8yaduu3rktycpfo210z8ryx&dl=0&raw=1" alt="Imagem da página do painel de reservas" style="width: 49%;" />
-  <img src="https://www.dropbox.com/scl/fi/g5g5quumfb6w0x6v0vw19/grade-horarios.png?rlkey=3q0y1k8rpuvm0xn52ikb8z44c&dl=0&raw=1" alt="Imagem da página de grade de horários" style="width: 49%;" />
-  <img src="https://www.dropbox.com/scl/fi/ppgfwh1es9pka0iwxvpfo/gerar-relatorio.png?rlkey=osgc2dwmvk2dlnbgbh21vmume&dl=0&raw=1" alt="Imagem da página de geração de relatórios" style="width: 49%;" />
-  <img src="https://www.dropbox.com/scl/fi/7nfsvvauz8urfarugidi0/relatorio.png?rlkey=h8sxw0n51odi5o7ved7kigd0y&dl=0&raw=1" alt="Imagem da página do relatório" style="width: 49%;" />
+  <img src="https://www.dropbox.com/scl/fi/pgx5ld7n6mp21rrlfog08/dashboard.png?rlkey=snn9dcspx4vgj5x5tw6c9arim&dl=0&raw=1" alt="Imagem da página dashboard" style="width: 49%;" />
+  <img src="https://www.dropbox.com/scl/fi/0wltjwyuvmjo3dxzwx4e9/reserva.png?rlkey=3880yce4lvf75ntbvjs1lfnxw&dl=0&raw=1" alt="Imagem da página de reservas" style="width: 49%;" />
+  <img src="https://www.dropbox.com/scl/fi/on8gpdpomoicvd84lv56i/painel-controle.png?rlkey=yjyn2aft43bzdufhwi2rt9ea7&dl=0&raw=1" alt="Imagem da página do painel de reservas" style="width: 49%;" />
+  <img src="https://www.dropbox.com/scl/fi/afisgnp4owjvmy94o6fuq/grade-horarios.png?rlkey=g5yf6q562d778y3nsb3qra5dh&dl=0&raw=1" alt="Imagem da página de grade de horários" style="width: 49%;" />
+  <img src="https://www.dropbox.com/scl/fi/2nwmmm55vj7xbrvrfpxzc/gerar-relatorio.png?rlkey=hoqsbkm9byu50u53jd54fzahw&dl=0&raw=1" alt="Imagem da página de geração de relatórios" style="width: 49%;" />
+  <img src="https://www.dropbox.com/scl/fi/2f9uk05fzixu9qvbfyzq6/relatorio.png?rlkey=64jfiv7kun3j8zdduj5s6sjt0&dl=0&raw=1" alt="Imagem da página do relatório" style="width: 49%;" />
 </div>
