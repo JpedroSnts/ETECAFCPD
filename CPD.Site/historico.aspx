@@ -41,6 +41,18 @@
 
         </main>
 
+        <p class="pMensagemReserva" style="display: none; text-align: center;">Nenhuma reserva nestas datas</p>
+
+        <main id="mainHome" style="display: none">
+	        <div>
+		        <img id="cardSemReserva" src="Estatico/imagens/semReserva.png" />
+		        <p><strong>Você não possui reservas!</strong></p>
+	        </div>
+	        <div>
+		        <a href="/reserva.aspx" id="btnNovaReserva"><i class="fa-solid fa-plus"></i>Nova Reserva</a>
+	        </div>
+        </main>
+
         <main id="mainReload">
             <div id="tdReload">
                 <img class="reloadAnimacao" id="iconeReload" src="/Estatico/imagens/refresh.svg" />

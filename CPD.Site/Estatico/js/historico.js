@@ -3,6 +3,8 @@
     const diasSemana = ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"];
     const mainReload = document.querySelector("#mainReload");
     const mainComReserva = document.querySelector("#mainComReserva");
+    const mainHome = document.querySelector("#mainHome");
+    const pMensagemReserva = document.querySelector(".pMensagemReserva");
     const $reservas = document.querySelector("#reservas");
 
     const status = {
@@ -54,6 +56,8 @@
     btnBuscarHistoricoResponsivo.addEventListener("click", eventoBuscar);
 
     function buscarReservas(inicio, fim) {
+        mainHome.style.display = "none";
+        pMensagemReserva.style.display = "none";
         mainReload.style.display = "block";
         let url = `/api/reservasProfessor.aspx?rm=${rmUsuario}&todas=true`;
         if (inicio) url = `/api/reservasProfessor.aspx?rm=${rmUsuario}&todas=true&inicio=${inicio}`;
@@ -131,6 +135,11 @@
                 cardReserva();
             } else {
                 mainReload.style.display = "none";
+                if (!inicio && !fim) {
+                    mainHome.style.display = "flex";
+                } else {
+                    document.querySelector(".pMensagemReserva").style.display = "block";
+                }
             }
         });
     }
