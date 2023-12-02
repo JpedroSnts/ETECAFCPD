@@ -73,18 +73,32 @@ window.addEventListener("load", async () => {
 						for (var k = 0; k < itens.length; k++) {
 							const cd = itens[k];
 
+							let dtSaidaMenos1Hora = new Date(el2.DataSaidaPrevista);
+							dtSaidaMenos1Hora = new Date(dtSaidaMenos1Hora.setHours(dtSaidaMenos1Hora.getHours() - 1));
+							const dtNow = new Date();
+
+							function icone() {
+								if (el2.StatusReserva == 1) {
+									if (dtSaidaMenos1Hora > dtNow) {
+										return `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />`;
+									}
+									return "";
+								}
+								return `<img id="iconRelogio" src="Estatico/imagens/${status[el2.StatusReserva].icone}" alt="ícone ${status[el2.StatusReserva].nome}" title="${status[el2.StatusReserva].nome}"/>`;
+							}
+
 							if (el2.TiposItens[k] == 1) {
 								ambientesReserva += `
 									<div style="margin-bottom: 5px;">
 										<p>${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
-										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : `<img id="iconRelogio" src="Estatico/imagens/${status[el2.StatusReserva].icone}" alt="ícone ${status[el2.StatusReserva].nome}" title="${status[el2.StatusReserva].nome}"/>`}
-									</div>
+										${icone()}
+										</div>
 								`;
 							} else if (el2.TiposItens[k] == 2) {
 								equipamentosReserva += `
 									<div style="margin-bottom: 5px;">
 										<p>${el2.ItensNome.split(",")[k]} (${el2.Horario})</p>
-										${el2.StatusReserva == 1 ? `<img id="iconLixeira" src="Estatico/imagens/lixeira.svg" itens="${cd.replaceAll(" ", "")}" data="${el2.DataSaidaPrevista}" />` : `<img id="iconRelogio" src="Estatico/imagens/${status[el2.StatusReserva].icone}" alt="ícone ${status[el2.StatusReserva].nome}" title="${status[el2.StatusReserva].nome}"/>`}
+										${icone()}
 									</div>
 								`;
 							}
