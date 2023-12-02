@@ -124,6 +124,7 @@
     <Content Include="Estatico\css\estiloRelatorioFunc.css" />
     <Content Include="Estatico\css\estiloLogin.css" />
     <Content Include="Estatico\css\estiloReserva.css" />
+    <Content Include="Estatico\imagens\usuarios\36424.jpg" />
     <Content Include="Estatico\imagens\usuarios\default.png" />
     <Content Include="Estatico\imagens\deslogar.svg" />
     <Content Include="Estatico\imagens\logoCPD.png" />

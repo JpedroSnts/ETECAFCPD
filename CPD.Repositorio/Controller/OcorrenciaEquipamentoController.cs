@@ -40,6 +40,7 @@ namespace CPD.Repositorio.Controller
             }
             catch
             {
+                Desconectar();
                 return false;
             }
 
