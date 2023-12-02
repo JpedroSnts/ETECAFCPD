@@ -51,7 +51,6 @@
         </main>
 
         <script src="Estatico/js/menuSanduiche.js"></script>
-        <script src="Estatico/js/relatorio.js"></script>
     </form>
     <script>
         const dataInicio = document.querySelector("#dataInicio");
