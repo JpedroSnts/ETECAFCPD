@@ -19,12 +19,13 @@ namespace CPD.Site.Api
                 Response.StatusCode = 401;
                 Response.End();
             }
-            if (!String.IsNullOrEmpty(Request["dia"]) && !String.IsNullOrEmpty(Request["inicio"]) && !String.IsNullOrEmpty(Request["fim"]))
+            if (!String.IsNullOrEmpty(Request["dia"]) && !String.IsNullOrEmpty(Request["inicio"]) && !String.IsNullOrEmpty(Request["fim"]) && !String.IsNullOrEmpty(Request["ambiente"]))
             {
                 UsoAmbiente usoAmbiente = new UsoAmbiente();
                 usoAmbiente.DiaSemana = new DiaSemana { Codigo = int.Parse(Request["dia"]) };
                 usoAmbiente.Inicio = DateTime.Parse(Request["inicio"]);
                 usoAmbiente.Termino = DateTime.Parse(Request["fim"]);
+                usoAmbiente.Ambiente = new Ambiente() { Sigla = Request["ambiente"] };
                 UsoAmbienteController controller = new UsoAmbienteController();
                 controller.Remover(usoAmbiente);
             }

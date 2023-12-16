@@ -845,12 +845,10 @@ BEGIN
 END$$
 
 DROP PROCEDURE IF EXISTS removerUsoAmbiente$$
-CREATE PROCEDURE removerUsoAmbiente(pHorarioInicio TIME, pHorarioFim TIME, pDiaSemana INT)
+CREATE PROCEDURE removerUsoAmbiente(pHorarioInicio TIME, pHorarioFim TIME, pDiaSemana INT, pAmbiente VARCHAR(20))
 BEGIN
-	IF !usoAmbienteJaExiste(pHorarioInicio, pHorarioFim, pDiaSemana) THEN
-		SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'Uso ambiente não cadastrado';
-    END IF;
-	DELETE FROM uso_ambiente WHERE hr_termino_uso = pHorarioFim AND hr_inicio_uso = pHorarioInicio AND cd_dia_semana = pDiaSemana;
+	DELETE FROM uso_ambiente 
+	WHERE hr_termino_uso = pHorarioFim AND hr_inicio_uso = pHorarioInicio AND cd_dia_semana = pDiaSemana AND sg_ambiente = pAmbiente;
 END$$
 
 DROP PROCEDURE IF EXISTS listarUsosAmbientes$$
