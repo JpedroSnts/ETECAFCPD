@@ -397,4 +397,8 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 
-TESTE/
+# Ignorar todos os arquivos na pasta CPD.Site/Estatico/imagens/usuarios
+CPD.Site/Estatico/imagens/usuarios/*
+
+# Exceto o arquivo default.png
+!CPD.Site/Estatico/imagens/usuarios/default.png
