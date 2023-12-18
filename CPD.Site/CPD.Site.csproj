@@ -112,8 +112,6 @@
     <Content Include="Estatico\imagens\trianguloExclamacaoSemContorno.svg" />
     <Content Include="Estatico\imagens\usuario.svg" />
     <Content Include="Estatico\imagens\rm.svg" />
-    <Content Include="Estatico\imagens\usuarios\36400.png" />
-    <Content Include="Estatico\imagens\usuarios\36401.png" />
     <Content Include="Estatico\imagens\close.svg" />
     <Content Include="Estatico\css\painelControle.css" />
     <Content Include="Estatico\css\dashboard.css" />
@@ -124,7 +122,6 @@
     <Content Include="Estatico\css\estiloRelatorioFunc.css" />
     <Content Include="Estatico\css\estiloLogin.css" />
     <Content Include="Estatico\css\estiloReserva.css" />
-    <Content Include="Estatico\imagens\usuarios\36424.jpg" />
     <Content Include="Estatico\imagens\usuarios\default.png" />
     <Content Include="Estatico\imagens\deslogar.svg" />
     <Content Include="Estatico\imagens\logoCPD.png" />

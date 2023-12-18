@@ -20,8 +20,8 @@ namespace CPD.Site
             {
                 Response.Redirect("~/login.aspx");
             }
-            litImagem.Text = $"<img id=\"userProf\" src=\"Estatico/imagens/{Session["foto_usuario"]}\" />";
-            litImgEdit.Text = $"<img id=\"imgEditar\" src=\"Estatico/imagens/usuarios/{Session["foto_usuario"]}\" />";
+            litImagem.Text = $"<img id=\"userProf\" src=\"Estatico/imagens/{Session["foto_usuario"]}\" onerror=\"this.onerror=null; this.src='/Estatico/imagens/usuarios/default.png'\" />";
+            litImgEdit.Text = $"<img id=\"imgEditar\" src=\"Estatico/imagens/usuarios/{Session["foto_usuario"]}\" onerror=\"this.onerror=null; this.src='/Estatico/imagens/usuarios/default.png'\" />";
             litNome.Text = Session["nome_usuario"].ToString();
             litRm.Text = Session["rm_usuario"].ToString();
         }
